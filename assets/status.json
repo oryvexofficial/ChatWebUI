@@ -1,11 +1,23 @@
 {
-  "status": "offline",
+  "status": "starting",
   "url_payload": null,
-  "updated_at": null,
-  "run_url": null,
-  "run_number": 0,
-  "commit": "",
-  "public_api_key": "sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26",
-  "api_key": "sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26",
-  "model": "یونیکالکت چت مینی"
+  "public_api_key": "sk-uc-b70dd61e387f21b1ea3b209b673b5393",
+  "api_key": "sk-uc-b70dd61e387f21b1ea3b209b673b5393",
+  "model": "یونیکالکت چت مینی",
+  "model_id": "unicollect-chat-mini",
+  "creator": "Muvixo",
+  "routes": {
+    "openai_base_url": null,
+    "chat_completions": null,
+    "v1_chat_completions": null,
+    "models": null,
+    "native_chat": null,
+    "native_stream": null,
+    "key": null,
+    "health": null
+  },
+  "updated_at": "2026-11-18T17:51:34+00:00",
+  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44363279337",
+  "run_number": 11,
+  "commit": "ad15072"
 }

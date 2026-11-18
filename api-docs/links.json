@@ -1,23 +1,115 @@
 {
   "service": "unicollect",
-  "status": "offline",
+  "model": "یونیکالکت چت مینی",
+  "model_id": "unicollect-chat-mini",
+  "creator": "Muvixo",
+  "public_api_key": "sk-uc-b70dd61e387f21b1ea3b209b673b5393",
+  "api_key": "sk-uc-b70dd61e387f21b1ea3b209b673b5393",
+  "status": "starting",
   "online": false,
   "base_url": null,
+  "routes": {
+    "openai_base_url": null,
+    "chat_completions": null,
+    "v1_chat_completions": null,
+    "models": null,
+    "native_chat": null,
+    "native_stream": null,
+    "key": null,
+    "health": null
+  },
   "links": {
     "panel": null,
+    "openai_base": null,
+    "chat_completions": null,
     "api": null,
+    "key": null,
     "health": null,
     "swagger": null,
     "redoc": null,
     "openapi": null,
-    "guide": null
+    "guide": null,
+    "public_key_page": null
   },
-  "endpoints": [],
-  "updated_at": null,
-  "note": "Placeholder. scripts/publish_status.sh overwrites this on gh-pages with the live link.",
-  "model": "یونیکالکت چت مینی",
-  "creator": "Muvixo",
-  "public_api_key": "sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26",
-  "model_id": "unicollect-chat-mini",
-  "api_key": "sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26"
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/api/v1/key",
+      "url": null
+    },
+    {
+      "method": "POST",
+      "path": "/v1/chat/completions",
+      "url": null
+    },
+    {
+      "method": "GET",
+      "path": "/v1/models",
+      "url": null
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/chat",
+      "url": null
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/chat/stream",
+      "url": null
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/chat/completions",
+      "url": null
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/generate",
+      "url": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1",
+      "url": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/health",
+      "url": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/ready",
+      "url": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/info",
+      "url": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/models",
+      "url": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/config",
+      "url": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/stats",
+      "url": null
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "url": null
+    }
+  ],
+  "updated_at": "2026-11-18T17:51:34+00:00",
+  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44363279337",
+  "run_number": 11,
+  "commit": "ad15072"
 }

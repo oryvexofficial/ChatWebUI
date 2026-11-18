@@ -160,9 +160,9 @@
           });
           panels.forEach(function (p) {
             if (p.getAttribute('data-tab-panel') === targetIdx) {
-              p.removeAttribute('hidden');
+              p.removeAttribute('hidden'); p.style.display = '';
             } else {
-              p.setAttribute('hidden', '');
+              p.setAttribute('hidden', ''); p.style.display = 'none';
             }
           });
         });
@@ -335,7 +335,7 @@
       const path = parts[1];
       const base = state.baseUrl || (location.hostname.endsWith('github.io') ? '' : '');
       if (location.hostname.endsWith('github.io') && !base) {
-        outBox.removeAttribute('hidden');
+        outBox.removeAttribute('hidden'); outBox.style.display = '';
         statusEl.textContent = 'سرویس آفلاین است';
         resPre.textContent = 'در حال حاضر آدرس تونل زنده‌ای در api/links.json ثبت نشده است.';
         return;
@@ -351,7 +351,7 @@
         headers['Content-Type'] = 'application/json';
         opts.body = bodyTa ? bodyTa.value : '{}';
       }
-      outBox.removeAttribute('hidden');
+      outBox.removeAttribute('hidden'); outBox.style.display = '';
       statusEl.textContent = 'در حال ارسال درخواست…';
       resPre.textContent = '…';
       const t0 = performance.now();
@@ -417,12 +417,12 @@
     const drawer = document.getElementById('drawer');
     document.querySelectorAll('[data-drawer-open]').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        if (drawer) drawer.removeAttribute('hidden');
+        if (drawer) { drawer.removeAttribute('hidden'); drawer.style.display = ''; }
       });
     });
     document.querySelectorAll('[data-drawer-close]').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        if (drawer) drawer.setAttribute('hidden', '');
+        if (drawer) { drawer.setAttribute('hidden', ''); drawer.style.display = 'none'; }
       });
     });
 

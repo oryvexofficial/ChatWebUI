@@ -10,9 +10,10 @@
   
   <link rel="preload" href="assets/fonts/Vazirmatn.woff2?v=1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="assets/site.css?v=bw2">
+  <link rel="stylesheet" href="assets/site.css?v=bw3">
   <meta property="og:title" content="یونیکالکت · دستیار هوشمند موویکسو">
   <meta property="og:description" content="پنل گفتگوی هوشمند یونیکالکت چت مینی ساخته‌ی موویکسو با کلید عمومی API و روتر رایگان.">
+  <style>[hidden]{display:none!important}</style>
 </head>
 <body data-page="home" data-root="">
 <div id="root">
@@ -20,7 +21,7 @@
   <header class="top" id="top" data-top="true">
     <div class="top-bar">
       <a class="brand" href="./" aria-label="یونیکالکت، صفحه اصلی">
-        <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
+        <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
         <span>یونیکالکت</span>
         <small>چت مینی</small>
       </a>
@@ -38,23 +39,23 @@
           <span class="dot warn" data-live-dot></span>
           <span data-live-label>در حال بررسی…</span>
         </a>
-        <a class="icon-btn top-chat" href="chat/" aria-label="باز کردن چت" title="چت"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></a>
-        <button class="icon-btn menu-btn" type="button" data-drawer-open aria-label="باز کردن منو" aria-controls="drawer"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+        <a class="icon-btn top-chat" href="chat/" aria-label="باز کردن چت" title="چت"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></a>
+        <button class="icon-btn menu-btn" type="button" data-drawer-open aria-label="باز کردن منو" aria-controls="drawer"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
       </div>
     </div>
-    <span class="top-progress" id="top-progress" aria-hidden="true" style="transform: scaleX(0);"></span>
+    <span class="top-progress" id="top-progress" aria-hidden="true" style="display:none;transform: scaleX(0);"></span>
   </header>
 
-  <div class="drawer" id="drawer" hidden>
+  <div class="drawer" id="drawer" hidden style="display:none">
     <div class="shade" data-drawer-close></div>
     <aside class="sheet" aria-label="منوی موبایل">
       <div class="sheet-head">
         <a class="brand" href="./">
-          <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
+          <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
           <span>یونیکالکت</span>
           <small>چت مینی</small>
         </a>
-        <button class="icon-btn" type="button" data-drawer-close aria-label="بستن منو"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+        <button class="icon-btn" type="button" data-drawer-close aria-label="بستن منو"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
       </div>
       <nav aria-label="منوی صفحات">
         <a href="./" aria-current="page">خانه</a>
@@ -66,8 +67,8 @@
         <a href="privacy/">حریم خصوصی</a>
       </nav>
       <div class="sheet-foot">
-        <a class="btn btn-ink" href="chat/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>شروع گفتگو</span></a>
-        <a class="btn btn-line" href="public-key/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg><span>کلید عمومی API</span></a>
+        <a class="btn btn-ink" href="chat/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>شروع گفتگو</span></a>
+        <a class="btn btn-line" href="public-key/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg><span>کلید عمومی API</span></a>
       </div>
     </aside>
   </div>
@@ -79,14 +80,14 @@
           <h1 class="display">گفتگوی هوشمند با <em>یونیکالکت</em>، همیشه در دسترس.</h1>
           <p class="reveal in lead">پاسخ‌گویی دقیق به فارسی و تمام زبان‌ها، پشتیبانی از فرمول‌های ریاضی و مارک‌داون، همراه با روتر استاندارد و کلید عمومی رایگان.</p>
           <div class="reveal in cta">
-            <a class="btn btn-ink btn-lg" href="chat/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>شروع گفتگو</span></a>
-            <a class="btn btn-line btn-lg" href="public-key/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg><span>کلید عمومی API</span></a>
-            <a class="btn btn-line btn-lg" href="api/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg><span>مستندات API</span></a>
+            <a class="btn btn-ink btn-lg" href="chat/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>شروع گفتگو</span></a>
+            <a class="btn btn-line btn-lg" href="public-key/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg><span>کلید عمومی API</span></a>
+            <a class="btn btn-line btn-lg" href="api/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg><span>مستندات API</span></a>
           </div>
           <div class="reveal in meta-row">
             <span>مدل: <b>یونیکالکت چت مینی</b></span>
             <span>سازنده: <b>موویکسو</b></span>
-            <a class="meta-link" data-live-panel-link href="chat/"><span>باز کردن پنل زنده</span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></a>
+            <a class="meta-link" data-live-panel-link href="chat/"><span>باز کردن پنل زنده</span><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></a>
           </div>
         </div>
       </div>
@@ -104,20 +105,20 @@
             <li>فایل وضعیت زنده: <span class="inline-code ltr">api/links.json</span></li>
           </ul>
           <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <a class="btn btn-ink" href="public-key/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg><span>صفحه‌ی کلید عمومی API</span></a>
-            <button class="btn btn-line" type="button" data-copy-target="live-key"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی کلید API</span></button>
+            <a class="btn btn-ink" href="public-key/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg><span>صفحه‌ی کلید عمومی API</span></a>
+            <button class="btn btn-line" type="button" data-copy-target="live-key"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی کلید API</span></button>
           </div>
         </div>
         <div class="reveal in">
           <div class="code" data-code-tabs>
   <div class="code-bar" role="tablist">
     <button type="button" role="tab" class="tab" aria-selected="true" data-tab-btn="0">curl</button><button type="button" role="tab" class="tab" aria-selected="false" data-tab-btn="1">Python</button><button type="button" role="tab" class="tab" aria-selected="false" data-tab-btn="2">JavaScript</button>
-    <button class="copy" type="button" data-copy-code><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+    <button class="copy" type="button" data-copy-code><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
   </div>
   <pre data-tab-panel="0" dir="ltr"><code>curl -X POST <span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/v1/chat/completions \
   -H &quot;Content-Type: application/json&quot; \
   -H &quot;Authorization: Bearer sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26&quot; \
-  -d &#x27;{&quot;model&quot;: &quot;unicollect-chat-mini&quot;, &quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;سلام! خوبی؟&quot;}]}&#x27;</code></pre><pre data-tab-panel="1" hidden dir="ltr"><code>import requests
+  -d &#x27;{&quot;model&quot;: &quot;unicollect-chat-mini&quot;, &quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;سلام! خوبی؟&quot;}]}&#x27;</code></pre><pre data-tab-panel="1" hidden dir="ltr" style="display:none"><code>import requests
 
 url = &quot;<span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/v1/chat/completions&quot;
 headers = {&quot;Authorization&quot;: &quot;Bearer sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26&quot;}
@@ -125,7 +126,7 @@ payload = {
     &quot;model&quot;: &quot;unicollect-chat-mini&quot;,
     &quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;سلام! خوبی؟&quot;}]
 }
-print(requests.post(url, json=payload, headers=headers).json())</code></pre><pre data-tab-panel="2" hidden dir="ltr"><code>const res = await fetch(&quot;<span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/v1/chat/completions&quot;, {
+print(requests.post(url, json=payload, headers=headers).json())</code></pre><pre data-tab-panel="2" hidden dir="ltr" style="display:none"><code>const res = await fetch(&quot;<span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/v1/chat/completions&quot;, {
   method: &quot;POST&quot;,
   headers: {
     &quot;Content-Type&quot;: &quot;application/json&quot;,
@@ -147,7 +148,7 @@ console.log(await res.json());</code></pre>
         <div class="reveal in closing-card">
           <h2 class="h2">همین حالا <em>گفتگو</em> را شروع کن.</h2>
           <p>رایگان، بدون ثبت‌نام، ساخته‌ی موویکسو.</p>
-          <a class="btn btn-ink btn-lg" href="chat/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>باز کردن چت یونیکالکت</span></a>
+          <a class="btn btn-ink btn-lg" href="chat/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>باز کردن چت یونیکالکت</span></a>
         </div>
       </div>
     </section>
@@ -157,7 +158,7 @@ console.log(await res.json());</code></pre>
       <div class="foot-top">
         <div class="foot-brand">
           <a class="brand" href="./" aria-label="یونیکالکت، صفحه اصلی">
-            <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
+            <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
             <span>یونیکالکت</span>
             <small>چت مینی</small>
           </a>
@@ -194,7 +195,7 @@ console.log(await res.json());</code></pre>
         <span>© یونیکالکت · ساخته‌ی موویکسو</span>
         <span class="foot-note">یونیکالکت می‌تواند اشتباه کند؛ نتیجه‌های مهم را خودت هم مرور کن.</span>
         <button class="to-top" type="button" data-to-top aria-label="برگشت به بالا">
-          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m18 15-6-6-6 6"></path></svg>
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><path d="m18 15-6-6-6 6"></path></svg>
           <span>بالا</span>
         </button>
       </div>
@@ -202,6 +203,6 @@ console.log(await res.json());</code></pre>
   </footer>
   <div class="toast-host" id="toast-host" aria-live="polite"></div>
 </div>
-<script src="assets/site.js?v=bw2" defer></script>
+<script src="assets/site.js?v=bw3" defer></script>
 </body>
 </html>

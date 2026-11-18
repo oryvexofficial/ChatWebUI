@@ -10,9 +10,10 @@
   
   <link rel="preload" href="../assets/fonts/Vazirmatn.woff2?v=1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-  <link rel="stylesheet" href="../assets/site.css?v=bw2">
+  <link rel="stylesheet" href="../assets/site.css?v=bw3">
   <meta property="og:title" content="حریم خصوصی · یونیکالکت">
   <meta property="og:description" content="تاریخچه گفتگوها فقط در مرورگر ذخیره می‌شود و چیزی روی دیسک سرور باقی نمی‌ماند.">
+  <style>[hidden]{display:none!important}</style>
 </head>
 <body data-page="privacy" data-root="../">
 <div id="root">
@@ -20,7 +21,7 @@
   <header class="top" id="top" data-top="true">
     <div class="top-bar">
       <a class="brand" href="../" aria-label="یونیکالکت، صفحه اصلی">
-        <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
+        <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
         <span>یونیکالکت</span>
         <small>چت مینی</small>
       </a>
@@ -38,23 +39,23 @@
           <span class="dot warn" data-live-dot></span>
           <span data-live-label>در حال بررسی…</span>
         </a>
-        <a class="icon-btn top-chat" href="../chat/" aria-label="باز کردن چت" title="چت"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></a>
-        <button class="icon-btn menu-btn" type="button" data-drawer-open aria-label="باز کردن منو" aria-controls="drawer"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+        <a class="icon-btn top-chat" href="../chat/" aria-label="باز کردن چت" title="چت"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></a>
+        <button class="icon-btn menu-btn" type="button" data-drawer-open aria-label="باز کردن منو" aria-controls="drawer"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
       </div>
     </div>
-    <span class="top-progress" id="top-progress" aria-hidden="true" style="transform: scaleX(0);"></span>
+    <span class="top-progress" id="top-progress" aria-hidden="true" style="display:none;transform: scaleX(0);"></span>
   </header>
 
-  <div class="drawer" id="drawer" hidden>
+  <div class="drawer" id="drawer" hidden style="display:none">
     <div class="shade" data-drawer-close></div>
     <aside class="sheet" aria-label="منوی موبایل">
       <div class="sheet-head">
         <a class="brand" href="../">
-          <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
+          <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
           <span>یونیکالکت</span>
           <small>چت مینی</small>
         </a>
-        <button class="icon-btn" type="button" data-drawer-close aria-label="بستن منو"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+        <button class="icon-btn" type="button" data-drawer-close aria-label="بستن منو"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
       </div>
       <nav aria-label="منوی صفحات">
         <a href="../">خانه</a>
@@ -66,26 +67,26 @@
         <a href="../privacy/" aria-current="page">حریم خصوصی</a>
       </nav>
       <div class="sheet-foot">
-        <a class="btn btn-ink" href="../chat/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>شروع گفتگو</span></a>
-        <a class="btn btn-line" href="../public-key/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg><span>کلید عمومی API</span></a>
+        <a class="btn btn-ink" href="../chat/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>شروع گفتگو</span></a>
+        <a class="btn btn-line" href="../public-key/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg><span>کلید عمومی API</span></a>
       </div>
     </aside>
   </div>
   <main id="main">
     <section class="page-hero">
-      <div class="page-hero-bg" aria-hidden="true"></div>
+      <div class="page-hero-bg" aria-hidden="true" style="display:none"></div>
       <div class="wrap ph-grid">
         <div class="ph-copy">
           <span class="reveal in eyebrow"><span class="bar"></span>حریم خصوصی</span>
           <h1>گفتگوی تو، فقط در مرورگر تو.</h1>
           <p class="reveal in">بدون نیاز به ثبت‌نام؛ تاریخچه‌ی گفتگوها فقط در حافظه‌ی مرورگر خودت ذخیره می‌شود.</p>
         </div>
-        <div class="reveal in post-stamp-wrap" aria-hidden="true">
+        <div class="reveal in post-stamp-wrap" aria-hidden="true" style="display:none">
           <div class="tilt post-stamp">
             <div class="ps-paper">
               <div class="ps-in">
                 <span class="ps-top mono">UNICOLLECT</span>
-                <span class="ps-icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="18" height="11" x="3" y="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+                <span class="ps-icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><rect width="18" height="11" x="3" y="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
                 <b class="ps-word">محرمانه</b>
                 <span class="ps-code mono">RAM ONLY · NO DISK</span>
               </div>
@@ -106,25 +107,25 @@
       <div class="wrap qa-list">
         <div class="reveal in">
           <div class="spotlight qa">
-            <h3><span class="qa-n" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></span>چه داده‌ای پردازش می‌شود؟</h3>
+            <h3><span class="qa-n" aria-hidden="true" style="display:none"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></span>چه داده‌ای پردازش می‌شود؟</h3>
             <div class="qa-a"><p>فقط متنی که خودت در پنل گفتگو وارد می‌کنی یا از طریق API ارسال می‌کنی برای تولید پاسخ به مدل داده می‌شود.</p></div>
           </div>
         </div>
         <div class="reveal in">
           <div class="spotlight qa">
-            <h3><span class="qa-n" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path><path d="M6.61 6.61A13.53 13.53 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path><path d="m2 2 20 20"></path></svg></span>آیا پیام‌ها روی سرور ذخیره می‌شوند؟</h3>
+            <h3><span class="qa-n" aria-hidden="true" style="display:none"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path><path d="M6.61 6.61A13.53 13.53 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path><path d="m2 2 20 20"></path></svg></span>آیا پیام‌ها روی سرور ذخیره می‌شوند؟</h3>
             <div class="qa-a"><p>خیر؛ پیام‌ها تنها در حافظه‌ی موقت (RAM) برای تولید پاسخ پردازش می‌شوند و هیچ پایگاه‌داده یا فایل دائمی برای ذخیره‌ی پیام‌های کاربران روی دیسک سرور وجود ندارد.</p></div>
           </div>
         </div>
         <div class="reveal in">
           <div class="spotlight qa">
-            <h3><span class="qa-n" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect height="18" rx="3" width="18" x="3" y="3"></rect><path d="M3 9h18M9 21V9"></path></svg></span>تاریخچه‌ی گفتگوهای پنل کجاست؟</h3>
+            <h3><span class="qa-n" aria-hidden="true" style="display:none"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><rect height="18" rx="3" width="18" x="3" y="3"></rect><path d="M3 9h18M9 21V9"></path></svg></span>تاریخچه‌ی گفتگوهای پنل کجاست؟</h3>
             <div class="qa-a"><p>تمام گفتگوهای پنل فقط در حافظه‌ی محلی مرورگر خودت (<code class="inline-code ltr">localStorage</code>) نگهداری می‌شوند و هر زمان بخواهی از بخش «مدل‌ها و وضعیت» قابل پاک‌سازی کامل هستند.</p></div>
           </div>
         </div>
         <div class="reveal in">
           <div class="spotlight qa">
-            <h3><span class="qa-n" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></span>چرا آدرس تونل تغییر می‌کند؟</h3>
+            <h3><span class="qa-n" aria-hidden="true" style="display:none"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></span>چرا آدرس تونل تغییر می‌کند؟</h3>
             <div class="qa-a"><p>سرور روی تونل ابری موقت اجرا می‌شود و در هر شیفت لینک تازه دریافت می‌کند. لینک و کلید عمومی فعال همیشه در <a href="../public-key/">صفحه‌ی کلید عمومی API</a> و <span class="inline-code ltr">api/links.json</span> در دسترس است.</p></div>
           </div>
         </div>
@@ -136,7 +137,7 @@
       <div class="foot-top">
         <div class="foot-brand">
           <a class="brand" href="../" aria-label="یونیکالکت، صفحه اصلی">
-            <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
+            <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
             <span>یونیکالکت</span>
             <small>چت مینی</small>
           </a>
@@ -173,7 +174,7 @@
         <span>© یونیکالکت · ساخته‌ی موویکسو</span>
         <span class="foot-note">یونیکالکت می‌تواند اشتباه کند؛ نتیجه‌های مهم را خودت هم مرور کن.</span>
         <button class="to-top" type="button" data-to-top aria-label="برگشت به بالا">
-          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m18 15-6-6-6 6"></path></svg>
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:none"><path d="m18 15-6-6-6 6"></path></svg>
           <span>بالا</span>
         </button>
       </div>
@@ -181,6 +182,6 @@
   </footer>
   <div class="toast-host" id="toast-host" aria-live="polite"></div>
 </div>
-<script src="../assets/site.js?v=bw2" defer></script>
+<script src="../assets/site.js?v=bw3" defer></script>
 </body>
 </html>

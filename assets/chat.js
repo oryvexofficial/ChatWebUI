@@ -54,6 +54,19 @@
     '</svg>';
 
   /* ---------- توابع کمکی پایه ---------- */
+  function setHidden(node, flag) {
+    if (!node) return;
+    if (flag) {
+      node.setAttribute("hidden", "");
+      node.hidden = true;
+      node.style.display = "none";
+    } else {
+      node.removeAttribute("hidden");
+      node.hidden = false;
+      node.style.display = "";
+    }
+  }
+
   function fa(n) {
     return typeof n === 'number' ? n.toLocaleString('fa-IR') : String(n || '');
   }
@@ -355,6 +368,7 @@
     searchSel: 0,
     searchItems: [],
     apiBase: '',
+    remoteStatus: '',
     publicKey: DEFAULT_KEY,
     health: {
       cls: 'warn',
@@ -591,9 +605,9 @@
     const isWelcome = !state.busy && (!active || !active.messages.length);
     if (el.main) el.main.classList.toggle('welcome', isWelcome);
     if (el.body) el.body.classList.toggle('is-welcome', isWelcome);
-    if (el.heroArea) el.heroArea.hidden = !isWelcome;
-    if (el.scroller) el.scroller.hidden = isWelcome;
-    if (el.starterChips) el.starterChips.hidden = !isWelcome;
+    setHidden(el.heroArea, !isWelcome);
+    setHidden(el.scroller, isWelcome);
+    setHidden(el.starterChips, !isWelcome);
   }
 
   function renderMessages() {
@@ -665,7 +679,7 @@
         if (!box || !wrap) return;
         const isOpen = box.classList.toggle('open');
         btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        wrap.hidden = !isOpen;
+        setHidden(wrap, !isOpen);
       });
     });
 
@@ -729,10 +743,10 @@
     if (el.taPh) el.taPh.classList.toggle('off', val.length > 0);
     if (el.counter) {
       if (val.length > 200) {
-        el.counter.hidden = false;
+        setHidden(el.counter, false);
         el.counter.textContent = fa(val.length) + ' / ' + fa(MAX_TEXT);
       } else {
-        el.counter.hidden = true;
+        setHidden(el.counter, true);
       }
     }
     updateSendButtonState();
@@ -747,8 +761,8 @@
     el.sendBtn.classList.toggle('on', active);
     el.sendBtn.title = state.busy ? 'توقف' : 'ارسال';
     el.sendBtn.setAttribute('aria-label', state.busy ? 'توقف' : 'ارسال');
-    if (el.sendIcoArrow) el.sendIcoArrow.hidden = state.busy;
-    if (el.sendIcoStop) el.sendIcoStop.hidden = !state.busy;
+    setHidden(el.sendIcoArrow, state.busy);
+    setHidden(el.sendIcoStop, !state.busy);
     if (el.composer) el.composer.classList.toggle('busy', state.busy);
   }
 
@@ -769,6 +783,7 @@
         const d = await r.json();
         if (d) {
           if (d.public_api_key) state.publicKey = d.public_api_key;
+          if (d.status) state.remoteStatus = d.status;
           if (d.base_url) {
             state.apiBase = String(d.base_url).replace(/\/+$/, '');
             return state.apiBase;
@@ -782,6 +797,7 @@
         const s = await r2.json();
         if (s) {
           if (s.public_api_key) state.publicKey = s.public_api_key;
+          if (s.status) state.remoteStatus = s.status;
           if (s.url_payload) {
             state.apiBase = atob(s.url_payload).replace(/\/+$/, '');
             return state.apiBase;
@@ -813,7 +829,7 @@
     try {
       const base = await resolveApiBase();
       if (IS_PAGES && !base) {
-        state.health = { cls: 'bad', label: 'سرویس آفلاین است', model: 'یونیکالکت چت مینی' };
+        state.health = state.remoteStatus === 'starting' ? { cls: 'warn', label: 'در حال راه‌اندازی سرور…', model: 'یونیکالکت چت مینی' } : { cls: 'bad', label: 'سرویس آفلاین است', model: 'یونیکالکت چت مینی' };
         applyHealthUI();
         return;
       }
@@ -956,7 +972,7 @@
       const now = performance.now();
       const elapsedSec = Math.floor((now - t0) / 1000);
       if (timeLbl && elapsedSec >= 1) {
-        timeLbl.hidden = false;
+        setHidden(timeLbl, false);
         timeLbl.textContent = fa(elapsedSec) + ' ثانیه';
       }
       if (phaseLbl) phaseLbl.textContent = STEPS[phaseIdx];
@@ -1019,9 +1035,9 @@
             if (obj && typeof obj.t === 'string' && obj.t) {
               if (!timings.first) {
                 timings.first = performance.now();
-                if (thinkingEl) thinkingEl.hidden = true;
-                if (writingEl) writingEl.hidden = false;
-                if (mdEl) mdEl.hidden = false;
+                setHidden(thinkingEl, true);
+                setHidden(writingEl, false);
+                setHidden(mdEl, false);
               }
               reply += obj.t;
               if (mdEl) {
@@ -1246,7 +1262,7 @@
     state.mobileOpen = false;
     applyLayoutClasses();
     if (!el.searchModal) return;
-    el.searchModal.hidden = false;
+    setHidden(el.searchModal, false);
     state.searchQuery = '';
     state.searchSel = 0;
     if (el.searchInput) {
@@ -1257,13 +1273,13 @@
   }
 
   function closeSearchModal() {
-    if (el.searchModal) el.searchModal.hidden = true;
+    setHidden(el.searchModal, true);
   }
 
   function renderSearchResults() {
     if (!el.searchResults || !el.searchLabel) return;
     const q = state.searchQuery.toLowerCase().trim();
-    if (el.searchClear) el.searchClear.hidden = !q;
+    setHidden(el.searchClear, !q);
 
     const sorted = state.threads.slice().sort(function (a, b) {
       return (b.updatedAt || 0) - (a.updatedAt || 0);
@@ -1336,11 +1352,11 @@
     state.mobileOpen = false;
     applyLayoutClasses();
     applyHealthUI();
-    if (el.settingsModal) el.settingsModal.hidden = false;
+    setHidden(el.settingsModal, false);
   }
 
   function closeSettingsModal() {
-    if (el.settingsModal) el.settingsModal.hidden = true;
+    setHidden(el.settingsModal, true);
   }
 
   function askClearAllThreads() {
@@ -1352,7 +1368,7 @@
       showToast('تاریخچه از قبل خالی است', { type: 'info' });
       return;
     }
-    if (el.confirmModal) el.confirmModal.hidden = false;
+    setHidden(el.confirmModal, false);
   }
 
   /* ---------- اتصال رویدادها (Event Listeners) ---------- */
@@ -1396,13 +1412,13 @@
 
     on('btn-clear-all', 'click', askClearAllThreads);
     on('btn-confirm-no', 'click', function () {
-      if (el.confirmModal) el.confirmModal.hidden = true;
+      setHidden(el.confirmModal, true);
     });
     on('btn-confirm-yes', 'click', function () {
       state.threads = [];
       state.activeId = null;
       saveThreads();
-      if (el.confirmModal) el.confirmModal.hidden = true;
+      setHidden(el.confirmModal, true);
       closeSettingsModal();
       renderSidebar();
       renderMessages();
@@ -1417,6 +1433,11 @@
     if (el.searchModal) {
       el.searchModal.addEventListener('mousedown', function (e) {
         if (e.target === el.searchModal) closeSearchModal();
+      });
+    }
+    if (el.confirmModal) {
+      el.confirmModal.addEventListener('mousedown', function (e) {
+        if (e.target === el.confirmModal) setHidden(el.confirmModal, true);
       });
     }
 
@@ -1551,6 +1572,9 @@
 
   /* ---------- راه‌اندازی اولیه ---------- */
   function init() {
+    setHidden(el.searchModal, true);
+    setHidden(el.settingsModal, true);
+    setHidden(el.confirmModal, true);
     loadThreads();
     applyLayoutClasses();
     rotateHeroPrompt();

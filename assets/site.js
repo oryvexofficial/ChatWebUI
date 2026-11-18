@@ -417,12 +417,23 @@
     const drawer = document.getElementById('drawer');
     document.querySelectorAll('[data-drawer-open]').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        if (drawer) { drawer.removeAttribute('hidden'); drawer.style.display = ''; }
+        if (!drawer) return;
+        if (drawer._closeTimer) { clearTimeout(drawer._closeTimer); drawer._closeTimer = 0; }
+        drawer.classList.remove('closing');
+        drawer.removeAttribute('hidden');
+        drawer.style.display = '';
       });
     });
     document.querySelectorAll('[data-drawer-close]').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        if (drawer) { drawer.setAttribute('hidden', ''); drawer.style.display = 'none'; }
+        if (!drawer || drawer.hasAttribute('hidden')) return;
+        drawer.classList.add('closing');
+        drawer._closeTimer = setTimeout(function () {
+          drawer.classList.remove('closing');
+          drawer.setAttribute('hidden', '');
+          drawer.style.display = 'none';
+          drawer._closeTimer = 0;
+        }, 180);
       });
     });
 

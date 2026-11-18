@@ -66,6 +66,22 @@
       node.style.display = "";
     }
   }
+  function openAnimated(node) {
+    if (!node) return;
+    if (node._closeTimer) { clearTimeout(node._closeTimer); node._closeTimer = 0; }
+    node.classList.remove("closing");
+    setHidden(node, false);
+  }
+  function closeAnimated(node) {
+    if (!node || node.hidden) return;
+    if (node._closeTimer) clearTimeout(node._closeTimer);
+    node.classList.add("closing");
+    node._closeTimer = setTimeout(function () {
+      node.classList.remove("closing");
+      setHidden(node, true);
+      node._closeTimer = 0;
+    }, 180);
+  }
 
   function fa(n) {
     return typeof n === 'number' ? n.toLocaleString('fa-IR') : String(n || '');
@@ -390,6 +406,7 @@
     stream: document.getElementById('chat-stream'),
     sbThreads: document.getElementById('sb-threads'),
     sbBackdrop: document.getElementById('sb-backdrop'),
+    composerArea: document.querySelector('.composer-area'),
     composer: document.getElementById('composer'),
     taWrap: document.getElementById('ta-wrap'),
     taPh: document.getElementById('ta-ph'),
@@ -428,7 +445,9 @@
       '<span class="toast-bar" style="animation-duration:' + ms + 'ms"></span>';
 
     const removeToast = function () {
-      if (toast.parentNode) toast.parentNode.removeChild(toast);
+      if (!toast.parentNode || toast.classList.contains('closing')) return;
+      toast.classList.add('closing');
+      setTimeout(function () { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 200);
     };
     const timer = setTimeout(removeToast, ms);
     toast.querySelector('.toast-x').addEventListener('click', function () {
@@ -604,11 +623,30 @@
   function updateWelcomeState() {
     const active = getActiveThread();
     const isWelcome = !state.busy && (!active || !active.messages.length);
+    const prevWasWelcome = el.body ? el.body.classList.contains('is-welcome') : isWelcome;
+    const beforeTop = (el.composerArea && prevWasWelcome !== isWelcome) ? el.composerArea.getBoundingClientRect().top : null;
     if (el.main) el.main.classList.toggle('welcome', isWelcome);
     if (el.body) el.body.classList.toggle('is-welcome', isWelcome);
     setHidden(el.heroArea, !isWelcome);
     setHidden(el.scroller, isWelcome);
     setHidden(el.starterChips, !isWelcome);
+    if (beforeTop !== null && el.composerArea) {
+      const afterTop = el.composerArea.getBoundingClientRect().top;
+      const dy = beforeTop - afterTop;
+      if (Math.abs(dy) > 4) {
+        el.composerArea.style.transition = 'none';
+        el.composerArea.style.transform = 'translateY(' + dy + 'px)';
+        void el.composerArea.offsetHeight;
+        el.composerArea.style.transition = 'transform .42s cubic-bezier(.22, 1, .36, 1)';
+        el.composerArea.style.transform = 'translateY(0)';
+        setTimeout(function () {
+          if (el.composerArea) {
+            el.composerArea.style.transition = '';
+            el.composerArea.style.transform = '';
+          }
+        }, 440);
+      }
+    }
   }
 
   function renderMessages() {
@@ -765,7 +803,7 @@
     el.sendBtn.setAttribute('aria-label', state.busy ? 'توقف' : 'ارسال');
     setHidden(el.sendIcoArrow, state.busy);
     setHidden(el.sendIcoStop, !state.busy);
-    if (el.composer) el.composer.classList.toggle('busy', state.busy);
+    if (el.composer) { el.composer.classList.toggle('busy', state.busy); el.composer.classList.toggle('ink-border', state.busy); }
   }
 
   function clearComposer() {
@@ -1279,7 +1317,7 @@
     state.mobileOpen = false;
     applyLayoutClasses();
     if (!el.searchModal) return;
-    setHidden(el.searchModal, false);
+    openAnimated(el.searchModal);
     state.searchQuery = '';
     state.searchSel = 0;
     if (el.searchInput) {
@@ -1290,7 +1328,7 @@
   }
 
   function closeSearchModal() {
-    setHidden(el.searchModal, true);
+    closeAnimated(el.searchModal);
   }
 
   function renderSearchResults() {
@@ -1369,11 +1407,11 @@
     state.mobileOpen = false;
     applyLayoutClasses();
     applyHealthUI();
-    setHidden(el.settingsModal, false);
+    openAnimated(el.settingsModal);
   }
 
   function closeSettingsModal() {
-    setHidden(el.settingsModal, true);
+    closeAnimated(el.settingsModal);
   }
 
   function askClearAllThreads() {
@@ -1385,7 +1423,7 @@
       showToast('تاریخچه از قبل خالی است', { type: 'info' });
       return;
     }
-    setHidden(el.confirmModal, false);
+    openAnimated(el.confirmModal);
   }
 
   /* ---------- اتصال رویدادها (Event Listeners) ---------- */
@@ -1429,13 +1467,13 @@
 
     on('btn-clear-all', 'click', askClearAllThreads);
     on('btn-confirm-no', 'click', function () {
-      setHidden(el.confirmModal, true);
+      closeAnimated(el.confirmModal);
     });
     on('btn-confirm-yes', 'click', function () {
       state.threads = [];
       state.activeId = null;
       saveThreads();
-      setHidden(el.confirmModal, true);
+      closeAnimated(el.confirmModal);
       closeSettingsModal();
       renderSidebar();
       renderMessages();
@@ -1454,7 +1492,7 @@
     }
     if (el.confirmModal) {
       el.confirmModal.addEventListener('mousedown', function (e) {
-        if (e.target === el.confirmModal) setHidden(el.confirmModal, true);
+        if (e.target === el.confirmModal) closeAnimated(el.confirmModal);
       });
     }
 

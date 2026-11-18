@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9uZXdzbGV0dGVycy10YWxlLWZ1bmN0aW9uYWxpdHktYXNzb2NpYXRpb25zLnRyeWNsb3VkZmxhcmUuY29t",
-  "public_api_key": "sk-uc-b70dd61e387f21b1ea3b209b673b5393",
-  "api_key": "sk-uc-b70dd61e387f21b1ea3b209b673b5393",
+  "url_payload": "aHR0cHM6Ly93ZWRkaW5nLWZ1amktc2Vla3MtZ2VuZXJhdG9yLnRyeWNsb3VkZmxhcmUuY29t",
+  "public_api_key": "sk-uc-3c8579a754783173ec6dab0e24187bb0",
+  "api_key": "sk-uc-3c8579a754783173ec6dab0e24187bb0",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1",
-    "chat_completions": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1/models",
-    "native_chat": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/key",
-    "health": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://wedding-fuji-seeks-generator.trycloudflare.com/v1",
+    "chat_completions": "https://wedding-fuji-seeks-generator.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://wedding-fuji-seeks-generator.trycloudflare.com/v1/models",
+    "native_chat": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/key",
+    "health": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-18T17:53:58+00:00",
+  "updated_at": "2026-11-18T17:55:55+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44363715232",
-  "run_number": 11,
+  "run_number": 12,
   "commit": "ad15072"
 }

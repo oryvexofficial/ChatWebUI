@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-b70dd61e387f21b1ea3b209b673b5393",
-  "api_key": "sk-uc-b70dd61e387f21b1ea3b209b673b5393",
+  "public_api_key": "sk-uc-3c8579a754783173ec6dab0e24187bb0",
+  "api_key": "sk-uc-3c8579a754783173ec6dab0e24187bb0",
   "status": "online",
   "online": true,
-  "base_url": "https://newsletters-tale-functionality-associations.trycloudflare.com",
+  "base_url": "https://wedding-fuji-seeks-generator.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1",
-    "chat_completions": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1/models",
-    "native_chat": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/key",
-    "health": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://wedding-fuji-seeks-generator.trycloudflare.com/v1",
+    "chat_completions": "https://wedding-fuji-seeks-generator.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://wedding-fuji-seeks-generator.trycloudflare.com/v1/models",
+    "native_chat": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/key",
+    "health": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://newsletters-tale-functionality-associations.trycloudflare.com",
-    "openai_base": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1",
-    "chat_completions": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1/chat/completions",
-    "api": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1",
-    "key": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/key",
-    "health": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/health",
-    "swagger": "https://newsletters-tale-functionality-associations.trycloudflare.com/docs",
-    "redoc": "https://newsletters-tale-functionality-associations.trycloudflare.com/redoc",
-    "openapi": "https://newsletters-tale-functionality-associations.trycloudflare.com/openapi.json",
-    "guide": "https://newsletters-tale-functionality-associations.trycloudflare.com/api-docs",
-    "public_key_page": "https://newsletters-tale-functionality-associations.trycloudflare.com/site/public-key/"
+    "panel": "https://wedding-fuji-seeks-generator.trycloudflare.com",
+    "openai_base": "https://wedding-fuji-seeks-generator.trycloudflare.com/v1",
+    "chat_completions": "https://wedding-fuji-seeks-generator.trycloudflare.com/v1/chat/completions",
+    "api": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1",
+    "key": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/key",
+    "health": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/health",
+    "swagger": "https://wedding-fuji-seeks-generator.trycloudflare.com/docs",
+    "redoc": "https://wedding-fuji-seeks-generator.trycloudflare.com/redoc",
+    "openapi": "https://wedding-fuji-seeks-generator.trycloudflare.com/openapi.json",
+    "guide": "https://wedding-fuji-seeks-generator.trycloudflare.com/api-docs",
+    "public_key_page": "https://wedding-fuji-seeks-generator.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/key"
+      "url": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1/chat/completions"
+      "url": "https://wedding-fuji-seeks-generator.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1/models"
+      "url": "https://wedding-fuji-seeks-generator.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat"
+      "url": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/generate"
+      "url": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1"
+      "url": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/health"
+      "url": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/ready"
+      "url": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/info"
+      "url": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/models"
+      "url": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/config"
+      "url": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/stats"
+      "url": "https://wedding-fuji-seeks-generator.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/health"
+      "url": "https://wedding-fuji-seeks-generator.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-18T17:53:58+00:00",
+  "updated_at": "2026-11-18T17:55:55+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44363715232",
-  "run_number": 11,
+  "run_number": 12,
   "commit": "ad15072"
 }

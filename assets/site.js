@@ -448,12 +448,75 @@
     });
   }
 
+
+  /* ---------- افکت‌های تعاملی (Tilt، Spotlight، Scroll-line، TOC Scroll-Spy) ---------- */
+  function initInteractiveFX() {
+    const canHover = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (canHover) {
+      document.querySelectorAll(".tilt").forEach(function (card) {
+        card.addEventListener("mousemove", function (e) {
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / Math.max(1, r.width) - 0.5;
+          const y = (e.clientY - r.top) / Math.max(1, r.height) - 0.5;
+          card.style.transform = "perspective(1100px) rotateX(" + (-y * 10).toFixed(2) + "deg) rotateY(" + (x * 10).toFixed(2) + "deg)";
+        });
+        card.addEventListener("mouseleave", function () {
+          card.style.transform = "perspective(1100px)";
+        });
+      });
+
+      document.querySelectorAll(".spotlight").forEach(function (box) {
+        box.addEventListener("mousemove", function (e) {
+          const r = box.getBoundingClientRect();
+          box.style.setProperty("--mx", (e.clientX - r.left) + "px");
+          box.style.setProperty("--my", (e.clientY - r.top) + "px");
+        });
+      });
+    }
+
+    const scrollBar = document.getElementById("scroll-line-bar");
+    const stepsWrap = document.querySelector(".steps-wrap");
+    if (scrollBar && stepsWrap) {
+      const updateStepsLine = function () {
+        const r = stepsWrap.getBoundingClientRect();
+        const vh = window.innerHeight || 800;
+        const pct = Math.min(1, Math.max(0.08, (vh * 0.65 - r.top) / Math.max(1, r.height)));
+        scrollBar.style.transform = "scaleY(" + pct.toFixed(3) + ")";
+      };
+      window.addEventListener("scroll", updateStepsLine, { passive: true });
+      updateStepsLine();
+    }
+
+    const tocLinks = Array.from(document.querySelectorAll("[data-toc-link]"));
+    const tocCur = document.getElementById("toc-cur");
+    if (tocLinks.length) {
+      const sections = tocLinks.map(function (a) {
+        return { link: a, id: a.getAttribute("data-toc-link"), el: document.getElementById(a.getAttribute("data-toc-link")) };
+      }).filter(function (x) { return !!x.el; });
+
+      const onScrollSpy = function () {
+        let current = sections[0];
+        const y = window.scrollY + 140;
+        for (let i = 0; i < sections.length; i++) {
+          const top = sections[i].el.getBoundingClientRect().top + window.scrollY;
+          if (top <= y) current = sections[i];
+        }
+        if (current) {
+          tocLinks.forEach(function (a) { a.classList.toggle("active", a === current.link); });
+          if (tocCur) tocCur.textContent = current.id;
+        }
+      };
+      window.addEventListener("scroll", onScrollSpy, { passive: true });
+    }
+  }
+
   /* ---------- راه‌اندازی اولیه ---------- */
   function init() {
     initNavigationAndScroll();
     initCodeTabs();
     initCopyButtons();
     initApiDocsPage();
+    initInteractiveFX();
     fetchLiveStatus();
     setInterval(function () {
       if (!document.hidden) fetchLiveStatus();

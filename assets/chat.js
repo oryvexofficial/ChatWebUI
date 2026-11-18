@@ -359,6 +359,7 @@
   const state = {
     threads: [],
     activeId: null,
+    freshId: null,
     busy: false,
     aborted: false,
     ctrl: null,
@@ -622,8 +623,9 @@
     let html = '';
     active.messages.forEach(function (m) {
       const uDir = textDir(m.text);
+      const isFresh = m.id === state.freshId;
       html +=
-        '<div class="turn" data-msg-id="' + escapeHtml(m.id) + '">' +
+        '<div class="turn' + (isFresh ? ' fresh' : '') + '" data-msg-id="' + escapeHtml(m.id) + '">' +
           '<div class="msg user">' +
             '<div class="ubox">' +
               '<div class="bubble" dir="' + uDir + '">' + escapeHtml(m.text) + '</div>' +
@@ -961,6 +963,18 @@
     let phaseIdx = 0;
 
     const stepsBox = document.getElementById('pending-steps-box');
+    const pendingThinking = document.getElementById('pending-thinking');
+    if (pendingThinking) {
+      pendingThinking.classList.add('open');
+      const pHead = pendingThinking.querySelector('.thinking-head');
+      if (pHead && stepsBox) {
+        pHead.addEventListener('click', function () {
+          const isOpen = pendingThinking.classList.toggle('open');
+          pHead.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          setHidden(stepsBox, !isOpen);
+        });
+      }
+    }
     const phaseLbl = document.getElementById('pending-phase-lbl');
     const timeLbl = document.getElementById('pending-time');
     const thinkingEl = document.getElementById('pending-thinking');
@@ -1101,6 +1115,7 @@
 
     thread.messages.push(msgObj);
     thread.updatedAt = Date.now();
+    state.freshId = msgObj.id;
     saveThreads();
 
     state.busy = false;
@@ -1126,6 +1141,7 @@
       return;
     }
     state.activeId = null;
+    state.freshId = null;
     state.mobileOpen = false;
     applyLayoutClasses();
     renderSidebar();
@@ -1142,6 +1158,7 @@
     state.mobileOpen = false;
     applyLayoutClasses();
     if (state.activeId !== id) {
+      state.freshId = null;
       state.activeId = id;
       renderSidebar();
       renderMessages();

@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9jb25zZWN1dGl2ZS1vZmZpY2Vycy1jb25zdWx0YW50cy1kZWFsdC50cnljbG91ZGZsYXJlLmNvbQ==",
-  "public_api_key": "sk-uc-27d77470df2eece9ef2c27c8b40a6d22",
-  "api_key": "sk-uc-27d77470df2eece9ef2c27c8b40a6d22",
+  "url_payload": "aHR0cHM6Ly9jaGFtcGFnbmUtaGFyZHdvb2QtdHJhZGl0aW9ucy1yZWFsbS50cnljbG91ZGZsYXJlLmNvbQ==",
+  "public_api_key": "sk-uc-1c5507e30ae930afce1bcf8e230a9d67",
+  "api_key": "sk-uc-1c5507e30ae930afce1bcf8e230a9d67",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://consecutive-officers-consultants-dealt.trycloudflare.com/v1",
-    "chat_completions": "https://consecutive-officers-consultants-dealt.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://consecutive-officers-consultants-dealt.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://consecutive-officers-consultants-dealt.trycloudflare.com/v1/models",
-    "native_chat": "https://consecutive-officers-consultants-dealt.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://consecutive-officers-consultants-dealt.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://consecutive-officers-consultants-dealt.trycloudflare.com/api/v1/key",
-    "health": "https://consecutive-officers-consultants-dealt.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://champagne-hardwood-traditions-realm.trycloudflare.com/v1",
+    "chat_completions": "https://champagne-hardwood-traditions-realm.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://champagne-hardwood-traditions-realm.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://champagne-hardwood-traditions-realm.trycloudflare.com/v1/models",
+    "native_chat": "https://champagne-hardwood-traditions-realm.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://champagne-hardwood-traditions-realm.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://champagne-hardwood-traditions-realm.trycloudflare.com/api/v1/key",
+    "health": "https://champagne-hardwood-traditions-realm.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-18T20:52:27+00:00",
+  "updated_at": "2026-11-18T20:55:13+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44395542846",
-  "run_number": 14,
+  "run_number": 15,
   "commit": "9a53fde"
 }

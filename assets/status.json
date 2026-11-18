@@ -1,22 +1,22 @@
 {
-  "status": "starting",
-  "url_payload": null,
+  "status": "online",
+  "url_payload": "aHR0cHM6Ly9uZXdzbGV0dGVycy10YWxlLWZ1bmN0aW9uYWxpdHktYXNzb2NpYXRpb25zLnRyeWNsb3VkZmxhcmUuY29t",
   "public_api_key": "sk-uc-b70dd61e387f21b1ea3b209b673b5393",
   "api_key": "sk-uc-b70dd61e387f21b1ea3b209b673b5393",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": null,
-    "chat_completions": null,
-    "v1_chat_completions": null,
-    "models": null,
-    "native_chat": null,
-    "native_stream": null,
-    "key": null,
-    "health": null
+    "openai_base_url": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1",
+    "chat_completions": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1/models",
+    "native_chat": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/key",
+    "health": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-18T17:51:34+00:00",
+  "updated_at": "2026-11-18T17:53:41+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44363279337",
   "run_number": 11,
   "commit": "ad15072"

@@ -5,110 +5,110 @@
   "creator": "Muvixo",
   "public_api_key": "sk-uc-b70dd61e387f21b1ea3b209b673b5393",
   "api_key": "sk-uc-b70dd61e387f21b1ea3b209b673b5393",
-  "status": "starting",
-  "online": false,
-  "base_url": null,
+  "status": "online",
+  "online": true,
+  "base_url": "https://newsletters-tale-functionality-associations.trycloudflare.com",
   "routes": {
-    "openai_base_url": null,
-    "chat_completions": null,
-    "v1_chat_completions": null,
-    "models": null,
-    "native_chat": null,
-    "native_stream": null,
-    "key": null,
-    "health": null
+    "openai_base_url": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1",
+    "chat_completions": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1/models",
+    "native_chat": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/key",
+    "health": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": null,
-    "openai_base": null,
-    "chat_completions": null,
-    "api": null,
-    "key": null,
-    "health": null,
-    "swagger": null,
-    "redoc": null,
-    "openapi": null,
-    "guide": null,
-    "public_key_page": null
+    "panel": "https://newsletters-tale-functionality-associations.trycloudflare.com",
+    "openai_base": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1",
+    "chat_completions": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1/chat/completions",
+    "api": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1",
+    "key": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/key",
+    "health": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/health",
+    "swagger": "https://newsletters-tale-functionality-associations.trycloudflare.com/docs",
+    "redoc": "https://newsletters-tale-functionality-associations.trycloudflare.com/redoc",
+    "openapi": "https://newsletters-tale-functionality-associations.trycloudflare.com/openapi.json",
+    "guide": "https://newsletters-tale-functionality-associations.trycloudflare.com/api-docs",
+    "public_key_page": "https://newsletters-tale-functionality-associations.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": null
+      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": null
+      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": null
+      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": null
+      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": null
+      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": null
+      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": null
+      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": null
+      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": null
+      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": null
+      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": null
+      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": null
+      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": null
+      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": null
+      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": null
+      "url": "https://newsletters-tale-functionality-associations.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-18T17:51:34+00:00",
+  "updated_at": "2026-11-18T17:53:41+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44363279337",
   "run_number": 11,
   "commit": "ad15072"

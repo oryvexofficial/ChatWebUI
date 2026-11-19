@@ -56,7 +56,7 @@
 .thinking-chev{display:inline-flex;color:var(--ink-3);transition:transform .26s var(--ease-out)}
 .thought.open .thinking-chev,.thinking-block.open .thinking-chev{transform:rotate(180deg)}
 .thought-steps-wrap{overflow:hidden;transform-origin:top center}
-.thought-steps-wrap:not([hidden]){animation:uc-slide-down .26s var(--ease-out) both}
+.thought-steps-wrap{will-change:height,opacity,transform}
 .thought-steps-wrap.closing{animation:uc-slide-up .2s var(--ease-out) both!important;pointer-events:none}
 
 /* Modals & Confirm Dialog (IN + OUT) */
@@ -183,13 +183,13 @@
 .round-btn.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .round-btn.on:hover{background:var(--btn-bg-hover);color:var(--accent-ink)}
 .composer-fmt{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:2px 4px 10px;margin-bottom:8px;border-bottom:1px solid var(--line)}
-.composer-fmt:not([hidden]){animation:uc-slide-down .22s var(--ease-out) both}
+.composer-fmt{will-change:height,opacity,transform}
 .composer-fmt.closing{animation:uc-slide-up .18s var(--ease-out) both!important;pointer-events:none}
 .fmt-btn{display:inline-flex;align-items:center;justify-content:center;height:28px;min-width:30px;padding:0 9px;border-radius:8px;font-size:12.5px;font-weight:600;color:var(--ink-2);background:rgba(255,255,255,.05);border:1px solid var(--line);transition:background-color .16s ease,color .16s ease,border-color .16s ease,transform .18s var(--ease-spring)}
 .fmt-btn:hover{background:rgba(255,255,255,.12);color:var(--ink);border-color:var(--line-2);transform:translateY(-1px)}
 .fmt-btn:active{transform:scale(.94)}
 .composer-preview{max-height:150px;overflow-y:auto;padding:10px 12px;margin-bottom:10px;border-radius:16px;background:rgba(0,0,0,.28);border:1px solid var(--line);font-size:15px;line-height:1.75;scrollbar-width:thin}
-.composer-preview:not([hidden]){animation:uc-slide-down .24s var(--ease-out) both}
+.composer-preview{will-change:height,opacity,transform}
 .composer-preview.closing{animation:uc-slide-up .18s var(--ease-out) both!important;pointer-events:none}
 .composer-preview>:first-child{margin-top:0}
 .composer-preview>:last-child{margin-bottom:0}
@@ -221,3 +221,11 @@
 /* Smooth Think Card IN/OUT without re-triggering on text updates */
 #pending-think-card:not([hidden]){animation:uc-turn-in .26s var(--ease-out) both}
 .think-card-body.closing{animation:uc-slide-up .18s var(--ease-out) both!important;pointer-events:none}
+
+/* Clean dark scrollbar & per-paragraph bidi in Think Card */
+.think-card-body{scrollbar-color:rgba(255,255,255,.2) transparent;unicode-bidi:plaintext}
+.think-card-body p{unicode-bidi:plaintext}
+.think-card-body::-webkit-scrollbar{width:6px}
+.think-card-body::-webkit-scrollbar-track{background:transparent}
+.think-card-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:999px}
+.think-card-body::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.35)}

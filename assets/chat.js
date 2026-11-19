@@ -222,6 +222,17 @@
     };
   }
 
+  function renderThinkMarkdown(rawThink, isLive) {
+    let s = String(rawThink || '');
+    // Auto-wrap bare LaTeX expressions in reasoning (e.g. \sum_{i=1}^{m-1}, \frac{a}{b}, \sqrt{k}) that lack $...$
+    if (s.indexOf('$') === -1 && s.indexOf('\\(') === -1 && s.indexOf('\\[') === -1) {
+      s = s.replace(/\\(?:sum|prod|int|lim)(?:_\{[^{}]+\}|\^\{[^{}]+\}){1,2}/g, function (m) { return '$' + m + '$'; });
+      s = s.replace(/\\(?:d|t)?frac\{[^{}]+\}\{[^{}]+\}/g, function (m) { return '$' + m + '$'; });
+      s = s.replace(/\\sqrt(?:\[[^\]]+\])?\{[^{}]+\}/g, function (m) { return '$' + m + '$'; });
+    }
+    return renderMarkdown(s, isLive);
+  }
+
   function renderThinkCardHtml(thinkText, isLiveOpen) {
     if (!thinkText) return '';
     const openCls = isLiveOpen ? ' open' : '';
@@ -234,8 +245,8 @@
           '<span class="tc-title' + (isLiveOpen ? ' shiny' : '') + '">' + label + '</span>' +
           '<span class="thinking-chev">' + ICONS.chevron + '</span>' +
         '</button>' +
-        '<div class="think-card-body thought-steps-wrap"' + hiddenAttr + ' dir="auto">' +
-          renderMarkdown(thinkText) +
+        '<div class="think-card-body md thought-steps-wrap"' + hiddenAttr + ' dir="auto">' +
+          renderThinkMarkdown(thinkText, false) +
         '</div>' +
       '</div>'
     );
@@ -478,14 +489,17 @@
   const BB_MAP = { R: 'ℝ', N: 'ℕ', Z: 'ℤ', Q: 'ℚ', C: 'ℂ', P: 'ℙ', E: '𝔼', F: '𝔽', H: 'ℍ' };
 
   const TEX_SYM_RULES = [
-    [/\\(?:displaystyle|textstyle|scriptstyle|scriptscriptstyle|limits|nolimits)(?![A-Za-z])/g, ''],
+    [/\\(?:displaystyle|textstyle|scriptstyle|scriptscriptstyle|limits|nolimits|nonumber|notag)(?![A-Za-z])/g, ''],
     [/\\left\s*\./g, ''], [/\\right\s*\./g, ''],
     [/\\left\s*\\\{/g, '{'], [/\\right\s*\\\}/g, '}'],
-    [/\\left(?![A-Za-z])/g, ''], [/\\right(?![A-Za-z])/g, ''],
+    [/\\(?:left|right|middle|Biggl|Biggr|Biggm|Bigg|biggl|biggr|biggm|bigg|Bigl|Bigr|Bigm|Big|bigl|bigr|bigm|big)(?![A-Za-z])/g, ''],
+    [/\\mathbb\s+([RNZQCPEFH])(?![A-Za-z])/g, function (_, c) { return BB_MAP[c] || c; }],
+    [/\\sqrt\s+([A-Za-z0-9])(?![A-Za-z0-9])/g, '<span class="m-root">√<span class="m-rad">$1</span></span>'],
+    [/\\(?:hat|vec|bar|tilde)\s+([A-Za-z])(?![A-Za-z])/g, '<span class="m-hat">$1</span>'],
     [/\\(?:qquad|quad|,|;|:|!)(?![A-Za-z])/g, ' '],
-    [/\\lfloor(?![A-Za-z])/g, '⌊'], [/\\rfloor(?![A-Za-z])/g, '⌋'],
-    [/\\lceil(?![A-Za-z])/g, '⌈'], [/\\rceil(?![A-Za-z])/g, '⌉'],
-    [/\\langle(?![A-Za-z])/g, '⟨'], [/\\rangle(?![A-Za-z])/g, '⟩'],
+    [/\\lfloor(?![A-Za-z])/g, '<span class="m-delim">⌊</span>'], [/\\rfloor(?![A-Za-z])/g, '<span class="m-delim">⌋</span>'],
+    [/\\lceil(?![A-Za-z])/g, '<span class="m-delim">⌈</span>'], [/\\rceil(?![A-Za-z])/g, '<span class="m-delim">⌉</span>'],
+    [/\\langle(?![A-Za-z])/g, '<span class="m-delim">⟨</span>'], [/\\rangle(?![A-Za-z])/g, '<span class="m-delim">⟩</span>'],
     [/\\lVert(?![A-Za-z])|\\rVert(?![A-Za-z])|\\\|/g, '‖'],
     [/\\lvert(?![A-Za-z])|\\rvert(?![A-Za-z])/g, '|'],
     [/\\\{/g, '{'], [/\\\}/g, '}'], [/\\_/g, '_'], [/\\%/g, '%'], [/\\&/g, '&amp;'], [/\\#/g, '#'], [/\\\$/g, '$'],
@@ -543,22 +557,22 @@
     let t = String(escapedExpr || '');
     // Environments: cases, aligned/align/gather, matrices
     t = t.replace(/\\begin\{cases\}([\s\S]*?)\\end\{cases\}/g, function (_, body) {
-      const rows = body.trim().split(/\\\\/).map(function (r) {
-        const cols = r.split('&').map(function (c) { return '<td>' + formatTexInner(c.trim()) + '</td>'; }).join('');
+      const rows = body.trim().split(/\\\\(?:\s*\[[^\]]*\])?/).map(function (r) {
+        const cols = r.split(/&amp;|&/).map(function (c) { return '<td>' + formatTexInner(c.trim()) + '</td>'; }).join('');
         return '<tr>' + cols + '</tr>';
       }).join('');
       return '<span class="m-cases"><table><tbody>' + rows + '</tbody></table></span>';
     });
     t = t.replace(/\\begin\{(?:aligned|align\*?|gather\*?)\}([\s\S]*?)\\end\{(?:aligned|align\*?|gather\*?)\}/g, function (_, body) {
-      const rows = body.trim().split(/\\\\/).map(function (r) {
-        const cols = r.split('&').map(function (c) { return '<td>' + formatTexInner(c.trim()) + '</td>'; }).join('');
+      const rows = body.trim().split(/\\\\(?:\s*\[[^\]]*\])?/).map(function (r) {
+        const cols = r.split(/&amp;|&/).map(function (c) { return '<td>' + formatTexInner(c.trim()) + '</td>'; }).join('');
         return '<tr>' + cols + '</tr>';
       }).join('');
       return '<span class="m-align"><table><tbody>' + rows + '</tbody></table></span>';
     });
     t = t.replace(/\\begin\{([pbvVB]?)matrix\}([\s\S]*?)\\end\{\1matrix\}/g, function (_, kind, body) {
-      const rows = body.trim().split(/\\\\/).map(function (r) {
-        const cols = r.split('&').map(function (c) { return '<td>' + formatTexInner(c.trim()) + '</td>'; }).join('');
+      const rows = body.trim().split(/\\\\(?:\s*\[[^\]]*\])?/).map(function (r) {
+        const cols = r.split(/&amp;|&/).map(function (c) { return '<td>' + formatTexInner(c.trim()) + '</td>'; }).join('');
         return '<tr>' + cols + '</tr>';
       }).join('');
       const cls = kind === 'b' ? 'm-mat m-mat-b' : kind === 'v' ? 'm-mat m-mat-v' : kind === 'V' ? 'm-mat m-mat-V' : kind === 'B' ? 'm-mat m-mat-B' : kind === 'p' ? 'm-mat m-mat-p' : 'm-mat';
@@ -597,12 +611,14 @@
     t = replaceTexCmd1(t, 'mathrm', function (a) { return '<span class="m-fn">' + a + '</span>'; });
     t = replaceTexCmd1(t, 'operatorname', function (a) { return '<span class="m-fn">' + a + '</span>'; });
     t = replaceTexCmd1(t, 'pmod', function (a) { return '<span class="m-fn"> (mod ' + formatTexInner(a) + ')</span>'; });
+    t = replaceTexCmd1(t, 'tag', function (a) { return '<span class="m-tag">(' + formatTexInner(a) + ')</span>'; });
+    t = replaceTexCmd1(t, 'label', function () { return ''; });
 
     // Superscripts & subscripts (balanced)
     t = replaceSupSub(t);
 
     // Line breaks \\ inside display math
-    t = t.replace(/\\\\/g, '<br>');
+    t = t.replace(/\\\\(?:\s*\[[^\]]*\])?/g, '<br>');
 
     // Symbol replacements
     for (let i = 0; i < TEX_SYM_RULES.length; i++) {
@@ -611,8 +627,20 @@
     return t;
   }
 
-  function formatTexHtml(rawExpr) {
-    return formatTexInner(escapeHtml(String(rawExpr || '').trim()));
+  function formatTexHtml(rawExpr, isDisplay) {
+    const clean = String(rawExpr || '').trim();
+    if (!clean) return '';
+    if (typeof window !== 'undefined' && window.katex && typeof window.katex.renderToString === 'function') {
+      try {
+        return window.katex.renderToString(clean, {
+          displayMode: !!isDisplay,
+          throwOnError: false,
+          strict: false,
+          trust: false
+        });
+      } catch (e) {}
+    }
+    return formatTexInner(escapeHtml(clean));
   }
 
   function highlightCode(rawCode, lang) {
@@ -648,7 +676,8 @@
     s = s.replace(/\\\(([\s\S]+?)(?:\\\)|\\(?=\s|$))|(^|[^\\$\w])\$([^\s$][^$\n]*?)\$(?!\$)/g, function (_, p1, pre, p2) {
       const expr = p1 != null ? p1 : p2;
       const idx = mathTokens.length;
-      mathTokens.push('<span class="math" dir="ltr">' + formatTexInner(expr) + '</span>');
+      const unesc = expr.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+      mathTokens.push('<span class="math" dir="ltr">' + formatTexHtml(unesc, false) + '</span>');
       return (pre || '') + '\uE000MATH' + idx + '\uE001';
     });
     // Markdown links [label](url)
@@ -663,8 +692,8 @@
     s = s.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
     // Bold **...** or __...__
     s = s.replace(/\*\*([^*]+)\*\*|__([^_]+)__/g, function (_, a, b) { return '<strong>' + (a || b) + '</strong>'; });
-    // Italic *...*
-    s = s.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>');
+    // Italic *...* (require non-space boundaries so math 2 * 3 never triggers italic)
+    s = s.replace(/(^|[^*\w])\*(?!\s)([^*\n]+?)(?<!\s)\*(?!\*)/g, '$1<em>$2</em>');
     // Strikethrough ~~...~~
     s = s.replace(/~~([^~]+)~~/g, '<del>$1</del>');
 
@@ -727,7 +756,7 @@
             '<span class="math-badge">فرمول ریاضی</span>' +
             '<button type="button" class="code-copy" data-copy-encoded="' + encoded + '">' + ICONS.copy + '<span>کپی LaTeX</span></button>' +
           '</div>' +
-          '<div class="math math-block" dir="ltr">' + formatTexHtml(expr) + '</div>' +
+          '<div class="math math-block" dir="ltr">' + formatTexHtml(expr, true) + '</div>' +
         '</div>'
       );
       return '\n\n@@BLOCK_' + idx + '@@\n\n';
@@ -1571,7 +1600,7 @@
             '<span class="tc-title shiny" id="pending-tc-title">در حال استدلال و تحلیل…</span>' +
             '<span class="thinking-chev">' + ICONS.chevron + '</span>' +
           '</button>' +
-          '<div class="think-card-body" id="pending-think-body" dir="auto"></div>' +
+          '<div class="think-card-body md" id="pending-think-body" dir="auto"></div>' +
         '</div>' +
         '<div class="md live" id="pending-md" hidden dir="rtl"></div>' +
       '</div></div>';
@@ -1641,7 +1670,7 @@
           openAnimated(pThinkCard);
         }
         pThinkBody.dir = textDir(liveParsed.think);
-        pThinkBody.innerHTML = renderMarkdown(liveParsed.think, true);
+        pThinkBody.innerHTML = renderThinkMarkdown(liveParsed.think, true);
         if (pThinkCard.classList.contains('open')) {
           pThinkBody.scrollTop = pThinkBody.scrollHeight;
         }
@@ -2452,4 +2481,9 @@
   } else {
     init();
   }
+  window.addEventListener('load', function () {
+    if (window.katex && !state.busy && getActiveThread()) {
+      renderMessages();
+    }
+  });
 })();

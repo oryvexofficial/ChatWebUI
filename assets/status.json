@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9ib3VxdWV0LXJlc3VsdGVkLWF1YnVybi1wcmVzZW50aW5nLnRyeWNsb3VkZmxhcmUuY29t",
-  "public_api_key": "sk-uc-5ee8b0ad74ade07ad032685d9ae863e9",
-  "api_key": "sk-uc-5ee8b0ad74ade07ad032685d9ae863e9",
+  "url_payload": "aHR0cHM6Ly9yZWZvcm1zLXN0YWZmLXJlY3ljbGluZy1leGlzdGluZy50cnljbG91ZGZsYXJlLmNvbQ==",
+  "public_api_key": "sk-uc-14e04a9885513de22322da1403011bf0",
+  "api_key": "sk-uc-14e04a9885513de22322da1403011bf0",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/v1",
-    "chat_completions": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/v1/models",
-    "native_chat": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/key",
-    "health": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://reforms-staff-recycling-existing.trycloudflare.com/v1",
+    "chat_completions": "https://reforms-staff-recycling-existing.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://reforms-staff-recycling-existing.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://reforms-staff-recycling-existing.trycloudflare.com/v1/models",
+    "native_chat": "https://reforms-staff-recycling-existing.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://reforms-staff-recycling-existing.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://reforms-staff-recycling-existing.trycloudflare.com/api/v1/key",
+    "health": "https://reforms-staff-recycling-existing.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T12:03:42+00:00",
+  "updated_at": "2026-11-19T12:06:08+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44520353681",
-  "run_number": 44,
+  "run_number": 46,
   "commit": "a79337e"
 }

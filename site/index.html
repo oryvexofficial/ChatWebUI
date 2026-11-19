@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#06080c">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="Open-source multi-route connection engine for Windows and Android, featuring WireGuard, MASQUE, Tor, Bypass, Fox and a personal Cloudflare relay.">
+  <meta property="og:title" content="OryvexVPN | Find the open way">
+  <meta property="og:description" content="Open-source connection routes for Windows and Android, including Tor, Fox and a personal Cloudflare relay.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <title>OryvexVPN | Find the open way</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+</head>
+<body data-page="home">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header">
+    <div class="shell header-inner">
+      <a class="brand" href="index.html" aria-label="OryvexVPN home">
+        <img src="assets/mark.svg" alt="" width="34" height="34">
+        <span>Oryvex<b>VPN</b></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Main">
+        <a href="index.html#routes">Routes</a>
+        <a href="index.html#finder">Route finder</a>
+        <a href="index.html#relay">Fox relay</a>
+        <a href="preview/index.html">Interactive preview</a>
+        <a href="guide.html">Guide</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme" title="Toggle theme">◐</button>
+        <a class="cta" href="downloads.html">Get the app</a>
+      </div>
+      <details class="mobile-nav">
+        <summary aria-label="Open menu"><span>Menu</span></summary>
+        <nav aria-label="Mobile">
+          <a href="index.html#routes">Routes</a>
+          <a href="index.html#finder">Route finder</a>
+          <a href="index.html#relay">Fox relay</a>
+          <a href="preview/index.html">Interactive preview</a>
+          <a href="guide.html">Guide</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="downloads.html">Downloads</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><i class="live"></i><span>Open source · Windows and Android</span></p>
+          <h1><span class="line">Find the</span> <span class="line gap">open way.</span></h1>
+          <p class="lead">One clean client with eight distinct connection routes. When a firewall blocks one protocol, switch cleanly to another with real-time throughput, gateway telemetry, and country flag verification.</p>
+          <div class="actions">
+            <a class="btn primary" href="downloads.html">Download OryvexVPN</a>
+            <a class="btn ghost" href="preview/index.html">Launch interactive preview</a>
+            <a class="btn ghost" href="#finder">Which route fits me?</a>
+          </div>
+          <div class="hero-metrics" aria-label="Highlights">
+            <div class="hero-metric">
+              <b>8 Routes</b>
+              <span>WG, MASQUE, Tor, Fox &amp; Bypass</span>
+            </div>
+            <div class="hero-metric">
+              <b>Live Telemetry</b>
+              <span>Download, Upload, Session &amp; Gateway</span>
+            </div>
+            <div class="hero-metric">
+              <b>Country Flags</b>
+              <span>Instant exit country &amp; flag display</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="orbit-stage" role="img" aria-label="OryvexVPN connection card illustration showing connected country flag and live metrics.">
+          <div class="orbit-top">
+            <span class="orbit-pill"><i></i> Connected · VPN</span>
+            <span>SOCKS5 127.0.0.1:1819</span>
+          </div>
+          <svg viewBox="0 0 400 400" class="orbit-svg" aria-hidden="true">
+            <circle cx="200" cy="200" r="146" class="ring-guide"/>
+            <path class="ring" d="M 304 96 A 146 146 0 1 1 96 96"/>
+            <circle class="travel" cx="304" cy="96" r="18"/>
+            <circle class="escape" cx="334" cy="66" r="11"/>
+          </svg>
+          <div class="orbit-cards">
+            <div class="orbit-mini">
+              <small>Connected Country</small>
+              <b><img src="assets/flags/de.png" alt="" width="20" height="15"> Germany (DE)</b>
+            </div>
+            <div class="orbit-mini">
+              <small>Gateway</small>
+              <b>de-fra-wg-001</b>
+            </div>
+            <div class="orbit-mini">
+              <small>Download / Upload</small>
+              <b>4.8 MB/s · 620 KB/s</b>
+            </div>
+            <div class="orbit-mini">
+              <small>Session</small>
+              <b>00:42:18</b>
+            </div>
+          </div>
+          <p class="stage-note">Illustration, not live status</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" aria-label="Platforms">
+      <div class="shell band-row">
+        <span>Windows 10 / 11 · 64-bit</span>
+        <span>Android 7.0+ (ARM64 &amp; ARMv7)</span>
+        <span>AGPL-3.0 Open Source</span>
+        <span>Zero tracking · Local assets</span>
+      </div>
+    </section>
+
+    <section class="section shell" id="routes">
+      <div class="head">
+        <p class="eyebrow">01 · Protocols</p>
+        <h2>Every route in one interface.</h2>
+        <p class="sub">Different networks filter traffic differently. Pick the route that matches your environment, or let Auto probe encrypted tunnels in order.</p>
+      </div>
+      <div class="routes">
+        <article class="route">
+          <img src="assets/protocols/wg.svg" alt="" width="48" height="48">
+          <h3>Encrypted Tunnels</h3>
+          <p>WireGuard, MASQUE (HTTP/2 &amp; HTTP/3), MASQUE², Gool, and Auto fallback with live gateway &amp; exit country detection.</p>
+          <ul class="tags"><li>Auto</li><li>WireGuard</li><li>MASQUE</li><li>Gool</li></ul>
+        </article>
+        <article class="route">
+          <img src="assets/protocols/tor.svg" alt="" width="48" height="48">
+          <h3>Tor &amp; Direct Evasion</h3>
+          <p>Connect through Tor with exit country selection and bridges, or reshape packets locally via Bypass.</p>
+          <ul class="tags"><li>Tor Exits</li><li>Bypass</li><li>Bridges</li></ul>
+        </article>
+        <article class="route">
+          <img src="assets/protocols/fox.svg" alt="" width="48" height="48">
+          <h3>Fox &amp; Personal Relay</h3>
+          <p>Sign in with an eligible Firefox Account, pick a country location, and guard against missing accounts with a dedicated sign-in prompt.</p>
+          <ul class="tags"><li>Firefox Account</li><li>Locations</li><li>Cloudflare Relay</li></ul>
+        </article>
+      </div>
+      <aside class="note">
+        <b>About Fox.</b> Fox is an unofficial client, not made, endorsed or supported by Mozilla. An eligible Firefox Account is required, and Mozilla sets availability and limits.
+      </aside>
+    </section>
+
+    <section class="section shell finder" id="finder">
+      <div class="head">
+        <p class="eyebrow">02 · Route Finder</p>
+        <h2>What is your network doing?</h2>
+        <p class="sub">Select the closest match below. This is a practical rule of thumb, not a live probe of your network.</p>
+      </div>
+      <div class="finder-grid">
+        <div class="choices" role="radiogroup" aria-label="Network condition">
+          <button type="button" role="radio" aria-checked="true" data-pick="open" class="choice on">
+            <b>Everything loads, some sites are throttled</b>
+            <span>Normal network, light SNI or DNS filtering</span>
+          </button>
+          <button type="button" role="radio" aria-checked="false" data-pick="dpi" class="choice">
+            <b>Standard VPNs connect, then stall</b>
+            <span>Deep packet inspection on UDP or WireGuard</span>
+          </button>
+          <button type="button" role="radio" aria-checked="false" data-pick="blocked" class="choice">
+            <b>Most tunnels fail to handshake</b>
+            <span>Strict firewall blocking standard endpoints</span>
+          </button>
+          <button type="button" role="radio" aria-checked="false" data-pick="mozilla" class="choice">
+            <b>Mozilla sign-in or Fox API is unreachable</b>
+            <span>Fox control-plane requests are filtered</span>
+          </button>
+        </div>
+        <div class="answer" aria-live="polite">
+          <p class="eyebrow">Recommended route</p>
+          <h3 id="ans-title">Auto</h3>
+          <p id="ans-body">Let OryvexVPN test WireGuard first, then MASQUE, MASQUE² and Gool automatically.</p>
+          <p class="fine">Suggestion only. Results depend on your network, service and account.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="relay" id="relay">
+      <div class="shell relay-grid">
+        <div>
+          <p class="eyebrow light">03 · Fox relay</p>
+          <h2>Your own relay on Cloudflare.</h2>
+          <p>When Mozilla control-plane endpoints are hard to reach, deploy a personal Cloudflare Worker directly from Fox settings. OryvexVPN uploads the audited Worker script, generates a 40-character secret, and configures Fox automatically.</p>
+          <ol class="relay-steps">
+            <li><b>Deploy</b> opens the guided setup modal inside OryvexVPN.</li>
+            <li><b>Token Template</b> opens Cloudflare with the exact Worker permissions pre-selected.</li>
+            <li>The app verifies your account, uploads the Worker, enables <code>workers.dev</code>, and saves the relay URL + secret into Fox.</li>
+          </ol>
+          <p class="fine">The relay carries Fox account and control-plane requests only, not general VPN traffic. Use your own Cloudflare account.</p>
+          <div class="actions">
+            <a class="btn light" href="guide.html#relay-setup">Read the setup guide</a>
+            <a class="btn ghost-light" href="https://github.com/oryvexofficial/OryvexVPN/blob/main/fox/docs/relay/cloudflare/worker.js">Inspect Worker source</a>
+          </div>
+        </div>
+        <div class="dialog" aria-hidden="false">
+          <div class="dialog-bar">
+            <span>Deploy Cloudflare relay</span>
+            <i></i><i></i><i></i>
+          </div>
+          <div class="dialog-body">
+            <p class="step on"><span>1</span>Cloudflare API token</p>
+            <button type="button" class="fake">Open Token Template</button>
+            <p class="step"><span>2</span>Select Cloudflare account</p>
+            <p class="step"><span>3</span>Deploy &amp; configure Fox automatically</p>
+            <p class="fine">Illustration of the in-app dialog. Not a working control.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell split" id="locations">
+      <div>
+        <p class="eyebrow">04 · Countries &amp; Flags</p>
+        <h2>See where you exit at a glance.</h2>
+        <p class="sub">When connected, OryvexVPN displays your active country and bundled flag on the Connect panel and inside the Gateway card.</p>
+        <p class="fine">This static preview is not live availability data. Locations depend on the route, service and account.</p>
+      </div>
+      <ul class="places">
+        <li><img src="assets/flags/de.png" alt="" width="40" height="30"><span>Germany</span><small>DE</small></li>
+        <li><img src="assets/flags/nl.png" alt="" width="40" height="30"><span>Netherlands</span><small>NL</small></li>
+        <li><img src="assets/flags/jp.png" alt="" width="40" height="30"><span>Japan</span><small>JP</small></li>
+        <li><img src="assets/flags/us.png" alt="" width="40" height="30"><span>United States</span><small>US</small></li>
+      </ul>
+    </section>
+
+    <section class="section shell" id="app-preview">
+      <div class="head">
+        <p class="eyebrow">05 · Interactive App Preview</p>
+        <h2>Try the interface in your browser.</h2>
+        <p class="sub">Test route switching, live Download/Upload/Session/Gateway cards, connected country flags, and the Fox Account Required modal in our interactive simulation.</p>
+      </div>
+      <div class="preview-showcase">
+        <div>
+          <h3>Built for zero-lag responsiveness</h3>
+          <p class="sub">The UI isolates high-frequency throughput counters, sparklines, and activity logs so your phone and desktop stay cool and responsive while connected.</p>
+          <div class="actions">
+            <a class="btn primary" href="preview/index.html">Open interactive preview →</a>
+            <a class="btn ghost" href="guide.html">Read setup guide</a>
+          </div>
+        </div>
+        <div class="preview-mock" aria-label="Preview snapshot">
+          <div class="preview-mock-head">
+            <span class="preview-country-badge">
+              <img src="assets/flags/nl.png" alt="" width="20" height="15">
+              Connected to Netherlands · NL
+            </span>
+            <small>127.0.0.1:1819</small>
+          </div>
+          <div class="preview-bento">
+            <div class="preview-tile">
+              <small>Download</small>
+              <b>6.4 MB/s</b>
+              <span>142.8 MiB total</span>
+            </div>
+            <div class="preview-tile">
+              <small>Upload</small>
+              <b>840 KB/s</b>
+              <span>19.4 MiB total</span>
+            </div>
+            <div class="preview-tile">
+              <small>Session</small>
+              <b>00:18:42</b>
+              <span>Whole-device VPN active</span>
+            </div>
+            <div class="preview-tile">
+              <small>Gateway</small>
+              <b>nl-ams-wg-002</b>
+              <span>Netherlands (NL)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="faq">
+      <div class="head">
+        <p class="eyebrow">06 · FAQ</p>
+        <h2>Short answers.</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>What happens if I click Connect on Fox without an account?</summary>
+          <p>OryvexVPN immediately opens the custom <b>Account Required for Fox</b> modal so you can create or sign in with Mozilla (or via Email &amp; Password) before starting the tunnel.</p>
+        </details>
+        <details>
+          <summary>Is the Cloudflare relay a general VPN?</summary>
+          <p>No. It forwards Fox control-plane requests such as account authentication and server list updates. General tunnel traffic does not pass through the Worker.</p>
+        </details>
+        <details>
+          <summary>Where does my Cloudflare API token go?</summary>
+          <p>It is used once to deploy the Worker to your Cloudflare account and is never saved in OryvexVPN settings. Fox stores only the resulting relay URL and random secret locally.</p>
+        </details>
+        <details>
+          <summary>Is Fox an official Mozilla product?</summary>
+          <p>No. Fox is an unofficial client and is not made, endorsed or supported by Mozilla.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="shell closing-row">
+        <h2>Ready when you are.</h2>
+        <a class="btn primary big" href="downloads.html">See downloads</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-grid">
+      <div>
+        <a class="brand" href="index.html">
+          <img src="assets/mark.svg" alt="" width="30" height="30">
+          <span>Oryvex<b>VPN</b></span>
+        </a>
+        <p>More ways to find your way through.</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="preview/index.html">Interactive preview</a>
+        <a href="downloads.html">Downloads</a>
+        <a href="guide.html">Guide</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="https://github.com/oryvexofficial/OryvexVPN">Source</a>
+        <a href="https://github.com/oryvexofficial/OryvexVPN/blob/main/LICENSE">AGPL-3.0</a>
+      </nav>
+      <p class="credit">Created by Muvixo <span aria-hidden="true">/</span> Open source <span aria-hidden="true">/</span> Fox is an unofficial client, not made or endorsed by Mozilla.</p>
+    </div>
+  </footer>
+</body>
+</html>

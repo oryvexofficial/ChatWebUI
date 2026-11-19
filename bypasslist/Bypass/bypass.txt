@@ -1,0 +1,32 @@
+YouTube:
+Site and App, Video server included
+
+X:
+Site, App and images
+
+Telegram:
+Messages and media (calls not covered)
+
+Instagram:
+Site and App (may be cut on IP-blocking networks)
+
+WhatsApp:
+Messages only (calls not covered)
+
+Facebook:
+Site, Messenger and media
+
+Discord:
+Chat and media (voice not covered)
+
+Reddit:
+Site, App and media
+
+Twitch:
+Site and live streams
+
+Spotify:
+App and web player
+
+TikTok:
+Site and App

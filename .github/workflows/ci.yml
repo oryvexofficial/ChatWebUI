@@ -1,0 +1,287 @@
+name: ci
+
+# Full cross-platform CI test suite:
+#   - Repo integrity (Bypass List format + exact icons, plists, entitlements, scripts, Python/Node tests)
+#   - Rust oryvexcore & C oryvex-bypass tests (Linux + macOS Universal + iOS staticlib)
+#   - Go fox/core tests (Linux + macOS)
+#   - Flutter shared + Android unit & Gradle tests
+#   - macOS Universal app bootstrap, analyze, tests & release build verification
+#   - iOS / iPadOS XCFrameworks, Network Extension target wiring, analyze, tests & release build verification
+
+on:
+  push:
+    branches: [main, master]
+    paths-ignore: ["**.md", "docs/**", "branding/**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FLUTTER_VERSION: "3.32.8"
+  CARGO_TERM_COLOR: always
+
+jobs:
+  repo-integrity:
+    name: Repo, Bypass List & Apple Plist Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Shell script syntax
+        run: |
+          set -euo pipefail
+          for f in \
+            oryvexcore/scripts/*.sh \
+            oryvexcore/bypass/*.sh \
+            apps/android-src/tool/*.sh \
+            apps/desktop-src/tool/*.sh \
+            apps/ios-src/tool/*.sh \
+            installer/macos/*.sh \
+            tools/*.sh; do
+            bash -n "$f"
+          done
+
+      - name: Verify /bypasslist/ structure and exact icon matching
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          base = Path("bypasslist")
+          expected = {"Auto", "WireGuard", "MASQUE", "MASQUE2", "Gool", "Tor", "Bypass", "Fox"}
+          actual = {p.name for p in base.iterdir() if p.is_dir()}
+          assert actual == expected, f"Expected {expected}, got {actual}"
+
+          for folder in sorted(base.iterdir()):
+              if not folder.is_dir():
+                  continue
+              txt = folder / "bypass.txt"
+              assert txt.is_file(), f"Missing {txt}"
+              entries = []
+              cur, desc = None, []
+              for raw in txt.read_text(encoding="utf-8").splitlines():
+                  line = raw.strip()
+                  if not line:
+                      if cur:
+                          entries.append((cur, " ".join(desc)))
+                          cur, desc = None, []
+                  elif line.startswith("#"):
+                      continue
+                  elif line.endswith(":"):
+                      if cur:
+                          entries.append((cur, " ".join(desc)))
+                      cur, desc = line[:-1].strip(), []
+                  else:
+                      desc.append(line)
+              if cur:
+                  entries.append((cur, " ".join(desc)))
+              assert entries, f"No entries in {txt}"
+              for name, d in entries:
+                  assert d, f"Missing description for {name} in {txt}"
+                  svg = folder / f"{name}.svg"
+                  png = folder / f"{name}.png"
+                  assert svg.is_file() or png.is_file(), f"Missing exact icon {name}.svg/.png in {folder}"
+              print(f"OK {folder}: {len(entries)} services verified")
+          PY
+
+      - name: Verify Apple Info.plist and entitlements XML
+        run: |
+          python3 - <<'PY'
+          import plistlib
+          files = [
+              "apps/desktop-src/macos/Runner/DebugProfile.entitlements",
+              "apps/desktop-src/macos/Runner/Release.entitlements",
+              "apps/ios-src/ios/Runner/Info.plist",
+              "apps/ios-src/ios/Runner/Runner.entitlements",
+              "apps/ios-src/ios/OryvexTunnelExtension/Info.plist",
+              "apps/ios-src/ios/OryvexTunnelExtension/OryvexTunnelExtension.entitlements",
+          ]
+          for f in files:
+              with open(f, "rb") as fp:
+                  data = plistlib.load(fp)
+              assert isinstance(data, dict) and data, f"Invalid plist: {f}"
+              print(f"OK plist: {f}")
+          PY
+
+      - name: Verify Android consistent fallback keystore
+        run: |
+          keytool -list -keystore apps/android-src/android/app/oryvex-default.jks \
+            -storepass "oryvex-consistent-key" -alias oryvex >/dev/null
+
+      - name: Python and Node tests
+        run: |
+          python3 -m unittest discover -s tools/tests -p "test_*.py" -v
+          python3 -m unittest discover -s oryvexcore/scripts/tests -p "test_*.py" -v
+          node tools/tests/test_fox_webchannel.js
+          node tools/tests/test_cloudflare_worker.mjs
+
+  rust-and-bypass-tests:
+    name: Rust Core & C Bypass (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
+        with:
+          workspaces: oryvexcore -> target
+          key: ci-core-${{ matrix.os }}
+
+      - uses: lukka/get-cmake@30aea713799f46b5b60e60f5fa83f849abd52c22 # latest
+
+      - name: Run Rust core unit tests
+        working-directory: oryvexcore
+        run: cargo test --lib
+
+      - name: Build C bypass engine (Linux native)
+        if: runner.os == 'Linux'
+        run: bash oryvexcore/bypass/build.sh native /tmp/bypass-linux
+
+      - name: Build C bypass engine (macOS Universal + iOS arm64 staticlib)
+        if: runner.os == 'macOS'
+        run: |
+          bash oryvexcore/bypass/build.sh macos universal /tmp/bypass-macos
+          file /tmp/bypass-macos/oryvex-bypass | grep -q "arm64"
+          file /tmp/bypass-macos/oryvex-bypass | grep -q "x86_64"
+          bash oryvexcore/bypass/build.sh ios arm64 /tmp/bypass-ios
+          test -s /tmp/bypass-ios/liboryvex_bypass.a
+
+  go-fox-tests:
+    name: Go Fox Core (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version-file: fox/core/go.mod
+          cache-dependency-path: fox/core/go.sum
+
+      - name: Run Fox core unit tests
+        working-directory: fox/core
+        run: go test ./...
+
+  flutter-shared-and-android:
+    name: Flutter Shared & Android Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Analyze & test apps/shared
+        working-directory: apps/shared
+        run: |
+          flutter pub get
+          flutter analyze --no-fatal-infos
+          flutter test
+
+      - name: Test apps/android-src
+        working-directory: apps/android-src
+        run: |
+          bash tool/bootstrap.sh
+          flutter analyze --no-fatal-infos
+          flutter test
+
+  macos-ci:
+    name: macOS Universal Build & Test
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Bootstrap, analyze & test macOS desktop app
+        working-directory: apps/desktop-src
+        run: |
+          bash tool/bootstrap_macos.sh
+          flutter analyze --no-fatal-infos
+          flutter test
+
+      - name: Verify macOS release compilation
+        working-directory: apps/desktop-src
+        run: flutter build macos --release
+
+  ios-ipados-ci:
+    name: iOS & iPadOS XCFrameworks, Extension & Build Test
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          targets: aarch64-apple-ios
+
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
+        with:
+          workspaces: oryvexcore -> target
+          key: ci-ios-arm64
+
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version-file: fox/core/go.mod
+          cache-dependency-path: fox/core/go.sum
+
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Build iOS & iPadOS XCFrameworks (OryvexCore, FoxCore, HevSocks5Tunnel)
+        run: bash apps/ios-src/tool/build_ios_natives.sh all
+
+      - name: Bootstrap Xcode project with OryvexTunnelExtension
+        working-directory: apps/ios-src
+        run: |
+          gem install xcodeproj --no-document
+          bash tool/bootstrap.sh
+
+      - name: Analyze & test apps/ios-src
+        working-directory: apps/ios-src
+        run: |
+          flutter analyze --no-fatal-infos
+          flutter test
+
+      - name: Verify iOS & iPadOS release build (Runner + OryvexTunnelExtension)
+        working-directory: apps/ios-src
+        run: flutter build ios --release --no-codesign

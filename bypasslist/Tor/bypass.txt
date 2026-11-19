@@ -1,0 +1,38 @@
+YouTube:
+Site and video playback via Tor circuit
+
+Google:
+Search and web services via Tor exit
+
+Telegram:
+Messages and media via Tor SOCKS5 / VPN
+
+X:
+Site and App access through Tor relays
+
+Reddit:
+Site and discussions through Tor exit
+
+Wikipedia:
+Full access to Wikipedia and Wikimedia
+
+GitHub:
+Browse repositories and download releases
+
+Signal:
+Encrypted messaging over Tor
+
+Facebook:
+Site and Onion service support
+
+Instagram:
+Web and App browsing via Tor exit
+
+WhatsApp:
+Text and media messaging over Tor
+
+Discord:
+Text chat and web access
+
+SoundCloud:
+Web and audio playback

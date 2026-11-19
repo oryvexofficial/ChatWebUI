@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#06080c">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="Install OryvexVPN, connect with Fox and deploy your own Cloudflare relay.">
+  <meta property="og:title" content="Guide | OryvexVPN">
+  <meta property="og:description" content="Install OryvexVPN, connect with Fox and deploy your own Cloudflare relay.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <title>Guide | OryvexVPN</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+</head>
+<body data-page="guide">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header">
+    <div class="shell header-inner">
+      <a class="brand" href="index.html" aria-label="OryvexVPN home">
+        <img src="assets/mark.svg" alt="" width="34" height="34">
+        <span>Oryvex<b>VPN</b></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Main">
+        <a href="index.html#routes">Routes</a>
+        <a href="index.html#relay">Fox relay</a>
+        <a href="preview/index.html">Interactive preview</a>
+        <a href="guide.html" aria-current="page">Guide</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme" title="Toggle theme">◐</button>
+        <a class="cta" href="downloads.html">Get the app</a>
+      </div>
+      <details class="mobile-nav">
+        <summary aria-label="Open menu"><span>Menu</span></summary>
+        <nav aria-label="Mobile">
+          <a href="index.html#routes">Routes</a>
+          <a href="index.html#relay">Fox relay</a>
+          <a href="preview/index.html">Interactive preview</a>
+          <a href="guide.html" aria-current="page">Guide</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="downloads.html">Downloads</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-top shell">
+      <p class="eyebrow">Guide</p>
+      <h1>Start in three minutes.</h1>
+      <p class="lead">Install OryvexVPN, pick a route, and connect. Fox sign-in and personal Cloudflare relay deployment are covered step by step below.</p>
+    </section>
+
+    <section class="shell">
+      <aside class="note">
+        <b>Try the interface first.</b> You can <a href="preview/index.html">explore the interactive browser preview</a> to test routes, country flags, live telemetry cards, and the Fox account modal before installing.
+      </aside>
+    </section>
+
+    <section class="shell guide">
+      <nav class="toc" aria-label="On this page">
+        <a href="#installation">Install</a>
+        <a href="#fox">Fox &amp; Accounts</a>
+        <a href="#relay-setup">Cloudflare relay</a>
+        <a href="#locations">Locations &amp; Flags</a>
+        <a href="#troubleshooting">Troubleshooting</a>
+      </nav>
+      <div class="prose">
+        <section id="installation">
+          <h2>Install</h2>
+          <ol>
+            <li>Open <a href="downloads.html">Downloads</a> and grab the Windows x64 installer or the Android universal APK.</li>
+            <li>On Android, allow installation when prompted. On Windows, run <code>OryvexVPN-Setup</code>.</li>
+            <li>Open OryvexVPN, select a route in the <b>Route</b> card, and press <b>Connect</b>. Once connected, the Connect panel and Gateway card display your active gateway and country flag.</li>
+          </ol>
+        </section>
+
+        <section id="fox">
+          <h2>Connect with Fox</h2>
+          <ol>
+            <li>Choose <b>Fox</b> in the Route card.</li>
+            <li>If you tap <b>Connect</b> before adding an account, OryvexVPN displays the <b>Account Required for Fox</b> modal with one-tap options to <b>Create / Sign in with Mozilla</b> or use <b>Other sign-in (Email &amp; Password)</b>.</li>
+            <li>Once your Firefox Account is added, pick a country location (or Fastest) and press Connect.</li>
+          </ol>
+          <p>Fox is an unofficial client and requires an eligible Firefox Account. On Android it can route the entire device via VPN mode; on Windows it provides a local SOCKS5 proxy and optional system proxy toggle.</p>
+        </section>
+
+        <section id="relay-setup">
+          <h2>Deploy your Fox relay</h2>
+          <ol>
+            <li>Choose Fox, or open <b>Settings → Fox connection → Deploy Cloudflare relay</b>.</li>
+            <li>Press <b>Token Template</b>. Cloudflare opens in your browser with Worker permissions pre-filled. Create the token and paste it into OryvexVPN.</li>
+            <li>Select your Cloudflare account and press <b>Deploy and configure Fox</b>.</li>
+          </ol>
+          <p>OryvexVPN uploads the bundled Worker, generates a random 40-character secret, enables its <code>workers.dev</code> subdomain, and saves the relay into Fox. The Cloudflare API token is never stored on disk.</p>
+          <aside class="note">
+            <b>Know what passes through.</b> The relay forwards Fox authentication and control-plane calls only; general VPN traffic never goes through the Worker.
+          </aside>
+          <p style="margin-top:16px"><a class="link" href="https://github.com/oryvexofficial/OryvexVPN/blob/main/fox/docs/relay/cloudflare/README.md">Relay notes on GitHub →</a></p>
+        </section>
+
+        <section id="locations">
+          <h2>Locations &amp; Flags</h2>
+          <p>Tor and Fox allow you to choose specific exit countries with bundled high-contrast flags. For WireGuard, MASQUE, Gool, and Fox, OryvexVPN also displays the connected country and flag directly under the status headline and in the Gateway card.</p>
+        </section>
+
+        <section id="troubleshooting">
+          <h2>If it gets stuck</h2>
+          <p>Check the selected route and account, then try another route in the Route card. The <b>Activity</b> tab logs connection stages and errors without slowing down the interface. For Fox, run the relay health check in Settings after deploying.</p>
+          <p><a class="link" href="https://github.com/oryvexofficial/OryvexVPN/blob/main/docs/GUIDE.md">Full guide in the repository →</a></p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-grid">
+      <div>
+        <a class="brand" href="index.html">
+          <img src="assets/mark.svg" alt="" width="30" height="30">
+          <span>Oryvex<b>VPN</b></span>
+        </a>
+        <p>More ways to find your way through.</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="preview/index.html">Interactive preview</a>
+        <a href="downloads.html">Downloads</a>
+        <a href="guide.html">Guide</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="https://github.com/oryvexofficial/OryvexVPN">Source</a>
+        <a href="https://github.com/oryvexofficial/OryvexVPN/blob/main/LICENSE">AGPL-3.0</a>
+      </nav>
+      <p class="credit">Created by Muvixo <span aria-hidden="true">/</span> Open source <span aria-hidden="true">/</span> Fox is an unofficial client, not made or endorsed by Mozilla.</p>
+    </div>
+  </footer>
+</body>
+</html>

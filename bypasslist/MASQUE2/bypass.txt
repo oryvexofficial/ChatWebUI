@@ -1,0 +1,50 @@
+YouTube:
+Site and App, Video server included
+
+Google:
+Search, Gmail, Drive, Play Store and APIs
+
+Telegram:
+Full access: messages, media, voice and video calls
+
+Instagram:
+Full access: Site, App, Reels and Direct messages
+
+WhatsApp:
+Full access: messages, media, voice and video calls
+
+X:
+Site, App, Spaces and media
+
+Facebook:
+Site, Messenger, video and media
+
+Discord:
+Full access: chat, media, voice and screen share
+
+Reddit:
+Site, App and media
+
+Twitch:
+Site, App and HD live streams
+
+Spotify:
+App, web player and streaming
+
+TikTok:
+Site, App and video feeds
+
+GitHub:
+Site, Git operations, Releases and API
+
+ChatGPT:
+Web, App and API access
+
+Signal:
+Encrypted messaging, voice and video calls
+
+SoundCloud:
+Site, App and audio streaming
+
+Wikipedia:
+Full encyclopedia and Wikimedia media

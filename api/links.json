@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-bf05211cd8a60ad7c93d9cbab248db1a",
-  "api_key": "sk-uc-bf05211cd8a60ad7c93d9cbab248db1a",
+  "public_api_key": "sk-uc-afa9f451a5958bdec325aa2a7f480864",
+  "api_key": "sk-uc-afa9f451a5958bdec325aa2a7f480864",
   "status": "online",
   "online": true,
-  "base_url": "https://clearly-engineer-act-screenshots.trycloudflare.com",
+  "base_url": "https://render-effort-impossible-jewel.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1",
-    "chat_completions": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1/models",
-    "native_chat": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/key",
-    "health": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://render-effort-impossible-jewel.trycloudflare.com/v1",
+    "chat_completions": "https://render-effort-impossible-jewel.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://render-effort-impossible-jewel.trycloudflare.com/v1/models",
+    "native_chat": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/key",
+    "health": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://clearly-engineer-act-screenshots.trycloudflare.com",
-    "openai_base": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1",
-    "chat_completions": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1/chat/completions",
-    "api": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1",
-    "key": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/key",
-    "health": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/health",
-    "swagger": "https://clearly-engineer-act-screenshots.trycloudflare.com/docs",
-    "redoc": "https://clearly-engineer-act-screenshots.trycloudflare.com/redoc",
-    "openapi": "https://clearly-engineer-act-screenshots.trycloudflare.com/openapi.json",
-    "guide": "https://clearly-engineer-act-screenshots.trycloudflare.com/api-docs",
-    "public_key_page": "https://clearly-engineer-act-screenshots.trycloudflare.com/site/public-key/"
+    "panel": "https://render-effort-impossible-jewel.trycloudflare.com",
+    "openai_base": "https://render-effort-impossible-jewel.trycloudflare.com/v1",
+    "chat_completions": "https://render-effort-impossible-jewel.trycloudflare.com/v1/chat/completions",
+    "api": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1",
+    "key": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/key",
+    "health": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/health",
+    "swagger": "https://render-effort-impossible-jewel.trycloudflare.com/docs",
+    "redoc": "https://render-effort-impossible-jewel.trycloudflare.com/redoc",
+    "openapi": "https://render-effort-impossible-jewel.trycloudflare.com/openapi.json",
+    "guide": "https://render-effort-impossible-jewel.trycloudflare.com/api-docs",
+    "public_key_page": "https://render-effort-impossible-jewel.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/key"
+      "url": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1/chat/completions"
+      "url": "https://render-effort-impossible-jewel.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1/models"
+      "url": "https://render-effort-impossible-jewel.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat"
+      "url": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/generate"
+      "url": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1"
+      "url": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/health"
+      "url": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/ready"
+      "url": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/info"
+      "url": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/models"
+      "url": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/config"
+      "url": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/stats"
+      "url": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/health"
+      "url": "https://render-effort-impossible-jewel.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T21:52:18+00:00",
+  "updated_at": "2026-11-19T21:55:25+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44623058120",
-  "run_number": 71,
+  "run_number": 72,
   "commit": "66b8a2e"
 }

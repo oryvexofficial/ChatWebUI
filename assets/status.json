@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9jbGVhcmx5LWVuZ2luZWVyLWFjdC1zY3JlZW5zaG90cy50cnljbG91ZGZsYXJlLmNvbQ==",
-  "public_api_key": "sk-uc-bf05211cd8a60ad7c93d9cbab248db1a",
-  "api_key": "sk-uc-bf05211cd8a60ad7c93d9cbab248db1a",
+  "url_payload": "aHR0cHM6Ly9yZW5kZXItZWZmb3J0LWltcG9zc2libGUtamV3ZWwudHJ5Y2xvdWRmbGFyZS5jb20=",
+  "public_api_key": "sk-uc-afa9f451a5958bdec325aa2a7f480864",
+  "api_key": "sk-uc-afa9f451a5958bdec325aa2a7f480864",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1",
-    "chat_completions": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1/models",
-    "native_chat": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/key",
-    "health": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://render-effort-impossible-jewel.trycloudflare.com/v1",
+    "chat_completions": "https://render-effort-impossible-jewel.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://render-effort-impossible-jewel.trycloudflare.com/v1/models",
+    "native_chat": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/key",
+    "health": "https://render-effort-impossible-jewel.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T21:52:18+00:00",
+  "updated_at": "2026-11-19T21:55:25+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44623058120",
-  "run_number": 71,
+  "run_number": 72,
   "commit": "66b8a2e"
 }

@@ -13,7 +13,7 @@
   const MAX_TEXT = 8000;
   const MAX_HISTORY_TURNS = 16;
   const MAX_TA_H = 200;
-  const REQUEST_TIMEOUT_MS = 300000;
+  const REQUEST_TIMEOUT_MS = 600000;
 
   const STEPS = ['خواندن پیام', 'مرور گفتگو', 'تشخیص نوع درخواست و انتخاب مدل', 'فکر کردن', 'نوشتن پاسخ'];
   const PROMPTS = [
@@ -161,14 +161,38 @@
       .replace(/```[a-zA-Z0-9_+#.-]*\n?/g, '')
       .replace(/\\[()\[\]]/g, '')
       .replace(/\\(?:mathbb|mathrm|text|mathbf)\{([^{}]*)\}/g, '$1')
-      .replace(/\\in\b/g, '∈')
-      .replace(/\\notin\b/g, '∉')
       .replace(/\\frac\{([^{}]*)\}\{([^{}]*)\}/g, '$1/$2')
+      .replace(/\\(?:in|notin|cap|cup|subseteq|subset|varnothing|emptyset|infty|forall|exists|to|rightarrow)(?![A-Za-z])/g, ' ')
+      .replace(/\\[A-Za-z]+/g, ' ')
       .replace(/\$\$([\s\S]+?)\$\$/g, '$1')
       .replace(/\$([^$\n]+)\$/g, '$1')
-      .replace(/[*_`~=#>]/g, '')
+      .replace(/[*_`~=#>{}]/g, '')
       .replace(/\s+/g, ' ')
       .trim();
+  }
+
+  async function requestAiThreadTitle(thread, userText, replyText) {
+    if (!thread || thread.aiTitled) return;
+    thread.aiTitled = true;
+    try {
+      const base = await resolveApiBase();
+      const headers = { 'Content-Type': 'application/json' };
+      const urlTok = new URLSearchParams(location.search).get('token');
+      if (urlTok) headers['X-Panel-Token'] = urlTok;
+      if (state.publicKey) headers['X-API-Key'] = state.publicKey;
+      const r = await fetch(base + '/api/chat/title', {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({ message: userText, reply: (replyText || '').slice(0, 300) })
+      });
+      if (!r.ok) return;
+      const d = await r.json();
+      if (d && d.title && d.title.trim()) {
+        thread.title = d.title.trim();
+        saveThreads();
+        renderSidebar();
+      }
+    } catch (e) {}
   }
 
   function splitThinkReply(rawText, extraReasoning) {
@@ -1826,6 +1850,7 @@
     }
 
     const ok = !!(reply || reasoningBuf);
+    const stepText = reply || reasoningBuf;
     const msgObj = {
       id: newId('msg'),
       text: text,
@@ -1836,13 +1861,17 @@
       model: usedModel,
       isMath: usedMath,
       thinkingMs: Math.round((timings.first || timings.end) - timings.t0),
-      steps: buildChatSteps(text, history.length / 2, timings, reply, ok ? (state.aborted ? 'متوقف شد' : error) : error, usedModel, usedMath)
+      steps: buildChatSteps(text, history.length / 2, timings, stepText, ok ? (state.aborted ? 'متوقف شد' : error) : error, usedModel, usedMath)
     };
 
+    const isFirstTurn = thread.messages.length === 0;
     thread.messages.push(msgObj);
     thread.updatedAt = Date.now();
     state.freshId = msgObj.id;
     saveThreads();
+    if (isFirstTurn) {
+      requestAiThreadTitle(thread, text, reply || reasoningBuf);
+    }
 
     state.busy = false;
     state.ctrl = null;

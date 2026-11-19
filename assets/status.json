@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9wcmVzdG9uLWZsYXZvci1kZWZlbmRhbnQtZW1waXJpY2FsLnRyeWNsb3VkZmxhcmUuY29t",
-  "public_api_key": "sk-uc-7155da79922e9622182bed85a7510c81",
-  "api_key": "sk-uc-7155da79922e9622182bed85a7510c81",
+  "url_payload": "aHR0cHM6Ly9oYXZlbi1qZXRzLWxhYmVscy1idXJsaW5ndG9uLnRyeWNsb3VkZmxhcmUuY29t",
+  "public_api_key": "sk-uc-98ff10e317246baeb8abffe5ffe2c00a",
+  "api_key": "sk-uc-98ff10e317246baeb8abffe5ffe2c00a",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://preston-flavor-defendant-empirical.trycloudflare.com/v1",
-    "chat_completions": "https://preston-flavor-defendant-empirical.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://preston-flavor-defendant-empirical.trycloudflare.com/v1/models",
-    "native_chat": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/key",
-    "health": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://haven-jets-labels-burlington.trycloudflare.com/v1",
+    "chat_completions": "https://haven-jets-labels-burlington.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://haven-jets-labels-burlington.trycloudflare.com/v1/models",
+    "native_chat": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/key",
+    "health": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T20:24:09+00:00",
+  "updated_at": "2026-11-19T20:28:30+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44608238535",
-  "run_number": 69,
+  "run_number": 70,
   "commit": "6981505"
 }

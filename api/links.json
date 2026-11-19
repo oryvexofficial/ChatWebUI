@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-7155da79922e9622182bed85a7510c81",
-  "api_key": "sk-uc-7155da79922e9622182bed85a7510c81",
+  "public_api_key": "sk-uc-98ff10e317246baeb8abffe5ffe2c00a",
+  "api_key": "sk-uc-98ff10e317246baeb8abffe5ffe2c00a",
   "status": "online",
   "online": true,
-  "base_url": "https://preston-flavor-defendant-empirical.trycloudflare.com",
+  "base_url": "https://haven-jets-labels-burlington.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://preston-flavor-defendant-empirical.trycloudflare.com/v1",
-    "chat_completions": "https://preston-flavor-defendant-empirical.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://preston-flavor-defendant-empirical.trycloudflare.com/v1/models",
-    "native_chat": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/key",
-    "health": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://haven-jets-labels-burlington.trycloudflare.com/v1",
+    "chat_completions": "https://haven-jets-labels-burlington.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://haven-jets-labels-burlington.trycloudflare.com/v1/models",
+    "native_chat": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/key",
+    "health": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://preston-flavor-defendant-empirical.trycloudflare.com",
-    "openai_base": "https://preston-flavor-defendant-empirical.trycloudflare.com/v1",
-    "chat_completions": "https://preston-flavor-defendant-empirical.trycloudflare.com/v1/chat/completions",
-    "api": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1",
-    "key": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/key",
-    "health": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/health",
-    "swagger": "https://preston-flavor-defendant-empirical.trycloudflare.com/docs",
-    "redoc": "https://preston-flavor-defendant-empirical.trycloudflare.com/redoc",
-    "openapi": "https://preston-flavor-defendant-empirical.trycloudflare.com/openapi.json",
-    "guide": "https://preston-flavor-defendant-empirical.trycloudflare.com/api-docs",
-    "public_key_page": "https://preston-flavor-defendant-empirical.trycloudflare.com/site/public-key/"
+    "panel": "https://haven-jets-labels-burlington.trycloudflare.com",
+    "openai_base": "https://haven-jets-labels-burlington.trycloudflare.com/v1",
+    "chat_completions": "https://haven-jets-labels-burlington.trycloudflare.com/v1/chat/completions",
+    "api": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1",
+    "key": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/key",
+    "health": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/health",
+    "swagger": "https://haven-jets-labels-burlington.trycloudflare.com/docs",
+    "redoc": "https://haven-jets-labels-burlington.trycloudflare.com/redoc",
+    "openapi": "https://haven-jets-labels-burlington.trycloudflare.com/openapi.json",
+    "guide": "https://haven-jets-labels-burlington.trycloudflare.com/api-docs",
+    "public_key_page": "https://haven-jets-labels-burlington.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/key"
+      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://preston-flavor-defendant-empirical.trycloudflare.com/v1/chat/completions"
+      "url": "https://haven-jets-labels-burlington.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://preston-flavor-defendant-empirical.trycloudflare.com/v1/models"
+      "url": "https://haven-jets-labels-burlington.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/chat"
+      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/generate"
+      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1"
+      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/health"
+      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/ready"
+      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/info"
+      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/models"
+      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/config"
+      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://preston-flavor-defendant-empirical.trycloudflare.com/api/v1/stats"
+      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://preston-flavor-defendant-empirical.trycloudflare.com/health"
+      "url": "https://haven-jets-labels-burlington.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T20:24:09+00:00",
+  "updated_at": "2026-11-19T20:28:30+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44608238535",
-  "run_number": 69,
+  "run_number": 70,
   "commit": "6981505"
 }

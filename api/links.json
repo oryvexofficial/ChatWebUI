@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-0a803e1ead148cd7b476e087f2278e20",
-  "api_key": "sk-uc-0a803e1ead148cd7b476e087f2278e20",
+  "public_api_key": "sk-uc-92ad746e8ef04314d45881c8ebbc0e54",
+  "api_key": "sk-uc-92ad746e8ef04314d45881c8ebbc0e54",
   "status": "online",
   "online": true,
-  "base_url": "https://patients-liked-differences-suited.trycloudflare.com",
+  "base_url": "https://grew-performer-sequences-rush.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://patients-liked-differences-suited.trycloudflare.com/v1",
-    "chat_completions": "https://patients-liked-differences-suited.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://patients-liked-differences-suited.trycloudflare.com/v1/models",
-    "native_chat": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/key",
-    "health": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://grew-performer-sequences-rush.trycloudflare.com/v1",
+    "chat_completions": "https://grew-performer-sequences-rush.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://grew-performer-sequences-rush.trycloudflare.com/v1/models",
+    "native_chat": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/key",
+    "health": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://patients-liked-differences-suited.trycloudflare.com",
-    "openai_base": "https://patients-liked-differences-suited.trycloudflare.com/v1",
-    "chat_completions": "https://patients-liked-differences-suited.trycloudflare.com/v1/chat/completions",
-    "api": "https://patients-liked-differences-suited.trycloudflare.com/api/v1",
-    "key": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/key",
-    "health": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/health",
-    "swagger": "https://patients-liked-differences-suited.trycloudflare.com/docs",
-    "redoc": "https://patients-liked-differences-suited.trycloudflare.com/redoc",
-    "openapi": "https://patients-liked-differences-suited.trycloudflare.com/openapi.json",
-    "guide": "https://patients-liked-differences-suited.trycloudflare.com/api-docs",
-    "public_key_page": "https://patients-liked-differences-suited.trycloudflare.com/site/public-key/"
+    "panel": "https://grew-performer-sequences-rush.trycloudflare.com",
+    "openai_base": "https://grew-performer-sequences-rush.trycloudflare.com/v1",
+    "chat_completions": "https://grew-performer-sequences-rush.trycloudflare.com/v1/chat/completions",
+    "api": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1",
+    "key": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/key",
+    "health": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/health",
+    "swagger": "https://grew-performer-sequences-rush.trycloudflare.com/docs",
+    "redoc": "https://grew-performer-sequences-rush.trycloudflare.com/redoc",
+    "openapi": "https://grew-performer-sequences-rush.trycloudflare.com/openapi.json",
+    "guide": "https://grew-performer-sequences-rush.trycloudflare.com/api-docs",
+    "public_key_page": "https://grew-performer-sequences-rush.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/key"
+      "url": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://patients-liked-differences-suited.trycloudflare.com/v1/chat/completions"
+      "url": "https://grew-performer-sequences-rush.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://patients-liked-differences-suited.trycloudflare.com/v1/models"
+      "url": "https://grew-performer-sequences-rush.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/chat"
+      "url": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/generate"
+      "url": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://patients-liked-differences-suited.trycloudflare.com/api/v1"
+      "url": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/health"
+      "url": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/ready"
+      "url": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/info"
+      "url": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/models"
+      "url": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/config"
+      "url": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/stats"
+      "url": "https://grew-performer-sequences-rush.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://patients-liked-differences-suited.trycloudflare.com/health"
+      "url": "https://grew-performer-sequences-rush.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T19:46:10+00:00",
+  "updated_at": "2026-11-19T19:54:36+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44601720193",
-  "run_number": 63,
+  "run_number": 67,
   "commit": "4c623b6"
 }

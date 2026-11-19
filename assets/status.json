@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9oYXZlbi1qZXRzLWxhYmVscy1idXJsaW5ndG9uLnRyeWNsb3VkZmxhcmUuY29t",
-  "public_api_key": "sk-uc-98ff10e317246baeb8abffe5ffe2c00a",
-  "api_key": "sk-uc-98ff10e317246baeb8abffe5ffe2c00a",
+  "url_payload": "aHR0cHM6Ly9jbGVhcmx5LWVuZ2luZWVyLWFjdC1zY3JlZW5zaG90cy50cnljbG91ZGZsYXJlLmNvbQ==",
+  "public_api_key": "sk-uc-bf05211cd8a60ad7c93d9cbab248db1a",
+  "api_key": "sk-uc-bf05211cd8a60ad7c93d9cbab248db1a",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://haven-jets-labels-burlington.trycloudflare.com/v1",
-    "chat_completions": "https://haven-jets-labels-burlington.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://haven-jets-labels-burlington.trycloudflare.com/v1/models",
-    "native_chat": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/key",
-    "health": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1",
+    "chat_completions": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1/models",
+    "native_chat": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/key",
+    "health": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T20:48:52+00:00",
+  "updated_at": "2026-11-19T20:51:56+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44612370815",
-  "run_number": 70,
+  "run_number": 71,
   "commit": "628348a"
 }

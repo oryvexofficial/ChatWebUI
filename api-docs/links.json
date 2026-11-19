@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-98ff10e317246baeb8abffe5ffe2c00a",
-  "api_key": "sk-uc-98ff10e317246baeb8abffe5ffe2c00a",
+  "public_api_key": "sk-uc-bf05211cd8a60ad7c93d9cbab248db1a",
+  "api_key": "sk-uc-bf05211cd8a60ad7c93d9cbab248db1a",
   "status": "online",
   "online": true,
-  "base_url": "https://haven-jets-labels-burlington.trycloudflare.com",
+  "base_url": "https://clearly-engineer-act-screenshots.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://haven-jets-labels-burlington.trycloudflare.com/v1",
-    "chat_completions": "https://haven-jets-labels-burlington.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://haven-jets-labels-burlington.trycloudflare.com/v1/models",
-    "native_chat": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/key",
-    "health": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1",
+    "chat_completions": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1/models",
+    "native_chat": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/key",
+    "health": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://haven-jets-labels-burlington.trycloudflare.com",
-    "openai_base": "https://haven-jets-labels-burlington.trycloudflare.com/v1",
-    "chat_completions": "https://haven-jets-labels-burlington.trycloudflare.com/v1/chat/completions",
-    "api": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1",
-    "key": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/key",
-    "health": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/health",
-    "swagger": "https://haven-jets-labels-burlington.trycloudflare.com/docs",
-    "redoc": "https://haven-jets-labels-burlington.trycloudflare.com/redoc",
-    "openapi": "https://haven-jets-labels-burlington.trycloudflare.com/openapi.json",
-    "guide": "https://haven-jets-labels-burlington.trycloudflare.com/api-docs",
-    "public_key_page": "https://haven-jets-labels-burlington.trycloudflare.com/site/public-key/"
+    "panel": "https://clearly-engineer-act-screenshots.trycloudflare.com",
+    "openai_base": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1",
+    "chat_completions": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1/chat/completions",
+    "api": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1",
+    "key": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/key",
+    "health": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/health",
+    "swagger": "https://clearly-engineer-act-screenshots.trycloudflare.com/docs",
+    "redoc": "https://clearly-engineer-act-screenshots.trycloudflare.com/redoc",
+    "openapi": "https://clearly-engineer-act-screenshots.trycloudflare.com/openapi.json",
+    "guide": "https://clearly-engineer-act-screenshots.trycloudflare.com/api-docs",
+    "public_key_page": "https://clearly-engineer-act-screenshots.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/key"
+      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://haven-jets-labels-burlington.trycloudflare.com/v1/chat/completions"
+      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://haven-jets-labels-burlington.trycloudflare.com/v1/models"
+      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat"
+      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/generate"
+      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1"
+      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/health"
+      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/ready"
+      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/info"
+      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/models"
+      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/config"
+      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://haven-jets-labels-burlington.trycloudflare.com/api/v1/stats"
+      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://haven-jets-labels-burlington.trycloudflare.com/health"
+      "url": "https://clearly-engineer-act-screenshots.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T20:48:52+00:00",
+  "updated_at": "2026-11-19T20:51:56+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44612370815",
-  "run_number": 70,
+  "run_number": 71,
   "commit": "628348a"
 }

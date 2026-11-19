@@ -285,7 +285,8 @@
     [/\\vec\{([^{}]*)\}/g, '<span class="m-vec">$1</span>'],
     [/\\hat\{([^{}]*)\}/g, '<span class="m-hat">$1</span>'],
     [/\\overline\{([^{}]*)\}|\\bar\{([^{}]*)\}/g, '<span class="m-bar">$1$2</span>'],
-    [/\\int/g, '∫'], [/\\iint/g, '∬'], [/\\oint/g, '∮'], [/\\sum/g, '∑'], [/\\prod/g, '∏'], [/\\infty/g, '∞'],
+    [/\\iiint\b/g, '∭'], [/\\iint\b/g, '∬'], [/\\oint\b/g, '∮'], [/\\int\b/g, '∫'], [/\\sum\b/g, '∑'], [/\\prod\b/g, '∏'], [/\\infty\b/g, '∞'],
+    [/\\boxed\{([^{}]*)\}/g, '<span class="m-box">$1</span>'],
     [/\\pi/g, 'π'], [/\\alpha/g, 'α'], [/\\beta/g, 'β'], [/\\gamma/g, 'γ'], [/\\Gamma/g, 'Γ'],
     [/\\delta/g, 'δ'], [/\\Delta/g, 'Δ'], [/\\epsilon|\\varepsilon/g, 'ε'], [/\\zeta/g, 'ζ'], [/\\eta/g, 'η'],
     [/\\theta|\\vartheta/g, 'θ'], [/\\Theta/g, 'Θ'], [/\\lambda/g, 'λ'], [/\\Lambda/g, 'Λ'], [/\\mu/g, 'μ'],
@@ -293,11 +294,12 @@
     [/\\phi|\\varphi/g, 'φ'], [/\\Phi/g, 'Φ'], [/\\chi/g, 'χ'], [/\\psi/g, 'ψ'], [/\\Psi/g, 'Ψ'],
     [/\\omega/g, 'ω'], [/\\Omega/g, 'Ω'],
     [/\\times/g, '×'], [/\\cdot|\\bullet/g, '·'], [/\\div/g, '÷'], [/\\pm/g, '±'], [/\\mp/g, '∓'],
-    [/\\leq?|\\leqslant/g, '≤'], [/\\geq?|\\geqslant/g, '≥'], [/\\neq|\\ne/g, '≠'], [/\\approx/g, '≈'],
-    [/\\equiv/g, '≡'], [/\\sim/g, '∼'], [/\\propto/g, '∝'], [/\\ll/g, '≪'], [/\\gg/g, '≫'],
-    [/\\leftrightarrow|\\iff/g, '⇔'], [/\\Rightarrow|\\implies/g, '⇒'], [/\\Leftarrow/g, '⇐'],
-    [/\\to|\\rightarrow/g, '→'], [/\\leftarrow/g, '←'], [/\\mapsto/g, '↦'],
-    [/\\in/g, '∈'], [/\\notin/g, '∉'], [/\\subset/g, '⊂'], [/\\subseteq/g, '⊆'], [/\\cup/g, '∪'], [/\\cap/g, '∩'],
+    [/\\leqslant\b|\\leq\b|\\le\b/g, '≤'], [/\\geqslant\b|\\geq\b|\\ge\b/g, '≥'], [/\\neq\b|\\ne\b/g, '≠'], [/\\approx\b/g, '≈'],
+    [/\\equiv\b/g, '≡'], [/\\cong\b/g, '≅'], [/\\sim\b/g, '∼'], [/\\propto\b/g, '∝'], [/\\ll\b/g, '≪'], [/\\gg\b/g, '≫'],
+    [/\\Leftrightarrow\b|\\leftrightarrow\b|\\iff\b/g, '⇔'], [/\\Rightarrow\b|\\implies\b/g, '⇒'], [/\\Leftarrow\b/g, '⇐'],
+    [/\\rightarrow\b|\\to\b/g, '→'], [/\\leftarrow\b/g, '←'], [/\\mapsto\b/g, '↦'],
+    [/\\notin\b/g, '∉'], [/\\in\b/g, '∈'], [/\\subseteq\b/g, '⊆'], [/\\subset\b/g, '⊂'], [/\\supseteq\b/g, '⊇'], [/\\supset\b/g, '⊃'],
+    [/\\cup\b/g, '∪'], [/\\cap\b/g, '∩'], [/\\cdots\b|\\ldots\b|\\dots\b/g, '…'],
     [/\\emptyset|\\varnothing/g, '∅'], [/\\forall/g, '∀'], [/\\exists/g, '∃'], [/\\neg|\\lnot/g, '¬'],
     [/\\land|\\wedge/g, '∧'], [/\\lor|\\vee/g, '∨'], [/\\therefore/g, '∴'], [/\\because/g, '∵'],
     [/\\partial/g, '∂'], [/\\nabla/g, '∇'], [/\\degree|\^\\circ/g, '°'], [/\\angle/g, '∠'], [/\\perp/g, '⊥'], [/\\parallel/g, '∥'],
@@ -363,7 +365,7 @@
       return '\uE002CODE' + idx + '\uE003';
     });
     // Inline math $...$ or \(...\)
-    s = s.replace(/\\\(([\s\S]+?)\\\)|(^|[^\\$\w])\$([^\s$][^$\n]*?)\$(?!\$)/g, function (_, p1, pre, p2) {
+    s = s.replace(/\\\(([\s\S]+?)(?:\\\)|\\(?=\s|$))|(^|[^\\$\w])\$([^\s$][^$\n]*?)\$(?!\$)/g, function (_, p1, pre, p2) {
       const expr = p1 != null ? p1 : p2;
       const idx = mathTokens.length;
       mathTokens.push('<span class="math" dir="ltr">' + formatTexHtml(expr) + '</span>');

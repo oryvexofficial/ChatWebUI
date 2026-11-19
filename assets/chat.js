@@ -777,7 +777,7 @@
         '<div class="turn' + (isFresh ? ' fresh' : '') + '" data-msg-id="' + escapeHtml(m.id) + '">' +
           '<div class="msg user">' +
             '<div class="ubox">' +
-              '<div class="bubble" dir="' + uDir + '">' + escapeHtml(m.text) + '</div>' +
+              '<div class="bubble md user-md" dir="' + uDir + '">' + renderMarkdown(m.text) + '</div>' +
               '<div class="uacts">' +
                 '<button class="icon-btn sm" type="button" data-copy-user="' + escapeHtml(m.id) + '" title="کپی متن" aria-label="کپی متن">' + ICONS.copy + '</button>' +
                 '<button class="icon-btn sm" type="button" data-redo-msg="' + escapeHtml(m.id) + '" title="ارسال دوباره" aria-label="ارسال دوباره">' + ICONS.refresh + '</button>' +
@@ -1099,7 +1099,7 @@
     const histDetail = history.length ? fa(history.length / 2) + ' پیام قبلی در حافظه' : 'گفتگوی تازه';
 
     pendingTurn.innerHTML =
-      '<div class="msg user"><div class="ubox"><div class="bubble" dir="' + uDir + '">' + escapeHtml(text) + '</div></div></div>' +
+      '<div class="msg user"><div class="ubox"><div class="bubble md user-md" dir="' + uDir + '">' + renderMarkdown(text) + '</div></div></div>' +
       '<div class="msg bot"><div class="bot-body" id="pending-bot-body">' +
         '<div class="thinking-block" id="pending-thinking" role="status" aria-live="polite">' +
           '<button type="button" class="thinking-head" aria-expanded="true">' +

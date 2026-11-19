@@ -196,6 +196,18 @@ canvas {
 .ltr {
   direction: ltr;
   unicode-bidi: isolate;
+  font-feature-settings: normal;
+}
+
+[dir="ltr"],
+.mono,
+code,
+pre,
+.math,
+.math-block,
+.math-cell,
+.katex {
+  font-feature-settings: normal;
 }
 
 /* Crisp unified focus-visible ring */
@@ -2213,14 +2225,26 @@ svg.pg-mark {
 /* Inline math cells inside tables */
 .md td .math-cell,
 .md th .math-cell {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 100%;
+  overflow-x: auto;
   vertical-align: middle;
-  margin: 2px 3px;
-  padding: 3px 9px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--line);
+  margin: 4px 2px;
+  padding: 5px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--line-2);
   font-size: 0.98em;
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-feature-settings: normal;
+}
+
+.md td:first-child {
+  min-width: 110px;
 }
 
 /* Code Blocks */
@@ -2402,6 +2426,12 @@ svg.pg-mark {
 .katex .mrel,
 .katex .mop {
   color: inherit;
+}
+
+.katex .text,
+.katex .mord.text {
+  font-family: var(--font) !important;
+  font-feature-settings: "ss01";
 }
 
 /* Offline LaTeX primitives */

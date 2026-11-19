@@ -265,11 +265,16 @@
 
   function renderThinkMarkdown(rawThink, isLive) {
     let s = String(rawThink || '');
-    // Auto-wrap bare LaTeX expressions in reasoning (e.g. \sum_{i=1}^{m-1}, \frac{a}{b}, \sqrt{k}) that lack $...$
-    if (s.indexOf('$') === -1 && s.indexOf('\\(') === -1 && s.indexOf('\\[') === -1) {
-      s = s.replace(/\\(?:sum|prod|int|lim)(?:_\{[^{}]+\}|\^\{[^{}]+\}){1,2}/g, function (m) { return '$' + m + '$'; });
-      s = s.replace(/\\(?:d|t)?frac\{[^{}]+\}\{[^{}]+\}/g, function (m) { return '$' + m + '$'; });
-      s = s.replace(/\\sqrt(?:\[[^\]]+\])?\{[^{}]+\}/g, function (m) { return '$' + m + '$'; });
+    // Convert Unicode big operators with LaTeX limits (e.g. ∏_{k=2}^{100}, ∑_{i=1}^{n}, ∫_{a}^{b}) into inline math
+    s = s.replace(/([∏∑∫])((?:_(?:\{[^{}]+\}|[A-Za-z0-9]+)|\^(?:\{[^{}]+\}|[A-Za-z0-9]+)){1,2})/g, function (_, sym, lims) {
+      const cmd = sym === '∏' ? '\\prod' : sym === '∑' ? '\\sum' : '\\int';
+      return '$' + cmd + lims + '$';
+    });
+    // Auto-wrap bare LaTeX expressions in reasoning that are not already inside $...$
+    if (s.indexOf('\\(') === -1 && s.indexOf('\\[') === -1) {
+      s = s.replace(/(^|[^$\\])(\\(?:sum|prod|int|lim)(?:_(?:\{[^{}]+\}|[A-Za-z0-9]+)|\^(?:\{[^{}]+\}|[A-Za-z0-9]+)){1,2})/g, '$1$$$2$$');
+      s = s.replace(/(^|[^$\\])(\\(?:d|t)?frac\{[^{}]+\}\{[^{}]+\})/g, '$1$$$2$$');
+      s = s.replace(/(^|[^$\\])(\\sqrt(?:\[[^\]]+\])?\{[^{}]+\})/g, '$1$$$2$$');
     }
     return renderMarkdown(s, isLive);
   }
@@ -925,7 +930,7 @@
     s = s.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
     s = s.replace(/\*\*([^*]+)\*\*|(?<![\w])__([^_]+)__(?![\w])/g, function (_, a, b) { return '<strong>' + (a || b) + '</strong>'; });
     s = s.replace(/(^|[^*\w])\*(?!\s)([^*\n]+?)(?<!\s)\*(?!\*)/g, '$1<em>$2</em>');
-    s = s.replace(/(^|[^\w])_(?!\s)([^_\n]+?)(?<!\s)_(?![\w])/g, '$1<em>$2</em>');
+    s = s.replace(/(^|[\s(>«"'])_(?!\s|\{)([^_\n{}]+?)(?<!\s)_(?=[\s.,;:!?)<»"']|$)/g, '$1<em>$2</em>');
     s = s.replace(/~~([^~]+)~~/g, '<del>$1</del>');
 
     // 11. Restore protected tokens
@@ -1001,6 +1006,74 @@
       );
       return '\n\n@@BLOCK_' + idx + '@@\n\n';
     });
+
+    // 1.5. Normalize multi-line GFM table rows (e.g. when a cell contains newline + $$...$$ + text before closing |)
+    (function normalizeTableRows() {
+      const srcLines = working.split(/\r?\n/);
+      const merged = [];
+      let li = 0;
+      const countPipes = function (ln) {
+        let n = 0, inC = false;
+        for (let k = 0; k < ln.length; k++) {
+          if (ln[k] === '\\' && ln[k + 1] === '|') { k++; continue; }
+          if (ln[k] === '`') { inC = !inC; continue; }
+          if (!inC && ln[k] === '|') n++;
+        }
+        return n;
+      };
+      while (li < srcLines.length) {
+        if (
+          srcLines[li].includes('|') &&
+          li + 1 < srcLines.length &&
+          /^\s*\|?[\s:-]+\|[\s|:-]*$/.test(srcLines[li + 1])
+        ) {
+          const headerLine = srcLines[li];
+          const sepLine = srcLines[li + 1];
+          const hasOuter = sepLine.trim().startsWith('|') && sepLine.trim().endsWith('|');
+          const expectedCols = sepLine.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').length;
+          const minPipes = hasOuter ? expectedCols + 1 : Math.max(1, expectedCols - 1);
+          merged.push(headerLine, sepLine);
+          li += 2;
+          while (li < srcLines.length) {
+            const rawLn = srcLines[li];
+            const tr = rawLn.trim();
+            if (!tr) break;
+            if (!tr.includes('|')) break;
+            let rowBuf = rawLn;
+            let pipes = countPipes(rowBuf);
+            let needMore = (hasOuter && !rowBuf.trimEnd().endsWith('|')) || pipes < minPipes;
+            let guard = 0;
+            while (needMore && li + 1 < srcLines.length && guard < 12) {
+              const nextLn = srcLines[li + 1];
+              const nextTr = nextLn.trim();
+              if (!nextTr) break;
+              // Stop if next line looks like a brand-new table row (starts with | and has full pipe count)
+              if (nextTr.startsWith('|') && countPipes(nextTr) >= minPipes && nextTr.endsWith('|')) break;
+              li++;
+              guard++;
+              // Collapse internal newlines cleanly: keep spaces inside $$...$$ / \[...\], use <br> between prose & math
+              const joiner = (/\$\$|\\\[/.test(nextTr) || /\$\$|\\\]/.test(rowBuf.trimEnd())) ? ' <br> ' : ' ';
+              rowBuf = rowBuf.trimEnd() + joiner + nextTr;
+              pipes = countPipes(rowBuf);
+              needMore = (hasOuter && !rowBuf.trimEnd().endsWith('|')) || pipes < minPipes;
+            }
+            // Collapse any multi-line $$...$$ or \[...\] that was joined with <br> inside the row
+            rowBuf = rowBuf.replace(/\$\$([\s\S]+?)\$\$/g, function (_, inner) {
+              return '$$' + inner.replace(/\s*<br>\s*/g, ' ').trim() + '$$';
+            });
+            rowBuf = rowBuf.replace(/\\\[([\s\S]+?)\\\]/g, function (_, inner) {
+              return '\\[' + inner.replace(/\s*<br>\s*/g, ' ').trim() + '\\]';
+            });
+            merged.push(rowBuf);
+            li++;
+          }
+          continue;
+        }
+        merged.push(srcLines[li]);
+        li++;
+      }
+      working = merged.join('\n');
+    })();
 
     // 2. Display math blocks $$...$$ or \[...\]
     //    - Ignore non-math Persian bracketed prose like \[شروع داستان\]

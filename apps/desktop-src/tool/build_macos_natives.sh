@@ -12,10 +12,11 @@ set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
 APP="$(cd "$HERE/.." && pwd)"
 ROOT="$(cd "$APP/../.." && pwd)"
-OUT="${1:-$APP/core-bundle}"
+OUT_RAW="${1:-$APP/core-bundle}"
+mkdir -p "$OUT_RAW/LICENSES"
+OUT="$(cd "$OUT_RAW" && pwd)"
+mkdir -p "$OUT"
 export MACOSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET:-12.0}"
-
-mkdir -p "$OUT/LICENSES"
 
 echo "== 1. Building oryvexcore (macOS Universal: arm64 + x86_64)"
 (
@@ -23,6 +24,7 @@ echo "== 1. Building oryvexcore (macOS Universal: arm64 + x86_64)"
   rustup target add aarch64-apple-darwin x86_64-apple-darwin
   bash scripts/build-core.sh cargo build --release --target aarch64-apple-darwin
   bash scripts/build-core.sh cargo build --release --target x86_64-apple-darwin
+  mkdir -p "$OUT"
   lipo -create \
     target/aarch64-apple-darwin/release/oryvexcore \
     target/x86_64-apple-darwin/release/oryvexcore \
@@ -40,6 +42,7 @@ echo "== 3. Building fox-core (macOS Universal: arm64 + x86_64)"
   trap 'rm -rf "$tmp"' EXIT
   CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -trimpath -ldflags="-s -w" -o "$tmp/fox-core-arm64" ./cmd/fox-core
   CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -trimpath -ldflags="-s -w" -o "$tmp/fox-core-amd64" ./cmd/fox-core
+  mkdir -p "$OUT"
   lipo -create "$tmp/fox-core-arm64" "$tmp/fox-core-amd64" -output "$OUT/fox-core"
   chmod 755 "$OUT/fox-core"
   cp LICENSE "$OUT/LICENSES/fox-core-GPL-3.0.txt"

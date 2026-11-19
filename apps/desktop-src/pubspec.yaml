@@ -1,7 +1,7 @@
 name: oryvexcore
 description: "OryvexVPN for desktop: the blue and black app around the OryvexCore core."
 publish_to: 'none'
-version: 1.1.31+273
+version: 1.1.33+274
 
 environment:
   sdk: '>=3.8.0 <4.0.0'

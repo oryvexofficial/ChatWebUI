@@ -674,8 +674,19 @@
     return s;
   }
 
-  function renderMarkdown(rawText) {
-    const src = String(rawText || '');
+  function renderMarkdown(rawText, isLive) {
+    let src = String(rawText || '');
+    if (isLive) {
+      // Auto-close trailing unclosed display/inline math & bold so live streaming never flashes raw \[ or $$
+      const openDispBracket = src.lastIndexOf('\\[');
+      const closeDispBracket = src.lastIndexOf('\\]');
+      if (openDispBracket > closeDispBracket) src += '\\]';
+      const ddCount = (src.match(/\$\$/g) || []).length;
+      if (ddCount % 2 === 1) src += '$$';
+      const openInlParen = src.lastIndexOf('\\(');
+      const closeInlParen = src.lastIndexOf('\\)');
+      if (openInlParen > closeInlParen) src += '\\)';
+    }
     if (!src.trim()) return '';
 
     const blocks = [];
@@ -1630,7 +1641,7 @@
           openAnimated(pThinkCard);
         }
         pThinkBody.dir = textDir(liveParsed.think);
-        pThinkBody.innerHTML = renderMarkdown(liveParsed.think);
+        pThinkBody.innerHTML = renderMarkdown(liveParsed.think, true);
         if (pThinkCard.classList.contains('open')) {
           pThinkBody.scrollTop = pThinkBody.scrollHeight;
         }
@@ -1651,7 +1662,7 @@
         if (liveParsed.answer) {
           setHidden(mdEl, false);
           mdEl.dir = textDir(liveParsed.answer);
-          mdEl.innerHTML = renderMarkdown(liveParsed.answer) + '<span class="stream-dot"></span>';
+          mdEl.innerHTML = renderMarkdown(liveParsed.answer, true) + '<span class="stream-dot"></span>';
         } else if (!liveParsed.think) {
           setHidden(mdEl, false);
           mdEl.innerHTML = '<span class="stream-dot"></span>';

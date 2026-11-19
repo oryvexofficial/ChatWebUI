@@ -483,6 +483,11 @@
     [/\\left\s*\\\{/g, '{'], [/\\right\s*\\\}/g, '}'],
     [/\\left(?![A-Za-z])/g, ''], [/\\right(?![A-Za-z])/g, ''],
     [/\\(?:qquad|quad|,|;|:|!)(?![A-Za-z])/g, ' '],
+    [/\\lfloor(?![A-Za-z])/g, '⌊'], [/\\rfloor(?![A-Za-z])/g, '⌋'],
+    [/\\lceil(?![A-Za-z])/g, '⌈'], [/\\rceil(?![A-Za-z])/g, '⌉'],
+    [/\\langle(?![A-Za-z])/g, '⟨'], [/\\rangle(?![A-Za-z])/g, '⟩'],
+    [/\\lVert(?![A-Za-z])|\\rVert(?![A-Za-z])|\\\|/g, '‖'],
+    [/\\lvert(?![A-Za-z])|\\rvert(?![A-Za-z])/g, '|'],
     [/\\\{/g, '{'], [/\\\}/g, '}'], [/\\_/g, '_'], [/\\%/g, '%'], [/\\&/g, '&amp;'], [/\\#/g, '#'], [/\\\$/g, '$'],
     // Big ops standalone (without limits)
     [/\\iiint(?![A-Za-z])/g, '∭'], [/\\iint(?![A-Za-z])/g, '∬'], [/\\oint(?![A-Za-z])/g, '∮'], [/\\int(?![A-Za-z])/g, '∫'],

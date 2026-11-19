@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9jb250cm92ZXJzeS1kaXNwbGF5ZWQtc2FpbGluZy1jbGF5LnRyeWNsb3VkZmxhcmUuY29t",
-  "public_api_key": "sk-uc-0ce370de2f687e3665bbee3f9c179e4e",
-  "api_key": "sk-uc-0ce370de2f687e3665bbee3f9c179e4e",
+  "url_payload": "aHR0cHM6Ly9wcmVjaXNpb24taW52b2x2ZW1lbnQtem9uaW5nLXJvdXRlcnMudHJ5Y2xvdWRmbGFyZS5jb20=",
+  "public_api_key": "sk-uc-f01166f07dda28f84254860ce66870fd",
+  "api_key": "sk-uc-f01166f07dda28f84254860ce66870fd",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://controversy-displayed-sailing-clay.trycloudflare.com/v1",
-    "chat_completions": "https://controversy-displayed-sailing-clay.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://controversy-displayed-sailing-clay.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://controversy-displayed-sailing-clay.trycloudflare.com/v1/models",
-    "native_chat": "https://controversy-displayed-sailing-clay.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://controversy-displayed-sailing-clay.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://controversy-displayed-sailing-clay.trycloudflare.com/api/v1/key",
-    "health": "https://controversy-displayed-sailing-clay.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://precision-involvement-zoning-routers.trycloudflare.com/v1",
+    "chat_completions": "https://precision-involvement-zoning-routers.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://precision-involvement-zoning-routers.trycloudflare.com/v1/models",
+    "native_chat": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/key",
+    "health": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T08:28:23+00:00",
+  "updated_at": "2026-11-19T08:29:47+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44487868617",
-  "run_number": 18,
+  "run_number": 19,
   "commit": "634a890"
 }

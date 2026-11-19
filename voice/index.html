@@ -10,7 +10,7 @@
   <link rel="preload" href="../assets/fonts/Vazirmatn.woff2?v=1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
   <link rel="stylesheet" href="../assets/site.css?v=bw6">
-  <link rel="stylesheet" href="../assets/voice.css?v=bw1">
+  <link rel="stylesheet" href="../assets/voice.css?v=bw2">
   <style>[hidden]{display:none!important}</style>
 </head>
 <body data-page="voice" data-root="../">
@@ -96,37 +96,10 @@
 
         <div class="voice-live-caption" id="voice-live-caption" dir="auto">روی میکروفون بزنید و صحبت کنید…</div>
 
-        <!-- Settings Bar -->
-        <div class="voice-controls">
-          <div class="vc-field">
-            <label for="vc-lang">زبان گفتار</label>
-            <select id="vc-lang" class="vc-select">
-              <option value="fa-IR">فارسی (ایران)</option>
-              <option value="en-US">English (US)</option>
-            </select>
-          </div>
-          <div class="vc-field">
-            <label for="vc-voice">صدای دستیار</label>
-            <select id="vc-voice" class="vc-select ltr">
-              <option value="fa-IR-FaridNeural">Farid (Persian Male)</option>
-              <option value="fa-IR-DilaraNeural">Dilara (Persian Female)</option>
-              <option value="en-GB-RyanNeural">Ryan (English UK)</option>
-              <option value="en-US-AriaNeural">Aria (English US)</option>
-              <option value="browser">Browser Built-in Voice</option>
-            </select>
-          </div>
-          <div class="vc-field">
-            <label for="vc-rate">سرعت صدا</label>
-            <select id="vc-rate" class="vc-select ltr">
-              <option value="-15%">0.85x</option>
-              <option value="+0%" selected>1.0x</option>
-              <option value="+15%">1.15x</option>
-              <option value="+30%">1.30x</option>
-            </select>
-          </div>
+        <div class="voice-controls-auto">
           <label class="vc-toggle">
             <input type="checkbox" id="vc-handsfree" checked>
-            <span>ادامه‌ی خودکار مکالمه</span>
+            <span>ادامه‌ی خودکار مکالمه (تشخیص خودکار زبان و صدا)</span>
           </label>
         </div>
 
@@ -156,6 +129,6 @@
   <div class="toast-host" id="toast-host" aria-live="polite"></div>
 </div>
 <script src="../assets/site.js?v=bw6" defer></script>
-<script src="../assets/voice.js?v=bw1" defer></script>
+<script src="../assets/voice.js?v=bw3" defer></script>
 </body>
 </html>

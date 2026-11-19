@@ -60,3 +60,5 @@
   .voice-controls{grid-template-columns:1fr}
   .vlc-stream{max-height:360px}
 }
+
+.voice-controls-auto{display:flex;justify-content:center;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}

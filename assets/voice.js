@@ -27,9 +27,6 @@
     dot: document.getElementById('vs-dot'),
     label: document.getElementById('vs-label'),
     caption: document.getElementById('voice-live-caption'),
-    lang: document.getElementById('vc-lang'),
-    voice: document.getElementById('vc-voice'),
-    rate: document.getElementById('vc-rate'),
     handsfree: document.getElementById('vc-handsfree'),
     form: document.getElementById('voice-text-form'),
     input: document.getElementById('voice-text-input'),
@@ -179,11 +176,8 @@
     if (!clean) return;
     setMode('speaking', 'در حال خواندن پاسخ…');
 
-    const chosen = el.voice ? el.voice.value : 'fa-IR-FaridNeural';
-    let voice = chosen;
-    if (voice !== 'browser') {
-      if (isRtlText(clean) && !voice.startsWith('fa-')) voice = 'fa-IR-FaridNeural';
-      if (!isRtlText(clean) && voice.startsWith('fa-')) voice = 'en-GB-RyanNeural';
+    const voice = isRtlText(clean) ? 'fa-IR-FaridNeural' : 'en-GB-RyanNeural';
+    if (true) {
       try {
         const base = await resolveBackend();
         const headers = { 'Content-Type': 'application/json' };
@@ -194,7 +188,7 @@
           body: JSON.stringify({
             text: clean,
             voice: voice,
-            rate: el.rate ? el.rate.value : '+0%'
+            rate: '+0%'
           })
         });
         if (r.ok) {
@@ -224,78 +218,136 @@
   }
 
   async function sendVoiceTurn(userText) {
-    const text = String(userText || '').trim();
+    const text = String(userText || "").trim();
     if (!text) return;
     stopAudioAndRecognition();
-    appendMsg('user', text);
-    setMode('thinking', 'در حال ارسال و دریافت پاسخ…');
+    appendMsg("user", text);
+    setMode("thinking", "در حال پردازش و پاسخ زنده…");
 
     const ctrl = new AbortController();
     vState.abortCtrl = ctrl;
-    let reply = '';
-    let usedModel = 'Unicollect Chat Mini';
+    let reply = "";
+    let usedModel = "Unicollect Chat Mini";
     let isMath = false;
+    let botEntry = null;
+
+    // Live sentence-by-sentence TTS queue so voice starts immediately while streaming
+    const ttsQueue = [];
+    let spokenCursor = 0;
+    let ttsRunning = false;
+    let streamFinished = false;
+
+    function ensureBotBubble(currentText) {
+      if (!botEntry) {
+        botEntry = appendMsg("bot", currentText || "…", usedModel, isMath);
+      } else {
+        botEntry.bubble.dir = isRtlText(currentText) ? "rtl" : "ltr";
+        botEntry.bubble.textContent = currentText;
+        if (el.stream) el.stream.scrollTop = el.stream.scrollHeight;
+      }
+      if (el.caption && currentText) {
+        el.caption.dir = isRtlText(currentText) ? "rtl" : "ltr";
+        el.caption.textContent = currentText.slice(-140);
+      }
+    }
+
+    async function pumpTtsQueue() {
+      if (ttsRunning) return;
+      ttsRunning = true;
+      while (ttsQueue.length && !ctrl.signal.aborted) {
+        const sentence = ttsQueue.shift();
+        if (sentence) await speakText(sentence);
+      }
+      ttsRunning = false;
+      if (streamFinished && !ttsQueue.length && !ctrl.signal.aborted) {
+        if (el.handsfree && el.handsfree.checked && vState.mode !== "idle") {
+          startListening();
+        } else {
+          setMode("idle", "روی میکروفون بزنید و صحبت کنید…");
+        }
+      }
+    }
+
+    function enqueueReadySentences(forceAll) {
+      const cleanAll = reply.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, "").trim();
+      if (!cleanAll) return;
+      const pending = cleanAll.slice(spokenCursor);
+      if (!pending) return;
+      if (forceAll) {
+        spokenCursor = cleanAll.length;
+        ttsQueue.push(pending);
+        pumpTtsQueue();
+        return;
+      }
+      const m = pending.match(/^([\s\S]{12,}?[.!؟\n])\s*/);
+      if (m) {
+        spokenCursor += m[0].length;
+        ttsQueue.push(m[1].trim());
+        pumpTtsQueue();
+      }
+    }
 
     try {
       const base = await resolveBackend();
-      const headers = { 'Content-Type': 'application/json' };
-      if (vState.publicKey) headers['X-API-Key'] = vState.publicKey;
-      const r = await fetch(base + '/api/chat/stream', {
-        method: 'POST',
+      const headers = { "Content-Type": "application/json" };
+      if (vState.publicKey) headers["X-API-Key"] = vState.publicKey;
+      const r = await fetch(base + "/api/chat/stream", {
+        method: "POST",
         headers: headers,
         signal: ctrl.signal,
         body: JSON.stringify({
-          message: text + '\n(پاسخ صوتی: کوتاه، روان و بدون مارک‌داون یا لیست طولانی پاسخ بده.)',
+          message: text + "\n(پاسخ صوتی: کوتاه، روان و بدون مارک‌داون یا لیست طولانی پاسخ بده.)",
           history: vState.history.slice(-12)
         })
       });
-      if (!r.ok || !r.body) {
-        throw new Error('HTTP ' + r.status);
-      }
+      if (!r.ok || !r.body) throw new Error("HTTP " + r.status);
+
       const reader = r.body.getReader();
-      const dec = new TextDecoder('utf-8');
-      let buf = '';
+      const dec = new TextDecoder("utf-8");
+      let buf = "";
       outer: while (true) {
         const res = await reader.read();
         if (res.done) break;
         buf += dec.decode(res.value, { stream: true });
         let idx;
-        while ((idx = buf.indexOf('\n\n')) !== -1) {
+        while ((idx = buf.indexOf("\n\n")) !== -1) {
           const line = buf.slice(0, idx).trim();
           buf = buf.slice(idx + 2);
-          if (!line.startsWith('data:')) continue;
+          if (!line.startsWith("data:")) continue;
           const payload = line.slice(5).trim();
-          if (payload === '[DONE]') break outer;
+          if (payload === "[DONE]") break outer;
           let obj = null;
           try { obj = JSON.parse(payload); } catch (e) { continue; }
           if (obj && obj.meta && obj.meta.model) {
             usedModel = obj.meta.model;
             isMath = !!obj.meta.is_math;
-          } else if (obj && typeof obj.t === 'string') {
+          } else if (obj && typeof obj.t === "string" && obj.t) {
             reply += obj.t;
+            const visible = reply.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, "").trim();
+            if (visible) {
+              ensureBotBubble(visible);
+              enqueueReadySentences(false);
+            }
           }
         }
       }
     } catch (e) {
       if (!ctrl.signal.aborted) {
-        appendMsg('bot', 'ارتباط با سرور برقرار نشد؛ لطفاً وضعیت اتصال را بررسی کنید.');
+        appendMsg("bot", "ارتباط با سرور برقرار نشد؛ لطفاً وضعیت اتصال را بررسی کنید.");
       }
-      setMode('idle', 'روی میکروفون بزنید و صحبت کنید…');
+      setMode("idle", "روی میکروفون بزنید و صحبت کنید…");
       return;
     }
 
-    const cleanDisplay = reply.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, '').trim() || reply.trim();
+    streamFinished = true;
+    const cleanDisplay = reply.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, "").trim() || reply.trim();
     if (cleanDisplay) {
-      vState.history.push({ role: 'user', content: text });
-      vState.history.push({ role: 'assistant', content: cleanDisplay });
-      appendMsg('bot', cleanDisplay, usedModel, isMath);
-      await speakText(cleanDisplay);
-    }
-
-    if (el.handsfree && el.handsfree.checked && vState.mode !== 'idle') {
-      startListening();
+      ensureBotBubble(cleanDisplay);
+      vState.history.push({ role: "user", content: text });
+      vState.history.push({ role: "assistant", content: cleanDisplay });
+      enqueueReadySentences(true);
     } else {
-      setMode('idle', 'روی میکروفون بزنید و صحبت کنید…');
+      setMode("idle", "روی میکروفون بزنید و صحبت کنید…");
     }
   }
 
@@ -309,7 +361,7 @@
     await ensureMicMeter();
 
     const rec = new SpeechRec();
-    rec.lang = el.lang ? el.lang.value : 'fa-IR';
+    rec.lang = (navigator.language && navigator.language.toLowerCase().startsWith('en')) ? 'en-US' : 'fa-IR';
     rec.interimResults = true;
     rec.continuous = false;
     vState.recognition = rec;

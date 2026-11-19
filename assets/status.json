@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9haWRzLWZvdW5kZXItaGFuZGxpbmctZWxlbWVudHMudHJ5Y2xvdWRmbGFyZS5jb20=",
-  "public_api_key": "sk-uc-f8452e76759c968eec6f1024eee905ba",
-  "api_key": "sk-uc-f8452e76759c968eec6f1024eee905ba",
+  "url_payload": "aHR0cHM6Ly9jb21wb3VuZHMtZmFyLWVsZWN0aW9ucy1icm93c2Vycy50cnljbG91ZGZsYXJlLmNvbQ==",
+  "public_api_key": "sk-uc-8ff414692e67602b5acf80309db7efe1",
+  "api_key": "sk-uc-8ff414692e67602b5acf80309db7efe1",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://aids-founder-handling-elements.trycloudflare.com/v1",
-    "chat_completions": "https://aids-founder-handling-elements.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://aids-founder-handling-elements.trycloudflare.com/v1/models",
-    "native_chat": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/key",
-    "health": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://compounds-far-elections-browsers.trycloudflare.com/v1",
+    "chat_completions": "https://compounds-far-elections-browsers.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://compounds-far-elections-browsers.trycloudflare.com/v1/models",
+    "native_chat": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/key",
+    "health": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T13:00:26+00:00",
+  "updated_at": "2026-11-19T13:03:36+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44529127549",
-  "run_number": 52,
+  "run_number": 54,
   "commit": "bcf6029"
 }

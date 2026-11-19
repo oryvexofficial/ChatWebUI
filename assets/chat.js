@@ -66,6 +66,12 @@
       node.style.display = "";
     }
   }
+  const SPRING_EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
+
+  function prefersReducedMotion() {
+    return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }
+
   function openAnimated(node) {
     if (!node) return;
     if (node._closeTimer) { clearTimeout(node._closeTimer); node._closeTimer = 0; }
@@ -73,15 +79,21 @@
     setHidden(node, false);
     void node.offsetWidth;
   }
+
   function closeAnimated(node, delay) {
     if (!node || node.hidden || node.classList.contains("closing")) return;
     if (node._closeTimer) clearTimeout(node._closeTimer);
+    if (prefersReducedMotion()) {
+      node.classList.remove("closing");
+      setHidden(node, true);
+      return;
+    }
     node.classList.add("closing");
     node._closeTimer = setTimeout(function () {
       node.classList.remove("closing");
       setHidden(node, true);
       node._closeTimer = 0;
-    }, delay || 210);
+    }, delay || 190);
   }
 
   function expandSmooth(node) {
@@ -89,14 +101,23 @@
     if (node._slideTimer) { clearTimeout(node._slideTimer); node._slideTimer = 0; }
     node.classList.remove("closing");
     setHidden(node, false);
-    const targetH = Math.min(node.scrollHeight, parseInt(getComputedStyle(node).maxHeight, 10) || node.scrollHeight);
+    if (prefersReducedMotion()) {
+      node.style.height = "";
+      node.style.overflow = "";
+      node.style.opacity = "";
+      node.style.transform = "";
+      node.style.transition = "";
+      return;
+    }
+    const maxH = parseInt(getComputedStyle(node).maxHeight, 10);
+    const targetH = maxH && maxH > 0 ? Math.min(node.scrollHeight, maxH) : node.scrollHeight;
     node.style.overflow = "hidden";
     node.style.height = "0px";
     node.style.opacity = "0";
-    node.style.transform = "translateY(-6px)";
+    node.style.transform = "translateY(-5px)";
     node.style.transition = "none";
     void node.offsetHeight;
-    node.style.transition = "height .32s cubic-bezier(.22, 1, .36, 1), opacity .26s ease, transform .32s cubic-bezier(.22, 1, .36, 1)";
+    node.style.transition = "height 240ms " + SPRING_EASE + ", opacity 200ms ease, transform 240ms " + SPRING_EASE;
     node.style.height = targetH + "px";
     node.style.opacity = "1";
     node.style.transform = "translateY(0)";
@@ -107,12 +128,16 @@
       node.style.transform = "";
       node.style.transition = "";
       node._slideTimer = 0;
-    }, 330);
+    }, 250);
   }
 
   function collapseSmooth(node) {
     if (!node || node.hidden) return;
     if (node._slideTimer) { clearTimeout(node._slideTimer); node._slideTimer = 0; }
+    if (prefersReducedMotion()) {
+      setHidden(node, true);
+      return;
+    }
     const startH = node.getBoundingClientRect().height || node.scrollHeight;
     node.style.overflow = "hidden";
     node.style.height = startH + "px";
@@ -120,10 +145,10 @@
     node.style.transform = "translateY(0)";
     node.style.transition = "none";
     void node.offsetHeight;
-    node.style.transition = "height .28s cubic-bezier(.22, 1, .36, 1), opacity .22s ease, transform .28s cubic-bezier(.22, 1, .36, 1)";
+    node.style.transition = "height 210ms " + SPRING_EASE + ", opacity 180ms ease, transform 210ms " + SPRING_EASE;
     node.style.height = "0px";
     node.style.opacity = "0";
-    node.style.transform = "translateY(-6px)";
+    node.style.transform = "translateY(-5px)";
     node._slideTimer = setTimeout(function () {
       setHidden(node, true);
       node.style.height = "";
@@ -132,7 +157,23 @@
       node.style.transform = "";
       node.style.transition = "";
       node._slideTimer = 0;
-    }, 290);
+    }, 220);
+  }
+
+  function flashCopyFeedback(btn, doneLabel) {
+    if (!btn) return;
+    if (btn._copyTimer) clearTimeout(btn._copyTimer);
+    if (!btn._origHtml) btn._origHtml = btn.innerHTML;
+    const sp = btn.querySelector("span");
+    const svg = btn.querySelector("svg.ic");
+    if (svg) svg.outerHTML = ICONS.check;
+    if (sp && doneLabel) sp.textContent = doneLabel;
+    btn.classList.add("is-copied");
+    btn._copyTimer = setTimeout(function () {
+      btn.classList.remove("is-copied");
+      if (btn._origHtml) btn.innerHTML = btn._origHtml;
+      btn._copyTimer = 0;
+    }, 1500);
   }
 
   function fa(n) {
@@ -486,30 +527,89 @@
     return out;
   }
 
-  const BB_MAP = { R: 'ℝ', N: 'ℕ', Z: 'ℤ', Q: 'ℚ', C: 'ℂ', P: 'ℙ', E: '𝔼', F: '𝔽', H: 'ℍ' };
+  const BB_MAP = {
+    A: '𝔸', B: '𝔹', C: 'ℂ', D: '𝔻', E: '𝔼', F: '𝔽', G: '𝔾', H: 'ℍ', I: '𝕀', J: '𝕁',
+    K: '𝕂', L: '𝕃', M: '𝕄', N: 'ℕ', O: '𝕆', P: 'ℙ', Q: 'ℚ', R: 'ℝ', S: '𝕊', T: '𝕋',
+    U: '𝕌', V: '𝕍', W: '𝕎', X: '𝕏', Y: '𝕐', Z: 'ℤ', '0': '𝟘', '1': '𝟙'
+  };
+
+  function safeMathColor(c) {
+    const clean = String(c || '').trim();
+    if (/^#[0-9a-fA-F]{3,8}$/.test(clean)) return clean;
+    if (/^[a-zA-Z]{3,20}$/.test(clean)) return clean;
+    return 'inherit';
+  }
+
+  function renderTexTableRows(body, withHline) {
+    const rawRows = body.trim().split(/\\\\(?:\s*\[[^\]]*\])?/);
+    const out = [];
+    for (let r = 0; r < rawRows.length; r++) {
+      let rowStr = rawRows[r].trim();
+      if (!rowStr) continue;
+      let cls = '';
+      if (withHline) {
+        if (/^\\hline(?![A-Za-z])/.test(rowStr)) { cls += ' m-hline-top'; rowStr = rowStr.replace(/^\\hline(?![A-Za-z])\s*/g, ''); }
+        if (/^\\hdashline(?![A-Za-z])/.test(rowStr)) { cls += ' m-hdash-top'; rowStr = rowStr.replace(/^\\hdashline(?![A-Za-z])\s*/g, ''); }
+        if (/\\hline(?![A-Za-z])\s*$/.test(rowStr)) { cls += ' m-hline-bot'; rowStr = rowStr.replace(/\\hline(?![A-Za-z])\s*$/g, ''); }
+        if (/\\hdashline(?![A-Za-z])\s*$/.test(rowStr)) { cls += ' m-hdash-bot'; rowStr = rowStr.replace(/\\hdashline(?![A-Za-z])\s*$/g, ''); }
+        if (!rowStr.trim()) {
+          if (out.length) out[out.length - 1] = out[out.length - 1].replace('<tr', '<tr class="m-hline-bot"');
+          continue;
+        }
+      }
+      const cols = rowStr.split(/&amp;|&/).map(function (c) {
+        return '<td>' + formatTexInner(c.trim()) + '</td>';
+      }).join('');
+      out.push('<tr' + (cls ? ' class="' + cls.trim() + '"' : '') + '>' + cols + '</tr>');
+    }
+    return out.join('');
+  }
 
   const TEX_SYM_RULES = [
-    [/\\(?:displaystyle|textstyle|scriptstyle|scriptscriptstyle|limits|nolimits|nonumber|notag)(?![A-Za-z])/g, ''],
+    [/\\(?:displaystyle|textstyle|scriptstyle|scriptscriptstyle|limits|nolimits|nonumber|notag|allowbreak|smash)(?![A-Za-z])/g, ''],
     [/\\left\s*\./g, ''], [/\\right\s*\./g, ''],
     [/\\left\s*\\\{/g, '{'], [/\\right\s*\\\}/g, '}'],
     [/\\(?:left|right|middle|Biggl|Biggr|Biggm|Bigg|biggl|biggr|biggm|bigg|Bigl|Bigr|Bigm|Big|bigl|bigr|bigm|big)(?![A-Za-z])/g, ''],
-    [/\\mathbb\s+([RNZQCPEFH])(?![A-Za-z])/g, function (_, c) { return BB_MAP[c] || c; }],
+    // Unbraced single-token shortcuts
+    [/\\mathbb\s+([A-Z01])(?![A-Za-z0-9])/g, function (_, c) { return BB_MAP[c] || c; }],
     [/\\sqrt\s+([A-Za-z0-9])(?![A-Za-z0-9])/g, '<span class="m-root">√<span class="m-rad">$1</span></span>'],
-    [/\\(?:hat|vec|bar|tilde)\s+([A-Za-z])(?![A-Za-z])/g, '<span class="m-hat">$1</span>'],
-    [/\\(?:qquad|quad|,|;|:|!)(?![A-Za-z])/g, ' '],
+    [/\\(?:hat|vec|bar|tilde|dot|ddot|check|acute|grave|breve)\s+([A-Za-z])(?![A-Za-z])/g, '<span class="m-hat">$1</span>'],
+    // Spacing
+    [/\\(?:qquad|quad|enspace|thinspace|medspace|thickspace|;|,|:|!|\s)(?![A-Za-z])/g, ' '],
+    // Negated relations (\not ...)
+    [/\\not\s*\\in(?![A-Za-z])/g, '∉'], [/\\not\s*=/g, '≠'], [/\\not\s*\\equiv(?![A-Za-z])/g, '≢'],
+    [/\\not\s*\\subset(?![A-Za-z])/g, '⊄'], [/\\not\s*\\subseteq(?![A-Za-z])/g, '⊈'],
+    [/\\not\s*\\approx(?![A-Za-z])/g, '≉'], [/\\not\s*\\sim(?![A-Za-z])/g, '≁'],
+    [/\\not\s*\\mid(?![A-Za-z])/g, '∤'], [/\\not\s*\\parallel(?![A-Za-z])/g, '∦'],
+    // Complete KaTeX Delimiters
     [/\\lfloor(?![A-Za-z])/g, '<span class="m-delim">⌊</span>'], [/\\rfloor(?![A-Za-z])/g, '<span class="m-delim">⌋</span>'],
     [/\\lceil(?![A-Za-z])/g, '<span class="m-delim">⌈</span>'], [/\\rceil(?![A-Za-z])/g, '<span class="m-delim">⌉</span>'],
-    [/\\langle(?![A-Za-z])/g, '<span class="m-delim">⟨</span>'], [/\\rangle(?![A-Za-z])/g, '<span class="m-delim">⟩</span>'],
-    [/\\lVert(?![A-Za-z])|\\rVert(?![A-Za-z])|\\\|/g, '‖'],
-    [/\\lvert(?![A-Za-z])|\\rvert(?![A-Za-z])/g, '|'],
+    [/\\langle(?![A-Za-z])|\\lang(?![A-Za-z])/g, '<span class="m-delim">⟨</span>'],
+    [/\\rangle(?![A-Za-z])|\\rang(?![A-Za-z])/g, '<span class="m-delim">⟩</span>'],
+    [/\\llbracket(?![A-Za-z])/g, '<span class="m-delim">⟦</span>'], [/\\rrbracket(?![A-Za-z])/g, '<span class="m-delim">⟧</span>'],
+    [/\\lBrace(?![A-Za-z])/g, '<span class="m-delim">⦃</span>'], [/\\rBrace(?![A-Za-z])/g, '<span class="m-delim">⦄</span>'],
+    [/\\ulcorner(?![A-Za-z])/g, '⌜'], [/\\urcorner(?![A-Za-z])/g, '⌝'],
+    [/\\llcorner(?![A-Za-z])/g, '⌞'], [/\\lrcorner(?![A-Za-z])/g, '⌟'],
+    [/\\lgroup(?![A-Za-z])/g, '⟮'], [/\\rgroup(?![A-Za-z])/g, '⟯'],
+    [/\\lparen(?![A-Za-z])/g, '('], [/\\rparen(?![A-Za-z])/g, ')'],
+    [/\\lbrack(?![A-Za-z])/g, '['], [/\\rbrack(?![A-Za-z])/g, ']'],
+    [/\\lbrace(?![A-Za-z])/g, '{'], [/\\rbrace(?![A-Za-z])/g, '}'],
+    [/\\lVert(?![A-Za-z])|\\rVert(?![A-Za-z])|\\Vert(?![A-Za-z])|\\\|/g, '‖'],
+    [/\\lvert(?![A-Za-z])|\\rvert(?![A-Za-z])|\\vert(?![A-Za-z])/g, '|'],
+    [/\\backslash(?![A-Za-z])/g, '\\'],
+    [/\\lt(?![A-Za-z])/g, '&lt;'], [/\\gt(?![A-Za-z])/g, '&gt;'],
     [/\\\{/g, '{'], [/\\\}/g, '}'], [/\\_/g, '_'], [/\\%/g, '%'], [/\\&/g, '&amp;'], [/\\#/g, '#'], [/\\\$/g, '$'],
     // Big ops standalone (without limits)
     [/\\iiint(?![A-Za-z])/g, '∭'], [/\\iint(?![A-Za-z])/g, '∬'], [/\\oint(?![A-Za-z])/g, '∮'], [/\\int(?![A-Za-z])/g, '∫'],
     [/\\prod(?![A-Za-z])/g, '∏'], [/\\coprod(?![A-Za-z])/g, '∐'], [/\\sum(?![A-Za-z])/g, '∑'],
     [/\\bigcup(?![A-Za-z])/g, '⋃'], [/\\bigcap(?![A-Za-z])/g, '⋂'],
-    // Greek letters
+    [/\\bigoplus(?![A-Za-z])/g, '⨁'], [/\\bigotimes(?![A-Za-z])/g, '⨂'],
+    [/\\bigvee(?![A-Za-z])/g, '⋁'], [/\\bigwedge(?![A-Za-z])/g, '⋀'],
+    [/\\bigsqcup(?![A-Za-z])/g, '⨆'], [/\\bigodot(?![A-Za-z])/g, '⨀'], [/\\biguplus(?![A-Za-z])/g, '⨄'],
+    // Greek & Hebrew letters
     [/\\varepsilon(?![A-Za-z])/g, 'ε'], [/\\vartheta(?![A-Za-z])/g, 'ϑ'], [/\\varphi(?![A-Za-z])/g, 'φ'],
-    [/\\varrho(?![A-Za-z])/g, 'ϱ'], [/\\varsigma(?![A-Za-z])/g, 'ς'],
+    [/\\varrho(?![A-Za-z])/g, 'ϱ'], [/\\varsigma(?![A-Za-z])/g, 'ς'], [/\\varpi(?![A-Za-z])/g, 'ϖ'],
+    [/\\varkappa(?![A-Za-z])/g, 'ϰ'], [/\\digamma(?![A-Za-z])/g, 'ϝ'],
     [/\\alpha(?![A-Za-z])/g, 'α'], [/\\beta(?![A-Za-z])/g, 'β'], [/\\gamma(?![A-Za-z])/g, 'γ'], [/\\Gamma(?![A-Za-z])/g, 'Γ'],
     [/\\delta(?![A-Za-z])/g, 'δ'], [/\\Delta(?![A-Za-z])/g, 'Δ'], [/\\epsilon(?![A-Za-z])/g, 'ε'], [/\\zeta(?![A-Za-z])/g, 'ζ'],
     [/\\eta(?![A-Za-z])/g, 'η'], [/\\theta(?![A-Za-z])/g, 'θ'], [/\\Theta(?![A-Za-z])/g, 'Θ'], [/\\iota(?![A-Za-z])/g, 'ι'],
@@ -518,100 +618,184 @@
     [/\\rho(?![A-Za-z])/g, 'ρ'], [/\\sigma(?![A-Za-z])/g, 'σ'], [/\\Sigma(?![A-Za-z])/g, 'Σ'], [/\\tau(?![A-Za-z])/g, 'τ'],
     [/\\upsilon(?![A-Za-z])/g, 'υ'], [/\\Upsilon(?![A-Za-z])/g, 'Υ'], [/\\phi(?![A-Za-z])/g, 'φ'], [/\\Phi(?![A-Za-z])/g, 'Φ'],
     [/\\chi(?![A-Za-z])/g, 'χ'], [/\\psi(?![A-Za-z])/g, 'ψ'], [/\\Psi(?![A-Za-z])/g, 'Ψ'], [/\\omega(?![A-Za-z])/g, 'ω'], [/\\Omega(?![A-Za-z])/g, 'Ω'],
+    [/\\aleph(?![A-Za-z])/g, 'ℵ'], [/\\beth(?![A-Za-z])/g, 'ℶ'], [/\\wp(?![A-Za-z])/g, '℘'],
+    [/\\Re(?![A-Za-z])/g, 'ℜ'], [/\\Im(?![A-Za-z])/g, 'ℑ'], [/\\imath(?![A-Za-z])/g, 'ı'], [/\\jmath(?![A-Za-z])/g, 'ȷ'],
     // Arrows (longest first)
     [/\\Longleftrightarrow(?![A-Za-z])/g, '⟺'], [/\\longleftrightarrow(?![A-Za-z])/g, '⟷'],
     [/\\Longrightarrow(?![A-Za-z])/g, '⟹'], [/\\longrightarrow(?![A-Za-z])/g, '⟶'],
     [/\\Longleftarrow(?![A-Za-z])/g, '⟸'], [/\\longleftarrow(?![A-Za-z])/g, '⟵'],
+    [/\\longmapsto(?![A-Za-z])/g, '⟼'], [/\\rightleftharpoons(?![A-Za-z])/g, '⇌'],
+    [/\\twoheadrightarrow(?![A-Za-z])/g, '↠'], [/\\twoheadleftarrow(?![A-Za-z])/g, '↞'],
+    [/\\hookrightarrow(?![A-Za-z])/g, '↪'], [/\\hookleftarrow(?![A-Za-z])/g, '↩'],
+    [/\\rightharpoonup(?![A-Za-z])/g, '⇀'], [/\\rightharpoondown(?![A-Za-z])/g, '⇁'],
+    [/\\leftharpoonup(?![A-Za-z])/g, '↼'], [/\\leftharpoondown(?![A-Za-z])/g, '↽'],
+    [/\\curvearrowleft(?![A-Za-z])/g, '↶'], [/\\curvearrowright(?![A-Za-z])/g, '↷'],
+    [/\\circlearrowleft(?![A-Za-z])/g, '↺'], [/\\circlearrowright(?![A-Za-z])/g, '↻'],
+    [/\\nearrow(?![A-Za-z])/g, '↗'], [/\\searrow(?![A-Za-z])/g, '↘'], [/\\swarrow(?![A-Za-z])/g, '↙'], [/\\nwarrow(?![A-Za-z])/g, '↖'],
+    [/\\leadsto(?![A-Za-z])/g, '⇝'],
+    [/\\Updownarrow(?![A-Za-z])/g, '⇕'], [/\\updownarrow(?![A-Za-z])/g, '↕'],
+    [/\\Uparrow(?![A-Za-z])/g, '⇑'], [/\\Downarrow(?![A-Za-z])/g, '⇓'],
     [/\\Leftrightarrow(?![A-Za-z])/g, '⇔'], [/\\leftrightarrow(?![A-Za-z])/g, '↔'], [/\\iff(?![A-Za-z])/g, '⇔'],
     [/\\Rightarrow(?![A-Za-z])/g, '⇒'], [/\\implies(?![A-Za-z])/g, '⇒'], [/\\Leftarrow(?![A-Za-z])/g, '⇐'],
     [/\\rightarrow(?![A-Za-z])/g, '→'], [/\\to(?![A-Za-z])/g, '→'], [/\\leftarrow(?![A-Za-z])/g, '←'], [/\\gets(?![A-Za-z])/g, '←'],
     [/\\mapsto(?![A-Za-z])/g, '↦'], [/\\uparrow(?![A-Za-z])/g, '↑'], [/\\downarrow(?![A-Za-z])/g, '↓'],
-    // Relations & Sets (longest first)
+    // Relations, Logic & Sets (longest first)
     [/\\leqslant(?![A-Za-z])/g, '≤'], [/\\leq(?![A-Za-z])/g, '≤'], [/\\le(?![A-Za-z])/g, '≤'],
     [/\\geqslant(?![A-Za-z])/g, '≥'], [/\\geq(?![A-Za-z])/g, '≥'], [/\\ge(?![A-Za-z])/g, '≥'],
     [/\\neq(?![A-Za-z])/g, '≠'], [/\\ne(?![A-Za-z])/g, '≠'], [/\\approx(?![A-Za-z])/g, '≈'],
     [/\\equiv(?![A-Za-z])/g, '≡'], [/\\cong(?![A-Za-z])/g, '≅'], [/\\simeq(?![A-Za-z])/g, '≃'], [/\\sim(?![A-Za-z])/g, '∼'],
+    [/\\asymp(?![A-Za-z])/g, '≍'], [/\\doteq(?![A-Za-z])/g, '≐'], [/\\triangleq(?![A-Za-z])/g, '≜'], [/\\bowtie(?![A-Za-z])/g, '⋈'],
     [/\\propto(?![A-Za-z])/g, '∝'], [/\\ll(?![A-Za-z])/g, '≪'], [/\\gg(?![A-Za-z])/g, '≫'],
+    [/\\preceq(?![A-Za-z])/g, '⪯'], [/\\succeq(?![A-Za-z])/g, '⪰'], [/\\prec(?![A-Za-z])/g, '≺'], [/\\succ(?![A-Za-z])/g, '≻'],
     [/\\notin(?![A-Za-z])/g, '∉'], [/\\in(?![A-Za-z])/g, '∈'], [/\\ni(?![A-Za-z])/g, '∋'],
-    [/\\subsetneq(?![A-Za-z])/g, '⊊'], [/\\subseteq(?![A-Za-z])/g, '⊆'], [/\\subset(?![A-Za-z])/g, '⊂'],
-    [/\\supseteq(?![A-Za-z])/g, '⊇'], [/\\supset(?![A-Za-z])/g, '⊃'], [/\\setminus(?![A-Za-z])/g, '∖'],
-    [/\\cup(?![A-Za-z])/g, '∪'], [/\\cap(?![A-Za-z])/g, '∩'], [/\\emptyset(?![A-Za-z])/g, '∅'], [/\\varnothing(?![A-Za-z])/g, '∅'],
+    [/\\subsetneq(?![A-Za-z])/g, '⊊'], [/\\supsetneq(?![A-Za-z])/g, '⊋'],
+    [/\\subseteq(?![A-Za-z])/g, '⊆'], [/\\subset(?![A-Za-z])/g, '⊂'],
+    [/\\supseteq(?![A-Za-z])/g, '⊇'], [/\\supset(?![A-Za-z])/g, '⊃'],
+    [/\\sqsubseteq(?![A-Za-z])/g, '⊑'], [/\\sqsupseteq(?![A-Za-z])/g, '⊒'],
+    [/\\sqcup(?![A-Za-z])/g, '⊔'], [/\\sqcap(?![A-Za-z])/g, '⊓'], [/\\uplus(?![A-Za-z])/g, '⊎'],
+    [/\\setminus(?![A-Za-z])/g, '∖'], [/\\cup(?![A-Za-z])/g, '∪'], [/\\cap(?![A-Za-z])/g, '∩'],
+    [/\\emptyset(?![A-Za-z])/g, '∅'], [/\\varnothing(?![A-Za-z])/g, '∅'],
     [/\\forall(?![A-Za-z])/g, '∀'], [/\\nexists(?![A-Za-z])/g, '∄'], [/\\exists(?![A-Za-z])/g, '∃'],
     [/\\lnot(?![A-Za-z])/g, '¬'], [/\\neg(?![A-Za-z])/g, '¬'], [/\\land(?![A-Za-z])/g, '∧'], [/\\wedge(?![A-Za-z])/g, '∧'],
-    [/\\lor(?![A-Za-z])/g, '∨'], [/\\vee(?![A-Za-z])/g, '∨'], [/\\oplus(?![A-Za-z])/g, '⊕'], [/\\otimes(?![A-Za-z])/g, '⊗'],
+    [/\\lor(?![A-Za-z])/g, '∨'], [/\\vee(?![A-Za-z])/g, '∨'],
+    [/\\models(?![A-Za-z])/g, '⊨'], [/\\vdash(?![A-Za-z])/g, '⊢'], [/\\dashv(?![A-Za-z])/g, '⊣'],
+    [/\\top(?![A-Za-z])/g, '⊤'], [/\\bot(?![A-Za-z])/g, '⊥'],
+    [/\\oplus(?![A-Za-z])/g, '⊕'], [/\\ominus(?![A-Za-z])/g, '⊖'], [/\\otimes(?![A-Za-z])/g, '⊗'],
+    [/\\oslash(?![A-Za-z])/g, '⊘'], [/\\odot(?![A-Za-z])/g, '⊙'], [/\\bigcirc(?![A-Za-z])/g, '◯'],
     [/\\therefore(?![A-Za-z])/g, '∴'], [/\\because(?![A-Za-z])/g, '∵'],
     [/\\nmid(?![A-Za-z])/g, '∤'], [/\\mid(?![A-Za-z])/g, '∣'], [/\\perp(?![A-Za-z])/g, '⊥'], [/\\parallel(?![A-Za-z])/g, '∥'],
-    // Arithmetic & Misc
-    [/\\times(?![A-Za-z])/g, '×'], [/\\cdots(?![A-Za-z])/g, '⋯'], [/\\ldots(?![A-Za-z])/g, '…'], [/\\vdots(?![A-Za-z])/g, '⋮'], [/\\ddots(?![A-Za-z])/g, '⋱'], [/\\dots(?![A-Za-z])/g, '…'],
-    [/\\cdot(?![A-Za-z])/g, '·'], [/\\bullet(?![A-Za-z])/g, '•'], [/\\div(?![A-Za-z])/g, '÷'], [/\\pm(?![A-Za-z])/g, '±'], [/\\mp(?![A-Za-z])/g, '∓'],
+    // Arithmetic, Geometry & Misc
+    [/\\times(?![A-Za-z])/g, '×'], [/\\cdots(?![A-Za-z])/g, '⋯'], [/\\ldots(?![A-Za-z])/g, '…'],
+    [/\\vdots(?![A-Za-z])/g, '⋮'], [/\\ddots(?![A-Za-z])/g, '⋱'], [/\\dots(?![A-Za-z])/g, '…'],
+    [/\\cdot(?![A-Za-z])/g, '·'], [/\\bullet(?![A-Za-z])/g, '•'], [/\\div(?![A-Za-z])/g, '÷'],
+    [/\\pm(?![A-Za-z])/g, '±'], [/\\mp(?![A-Za-z])/g, '∓'],
     [/\\circ(?![A-Za-z])/g, '∘'], [/\\star(?![A-Za-z])/g, '⋆'], [/\\ast(?![A-Za-z])/g, '∗'],
+    [/\\dagger(?![A-Za-z])/g, '†'], [/\\ddagger(?![A-Za-z])/g, '‡'], [/\\wr(?![A-Za-z])/g, '≀'], [/\\amalg(?![A-Za-z])/g, '⨿'],
     [/\\infty(?![A-Za-z])/g, '∞'], [/\\partial(?![A-Za-z])/g, '∂'], [/\\nabla(?![A-Za-z])/g, '∇'],
-    [/\\hbar(?![A-Za-z])/g, 'ℏ'], [/\\ell(?![A-Za-z])/g, 'ℓ'], [/\\angle(?![A-Za-z])/g, '∠'], [/\\triangle(?![A-Za-z])/g, '△'],
+    [/\\hbar(?![A-Za-z])/g, 'ℏ'], [/\\ell(?![A-Za-z])/g, 'ℓ'],
+    [/\\measuredangle(?![A-Za-z])/g, '∡'], [/\\sphericalangle(?![A-Za-z])/g, '∢'], [/\\angle(?![A-Za-z])/g, '∠'],
+    [/\\triangleleft(?![A-Za-z])/g, '◁'], [/\\triangleright(?![A-Za-z])/g, '▷'],
+    [/\\bigtriangleup(?![A-Za-z])/g, '△'], [/\\bigtriangledown(?![A-Za-z])/g, '▽'], [/\\triangle(?![A-Za-z])/g, '△'],
+    [/\\diamond(?![A-Za-z])/g, '◇'], [/\\lozenge(?![A-Za-z])/g, '◊'],
     [/\\degree(?![A-Za-z])|\^\s*\\circ(?![A-Za-z])/g, '°'], [/\\prime(?![A-Za-z])/g, '′'],
     [/\\blacksquare(?![A-Za-z])|\\qed(?![A-Za-z])/g, '∎'], [/\\square(?![A-Za-z])/g, '□'],
+    [/\\bmod(?![A-Za-z])/g, '<span class="m-fn"> mod </span>'],
     // Named math functions
-    [/\\(arcsin|arccos|arctan|sinh|cosh|tanh|sin|cos|tan|cot|sec|csc|log|ln|exp|lim|max|min|sup|inf|det|gcd|lcm|mod|deg|dim|ker|arg|rank|tr|Pr|Var|Cov)(?![A-Za-z])/g, '<span class="m-fn">$1</span>']
+    [/\\(arcsin|arccos|arctan|sinh|cosh|tanh|coth|sech|csch|sin|cos|tan|cot|sec|csc|log|ln|lg|exp|liminf|limsup|lim|max|min|sup|inf|det|gcd|lcm|mod|deg|dim|ker|hom|arg|rank|tr|Pr|Var|Cov|sgn|diag)(?![A-Za-z])/g, '<span class="m-fn">$1</span>']
   ];
 
   function formatTexInner(escapedExpr) {
     let t = String(escapedExpr || '');
-    // Environments: cases, aligned/align/gather, matrices
-    t = t.replace(/\\begin\{cases\}([\s\S]*?)\\end\{cases\}/g, function (_, body) {
-      const rows = body.trim().split(/\\\\(?:\s*\[[^\]]*\])?/).map(function (r) {
-        const cols = r.split(/&amp;|&/).map(function (c) { return '<td>' + formatTexInner(c.trim()) + '</td>'; }).join('');
-        return '<tr>' + cols + '</tr>';
-      }).join('');
-      return '<span class="m-cases"><table><tbody>' + rows + '</tbody></table></span>';
+
+    // Environments: cases/dcases, rcases/drcases, aligned/align/gather/split/equation/multline/alignedat, array, matrices
+    t = t.replace(/\\begin\{d?cases\}([\s\S]*?)\\end\{d?cases\}/g, function (_, body) {
+      return '<span class="m-cases"><table><tbody>' + renderTexTableRows(body, false) + '</tbody></table></span>';
     });
-    t = t.replace(/\\begin\{(?:aligned|align\*?|gather\*?)\}([\s\S]*?)\\end\{(?:aligned|align\*?|gather\*?)\}/g, function (_, body) {
-      const rows = body.trim().split(/\\\\(?:\s*\[[^\]]*\])?/).map(function (r) {
-        const cols = r.split(/&amp;|&/).map(function (c) { return '<td>' + formatTexInner(c.trim()) + '</td>'; }).join('');
-        return '<tr>' + cols + '</tr>';
-      }).join('');
-      return '<span class="m-align"><table><tbody>' + rows + '</tbody></table></span>';
+    t = t.replace(/\\begin\{d?rcases\}([\s\S]*?)\\end\{d?rcases\}/g, function (_, body) {
+      return '<span class="m-rcases"><table><tbody>' + renderTexTableRows(body, false) + '</tbody></table></span>';
+    });
+    t = t.replace(/\\begin\{(?:aligned|align\*?|gather\*?|split|equation\*?|multline\*?)\}([\s\S]*?)\\end\{(?:aligned|align\*?|gather\*?|split|equation\*?|multline\*?)\}/g, function (_, body) {
+      return '<span class="m-align"><table><tbody>' + renderTexTableRows(body, false) + '</tbody></table></span>';
+    });
+    t = t.replace(/\\begin\{alignedat\}\s*\{[^}]*\}([\s\S]*?)\\end\{alignedat\}/g, function (_, body) {
+      return '<span class="m-align"><table><tbody>' + renderTexTableRows(body, false) + '</tbody></table></span>';
+    });
+    t = t.replace(/\\begin\{array\}\s*\{([^}]*)\}([\s\S]*?)\\end\{array\}/g, function (_, spec, body) {
+      return '<span class="m-array"><table><tbody>' + renderTexTableRows(body, true) + '</tbody></table></span>';
+    });
+    t = t.replace(/\\begin\{smallmatrix\}([\s\S]*?)\\end\{smallmatrix\}/g, function (_, body) {
+      return '<span class="m-mat m-mat-sm"><table><tbody>' + renderTexTableRows(body, false) + '</tbody></table></span>';
     });
     t = t.replace(/\\begin\{([pbvVB]?)matrix\}([\s\S]*?)\\end\{\1matrix\}/g, function (_, kind, body) {
-      const rows = body.trim().split(/\\\\(?:\s*\[[^\]]*\])?/).map(function (r) {
-        const cols = r.split(/&amp;|&/).map(function (c) { return '<td>' + formatTexInner(c.trim()) + '</td>'; }).join('');
-        return '<tr>' + cols + '</tr>';
-      }).join('');
       const cls = kind === 'b' ? 'm-mat m-mat-b' : kind === 'v' ? 'm-mat m-mat-v' : kind === 'V' ? 'm-mat m-mat-V' : kind === 'B' ? 'm-mat m-mat-B' : kind === 'p' ? 'm-mat m-mat-p' : 'm-mat';
-      return '<span class="' + cls + '"><table><tbody>' + rows + '</tbody></table></span>';
+      return '<span class="' + cls + '"><table><tbody>' + renderTexTableRows(body, false) + '</tbody></table></span>';
     });
 
-    // Balanced-brace 2-arg commands: \frac, \dfrac, \tfrac, \binom, \choose
+    // Infix {a \choose b}
+    t = t.replace(/\{([^{}]+)\\choose(?![A-Za-z])([^{}]+)\}/g, function (_, a, b) {
+      return '<span class="m-binom"><span class="m-num">' + formatTexInner(a.trim()) + '</span><span class="m-den">' + formatTexInner(b.trim()) + '</span></span>';
+    });
+
+    // Extensible arrows \xrightarrow[below]{above}, \xleftarrow[below]{above}
+    t = t.replace(/\\x(right|left)arrow(?:\[([^\]]*)\])?\{([^}]*)\}/g, function (_, dir, below, above) {
+      const arrow = dir === 'right' ? '⟶' : '⟵';
+      return '<span class="m-over"><span class="m-over-top">' + formatTexInner(above) + '</span><span class="m-over-base">' + arrow + '</span>' + (below ? '<span class="m-under-bot">' + formatTexInner(below) + '</span>' : '') + '</span>';
+    });
+
+    // Balanced-brace 2-arg commands: \frac, \dfrac, \tfrac, \cfrac, \binom, \dbinom, \tbinom, \overset, \underset, \stackrel, \textcolor, \color
     for (let pass = 0; pass < 3; pass++) {
       t = replaceTexCmd2(t, 'dfrac', function (a, b) { return '<span class="m-frac"><span class="m-num">' + formatTexInner(a) + '</span><span class="m-den">' + formatTexInner(b) + '</span></span>'; });
       t = replaceTexCmd2(t, 'tfrac', function (a, b) { return '<span class="m-frac"><span class="m-num">' + formatTexInner(a) + '</span><span class="m-den">' + formatTexInner(b) + '</span></span>'; });
+      t = replaceTexCmd2(t, 'cfrac', function (a, b) { return '<span class="m-frac"><span class="m-num">' + formatTexInner(a) + '</span><span class="m-den">' + formatTexInner(b) + '</span></span>'; });
       t = replaceTexCmd2(t, 'frac', function (a, b) { return '<span class="m-frac"><span class="m-num">' + formatTexInner(a) + '</span><span class="m-den">' + formatTexInner(b) + '</span></span>'; });
+      t = replaceTexCmd2(t, 'dbinom', function (a, b) { return '<span class="m-binom"><span class="m-num">' + formatTexInner(a) + '</span><span class="m-den">' + formatTexInner(b) + '</span></span>'; });
+      t = replaceTexCmd2(t, 'tbinom', function (a, b) { return '<span class="m-binom"><span class="m-num">' + formatTexInner(a) + '</span><span class="m-den">' + formatTexInner(b) + '</span></span>'; });
       t = replaceTexCmd2(t, 'binom', function (a, b) { return '<span class="m-binom"><span class="m-num">' + formatTexInner(a) + '</span><span class="m-den">' + formatTexInner(b) + '</span></span>'; });
+      t = replaceTexCmd2(t, 'overset', function (a, b) { return '<span class="m-over"><span class="m-over-top">' + formatTexInner(a) + '</span><span class="m-over-base">' + formatTexInner(b) + '</span></span>'; });
+      t = replaceTexCmd2(t, 'stackrel', function (a, b) { return '<span class="m-over"><span class="m-over-top">' + formatTexInner(a) + '</span><span class="m-over-base">' + formatTexInner(b) + '</span></span>'; });
+      t = replaceTexCmd2(t, 'underset', function (a, b) { return '<span class="m-under"><span class="m-under-base">' + formatTexInner(b) + '</span><span class="m-under-bot">' + formatTexInner(a) + '</span></span>'; });
+      t = replaceTexCmd2(t, 'textcolor', function (c, x) { return '<span style="color:' + safeMathColor(c) + '">' + formatTexInner(x) + '</span>'; });
+      t = replaceTexCmd2(t, 'color', function (c, x) { return '<span style="color:' + safeMathColor(c) + '">' + formatTexInner(x) + '</span>'; });
       t = replaceTexSqrt(t);
     }
 
     // Stacked big operators with limits
     t = replaceBigOps(t);
 
-    // Balanced-brace 1-arg commands
+    // Balanced-brace 1-arg commands (accents, fonts, cancellation, layout)
     t = replaceTexCmd1(t, 'mathbb', function (a) {
       return a.split('').map(function (ch) { return BB_MAP[ch] || ch; }).join('');
     });
     t = replaceTexCmd1(t, 'boxed', function (a) { return '<span class="m-box">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'cancel', function (a) { return '<span class="m-cancel">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'bcancel', function (a) { return '<span class="m-cancel m-bcancel">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'xcancel', function (a) { return '<span class="m-cancel m-xcancel">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'sout', function (a) { return '<del>' + formatTexInner(a) + '</del>'; });
+    t = replaceTexCmd1(t, 'overrightarrow', function (a) { return '<span class="m-vec">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'overleftarrow', function (a) { return '<span class="m-vec">' + formatTexInner(a) + '</span>'; });
     t = replaceTexCmd1(t, 'vec', function (a) { return '<span class="m-vec">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'widehat', function (a) { return '<span class="m-hat">' + formatTexInner(a) + '</span>'; });
     t = replaceTexCmd1(t, 'hat', function (a) { return '<span class="m-hat">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'widetilde', function (a) { return '<span class="m-tilde">' + formatTexInner(a) + '</span>'; });
     t = replaceTexCmd1(t, 'tilde', function (a) { return '<span class="m-tilde">' + formatTexInner(a) + '</span>'; });
     t = replaceTexCmd1(t, 'overline', function (a) { return '<span class="m-bar">' + formatTexInner(a) + '</span>'; });
     t = replaceTexCmd1(t, 'bar', function (a) { return '<span class="m-bar">' + formatTexInner(a) + '</span>'; });
     t = replaceTexCmd1(t, 'underline', function (a) { return '<span class="m-ubar">' + formatTexInner(a) + '</span>'; });
     t = replaceTexCmd1(t, 'underbrace', function (a) { return '<span class="m-ubar">' + formatTexInner(a) + '</span>'; });
     t = replaceTexCmd1(t, 'overbrace', function (a) { return '<span class="m-bar">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'dot', function (a) { return '<span class="m-acc m-dot">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'ddot', function (a) { return '<span class="m-acc m-ddot">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'check', function (a) { return '<span class="m-acc m-check">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'acute', function (a) { return '<span class="m-acc m-acute">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'grave', function (a) { return '<span class="m-acc m-grave">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'breve', function (a) { return '<span class="m-acc m-breve">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'mathring', function (a) { return '<span class="m-acc m-ring">' + formatTexInner(a) + '</span>'; });
     t = replaceTexCmd1(t, 'mathbf', function (a) { return '<strong class="m-bf">' + formatTexInner(a) + '</strong>'; });
+    t = replaceTexCmd1(t, 'boldsymbol', function (a) { return '<strong class="m-bf">' + formatTexInner(a) + '</strong>'; });
+    t = replaceTexCmd1(t, 'bm', function (a) { return '<strong class="m-bf">' + formatTexInner(a) + '</strong>'; });
+    t = replaceTexCmd1(t, 'mathit', function (a) { return '<em>' + formatTexInner(a) + '</em>'; });
+    t = replaceTexCmd1(t, 'mathsf', function (a) { return '<span class="m-sf">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'mathtt', function (a) { return '<span class="m-tt">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'mathfrak', function (a) { return '<span class="m-frak">' + formatTexInner(a) + '</span>'; });
     t = replaceTexCmd1(t, 'mathcal', function (a) { return '<span class="m-cal">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'mathscr', function (a) { return '<span class="m-cal">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'substack', function (a) { return '<span class="m-stack">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'textbf', function (a) { return '<strong class="m-txt" dir="auto">' + a + '</strong>'; });
+    t = replaceTexCmd1(t, 'textit', function (a) { return '<em class="m-txt" dir="auto">' + a + '</em>'; });
+    t = replaceTexCmd1(t, 'texttt', function (a) { return '<code class="m-tt">' + a + '</code>'; });
+    t = replaceTexCmd1(t, 'textsf', function (a) { return '<span class="m-sf" dir="auto">' + a + '</span>'; });
     t = replaceTexCmd1(t, 'text', function (a) { return '<span class="m-txt" dir="auto">' + a + '</span>'; });
     t = replaceTexCmd1(t, 'textrm', function (a) { return '<span class="m-txt" dir="auto">' + a + '</span>'; });
     t = replaceTexCmd1(t, 'mathrm', function (a) { return '<span class="m-fn">' + a + '</span>'; });
+    t = replaceTexCmd1(t, 'operatorname*', function (a) { return '<span class="m-fn">' + a + '</span>'; });
     t = replaceTexCmd1(t, 'operatorname', function (a) { return '<span class="m-fn">' + a + '</span>'; });
     t = replaceTexCmd1(t, 'pmod', function (a) { return '<span class="m-fn"> (mod ' + formatTexInner(a) + ')</span>'; });
+    t = replaceTexCmd1(t, 'pod', function (a) { return '<span class="m-fn"> (' + formatTexInner(a) + ')</span>'; });
+    t = replaceTexCmd1(t, 'tag*', function (a) { return '<span class="m-tag">' + formatTexInner(a) + '</span>'; });
     t = replaceTexCmd1(t, 'tag', function (a) { return '<span class="m-tag">(' + formatTexInner(a) + ')</span>'; });
+    t = replaceTexCmd1(t, 'phantom', function (a) { return '<span style="visibility:hidden">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'hphantom', function (a) { return '<span style="visibility:hidden">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'vphantom', function () { return ''; });
     t = replaceTexCmd1(t, 'label', function () { return ''; });
 
     // Superscripts & subscripts (balanced)
@@ -636,7 +820,14 @@
           displayMode: !!isDisplay,
           throwOnError: false,
           strict: false,
-          trust: false
+          trust: false,
+          macros: {
+            '\\RR': '\\mathbb{R}',
+            '\\NN': '\\mathbb{N}',
+            '\\ZZ': '\\mathbb{Z}',
+            '\\QQ': '\\mathbb{Q}',
+            '\\CC': '\\mathbb{C}'
+          }
         });
       } catch (e) {}
     }
@@ -664,15 +855,18 @@
     return s.replace(/\uE010HL(\d+)\uE011/g, function (_, idx) { return tokens[+idx] || ''; });
   }
 
-  function renderInlineMarkdown(escapedText, mathTokens, codeTokens) {
+  function renderInlineMarkdown(escapedText, mathTokens, codeTokens, refDefs, fnMap) {
     let s = escapedText;
-    // Inline code `...`
+    const escTokens = [];
+
+    // 1. Inline code `...` (must run before escapes & math)
     s = s.replace(/`([^`\n]+)`/g, function (_, code) {
       const idx = codeTokens.length;
       codeTokens.push('<code class="inline-code">' + code + '</code>');
       return '\uE002CODE' + idx + '\uE003';
     });
-    // Inline math \(...\) (also catches missing closing ')') or $...$
+
+    // 2. Inline math \(...\) or $...$
     s = s.replace(/\\\(([\s\S]+?)(?:\\\)|\\(?=\s|$))|(^|[^\\$\w])\$([^\s$][^$\n]*?)\$(?!\$)/g, function (_, p1, pre, p2) {
       const expr = p1 != null ? p1 : p2;
       const idx = mathTokens.length;
@@ -680,33 +874,96 @@
       mathTokens.push('<span class="math" dir="ltr">' + formatTexHtml(unesc, false) + '</span>');
       return (pre || '') + '\uE000MATH' + idx + '\uE001';
     });
-    // Markdown links [label](url)
+
+    // 3. GFM Backslash escapes (\*, \_, \[, \], \$, \#, \~, \>, \|, \\)
+    s = s.replace(/\\([\\`*_{}\[\]()#+\-.!~$|<>])/g, function (_, ch) {
+      const idx = escTokens.length;
+      escTokens.push(ch);
+      return '\uE004ESC' + idx + '\uE005';
+    });
+
+    // 4. Safe semantic inline HTML tags (<kbd>, <sub>, <sup>, <mark>, <br>)
+    s = s.replace(/&lt;(\/?)(kbd|sub|sup|mark)&gt;/gi, function (_, slash, tag) {
+      const t = tag.toLowerCase();
+      if (!slash && t === 'kbd') return '<kbd class="kbd md-kbd">';
+      if (!slash && t === 'mark') return '<mark class="md-mark">';
+      return '<' + slash + t + '>';
+    });
+    s = s.replace(/&lt;br\s*\/?&gt;/gi, '<br>');
+
+    // 5. Images ![alt](https://...) (safe http/https only)
+    s = s.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g, function (_, alt, url) {
+      return '<img class="md-img" src="' + url + '" alt="' + alt + '" loading="lazy">';
+    });
+
+    // 6. Footnote references [^id]
+    if (fnMap) {
+      s = s.replace(/\[\^([A-Za-z0-9_-]+)\]/g, function (full, id) {
+        if (!fnMap[id]) return full;
+        return '<sup class="md-fn-ref" title="' + escapeHtml(fnMap[id].raw).slice(0, 140) + '">[' + fnMap[id].num + ']</sup>';
+      });
+    }
+
+    // 7. Markdown links [label](url) and reference-style links [label][ref]
     s = s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-    // Auto-link bare URLs not already inside href="..."
+    if (refDefs) {
+      s = s.replace(/\[([^\]]+)\]\[([^\]]*)\]/g, function (full, label, ref) {
+        const key = (ref || label).toLowerCase().trim();
+        const url = refDefs[key];
+        return url ? '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + label + '</a>' : full;
+      });
+    }
+
+    // 8. Auto-link bare URLs not already inside href/src="..."
     s = s.replace(/(^|[\s(>])(https?:\/\/[^\s<)"]+)/g, '$1<a href="$2" target="_blank" rel="noopener noreferrer">$2</a>');
-    // Highlight ==...==
+
+    // 9. Highlight ==...== & Keyboard keys [[Ctrl+K]]
     s = s.replace(/==([^=\n]+)==/g, '<mark class="md-mark">$1</mark>');
-    // Keyboard keys [[Ctrl+K]]
     s = s.replace(/\[\[([^\]\n]{1,24})\]\]/g, '<kbd class="kbd md-kbd">$1</kbd>');
-    // Bold+Italic ***...***
+
+    // 10. Emphasis, Strong & Strikethrough (GFM)
     s = s.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
-    // Bold **...** or __...__
-    s = s.replace(/\*\*([^*]+)\*\*|__([^_]+)__/g, function (_, a, b) { return '<strong>' + (a || b) + '</strong>'; });
-    // Italic *...* (require non-space boundaries so math 2 * 3 never triggers italic)
+    s = s.replace(/\*\*([^*]+)\*\*|(?<![\w])__([^_]+)__(?![\w])/g, function (_, a, b) { return '<strong>' + (a || b) + '</strong>'; });
     s = s.replace(/(^|[^*\w])\*(?!\s)([^*\n]+?)(?<!\s)\*(?!\*)/g, '$1<em>$2</em>');
-    // Strikethrough ~~...~~
+    s = s.replace(/(^|[^\w])_(?!\s)([^_\n]+?)(?<!\s)_(?![\w])/g, '$1<em>$2</em>');
     s = s.replace(/~~([^~]+)~~/g, '<del>$1</del>');
 
-    // Restore protected tokens
+    // 11. Restore protected tokens
+    s = s.replace(/\uE004ESC(\d+)\uE005/g, function (_, i) { return escTokens[+i] || ''; });
     s = s.replace(/\uE000MATH(\d+)\uE001/g, function (_, i) { return mathTokens[+i] || ''; });
     s = s.replace(/\uE002CODE(\d+)\uE003/g, function (_, i) { return codeTokens[+i] || ''; });
     return s;
   }
 
+  function renderBlockquoteLines(rawQLines, mathTokens, codeTokens, refDefs, fnMap) {
+    const out = [];
+    let j = 0;
+    while (j < rawQLines.length) {
+      if (rawQLines[j].trim().startsWith('>')) {
+        const nested = [];
+        while (j < rawQLines.length && rawQLines[j].trim().startsWith('>')) {
+          nested.push(rawQLines[j].trim().replace(/^>\s?/, ''));
+          j++;
+        }
+        out.push('<blockquote>' + renderBlockquoteLines(nested, mathTokens, codeTokens, refDefs, fnMap) + '</blockquote>');
+      } else {
+        const para = [];
+        while (j < rawQLines.length && !rawQLines[j].trim().startsWith('>')) {
+          if (rawQLines[j].trim()) {
+            para.push(renderInlineMarkdown(escapeHtml(rawQLines[j]), mathTokens, codeTokens, refDefs, fnMap));
+          }
+          j++;
+        }
+        if (para.length) out.push('<p>' + para.join('<br>') + '</p>');
+      }
+    }
+    return out.join('');
+  }
+
   function renderMarkdown(rawText, isLive) {
     let src = String(rawText || '');
     if (isLive) {
-      // Auto-close trailing unclosed display/inline math & bold so live streaming never flashes raw \[ or $$
+      // Auto-close trailing unclosed display/inline math so live streaming never flashes raw \[ or $$
       const openDispBracket = src.lastIndexOf('\\[');
       const closeDispBracket = src.lastIndexOf('\\]');
       if (openDispBracket > closeDispBracket) src += '\\]';
@@ -721,9 +978,12 @@
     const blocks = [];
     const mathTokens = [];
     const codeTokens = [];
+    const refDefs = {};
+    const fnMap = {};
+    const fnOrder = [];
 
-    // 1. Fenced code blocks (closed or streaming unclosed)
-    let working = src.replace(/```([a-zA-Z0-9_+#.-]*)\n?([\s\S]*?)(?:```|$)/g, function (full, lang, code) {
+    // 1. Fenced code blocks (``` or ~~~, closed or streaming unclosed)
+    let working = src.replace(/(```|~~~)([a-zA-Z0-9_+#.-]*)\n?([\s\S]*?)(?:\1|$)/g, function (full, fence, lang, code) {
       const cleanCode = code.replace(/\n$/, '');
       const idx = blocks.length;
       const encoded = encodeURIComponent(cleanCode);
@@ -742,11 +1002,24 @@
       return '\n\n@@BLOCK_' + idx + '@@\n\n';
     });
 
-    // 2. Display math blocks $$...$$ or \[...\] (ignore non-math bracketed prose like \[شروع داستان\])
-    working = working.replace(/\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]/g, function (full, m1, m2) {
+    // 2. Display math blocks $$...$$ or \[...\]
+    //    - Ignore non-math Persian bracketed prose like \[شروع داستان\]
+    //    - If inside a Markdown table row (line contains '|'), keep it inline as a protected math token so it NEVER breaks the table!
+    working = working.replace(/\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]/g, function (full, m1, m2, offset, whole) {
       const expr = (m1 != null ? m1 : m2).trim();
       if (m2 != null && /[\u0600-\u06FF]/.test(expr) && !/[\\=+\-*/^_<>0-9∈∉⊂⊆∪∩∅∀∃∑∏∫√∞±×÷≤≥≠≈ℝℕℤℚℂ]/.test(expr)) {
         return '[' + expr + ']';
+      }
+      const lineStart = whole.lastIndexOf('\n', offset - 1) + 1;
+      const lineEndIdx = whole.indexOf('\n', offset + full.length);
+      const lineEnd = lineEndIdx === -1 ? whole.length : lineEndIdx;
+      const beforeOnLine = whole.slice(lineStart, offset);
+      const afterOnLine = whole.slice(offset + full.length, lineEnd);
+      const inTableRow = (beforeOnLine.includes('|') || afterOnLine.includes('|')) && (beforeOnLine.trimStart().startsWith('|') || afterOnLine.trimEnd().endsWith('|') || (beforeOnLine.includes('|') && afterOnLine.includes('|')));
+      if (inTableRow) {
+        const midx = mathTokens.length;
+        mathTokens.push('<span class="math math-cell" dir="ltr">' + formatTexHtml(expr, false) + '</span>');
+        return '\uE000MATH' + midx + '\uE001';
       }
       const idx = blocks.length;
       const encoded = encodeURIComponent(expr);
@@ -762,8 +1035,29 @@
       return '\n\n@@BLOCK_' + idx + '@@\n\n';
     });
 
-    // 3. Line-by-line block parser
-    const lines = working.split(/\r?\n/);
+    // 3. Extract footnote definitions [^id]: text and link reference definitions [ref]: https://...
+    const rawLines = working.split(/\r?\n/);
+    const lines = [];
+    for (let k = 0; k < rawLines.length; k++) {
+      const ln = rawLines[k];
+      const fnDef = /^\[\^([A-Za-z0-9_-]+)\]:\s+(.+)$/.exec(ln.trim());
+      if (fnDef) {
+        const id = fnDef[1];
+        if (!fnMap[id]) {
+          fnOrder.push(id);
+          fnMap[id] = { num: fnOrder.length, raw: fnDef[2] };
+        }
+        continue;
+      }
+      const refDef = /^\[([^\]]+)\]:\s+(https?:\/\/\S+)\s*$/.exec(ln.trim());
+      if (refDef) {
+        refDefs[refDef[1].toLowerCase().trim()] = refDef[2];
+        continue;
+      }
+      lines.push(ln);
+    }
+
+    // 4. Line-by-line GFM block parser
     const out = [];
     let i = 0;
 
@@ -778,17 +1072,42 @@
 
       if (/^(?:---+|\*\*\*+|___+)$/.test(trimmed)) { out.push('<hr>'); i++; continue; }
 
-      const hm = /^(#{1,6})\s+(.+)$/.exec(trimmed);
+      // ATX Headings (# to ######)
+      const hm = /^(#{1,6})\s+(.+?)(?:\s+#+)?$/.exec(trimmed);
       if (hm) {
         const level = Math.min(6, hm[1].length);
-        out.push('<h' + level + '>' + renderInlineMarkdown(escapeHtml(hm[2]), mathTokens, codeTokens) + '</h' + level + '>');
+        out.push('<h' + level + '>' + renderInlineMarkdown(escapeHtml(hm[2]), mathTokens, codeTokens, refDefs, fnMap) + '</h' + level + '>');
         i++;
+        continue;
+      }
+
+      // Setext Headings (Heading\n=== or Heading\n---)
+      if (i + 1 < lines.length && /^(?:={3,}|-{3,})$/.test(lines[i + 1].trim()) && !/^[-*+•>]|^\d+[.)]/.test(trimmed)) {
+        const level = lines[i + 1].trim().startsWith('=') ? 1 : 2;
+        out.push('<h' + level + '>' + renderInlineMarkdown(escapeHtml(trimmed), mathTokens, codeTokens, refDefs, fnMap) + '</h' + level + '>');
+        i += 2;
         continue;
       }
 
       // GFM Table with column alignment (:---, :---:, ---:)
       if (trimmed.includes('|') && i + 1 < lines.length && /^\s*\|?[\s:-]+\|[\s|:-]*$/.test(lines[i + 1])) {
-        const splitRow = function (r) { return r.trim().replace(/^\||\|$/g, '').split('|').map(function (c) { return c.trim(); }); };
+        const splitRow = function (r) {
+          const trimmedRow = r.trim().replace(/^\|/, '').replace(/(?<!\\)\|$/, '');
+          const cells = [];
+          let cur = '';
+          let inCode = false;
+          let inMath = false;
+          for (let ci = 0; ci < trimmedRow.length; ci++) {
+            const ch = trimmedRow[ci];
+            if (ch === '\\' && trimmedRow[ci + 1] === '|') { cur += '|'; ci++; continue; }
+            if (ch === '`') { inCode = !inCode; cur += ch; continue; }
+            if (!inCode && ch === '$' && trimmedRow[ci - 1] !== '\\') { inMath = !inMath; cur += ch; continue; }
+            if (!inCode && !inMath && ch === '|') { cells.push(cur.trim()); cur = ''; continue; }
+            cur += ch;
+          }
+          cells.push(cur.trim());
+          return cells;
+        };
         const aligns = splitRow(lines[i + 1]).map(function (a) {
           if (a.startsWith(':') && a.endsWith(':')) return 'center';
           if (a.endsWith(':')) return 'right';
@@ -797,14 +1116,14 @@
         });
         const headers = splitRow(trimmed).map(function (c, idx) {
           const al = aligns[idx] ? ' style="text-align:' + aligns[idx] + '"' : '';
-          return '<th' + al + '>' + renderInlineMarkdown(escapeHtml(c), mathTokens, codeTokens) + '</th>';
+          return '<th' + al + '>' + renderInlineMarkdown(escapeHtml(c), mathTokens, codeTokens, refDefs, fnMap) + '</th>';
         });
         i += 2;
         const rowsHtml = [];
         while (i < lines.length && lines[i].trim().includes('|')) {
           const cells = splitRow(lines[i]).map(function (c, idx) {
             const al = aligns[idx] ? ' style="text-align:' + aligns[idx] + '"' : '';
-            return '<td' + al + '>' + renderInlineMarkdown(escapeHtml(c), mathTokens, codeTokens) + '</td>';
+            return '<td' + al + '>' + renderInlineMarkdown(escapeHtml(c), mathTokens, codeTokens, refDefs, fnMap) + '</td>';
           });
           rowsHtml.push('<tr>' + cells.join('') + '</tr>');
           i++;
@@ -813,7 +1132,7 @@
         continue;
       }
 
-      // Blockquote & Callouts
+      // Blockquote (supports nested >>) & GitHub Callouts (> [!NOTE], [!TIP], [!WARNING], [!IMPORTANT], [!CAUTION])
       if (trimmed.startsWith('>')) {
         const rawQLines = [];
         while (i < lines.length && lines[i].trim().startsWith('>')) {
@@ -830,9 +1149,9 @@
           };
           const meta = kindMap[kindRaw] || ['info', 'نکته'];
           const bodyLines = [];
-          if (calloutMatch[2]) bodyLines.push(renderInlineMarkdown(escapeHtml(calloutMatch[2]), mathTokens, codeTokens));
+          if (calloutMatch[2]) bodyLines.push(renderInlineMarkdown(escapeHtml(calloutMatch[2]), mathTokens, codeTokens, refDefs, fnMap));
           for (let q = 1; q < rawQLines.length; q++) {
-            bodyLines.push(renderInlineMarkdown(escapeHtml(rawQLines[q]), mathTokens, codeTokens));
+            bodyLines.push(renderInlineMarkdown(escapeHtml(rawQLines[q]), mathTokens, codeTokens, refDefs, fnMap));
           }
           out.push(
             '<div class="callout c-' + meta[0] + '">' +
@@ -841,9 +1160,23 @@
             '</div>'
           );
         } else {
-          const qHtml = rawQLines.map(function (ql) { return renderInlineMarkdown(escapeHtml(ql), mathTokens, codeTokens); });
-          out.push('<blockquote><p>' + qHtml.join('<br>') + '</p></blockquote>');
+          out.push('<blockquote>' + renderBlockquoteLines(rawQLines, mathTokens, codeTokens, refDefs, fnMap) + '</blockquote>');
         }
+        continue;
+      }
+
+      // Definition List (Term\n: Definition)
+      if (i + 1 < lines.length && /^:\s+/.test(lines[i + 1].trim()) && !/^[-*+•>]|^\d+[.)]/.test(trimmed)) {
+        const dlItems = [];
+        while (i + 1 < lines.length && lines[i].trim() && /^:\s+/.test(lines[i + 1].trim())) {
+          dlItems.push('<dt>' + renderInlineMarkdown(escapeHtml(lines[i].trim()), mathTokens, codeTokens, refDefs, fnMap) + '</dt>');
+          i++;
+          while (i < lines.length && /^:\s+/.test(lines[i].trim())) {
+            dlItems.push('<dd>' + renderInlineMarkdown(escapeHtml(lines[i].trim().replace(/^:\s+/, '')), mathTokens, codeTokens, refDefs, fnMap) + '</dd>');
+            i++;
+          }
+        }
+        out.push('<dl class="md-dl">' + dlItems.join('') + '</dl>');
         continue;
       }
 
@@ -857,7 +1190,7 @@
           items.push(
             '<li class="task-item' + (done ? ' done' : '') + '">' +
               '<span class="task-box" aria-hidden="true">' + (done ? ICONS.check : '') + '</span>' +
-              '<span>' + renderInlineMarkdown(escapeHtml(label), mathTokens, codeTokens) + '</span>' +
+              '<span>' + renderInlineMarkdown(escapeHtml(label), mathTokens, codeTokens, refDefs, fnMap) + '</span>' +
             '</li>'
           );
           i++;
@@ -866,26 +1199,28 @@
         continue;
       }
 
-      // Unordered List (-, *, +, •) with nested indentation support
+      // Unordered List (-, *, +, •) with multi-level nested indentation
       if (/^[-*+•]\s+/.test(trimmed)) {
         const items = [];
         while (i < lines.length && /^[-*+•]\s+/.test(lines[i].trim()) && !/^[-*+]\s+\[[ xX]\]\s+/.test(lines[i].trim())) {
           const indent = lines[i].length - lines[i].trimStart().length;
           const itemText = lines[i].trim().replace(/^[-*+•]\s+/, '');
-          const nestedCls = indent >= 2 ? ' class="li-nested"' : '';
-          items.push('<li' + nestedCls + '>' + renderInlineMarkdown(escapeHtml(itemText), mathTokens, codeTokens) + '</li>');
+          const nestedCls = indent >= 4 ? ' class="li-nested-2"' : indent >= 2 ? ' class="li-nested"' : '';
+          items.push('<li' + nestedCls + '>' + renderInlineMarkdown(escapeHtml(itemText), mathTokens, codeTokens, refDefs, fnMap) + '</li>');
           i++;
         }
         out.push('<ul>' + items.join('') + '</ul>');
         continue;
       }
 
-      // Ordered List (1. or ۱.)
+      // Ordered List (1. or ۱.) with nested indentation
       if (/^(\d+|[۰-۹]+)[.)]\s+/.test(trimmed)) {
         const items = [];
         while (i < lines.length && /^(\d+|[۰-۹]+)[.)]\s+/.test(lines[i].trim())) {
+          const indent = lines[i].length - lines[i].trimStart().length;
           const itemText = lines[i].trim().replace(/^(\d+|[۰-۹]+)[.)]\s+/, '');
-          items.push('<li>' + renderInlineMarkdown(escapeHtml(itemText), mathTokens, codeTokens) + '</li>');
+          const nestedCls = indent >= 2 ? ' class="li-nested"' : '';
+          items.push('<li' + nestedCls + '>' + renderInlineMarkdown(escapeHtml(itemText), mathTokens, codeTokens, refDefs, fnMap) + '</li>');
           i++;
         }
         out.push('<ol>' + items.join('') + '</ol>');
@@ -900,16 +1235,27 @@
         !/^@@BLOCK_\d+@@$/.test(lines[i].trim()) &&
         !/^(?:---+|\*\*\*+|___+)$/.test(lines[i].trim()) &&
         !/^(#{1,6})\s+/.test(lines[i].trim()) &&
+        !(i + 1 < lines.length && /^(?:={3,}|-{3,})$/.test(lines[i + 1].trim())) &&
+        !(i + 1 < lines.length && /^:\s+/.test(lines[i + 1].trim())) &&
+        !(lines[i].trim().includes('|') && i + 1 < lines.length && /^\s*\|?[\s:-]+\|[\s|:-]*$/.test(lines[i + 1])) &&
         !/^[-*+•]\s+/.test(lines[i].trim()) &&
         !/^(\d+|[۰-۹]+)[.)]\s+/.test(lines[i].trim()) &&
         !lines[i].trim().startsWith('>')
       ) {
-        pLines.push(renderInlineMarkdown(escapeHtml(lines[i].trim()), mathTokens, codeTokens));
+        pLines.push(renderInlineMarkdown(escapeHtml(lines[i].trim()), mathTokens, codeTokens, refDefs, fnMap));
         i++;
       }
       if (pLines.length) {
         out.push('<p>' + pLines.join('<br>') + '</p>');
       }
+    }
+
+    // 5. Render Footnotes block if any definitions were collected
+    if (fnOrder.length) {
+      const fnItems = fnOrder.map(function (id) {
+        return '<li>' + renderInlineMarkdown(escapeHtml(fnMap[id].raw), mathTokens, codeTokens, refDefs, fnMap) + '</li>';
+      }).join('');
+      out.push('<section class="md-footnotes"><ol>' + fnItems + '</ol></section>');
     }
 
     return out.join('');
@@ -920,6 +1266,7 @@
     threads: [],
     activeId: null,
     freshId: null,
+    justFinishedId: null,
     enteringThreadId: null,
     fmtOpen: false,
     previewOpen: false,
@@ -998,7 +1345,7 @@
     const removeToast = function () {
       if (!toast.parentNode || toast.classList.contains('closing')) return;
       toast.classList.add('closing');
-      setTimeout(function () { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 200);
+      setTimeout(function () { if (toast.parentNode) toast.parentNode.removeChild(toast); }, prefersReducedMotion() ? 10 : 190);
     };
     const timer = setTimeout(removeToast, ms);
     toast.querySelector('.toast-x').addEventListener('click', function () {
@@ -1191,21 +1538,21 @@
     setHidden(el.heroArea, !isWelcome);
     setHidden(el.scroller, isWelcome);
     setHidden(el.starterChips, !isWelcome);
-    if (beforeTop !== null && el.composerArea) {
+    if (beforeTop !== null && el.composerArea && !prefersReducedMotion()) {
       const afterTop = el.composerArea.getBoundingClientRect().top;
       const dy = beforeTop - afterTop;
       if (Math.abs(dy) > 4) {
         el.composerArea.style.transition = 'none';
         el.composerArea.style.transform = 'translateY(' + dy + 'px)';
         void el.composerArea.offsetHeight;
-        el.composerArea.style.transition = 'transform .42s cubic-bezier(.22, 1, .36, 1)';
+        el.composerArea.style.transition = 'transform 280ms ' + SPRING_EASE;
         el.composerArea.style.transform = 'translateY(0)';
         setTimeout(function () {
           if (el.composerArea) {
             el.composerArea.style.transition = '';
             el.composerArea.style.transform = '';
           }
-        }, 440);
+        }, 290);
       }
     }
   }
@@ -1224,8 +1571,9 @@
     active.messages.forEach(function (m) {
       const uDir = textDir(m.text);
       const isFresh = m.id === state.freshId;
+      const isJustFinished = m.id === state.justFinishedId;
       html +=
-        '<div class="turn' + (isFresh ? ' fresh' : '') + '" data-msg-id="' + escapeHtml(m.id) + '">' +
+        '<div class="turn' + (isFresh ? ' fresh' : '') + (isJustFinished ? ' just-finished' : '') + '" data-msg-id="' + escapeHtml(m.id) + '">' +
           '<div class="msg user">' +
             '<div class="ubox">' +
               '<div class="bubble md user-md" dir="' + uDir + '">' + renderMarkdown(m.text) + '</div>' +
@@ -1270,6 +1618,7 @@
     });
 
     el.stream.innerHTML = html;
+    state.justFinishedId = null;
     if (existingPending) el.stream.appendChild(existingPending);
     bindStreamEvents();
     requestAnimationFrame(function () { scrollToBottom(true); });
@@ -1307,7 +1656,7 @@
       btn.addEventListener('click', function () {
         if (!active) return;
         const m = active.messages.find(function (x) { return x.id === btn.getAttribute('data-copy-user'); });
-        if (m) copyText(m.text).then(function () { showToast('متن کپی شد'); });
+        if (m) copyText(m.text).then(function (ok) { if (ok) { flashCopyFeedback(btn); showToast('متن کپی شد'); } });
       });
     });
 
@@ -1315,7 +1664,10 @@
       btn.addEventListener('click', function () {
         if (!active) return;
         const m = active.messages.find(function (x) { return x.id === btn.getAttribute('data-copy-bot'); });
-        if (m && m.reply) { const clean = splitThinkReply(m.reply, m.reasoning).answer || m.reply; copyText(clean).then(function () { showToast('پاسخ کپی شد'); }); }
+        if (m && m.reply) {
+          const clean = splitThinkReply(m.reply, m.reasoning).answer || m.reply;
+          copyText(clean).then(function (ok) { if (ok) { flashCopyFeedback(btn); showToast('پاسخ کپی شد'); } });
+        }
       });
     });
 
@@ -1328,11 +1680,10 @@
     el.stream.querySelectorAll('[data-copy-encoded]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         const code = decodeURIComponent(btn.getAttribute('data-copy-encoded') || '');
-        copyText(code).then(function () {
-          const sp = btn.querySelector('span');
-          if (sp) sp.textContent = 'کپی شد';
-          showToast('کد کپی شد');
-          setTimeout(function () { if (sp) sp.textContent = 'کپی'; }, 1400);
+        copyText(code).then(function (ok) {
+          if (!ok) return;
+          flashCopyFeedback(btn, 'کپی شد');
+          showToast('در کلیپ‌بورد کپی شد');
         });
       });
     });
@@ -1371,10 +1722,10 @@
     if (el.taPh) el.taPh.classList.toggle('off', val.length > 0);
     if (el.counter) {
       if (val.length > 200) {
-        setHidden(el.counter, false);
         el.counter.textContent = fa(val.length) + ' / ' + fa(MAX_TEXT);
+        el.counter.classList.add('is-visible');
       } else {
-        setHidden(el.counter, true);
+        el.counter.classList.remove('is-visible');
       }
     }
     updateComposerPreview();
@@ -1402,8 +1753,8 @@
     el.sendBtn.classList.toggle('on', active);
     el.sendBtn.title = state.busy ? 'توقف' : 'ارسال';
     el.sendBtn.setAttribute('aria-label', state.busy ? 'توقف' : 'ارسال');
-    setHidden(el.sendIcoArrow, state.busy);
-    setHidden(el.sendIcoStop, !state.busy);
+    if (el.sendIcoArrow) el.sendIcoArrow.setAttribute('aria-hidden', state.busy ? 'true' : 'false');
+    if (el.sendIcoStop) el.sendIcoStop.setAttribute('aria-hidden', state.busy ? 'false' : 'true');
     if (el.composer) { el.composer.classList.toggle('busy', state.busy); el.composer.classList.toggle('ink-border', state.busy); }
   }
 
@@ -1609,11 +1960,10 @@
     pendingTurn.querySelectorAll('[data-copy-encoded]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         const code = decodeURIComponent(btn.getAttribute('data-copy-encoded') || '');
-        copyText(code).then(function () {
-          const sp = btn.querySelector('span');
-          if (sp) sp.textContent = 'کپی شد';
-          showToast('کد کپی شد');
-          setTimeout(function () { if (sp) sp.textContent = 'کپی'; }, 1400);
+        copyText(code).then(function (ok) {
+          if (!ok) return;
+          flashCopyFeedback(btn, 'کپی شد');
+          showToast('در کلیپ‌بورد کپی شد');
         });
       });
     });
@@ -1662,6 +2012,61 @@
       });
     }
 
+    function appendStreamCaret(root) {
+      const caret = document.createElement('span');
+      caret.className = 'stream-caret';
+      caret.setAttribute('aria-hidden', 'true');
+      let target = root.lastElementChild;
+      while (target && /^(UL|OL|BLOCKQUOTE|DL|TABLE|TBODY|TR|SECTION)$/i.test(target.tagName) && target.lastElementChild) {
+        target = target.lastElementChild;
+      }
+      if (target && /^(P|LI|H[1-6]|TD|TH|DT|DD)$/i.test(target.tagName)) {
+        target.appendChild(caret);
+      } else {
+        root.appendChild(caret);
+      }
+    }
+
+    function patchLiveContainer(container, html, showCaret) {
+      if (!container) return;
+      const tmp = document.createElement('div');
+      tmp.innerHTML = html || '';
+      if (showCaret) appendStreamCaret(tmp);
+      const nextNodes = Array.from(tmp.children);
+      if (!nextNodes.length) {
+        container.innerHTML = tmp.innerHTML;
+        return;
+      }
+      const existing = container.children;
+      for (let idx = 0; idx < nextNodes.length; idx++) {
+        const nextEl = nextNodes[idx];
+        const nextHtml = nextEl.outerHTML;
+        if (idx < existing.length) {
+          const curEl = existing[idx];
+          if (curEl._sHtml === nextHtml) continue;
+          // In-place innerHTML update for matching text/list blocks prevents remounting & flicker
+          if (
+            curEl.tagName === nextEl.tagName &&
+            /^(P|H[1-6]|UL|OL|BLOCKQUOTE|DL)$/.test(curEl.tagName) &&
+            curEl.className.replace(/stream-block-in/g, '').trim() === nextEl.className.trim()
+          ) {
+            curEl.innerHTML = nextEl.innerHTML;
+            curEl._sHtml = nextHtml;
+          } else {
+            nextEl._sHtml = nextHtml;
+            container.replaceChild(nextEl, curEl);
+          }
+        } else {
+          nextEl._sHtml = nextHtml;
+          if (!prefersReducedMotion()) nextEl.classList.add('stream-block-in');
+          container.appendChild(nextEl);
+        }
+      }
+      while (container.children.length > nextNodes.length) {
+        container.removeChild(container.lastChild);
+      }
+    }
+
     function updateLivePendingDOM(currentReply, currentReasoning) {
       const liveParsed = splitThinkReply(currentReply, currentReasoning);
       if (liveParsed.think && pThinkCard && pThinkBody) {
@@ -1670,11 +2075,11 @@
           openAnimated(pThinkCard);
         }
         pThinkBody.dir = textDir(liveParsed.think);
-        pThinkBody.innerHTML = renderThinkMarkdown(liveParsed.think, true);
+        const stillThinking = liveParsed.thinkingOpen || !liveParsed.answer;
+        patchLiveContainer(pThinkBody, renderThinkMarkdown(liveParsed.think, true), stillThinking);
         if (pThinkCard.classList.contains('open')) {
           pThinkBody.scrollTop = pThinkBody.scrollHeight;
         }
-        const stillThinking = liveParsed.thinkingOpen || !liveParsed.answer;
         if (pTcDot) pTcDot.classList.toggle('live', stillThinking);
         if (pTcTitle) {
           pTcTitle.classList.toggle('shiny', stillThinking);
@@ -1690,11 +2095,13 @@
       if (mdEl) {
         if (liveParsed.answer) {
           setHidden(mdEl, false);
+          mdEl.classList.add('is-streaming');
           mdEl.dir = textDir(liveParsed.answer);
-          mdEl.innerHTML = renderMarkdown(liveParsed.answer, true) + '<span class="stream-dot"></span>';
+          patchLiveContainer(mdEl, renderMarkdown(liveParsed.answer, true), true);
         } else if (!liveParsed.think) {
           setHidden(mdEl, false);
-          mdEl.innerHTML = '<span class="stream-dot"></span>';
+          mdEl.classList.add('is-streaming');
+          mdEl.innerHTML = '<span class="stream-caret" aria-hidden="true"></span>';
         } else {
           setHidden(mdEl, true);
         }
@@ -1733,31 +2140,66 @@
     let usedModel = 'Unicollect Chat Mini';
     let usedMath = false;
     let displayedReply = '';
+    let displayedReason = '';
     let streamQueue = '';
+    let reasonQueue = '';
     let streamRaf = 0;
+    let lastFrameTs = 0;
+    let ansCarry = 0;
+    let rsnCarry = 0;
     let error = null;
 
-    function flushStreamFrame(forceAll) {
-      if (!streamQueue.length) return;
-      if (forceAll) {
+    function flushStreamFrame(forceAll, nowTs) {
+      if (!streamQueue.length && !reasonQueue.length) return;
+      const now = nowTs || performance.now();
+      const dt = lastFrameTs ? Math.min(48, Math.max(8, now - lastFrameTs)) : 16;
+      lastFrameTs = now;
+
+      if (forceAll || prefersReducedMotion()) {
         displayedReply += streamQueue;
+        displayedReason += reasonQueue;
         streamQueue = '';
+        reasonQueue = '';
+        ansCarry = 0;
+        rsnCarry = 0;
       } else {
-        const chars = Array.from(streamQueue);
-        const step = Math.max(2, Math.min(20, Math.ceil(chars.length / 7)));
-        displayedReply += chars.slice(0, step).join('');
-        streamQueue = chars.slice(step).join('');
+        if (reasonQueue.length) {
+          const rChars = Array.from(reasonQueue);
+          const rRate = Math.min(1100, 95 + rChars.length * 5.2);
+          rsnCarry += (rRate * dt) / 1000;
+          const rStep = Math.floor(rsnCarry);
+          if (rStep > 0) {
+            rsnCarry -= rStep;
+            const take = Math.min(rStep, rChars.length);
+            displayedReason += rChars.slice(0, take).join('');
+            reasonQueue = rChars.slice(take).join('');
+          }
+        }
+        if (streamQueue.length) {
+          const aChars = Array.from(streamQueue);
+          const aRate = Math.min(950, 72 + aChars.length * 4.6);
+          ansCarry += (aRate * dt) / 1000;
+          const aStep = Math.floor(ansCarry);
+          if (aStep > 0) {
+            ansCarry -= aStep;
+            const take = Math.min(aStep, aChars.length);
+            displayedReply += aChars.slice(0, take).join('');
+            streamQueue = aChars.slice(take).join('');
+          }
+        }
       }
-      updateLivePendingDOM(displayedReply, reasoningBuf);
+      updateLivePendingDOM(displayedReply, displayedReason);
     }
 
     function scheduleStreamPump() {
       if (streamRaf) return;
-      streamRaf = requestAnimationFrame(function () {
+      streamRaf = requestAnimationFrame(function (ts) {
         streamRaf = 0;
-        flushStreamFrame(false);
-        if (streamQueue.length && !state.aborted) {
+        flushStreamFrame(false, ts);
+        if ((streamQueue.length || reasonQueue.length) && !state.aborted) {
           scheduleStreamPump();
+        } else {
+          lastFrameTs = 0;
         }
       });
     }
@@ -1820,19 +2262,20 @@
             if (obj && typeof obj.r === 'string' && obj.r) {
               if (!timings.first) {
                 timings.first = performance.now();
-                setHidden(thinkingEl, true);
-                setHidden(writingEl, false);
+                collapseSmooth(thinkingEl);
+                openAnimated(writingEl);
                 setHidden(mdEl, false);
               }
               reasoningBuf += obj.r;
-              updateLivePendingDOM(displayedReply, reasoningBuf);
+              reasonQueue += obj.r;
+              scheduleStreamPump();
               continue;
             }
             if (obj && typeof obj.t === 'string' && obj.t) {
               if (!timings.first) {
                 timings.first = performance.now();
-                setHidden(thinkingEl, true);
-                setHidden(writingEl, false);
+                collapseSmooth(thinkingEl);
+                openAnimated(writingEl);
                 setHidden(mdEl, false);
               }
               reply += obj.t;
@@ -1844,16 +2287,16 @@
             }
           }
         }
-        if (streamQueue.length && !state.aborted) {
+        if ((streamQueue.length || reasonQueue.length) && !state.aborted) {
           await new Promise(function (resolve) {
             const finishStart = performance.now();
-            function drainTail() {
-              if (!streamQueue.length || state.aborted || performance.now() - finishStart > 320) {
-                flushStreamFrame(true);
+            function drainTail(ts) {
+              if ((!streamQueue.length && !reasonQueue.length) || state.aborted || performance.now() - finishStart > 420) {
+                flushStreamFrame(true, ts);
                 resolve();
                 return;
               }
-              flushStreamFrame(false);
+              flushStreamFrame(false, ts);
               requestAnimationFrame(drainTail);
             }
             requestAnimationFrame(drainTail);
@@ -1915,7 +2358,8 @@
     const isFirstTurn = thread.messages.length === 0;
     thread.messages.push(msgObj);
     thread.updatedAt = Date.now();
-    state.freshId = msgObj.id;
+    state.freshId = null;
+    state.justFinishedId = msgObj.id;
     saveThreads();
     if (isFirstTurn) {
       requestAiThreadTitle(thread, text, reply || reasoningBuf);
@@ -2006,8 +2450,16 @@
       });
     };
 
-    if (wrapRow) {
+    if (wrapRow && !prefersReducedMotion()) {
+      const h = wrapRow.getBoundingClientRect().height;
       wrapRow.classList.add('closing');
+      wrapRow.style.height = h + 'px';
+      wrapRow.style.opacity = '1';
+      wrapRow.style.transform = 'translateX(0)';
+      void wrapRow.offsetHeight;
+      wrapRow.style.height = '0px';
+      wrapRow.style.opacity = '0';
+      wrapRow.style.transform = 'translateX(14px)';
       setTimeout(finalizeDelete, 220);
       return;
     }
@@ -2115,7 +2567,7 @@
   function renderSearchResults() {
     if (!el.searchResults || !el.searchLabel) return;
     const q = state.searchQuery.toLowerCase().trim();
-    setHidden(el.searchClear, !q);
+    if (el.searchClear) el.searchClear.classList.toggle('is-visible', !!q);
 
     const sorted = state.threads.slice().sort(function (a, b) {
       return (b.updatedAt || 0) - (a.updatedAt || 0);
@@ -2233,16 +2685,24 @@
     on('btn-settings-ok', 'click', closeSettingsModal);
     on('btn-tb-export', 'click', exportActiveThread);
 
-    on('btn-copy-modal-key', 'click', function () {
+    on('btn-copy-modal-key', 'click', function (e) {
+      const btn = e.currentTarget;
       copyText(state.publicKey || DEFAULT_KEY).then(function (ok) {
-        if (ok) showToast('کلید عمومی API کپی شد');
+        if (ok) {
+          flashCopyFeedback(btn);
+          showToast('کلید عمومی API کپی شد');
+        }
       });
     });
 
-    on('btn-copy-modal-router', 'click', function () {
+    on('btn-copy-modal-router', 'click', function (e) {
+      const btn = e.currentTarget;
       const txt = el.modalRouterUrl ? el.modalRouterUrl.textContent : '/v1';
       copyText(txt).then(function (ok) {
-        if (ok) showToast('آدرس روتر کپی شد');
+        if (ok) {
+          flashCopyFeedback(btn);
+          showToast('آدرس روتر کپی شد');
+        }
       });
     });
 

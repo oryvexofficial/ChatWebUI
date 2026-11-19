@@ -6,15 +6,16 @@
   <title>یونیکالکت چت مینی · گفتگو</title>
   <meta name="description" content="پنل گفتگوی هوشمند یونیکالکت چت مینی ساخته‌ی موویکسو با استریم زنده و کلید عمومی API.">
   <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta name="theme-color" content="#09090b">
   <link rel="preload" href="../assets/fonts/Vazirmatn.woff2?v=1" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/JetBrainsMono.woff2?v=1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-  <link rel="stylesheet" href="../assets/chat.css?v=bw23">
+  <link rel="stylesheet" href="../assets/chat.css?v=bw27">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
   <style>[hidden]{display:none!important}</style>
 </head>
-<body>
+<body class="chat-body">
 <div id="root">
   <div class="app" id="app">
     <aside class="sidebar" aria-label="نوار کناری">
@@ -49,7 +50,7 @@
       </div>
     </aside>
 
-    <div class="backdrop" id="sb-backdrop"></div>
+    <div class="backdrop" id="sb-backdrop" aria-hidden="true"></div>
 
     <main class="main welcome" id="chat-main">
       <header class="topbar">
@@ -98,7 +99,7 @@
               </div>
               <div class="ta-wrap" id="ta-wrap" style="height: 28px;">
                 <div class="ta-ph" id="ta-ph" aria-hidden="true">از یونیکالکت بپرس…</div>
-                <textarea id="chat-input" rows="1" dir="rtl" maxlength="8000" aria-label="پیام" spellcheck="false" autocomplete="off" enterkeyhint="send" style="height: 28px; overflow-y: hidden;"></textarea>
+                <textarea id="chat-input" rows="1" dir="auto" maxlength="8000" aria-label="پیام" spellcheck="false" autocomplete="off" enterkeyhint="send" style="height: 28px; overflow-y: hidden;"></textarea>
               </div>
               <div class="composer-row">
                 <div class="cr-start">
@@ -111,10 +112,10 @@
                   </button>
                 </div>
                 <div class="cr-end">
-                  <span class="counter" id="char-counter" hidden style="display:none">۰ / ۸٬۰۰۰</span>
+                  <span class="counter" id="char-counter" aria-live="polite">۰ / ۸٬۰۰۰</span>
                   <button class="send-btn" type="button" id="btn-send" disabled title="ارسال" aria-label="ارسال">
-                    <span class="sb-ico" id="send-ico-arrow"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg></span>
-                    <span class="sb-ico" id="send-ico-stop" hidden style="display:none"><i class="stop-sq"></i></span>
+                    <span class="sb-ico sb-ico-arrow" id="send-ico-arrow" aria-hidden="false"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg></span>
+                    <span class="sb-ico sb-ico-stop" id="send-ico-stop" aria-hidden="true"><i class="stop-sq"></i></span>
                   </button>
                 </div>
               </div>
@@ -139,7 +140,7 @@
         <div class="search-head">
           <svg class="ic search-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
           <input id="search-input" type="text" dir="auto" placeholder="جستجو در گفتگوها…" autocomplete="off" spellcheck="false" aria-label="جستجو">
-          <button class="icon-btn sm" type="button" id="btn-search-clear" hidden title="پاک کردن" aria-label="پاک کردن" style="display:none"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+          <button class="icon-btn sm search-clear-btn" type="button" id="btn-search-clear" title="پاک کردن" aria-label="پاک کردن"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
         </div>
         <div class="search-body" id="search-body">
           <div class="search-label" id="search-label">گفتگوهای اخیر</div>
@@ -163,7 +164,7 @@
         <div class="modal-body">
           <div class="kv">
             <span>وضعیت سرویس</span>
-            <b><span class="sdot warn" data-health-dot style="display: inline-block; margin-inline-end: 8px;"></span><span data-health-label>در حال اتصال…</span></b>
+            <b class="kv-val"><span class="sdot warn" data-health-dot></span><span data-health-label>در حال اتصال…</span></b>
           </div>
           <div class="kv">
             <span>مدل چت</span>
@@ -173,18 +174,18 @@
             <span>مدل ریاضی</span>
             <b class="ltr">Unicollect Math Model</b>
           </div>
-          <div class="kv">
+          <div class="kv kv-copy">
             <span>کلید عمومی API</span>
-            <b class="mono" style="display: inline-flex; align-items: center; gap: 8px;">
+            <b class="mono kv-code-row">
               <code class="ltr" id="modal-pub-key">sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26</code>
-              <button class="icon-btn sm" type="button" id="btn-copy-modal-key" title="کپی کلید عمومی"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button>
+              <button class="icon-btn sm" type="button" id="btn-copy-modal-key" title="کپی کلید عمومی" aria-label="کپی کلید عمومی"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button>
             </b>
           </div>
-          <div class="kv">
+          <div class="kv kv-copy">
             <span>آدرس روتر (Base URL)</span>
-            <b class="mono" style="display: inline-flex; align-items: center; gap: 8px;">
+            <b class="mono kv-code-row">
               <code class="ltr" id="modal-router-url">/v1</code>
-              <button class="icon-btn sm" type="button" id="btn-copy-modal-router" title="کپی آدرس روتر"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button>
+              <button class="icon-btn sm" type="button" id="btn-copy-modal-router" title="کپی آدرس روتر" aria-label="کپی آدرس روتر"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button>
             </b>
           </div>
           <div class="kv">
@@ -218,6 +219,7 @@
     <!-- مودال تأیید حذف همه گفتگوها -->
     <div class="swal" id="confirm-modal" hidden style="display:none">
       <div class="swal-card s-danger" role="alertdialog" aria-modal="true" aria-labelledby="swal-t" aria-describedby="swal-d">
+        <div class="swal-glow" aria-hidden="true"></div>
         <h3 id="swal-t" class="swal-title">همه‌ی گفتگوها پاک شود؟</h3>
         <p id="swal-d" class="swal-text">تمام گفتگوهای ذخیره‌شده در این مرورگر برای همیشه حذف می‌شوند.</p>
         <div class="swal-btns">
@@ -231,6 +233,6 @@
   </div>
 </div>
 <noscript><p style="font-family:Vazirmatn,Tahoma,sans-serif;text-align:center;padding:40px">برای استفاده از پنل، جاوااسکریپت را روشن کنید. API همچنان در <a href="/api/v1">/api/v1</a> در دسترس است.</p></noscript>
-<script src="../assets/chat.js?v=bw23"></script>
+<script src="../assets/chat.js?v=bw27"></script>
 </body>
 </html>

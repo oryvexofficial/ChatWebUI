@@ -7,6 +7,14 @@
 
   const ROOT_PREFIX = document.body.getAttribute('data-root') || '';
   const DEFAULT_KEY = 'sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26';
+  const SPRING_EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
+
+  const ICONS = {
+    check: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>',
+    x: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>',
+    alert: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>',
+    info: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>'
+  };
 
   const state = {
     status: 'offline',
@@ -16,19 +24,41 @@
     routerModelId: 'unicollect-chat-mini'
   };
 
-  /* ---------- اعلان (Toast) ---------- */
+  function prefersReducedMotion() {
+    return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
+
+  /* ---------- بازخورد تیک کپی (Copy Checkmark Feedback) ---------- */
+  function flashCopyFeedback(btn, doneLabel) {
+    if (!btn) return;
+    if (btn._copyTimer) clearTimeout(btn._copyTimer);
+    if (!btn._origHtml) btn._origHtml = btn.innerHTML;
+    const svg = btn.querySelector('svg.ic');
+    const sp = btn.querySelector('span');
+    if (svg) svg.outerHTML = ICONS.check;
+    if (sp && doneLabel) sp.textContent = doneLabel;
+    btn.classList.add('is-copied');
+    btn._copyTimer = setTimeout(function () {
+      btn.classList.remove('is-copied');
+      if (btn._origHtml) btn.innerHTML = btn._origHtml;
+      btn._copyTimer = 0;
+    }, 1500);
+  }
+
+  /* ---------- اعلان (Toast IN + OUT) ---------- */
   function showToast(text, type) {
     const host = document.getElementById('toast-host');
     if (!host) return;
     const kind = type || 'success';
     const ms = 2600;
+    const iconKey = kind === 'error' ? 'x' : kind === 'warn' ? 'alert' : kind === 'info' ? 'info' : 'check';
     const t = document.createElement('div');
     t.className = 'toast t-' + kind;
     t.setAttribute('role', kind === 'error' ? 'alert' : 'status');
     t.innerHTML =
-      '<span class="toast-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>' +
+      '<span class="toast-ic">' + ICONS[iconKey] + '</span>' +
       '<span class="toast-text"></span>' +
-      '<button class="toast-x" type="button" aria-label="بستن"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>' +
+      '<button class="toast-x" type="button" aria-label="بستن">' + ICONS.x + '</button>' +
       '<span class="toast-bar" style="animation-duration:' + ms + 'ms"></span>';
     t.querySelector('.toast-text').textContent = text;
     const removeToast = function () {
@@ -36,7 +66,7 @@
       t.classList.add('closing');
       setTimeout(function () {
         if (t.parentNode) t.parentNode.removeChild(t);
-      }, 220);
+      }, prefersReducedMotion() ? 10 : 190);
     };
     const timer = setTimeout(removeToast, ms);
     t.querySelector('.toast-x').addEventListener('click', function () {
@@ -169,9 +199,11 @@
           });
           panels.forEach(function (p) {
             if (p.getAttribute('data-tab-panel') === targetIdx) {
-              p.removeAttribute('hidden'); p.style.display = '';
+              p.removeAttribute('hidden');
+              p.style.display = '';
             } else {
-              p.setAttribute('hidden', ''); p.style.display = 'none';
+              p.setAttribute('hidden', '');
+              p.style.display = 'none';
             }
           });
         });
@@ -184,13 +216,8 @@
           if (!activePanel) return;
           copyText(activePanel.innerText || activePanel.textContent).then(function (ok) {
             if (!ok) return;
-            const span = copyBtn.querySelector('span');
-            const orig = span ? span.textContent : 'کپی';
-            if (span) span.textContent = 'کپی شد';
+            flashCopyFeedback(copyBtn, 'کپی شد');
             showToast('کد در کلیپ‌بورد کپی شد');
-            setTimeout(function () {
-              if (span) span.textContent = orig;
-            }, 1500);
           });
         });
       }
@@ -202,7 +229,10 @@
     document.querySelectorAll('[data-copy-target="live-key"]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         copyText(state.publicKey || DEFAULT_KEY).then(function (ok) {
-          if (ok) showToast('کلید عمومی API کپی شد');
+          if (ok) {
+            flashCopyFeedback(btn, 'کپی شد');
+            showToast('کلید عمومی API کپی شد');
+          }
         });
       });
     });
@@ -213,7 +243,10 @@
         const target = sel ? document.querySelector(sel) : null;
         if (!target) return;
         copyText(target.innerText || target.textContent).then(function (ok) {
-          if (ok) showToast('آدرس در کلیپ‌بورد کپی شد');
+          if (ok) {
+            flashCopyFeedback(btn, 'کپی شد');
+            showToast('آدرس در کلیپ‌بورد کپی شد');
+          }
         });
       });
     });
@@ -225,39 +258,121 @@
         const id = btn.getAttribute('data-copy-anchor');
         const url = location.origin + location.pathname + '#' + id;
         copyText(url).then(function (ok) {
-          if (ok) showToast('لینک مسیر کپی شد');
+          if (ok) {
+            flashCopyFeedback(btn);
+            showToast('لینک مسیر کپی شد');
+          }
         });
       });
     });
   }
 
-  /* ---------- آکاردئون مسیرهای API و فهرست کناری (TOC) ---------- */
+  /* ---------- موبایل TOC (IN + OUT) ---------- */
+  function closeTocAnimated() {
+    const tocEl = document.querySelector('.toc');
+    const tocToggle = document.querySelector('[data-toc-toggle]');
+    if (!tocEl || !tocEl.classList.contains('open') || tocEl.classList.contains('closing')) return;
+    tocEl.classList.remove('open');
+    if (tocToggle) tocToggle.setAttribute('aria-expanded', 'false');
+    if (prefersReducedMotion()) return;
+    tocEl.classList.add('closing');
+    setTimeout(function () {
+      tocEl.classList.remove('closing');
+    }, 190);
+  }
+
+  /* ---------- آکاردئون مسیرهای API با انیمیشن ارتفاع (IN + OUT) و TOC ---------- */
   function initApiDocsPage() {
     const detailsList = Array.from(document.querySelectorAll('details.ep'));
     const countEl = document.getElementById('ep-open-count');
 
     function updateCount() {
       if (!countEl || !detailsList.length) return;
-      const openCount = detailsList.filter(function (d) { return d.open; }).length;
+      const openCount = detailsList.filter(function (d) { return d.open && !d.classList.contains('closing'); }).length;
       countEl.textContent = openCount.toLocaleString('fa-IR') + ' / ' + detailsList.length.toLocaleString('fa-IR') + ' باز';
       detailsList.forEach(function (d) {
-        d.classList.toggle('is-open', d.open);
+        d.classList.toggle('is-open', d.open && !d.classList.contains('closing'));
       });
     }
 
+    function openAccordionSmooth(d) {
+      if (!d) return;
+      if (d._accTimer) { clearTimeout(d._accTimer); d._accTimer = 0; }
+      d.classList.remove('closing');
+      if (d.open) { updateCount(); return; }
+      const inner = d.querySelector('.ep-inner');
+      d.open = true;
+      d.classList.add('is-open');
+      updateCount();
+      if (!inner || prefersReducedMotion()) return;
+      const targetH = inner.scrollHeight;
+      inner.style.overflow = 'hidden';
+      inner.style.height = '0px';
+      inner.style.opacity = '0';
+      inner.style.transform = 'translateY(-5px)';
+      inner.style.transition = 'none';
+      void inner.offsetHeight;
+      inner.style.transition = 'height 240ms ' + SPRING_EASE + ', opacity 200ms ease, transform 240ms ' + SPRING_EASE;
+      inner.style.height = targetH + 'px';
+      inner.style.opacity = '1';
+      inner.style.transform = 'translateY(0)';
+      d._accTimer = setTimeout(function () {
+        inner.style.height = '';
+        inner.style.overflow = '';
+        inner.style.opacity = '';
+        inner.style.transform = '';
+        inner.style.transition = '';
+        d._accTimer = 0;
+      }, 250);
+    }
+
+    function closeAccordionSmooth(d) {
+      if (!d || !d.open) return;
+      if (d._accTimer) { clearTimeout(d._accTimer); d._accTimer = 0; }
+      const inner = d.querySelector('.ep-inner');
+      if (!inner || prefersReducedMotion()) {
+        d.classList.remove('closing', 'is-open');
+        d.open = false;
+        updateCount();
+        return;
+      }
+      const startH = inner.getBoundingClientRect().height || inner.scrollHeight;
+      d.classList.add('closing');
+      d.classList.remove('is-open');
+      updateCount();
+      inner.style.overflow = 'hidden';
+      inner.style.height = startH + 'px';
+      inner.style.opacity = '1';
+      inner.style.transform = 'translateY(0)';
+      inner.style.transition = 'none';
+      void inner.offsetHeight;
+      inner.style.transition = 'height 210ms ' + SPRING_EASE + ', opacity 180ms ease, transform 210ms ' + SPRING_EASE;
+      inner.style.height = '0px';
+      inner.style.opacity = '0';
+      inner.style.transform = 'translateY(-5px)';
+      d._accTimer = setTimeout(function () {
+        d.classList.remove('closing');
+        d.open = false;
+        inner.style.height = '';
+        inner.style.overflow = '';
+        inner.style.opacity = '';
+        inner.style.transform = '';
+        inner.style.transition = '';
+        d._accTimer = 0;
+        updateCount();
+      }, 220);
+    }
+
     detailsList.forEach(function (d) {
-      d.addEventListener('toggle', updateCount);
       const sum = d.querySelector('summary');
       if (sum) {
         sum.addEventListener('click', function (e) {
+          if (e.target && e.target.closest('[data-copy-anchor]')) return;
+          e.preventDefault();
           if (d.open && !d.classList.contains('closing')) {
-            e.preventDefault();
-            d.classList.add('closing');
-            setTimeout(function () {
-              d.classList.remove('closing');
-              d.open = false;
-              updateCount();
-            }, 200);
+            closeAccordionSmooth(d);
+          } else {
+            openAccordionSmooth(d);
           }
         });
       }
@@ -268,9 +383,9 @@
       btn.addEventListener('click', function () {
         const mode = btn.getAttribute('data-ep-all');
         detailsList.forEach(function (d) {
-          d.open = mode === 'open';
+          if (mode === 'open') openAccordionSmooth(d);
+          else closeAccordionSmooth(d);
         });
-        updateCount();
       });
     });
 
@@ -298,7 +413,7 @@
           bodyTa.value = b;
         }
         if (consoleSec) {
-          consoleSec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          consoleSec.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'center' });
         }
       });
     });
@@ -346,7 +461,10 @@
           cmd += ' \\\n  -H "Content-Type: application/json" \\\n  -d \'' + bodyTa.value.trim() + '\'';
         }
         copyText(cmd).then(function (ok) {
-          if (ok) showToast('دستور curl کپی شد');
+          if (ok) {
+            flashCopyFeedback(curlBtn, 'کپی شد');
+            showToast('دستور curl کپی شد');
+          }
         });
       });
     }
@@ -356,9 +474,10 @@
       const parts = epSelect.value.split('|');
       const method = parts[0];
       const path = parts[1];
-      const base = state.baseUrl || (location.hostname.endsWith('github.io') ? '' : '');
+      const base = state.baseUrl || '';
       if (location.hostname.endsWith('github.io') && !base) {
-        outBox.removeAttribute('hidden'); outBox.style.display = '';
+        outBox.removeAttribute('hidden');
+        outBox.style.display = '';
         statusEl.textContent = 'سرویس آفلاین است';
         resPre.textContent = 'در حال حاضر آدرس تونل زنده‌ای در api/links.json ثبت نشده است.';
         return;
@@ -374,7 +493,8 @@
         headers['Content-Type'] = 'application/json';
         opts.body = bodyTa ? bodyTa.value : '{}';
       }
-      outBox.removeAttribute('hidden'); outBox.style.display = '';
+      outBox.removeAttribute('hidden');
+      outBox.style.display = '';
       statusEl.textContent = 'در حال ارسال درخواست…';
       resPre.textContent = '…';
       const t0 = performance.now();
@@ -408,7 +528,10 @@
     if (copyOutBtn && resPre) {
       copyOutBtn.addEventListener('click', function () {
         copyText(resPre.textContent).then(function (ok) {
-          if (ok) showToast('پاسخ کپی شد');
+          if (ok) {
+            flashCopyFeedback(copyOutBtn, 'کپی شد');
+            showToast('پاسخ کپی شد');
+          }
         });
       });
     }
@@ -416,15 +539,6 @@
     // موبایل TOC
     const tocToggle = document.querySelector('[data-toc-toggle]');
     const tocEl = document.querySelector('.toc');
-    function closeTocAnimated() {
-      if (!tocEl || !tocEl.classList.contains('open') || tocEl.classList.contains('closing')) return;
-      tocEl.classList.remove('open');
-      tocEl.classList.add('closing');
-      if (tocToggle) tocToggle.setAttribute('aria-expanded', 'false');
-      setTimeout(function () {
-        tocEl.classList.remove('closing');
-      }, 190);
-    }
     if (tocToggle && tocEl) {
       tocToggle.addEventListener('click', function () {
         if (tocEl.classList.contains('open')) {
@@ -446,8 +560,7 @@
         const id = a.getAttribute('data-toc-link');
         const target = id ? document.getElementById(id) : null;
         if (target && target.tagName === 'DETAILS') {
-          target.open = true;
-          updateCount();
+          openAccordionSmooth(target);
         }
         closeTocAnimated();
       });
@@ -468,13 +581,19 @@
     });
     function closeDrawerAnimated() {
       if (!drawer || drawer.hasAttribute('hidden') || drawer.classList.contains('closing')) return;
+      if (prefersReducedMotion()) {
+        drawer.classList.remove('closing');
+        drawer.setAttribute('hidden', '');
+        drawer.style.display = 'none';
+        return;
+      }
       drawer.classList.add('closing');
       drawer._closeTimer = setTimeout(function () {
         drawer.classList.remove('closing');
         drawer.setAttribute('hidden', '');
         drawer.style.display = 'none';
         drawer._closeTimer = 0;
-      }, 210);
+      }, 190);
     }
     document.querySelectorAll('[data-drawer-close]').forEach(function (btn) {
       btn.addEventListener('click', closeDrawerAnimated);
@@ -482,8 +601,7 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         closeDrawerAnimated();
-        const tocEl = document.querySelector('.toc.open');
-        if (tocEl) tocEl.classList.remove('open');
+        closeTocAnimated();
       }
     });
 
@@ -504,55 +622,54 @@
 
     document.querySelectorAll('[data-to-top]').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
       });
     });
   }
 
-
-  /* ---------- افکت‌های تعاملی (Tilt، Spotlight، Scroll-line، TOC Scroll-Spy) ---------- */
+  /* ---------- افکت‌های تعاملی (Tilt، Spotlight، Scroll-line، TOC Scroll-Spy، Scroll-Reveal) ---------- */
   function initInteractiveFX() {
-    const canHover = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    if (canHover) {
-      document.querySelectorAll(".tilt").forEach(function (card) {
-        card.addEventListener("mousemove", function (e) {
+    const canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (canHover && !prefersReducedMotion()) {
+      document.querySelectorAll('.tilt').forEach(function (card) {
+        card.addEventListener('mousemove', function (e) {
           const r = card.getBoundingClientRect();
           const x = (e.clientX - r.left) / Math.max(1, r.width) - 0.5;
           const y = (e.clientY - r.top) / Math.max(1, r.height) - 0.5;
-          card.style.transform = "perspective(1100px) rotateX(" + (-y * 10).toFixed(2) + "deg) rotateY(" + (x * 10).toFixed(2) + "deg)";
+          card.style.transform = 'perspective(1100px) rotateX(' + (-y * 8).toFixed(2) + 'deg) rotateY(' + (x * 8).toFixed(2) + 'deg)';
         });
-        card.addEventListener("mouseleave", function () {
-          card.style.transform = "perspective(1100px)";
+        card.addEventListener('mouseleave', function () {
+          card.style.transform = 'perspective(1100px)';
         });
       });
 
-      document.querySelectorAll(".spotlight").forEach(function (box) {
-        box.addEventListener("mousemove", function (e) {
+      document.querySelectorAll('.spotlight').forEach(function (box) {
+        box.addEventListener('mousemove', function (e) {
           const r = box.getBoundingClientRect();
-          box.style.setProperty("--mx", (e.clientX - r.left) + "px");
-          box.style.setProperty("--my", (e.clientY - r.top) + "px");
+          box.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+          box.style.setProperty('--my', (e.clientY - r.top) + 'px');
         });
       });
     }
 
-    const scrollBar = document.getElementById("scroll-line-bar");
-    const stepsWrap = document.querySelector(".steps-wrap");
+    const scrollBar = document.getElementById('scroll-line-bar');
+    const stepsWrap = document.querySelector('.steps-wrap');
     if (scrollBar && stepsWrap) {
       const updateStepsLine = function () {
         const r = stepsWrap.getBoundingClientRect();
         const vh = window.innerHeight || 800;
         const pct = Math.min(1, Math.max(0.08, (vh * 0.65 - r.top) / Math.max(1, r.height)));
-        scrollBar.style.transform = "scaleY(" + pct.toFixed(3) + ")";
+        scrollBar.style.transform = 'scaleY(' + pct.toFixed(3) + ')';
       };
-      window.addEventListener("scroll", updateStepsLine, { passive: true });
+      window.addEventListener('scroll', updateStepsLine, { passive: true });
       updateStepsLine();
     }
 
-    const tocLinks = Array.from(document.querySelectorAll("[data-toc-link]"));
-    const tocCur = document.getElementById("toc-cur");
+    const tocLinks = Array.from(document.querySelectorAll('[data-toc-link]'));
+    const tocCur = document.getElementById('toc-cur');
     if (tocLinks.length) {
       const sections = tocLinks.map(function (a) {
-        return { link: a, id: a.getAttribute("data-toc-link"), el: document.getElementById(a.getAttribute("data-toc-link")) };
+        return { link: a, id: a.getAttribute('data-toc-link'), el: document.getElementById(a.getAttribute('data-toc-link')) };
       }).filter(function (x) { return !!x.el; });
 
       const onScrollSpy = function () {
@@ -563,16 +680,29 @@
           if (top <= y) current = sections[i];
         }
         if (current) {
-          tocLinks.forEach(function (a) { a.classList.toggle("active", a === current.link); });
+          tocLinks.forEach(function (a) { a.classList.toggle('active', a === current.link); });
           if (tocCur) tocCur.textContent = current.id;
         }
       };
-      window.addEventListener("scroll", onScrollSpy, { passive: true });
+      window.addEventListener('scroll', onScrollSpy, { passive: true });
     }
-    if ('IntersectionObserver' in window) {
-      const reveals = document.querySelectorAll('.reveal:not(.in)');
-      if (reveals.length) {
+
+    // GPU-accelerated scroll-reveal with subtle sibling stagger
+    const reveals = Array.from(document.querySelectorAll('.reveal:not(.in)'));
+    if (reveals.length) {
+      if (prefersReducedMotion() || !('IntersectionObserver' in window)) {
+        reveals.forEach(function (r) { r.classList.add('in'); });
+      } else {
         document.documentElement.classList.add('js');
+        reveals.forEach(function (r) {
+          if (!r.style.getPropertyValue('--rd') && r.parentElement) {
+            const sibs = Array.from(r.parentElement.children).filter(function (c) { return c.classList.contains('reveal'); });
+            if (sibs.length > 1) {
+              const idx = sibs.indexOf(r);
+              r.style.setProperty('--rd', Math.min(idx * 55, 220) + 'ms');
+            }
+          }
+        });
         const io = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {

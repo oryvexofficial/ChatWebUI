@@ -13,9 +13,9 @@
   const MAX_TEXT = 8000;
   const MAX_HISTORY_TURNS = 16;
   const MAX_TA_H = 200;
-  const REQUEST_TIMEOUT_MS = 180000;
+  const REQUEST_TIMEOUT_MS = 300000;
 
-  const STEPS = ['خواندن پیام', 'مرور گفتگو', 'فکر کردن', 'نوشتن پاسخ'];
+  const STEPS = ['خواندن پیام', 'مرور گفتگو', 'تشخیص نوع درخواست و انتخاب مدل', 'فکر کردن', 'نوشتن پاسخ'];
   const PROMPTS = [
     'امروز چطور کمکت کنم؟',
     'چه کمکی از دستم برمیاد؟',
@@ -106,12 +106,64 @@
 
   function stripMarkdown(s) {
     return String(s || '')
+      .replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, '')
       .replace(/```[a-zA-Z0-9_+#.-]*\n?/g, '')
+      .replace(/\\[()\[\]]/g, '')
+      .replace(/\\(?:mathbb|mathrm|text|mathbf)\{([^{}]*)\}/g, '$1')
+      .replace(/\\in\b/g, '∈')
+      .replace(/\\notin\b/g, '∉')
+      .replace(/\\frac\{([^{}]*)\}\{([^{}]*)\}/g, '$1/$2')
       .replace(/\$\$([\s\S]+?)\$\$/g, '$1')
       .replace(/\$([^$\n]+)\$/g, '$1')
       .replace(/[*_`~=#>]/g, '')
       .replace(/\s+/g, ' ')
       .trim();
+  }
+
+  function splitThinkReply(rawText, extraReasoning) {
+    let src = String(rawText || '');
+    const thoughts = [];
+    if (extraReasoning && String(extraReasoning).trim()) {
+      thoughts.push(String(extraReasoning).trim());
+    }
+    let thinkingOpen = false;
+    // Extract closed <think>...</think> blocks
+    src = src.replace(/<think>([\s\S]*?)<\/think>/gi, function (_, body) {
+      if (body && body.trim()) thoughts.push(body.trim());
+      return '';
+    });
+    // Handle unclosed <think>... (while streaming or if model truncated inside <think>)
+    const openIdx = src.search(/<think>/i);
+    if (openIdx !== -1) {
+      const rest = src.slice(openIdx).replace(/^<think>/i, '').trim();
+      if (rest) thoughts.push(rest);
+      src = src.slice(0, openIdx);
+      thinkingOpen = true;
+    }
+    return {
+      think: thoughts.join('\n\n').trim(),
+      answer: src.trim(),
+      thinkingOpen: thinkingOpen
+    };
+  }
+
+  function renderThinkCardHtml(thinkText, isLiveOpen) {
+    if (!thinkText) return '';
+    const openCls = isLiveOpen ? ' open' : '';
+    const hiddenAttr = isLiveOpen ? '' : ' hidden style="display:none"';
+    const label = isLiveOpen ? 'در حال استدلال و تحلیل…' : 'فرآیند استدلال مدل';
+    return (
+      '<div class="think-card' + openCls + '" data-think-card>' +
+        '<button type="button" class="think-card-head" data-think-card-toggle aria-expanded="' + (isLiveOpen ? 'true' : 'false') + '">' +
+          '<span class="tc-dot' + (isLiveOpen ? ' live' : '') + '"></span>' +
+          '<span class="tc-title' + (isLiveOpen ? ' shiny' : '') + '">' + label + '</span>' +
+          '<span class="thinking-chev">' + ICONS.chevron + '</span>' +
+        '</button>' +
+        '<div class="think-card-body thought-steps-wrap"' + hiddenAttr + ' dir="auto">' +
+          renderMarkdown(thinkText) +
+        '</div>' +
+      '</div>'
+    );
   }
 
   function newId(prefix) {
@@ -275,6 +327,8 @@
     s = s.replace(/==([^=\n]+)==/g, '<mark class="md-mark">$1</mark>');
     // Keyboard keys [[Ctrl+K]]
     s = s.replace(/\[\[([^\]\n]{1,24})\]\]/g, '<kbd class="kbd md-kbd">$1</kbd>');
+    // Bold+Italic ***...***
+    s = s.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
     // Bold **...** or __...__
     s = s.replace(/\*\*([^*]+)\*\*|__([^_]+)__/g, function (_, a, b) { return '<strong>' + (a || b) + '</strong>'; });
     // Italic *...*
@@ -821,12 +875,15 @@
             '</div>' +
           '</div>';
       } else {
-        const bDir = textDir(m.reply);
+        const parsed = splitThinkReply(m.reply, m.reasoning);
+        const finalAns = parsed.answer || (parsed.think ? '> [!WARNING] پاسخ مدل در مرحله‌ی استدلال متوقف شد؛ می‌توانید روی «فرآیند استدلال مدل» بالا کلیک کنید یا دکمه‌ی تلاش مجدد را بزنید.' : m.reply);
+        const bDir = textDir(finalAns);
         html +=
           '<div class="msg bot">' +
             '<div class="bot-body">' +
               renderThoughtLineHtml(m.thinkingMs, m.steps, m.model, m.isMath) +
-              '<div class="md" dir="' + bDir + '">' + renderMarkdown(m.reply) + '</div>' +
+              renderThinkCardHtml(parsed.think, false) +
+              '<div class="md" dir="' + bDir + '">' + renderMarkdown(finalAns) + '</div>' +
               '<div class="actions">' +
                 '<button class="icon-btn sm" type="button" data-copy-bot="' + escapeHtml(m.id) + '" title="کپی پاسخ" aria-label="کپی پاسخ">' + ICONS.copy + '</button>' +
                 '<button class="icon-btn sm" type="button" data-redo-msg="' + escapeHtml(m.id) + '" title="پاسخ دوباره" aria-label="پاسخ دوباره">' + ICONS.refresh + '</button>' +
@@ -846,6 +903,18 @@
   function bindStreamEvents() {
     if (!el.stream) return;
     const active = getActiveThread();
+
+    el.stream.querySelectorAll('[data-think-card-toggle]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const card = btn.closest('[data-think-card]');
+        const body = card ? card.querySelector('.think-card-body') : null;
+        if (!card || !body) return;
+        const isOpen = card.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        if (isOpen) openAnimated(body);
+        else closeAnimated(body, 210);
+      });
+    });
 
     el.stream.querySelectorAll('[data-thought-toggle]').forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -871,7 +940,7 @@
       btn.addEventListener('click', function () {
         if (!active) return;
         const m = active.messages.find(function (x) { return x.id === btn.getAttribute('data-copy-bot'); });
-        if (m && m.reply) copyText(m.reply).then(function () { showToast('پاسخ کپی شد'); });
+        if (m && m.reply) { const clean = splitThinkReply(m.reply, m.reasoning).answer || m.reply; copyText(clean).then(function () { showToast('پاسخ کپی شد'); }); }
       });
     });
 
@@ -1064,22 +1133,24 @@
     return flat;
   }
 
-  function buildChatSteps(text, histTurns, timings, reply, error) {
+  function buildChatSteps(text, histTurns, timings, reply, error, modelName, isMath) {
     const s = function (ms) { return ms > 0 ? Math.round(ms) : undefined; };
     const words = (reply || '').trim().split(/\s+/).filter(Boolean).length;
+    const routeDetail = (modelName || 'Unicollect Chat Mini') + (isMath ? ' (ریاضی)' : ' (گفتگو)');
     const steps = [
       { label: STEPS[0], detail: fa(Array.from(text).length) + ' نویسه', ms: s(timings.d0) },
       { label: STEPS[1], detail: histTurns ? fa(histTurns) + ' پیام قبلی در حافظه' : 'گفتگوی تازه', ms: s(timings.d1) },
+      { label: STEPS[2], detail: routeDetail, ms: s(timings.routeMs || 120), state: 'done' },
       {
-        label: STEPS[2],
+        label: STEPS[3],
         detail: timings.first ? 'اولین واژه پس از ' + secs(timings.first - timings.t0) + ' ثانیه' : 'پاسخی نرسید',
-        ms: s((timings.first || timings.end) - timings.m2),
+        ms: s((timings.first || timings.end) - (timings.routedAt || timings.m2)),
         state: timings.first ? 'done' : 'error'
       }
     ];
     if (timings.first) {
       steps.push({
-        label: STEPS[3],
+        label: STEPS[4],
         detail: fa(words) + ' واژه' + (error ? ' · ارتباط قطع شد' : ''),
         ms: s(timings.end - timings.first),
         state: error ? 'error' : 'done'
@@ -1166,7 +1237,9 @@
     scrollToBottom(true);
 
     const t0 = performance.now();
-    const timings = { t0: t0, d0: 180, d1: 220, m2: t0 + 400, first: 0, end: 0 };
+    const timings = { t0: t0, d0: 160, d1: 180, m2: t0 + 340, routedAt: 0, routeMs: 0, first: 0, end: 0 };
+    let routedModel = '';
+    let routedIsMath = false;
     let phaseIdx = 0;
 
     const stepsBox = document.getElementById('pending-steps-box');
@@ -1198,11 +1271,13 @@
         timeLbl.textContent = fa(elapsedSec) + ' ثانیه';
       }
       if (phaseLbl) phaseLbl.textContent = STEPS[phaseIdx];
+      const routeDetail = routedModel ? (routedModel + (routedIsMath ? ' (ریاضی)' : ' (گفتگو)')) : 'در حال تشخیص با روتر هوشمند…';
       const liveSteps = [
         { label: STEPS[0], detail: charDetail, state: phaseIdx > 0 ? 'done' : 'active', ms: phaseIdx > 0 ? timings.d0 : now - t0 },
         { label: STEPS[1], detail: histDetail, state: phaseIdx > 1 ? 'done' : phaseIdx === 1 ? 'active' : 'wait', ms: phaseIdx > 1 ? timings.d1 : phaseIdx === 1 ? now - (t0 + timings.d0) : undefined },
-        { label: STEPS[2], detail: '', state: phaseIdx === 2 ? 'active' : 'wait', ms: phaseIdx === 2 ? now - timings.m2 : undefined },
-        { label: STEPS[3], detail: '', state: 'wait' }
+        { label: STEPS[2], detail: phaseIdx >= 2 ? routeDetail : '', state: phaseIdx > 2 ? 'done' : phaseIdx === 2 ? 'active' : 'wait', ms: phaseIdx > 2 ? (timings.routeMs || 120) : phaseIdx === 2 ? now - timings.m2 : undefined },
+        { label: STEPS[3], detail: '', state: phaseIdx === 3 ? 'active' : 'wait', ms: phaseIdx === 3 ? now - (timings.routedAt || timings.m2) : undefined },
+        { label: STEPS[4], detail: '', state: 'wait' }
       ];
       stepsBox.innerHTML = renderStepListHtml(liveSteps);
     }
@@ -1214,6 +1289,7 @@
     const timeoutId = setTimeout(function () { ctrl.abort(); }, REQUEST_TIMEOUT_MS);
 
     let reply = '';
+    let reasoningBuf = '';
     let usedModel = 'Unicollect Chat Mini';
     let usedMath = false;
     let displayedReply = '';
@@ -1233,8 +1309,11 @@
         streamQueue = chars.slice(step).join('');
       }
       if (mdEl) {
-        mdEl.dir = textDir(displayedReply);
-        mdEl.innerHTML = renderMarkdown(displayedReply) + '<span class="stream-dot"></span>';
+        const liveParsed = splitThinkReply(displayedReply, reasoningBuf);
+        const liveThinkHtml = renderThinkCardHtml(liveParsed.think, liveParsed.thinkingOpen || (!liveParsed.answer && !!liveParsed.think));
+        const ansHtml = liveParsed.answer ? renderMarkdown(liveParsed.answer) : '';
+        mdEl.dir = textDir(liveParsed.answer || liveParsed.think);
+        mdEl.innerHTML = liveThinkHtml + ansHtml + '<span class="stream-dot"></span>';
       }
       scrollToBottom(false);
     }
@@ -1288,11 +1367,37 @@
             if (payload === '[DONE]') break outer;
             let obj = null;
             try { obj = JSON.parse(payload); } catch (e) { continue; }
+            if (obj && obj.phase === 'routing') {
+              if (phaseIdx < 2) { phaseIdx = 2; updatePendingThinkingUI(); }
+              continue;
+            }
             if (obj && obj.meta && obj.meta.model) {
               usedModel = String(obj.meta.model);
               usedMath = !!obj.meta.is_math;
+              routedModel = usedModel;
+              routedIsMath = usedMath;
+              timings.routedAt = performance.now();
+              timings.routeMs = typeof obj.meta.route_ms === 'number' ? obj.meta.route_ms : Math.max(80, Math.round(timings.routedAt - timings.m2));
+              phaseIdx = 3;
+              updatePendingThinkingUI();
               const badgeEl = document.getElementById('pending-model-badge');
               if (badgeEl) badgeEl.innerHTML = renderModelBadgeHtml(usedModel, usedMath);
+              continue;
+            }
+            if (obj && typeof obj.r === 'string' && obj.r) {
+              if (!timings.first) {
+                timings.first = performance.now();
+                setHidden(thinkingEl, true);
+                setHidden(writingEl, false);
+                setHidden(mdEl, false);
+              }
+              reasoningBuf += obj.r;
+              if (mdEl) {
+                const liveParsed = splitThinkReply(displayedReply, reasoningBuf);
+                mdEl.dir = textDir(liveParsed.answer || liveParsed.think);
+                mdEl.innerHTML = renderThinkCardHtml(liveParsed.think, !liveParsed.answer) + (liveParsed.answer ? renderMarkdown(liveParsed.answer) : '') + '<span class="stream-dot"></span>';
+              }
+              scrollToBottom(false);
               continue;
             }
             if (obj && typeof obj.t === 'string' && obj.t) {
@@ -1364,17 +1469,18 @@
       return;
     }
 
-    const ok = !!reply;
+    const ok = !!(reply || reasoningBuf);
     const msgObj = {
       id: newId('msg'),
       text: text,
       ts: Date.now(),
-      reply: ok ? reply : null,
+      reply: ok ? (reply || '') : null,
+      reasoning: reasoningBuf || null,
       error: ok ? null : (error || 'پاسخی از سرور دریافت نشد'),
       model: usedModel,
       isMath: usedMath,
       thinkingMs: Math.round((timings.first || timings.end) - timings.t0),
-      steps: buildChatSteps(text, history.length / 2, timings, reply, ok ? (state.aborted ? 'متوقف شد' : error) : error)
+      steps: buildChatSteps(text, history.length / 2, timings, reply, ok ? (state.aborted ? 'متوقف شد' : error) : error, usedModel, usedMath)
     };
 
     thread.messages.push(msgObj);

@@ -203,3 +203,17 @@
 .model-tag:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ink-2)}
 .model-tag.is-math{color:var(--safe);background:var(--safe-soft);border-color:rgba(52,211,153,.32)}
 .model-tag.is-math:before{background:var(--safe)}
+
+
+/* === Collapsible Reasoning Think Card (IN + OUT) === */
+.think-card{margin:8px 0 14px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid var(--line);overflow:hidden;transition:border-color .2s ease}
+.think-card.open{border-color:var(--line-2)}
+.think-card-head{display:flex;align-items:center;gap:8px;width:100%;padding:9px 13px;font-size:13.5px;font-weight:600;color:var(--ink-2);text-align:start;transition:background-color .16s ease,color .16s ease}
+.think-card-head:hover{background:var(--hover);color:var(--ink)}
+.think-card-head .thinking-chev{margin-inline-start:auto;transition:transform .25s var(--ease-out)}
+.think-card.open .think-card-head .thinking-chev{transform:rotate(180deg)}
+.tc-dot{width:7px;height:7px;border-radius:50%;background:var(--ink-3);flex-shrink:0}
+.tc-dot.live{background:var(--safe);box-shadow:0 0 8px var(--safe);animation:core-breathe 1.2s ease-in-out infinite}
+.think-card-body{padding:10px 14px 12px;border-top:1px solid var(--line);font-size:13.5px;line-height:1.75;color:var(--ink-2);background:rgba(0,0,0,.18);max-height:320px;overflow-y:auto;scrollbar-width:thin}
+.think-card-body>:first-child{margin-top:0}
+.think-card-body>:last-child{margin-bottom:0}

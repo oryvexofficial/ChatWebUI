@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-4c8b1fe6c8737e36d35f53cca8fb7397",
-  "api_key": "sk-uc-4c8b1fe6c8737e36d35f53cca8fb7397",
+  "public_api_key": "sk-uc-e96455e14e0b63dcc3db2daa1f5edfa1",
+  "api_key": "sk-uc-e96455e14e0b63dcc3db2daa1f5edfa1",
   "status": "online",
   "online": true,
-  "base_url": "https://jewellery-currency-very-junior.trycloudflare.com",
+  "base_url": "https://kings-politics-acceptance-ears.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://jewellery-currency-very-junior.trycloudflare.com/v1",
-    "chat_completions": "https://jewellery-currency-very-junior.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://jewellery-currency-very-junior.trycloudflare.com/v1/models",
-    "native_chat": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/key",
-    "health": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://kings-politics-acceptance-ears.trycloudflare.com/v1",
+    "chat_completions": "https://kings-politics-acceptance-ears.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://kings-politics-acceptance-ears.trycloudflare.com/v1/models",
+    "native_chat": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/key",
+    "health": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://jewellery-currency-very-junior.trycloudflare.com",
-    "openai_base": "https://jewellery-currency-very-junior.trycloudflare.com/v1",
-    "chat_completions": "https://jewellery-currency-very-junior.trycloudflare.com/v1/chat/completions",
-    "api": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1",
-    "key": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/key",
-    "health": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/health",
-    "swagger": "https://jewellery-currency-very-junior.trycloudflare.com/docs",
-    "redoc": "https://jewellery-currency-very-junior.trycloudflare.com/redoc",
-    "openapi": "https://jewellery-currency-very-junior.trycloudflare.com/openapi.json",
-    "guide": "https://jewellery-currency-very-junior.trycloudflare.com/api-docs",
-    "public_key_page": "https://jewellery-currency-very-junior.trycloudflare.com/site/public-key/"
+    "panel": "https://kings-politics-acceptance-ears.trycloudflare.com",
+    "openai_base": "https://kings-politics-acceptance-ears.trycloudflare.com/v1",
+    "chat_completions": "https://kings-politics-acceptance-ears.trycloudflare.com/v1/chat/completions",
+    "api": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1",
+    "key": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/key",
+    "health": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/health",
+    "swagger": "https://kings-politics-acceptance-ears.trycloudflare.com/docs",
+    "redoc": "https://kings-politics-acceptance-ears.trycloudflare.com/redoc",
+    "openapi": "https://kings-politics-acceptance-ears.trycloudflare.com/openapi.json",
+    "guide": "https://kings-politics-acceptance-ears.trycloudflare.com/api-docs",
+    "public_key_page": "https://kings-politics-acceptance-ears.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/key"
+      "url": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://jewellery-currency-very-junior.trycloudflare.com/v1/chat/completions"
+      "url": "https://kings-politics-acceptance-ears.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://jewellery-currency-very-junior.trycloudflare.com/v1/models"
+      "url": "https://kings-politics-acceptance-ears.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat"
+      "url": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/generate"
+      "url": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1"
+      "url": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/health"
+      "url": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/ready"
+      "url": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/info"
+      "url": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/models"
+      "url": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/config"
+      "url": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/stats"
+      "url": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://jewellery-currency-very-junior.trycloudflare.com/health"
+      "url": "https://kings-politics-acceptance-ears.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T09:11:26+00:00",
-  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44494063131",
-  "run_number": 24,
+  "updated_at": "2026-11-19T09:13:11+00:00",
+  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44494064145",
+  "run_number": 26,
   "commit": "a5b1e76"
 }

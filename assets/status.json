@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9qZXdlbGxlcnktY3VycmVuY3ktdmVyeS1qdW5pb3IudHJ5Y2xvdWRmbGFyZS5jb20=",
-  "public_api_key": "sk-uc-4c8b1fe6c8737e36d35f53cca8fb7397",
-  "api_key": "sk-uc-4c8b1fe6c8737e36d35f53cca8fb7397",
+  "url_payload": "aHR0cHM6Ly9raW5ncy1wb2xpdGljcy1hY2NlcHRhbmNlLWVhcnMudHJ5Y2xvdWRmbGFyZS5jb20=",
+  "public_api_key": "sk-uc-e96455e14e0b63dcc3db2daa1f5edfa1",
+  "api_key": "sk-uc-e96455e14e0b63dcc3db2daa1f5edfa1",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://jewellery-currency-very-junior.trycloudflare.com/v1",
-    "chat_completions": "https://jewellery-currency-very-junior.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://jewellery-currency-very-junior.trycloudflare.com/v1/models",
-    "native_chat": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/key",
-    "health": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://kings-politics-acceptance-ears.trycloudflare.com/v1",
+    "chat_completions": "https://kings-politics-acceptance-ears.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://kings-politics-acceptance-ears.trycloudflare.com/v1/models",
+    "native_chat": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/key",
+    "health": "https://kings-politics-acceptance-ears.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T09:11:26+00:00",
-  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44494063131",
-  "run_number": 24,
+  "updated_at": "2026-11-19T09:13:11+00:00",
+  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44494064145",
+  "run_number": 26,
   "commit": "a5b1e76"
 }

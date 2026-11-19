@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-74ae342c861855d360cbffbc84d0070b",
-  "api_key": "sk-uc-74ae342c861855d360cbffbc84d0070b",
+  "public_api_key": "sk-uc-035439de44cf7d4dccc5d2f3182e875d",
+  "api_key": "sk-uc-035439de44cf7d4dccc5d2f3182e875d",
   "status": "online",
   "online": true,
-  "base_url": "https://vpn-museums-mixture-operational.trycloudflare.com",
+  "base_url": "https://legends-cliff-nick-strength.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://vpn-museums-mixture-operational.trycloudflare.com/v1",
-    "chat_completions": "https://vpn-museums-mixture-operational.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://vpn-museums-mixture-operational.trycloudflare.com/v1/models",
-    "native_chat": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/key",
-    "health": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://legends-cliff-nick-strength.trycloudflare.com/v1",
+    "chat_completions": "https://legends-cliff-nick-strength.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://legends-cliff-nick-strength.trycloudflare.com/v1/models",
+    "native_chat": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/key",
+    "health": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://vpn-museums-mixture-operational.trycloudflare.com",
-    "openai_base": "https://vpn-museums-mixture-operational.trycloudflare.com/v1",
-    "chat_completions": "https://vpn-museums-mixture-operational.trycloudflare.com/v1/chat/completions",
-    "api": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1",
-    "key": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/key",
-    "health": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/health",
-    "swagger": "https://vpn-museums-mixture-operational.trycloudflare.com/docs",
-    "redoc": "https://vpn-museums-mixture-operational.trycloudflare.com/redoc",
-    "openapi": "https://vpn-museums-mixture-operational.trycloudflare.com/openapi.json",
-    "guide": "https://vpn-museums-mixture-operational.trycloudflare.com/api-docs",
-    "public_key_page": "https://vpn-museums-mixture-operational.trycloudflare.com/site/public-key/"
+    "panel": "https://legends-cliff-nick-strength.trycloudflare.com",
+    "openai_base": "https://legends-cliff-nick-strength.trycloudflare.com/v1",
+    "chat_completions": "https://legends-cliff-nick-strength.trycloudflare.com/v1/chat/completions",
+    "api": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1",
+    "key": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/key",
+    "health": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/health",
+    "swagger": "https://legends-cliff-nick-strength.trycloudflare.com/docs",
+    "redoc": "https://legends-cliff-nick-strength.trycloudflare.com/redoc",
+    "openapi": "https://legends-cliff-nick-strength.trycloudflare.com/openapi.json",
+    "guide": "https://legends-cliff-nick-strength.trycloudflare.com/api-docs",
+    "public_key_page": "https://legends-cliff-nick-strength.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/key"
+      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/v1/chat/completions"
+      "url": "https://legends-cliff-nick-strength.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/v1/models"
+      "url": "https://legends-cliff-nick-strength.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/chat"
+      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/generate"
+      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1"
+      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/health"
+      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/ready"
+      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/info"
+      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/models"
+      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/config"
+      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/stats"
+      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/health"
+      "url": "https://legends-cliff-nick-strength.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T13:45:46+00:00",
+  "updated_at": "2026-11-19T13:47:52+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44536650971",
-  "run_number": 58,
+  "run_number": 60,
   "commit": "3708667"
 }

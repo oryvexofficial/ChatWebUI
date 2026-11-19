@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-6f32e3a30173c0a443087ad7cc5a0f48",
-  "api_key": "sk-uc-6f32e3a30173c0a443087ad7cc5a0f48",
+  "public_api_key": "sk-uc-5ee8b0ad74ade07ad032685d9ae863e9",
+  "api_key": "sk-uc-5ee8b0ad74ade07ad032685d9ae863e9",
   "status": "online",
   "online": true,
-  "base_url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com",
+  "base_url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1",
-    "chat_completions": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1/models",
-    "native_chat": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/key",
-    "health": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/v1",
+    "chat_completions": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/v1/models",
+    "native_chat": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/key",
+    "health": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://pray-effectiveness-recommended-airfare.trycloudflare.com",
-    "openai_base": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1",
-    "chat_completions": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1/chat/completions",
-    "api": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1",
-    "key": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/key",
-    "health": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/health",
-    "swagger": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/docs",
-    "redoc": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/redoc",
-    "openapi": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/openapi.json",
-    "guide": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api-docs",
-    "public_key_page": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/site/public-key/"
+    "panel": "https://bouquet-resulted-auburn-presenting.trycloudflare.com",
+    "openai_base": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/v1",
+    "chat_completions": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/v1/chat/completions",
+    "api": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1",
+    "key": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/key",
+    "health": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/health",
+    "swagger": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/docs",
+    "redoc": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/redoc",
+    "openapi": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/openapi.json",
+    "guide": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api-docs",
+    "public_key_page": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/key"
+      "url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1/chat/completions"
+      "url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1/models"
+      "url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/chat"
+      "url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/generate"
+      "url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1"
+      "url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/health"
+      "url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/ready"
+      "url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/info"
+      "url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/models"
+      "url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/config"
+      "url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/stats"
+      "url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/health"
+      "url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T11:36:11+00:00",
+  "updated_at": "2026-11-19T11:38:08+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44516279468",
-  "run_number": 42,
+  "run_number": 44,
   "commit": "9b7f8bf"
 }

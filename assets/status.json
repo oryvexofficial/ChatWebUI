@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9wcmF5LWVmZmVjdGl2ZW5lc3MtcmVjb21tZW5kZWQtYWlyZmFyZS50cnljbG91ZGZsYXJlLmNvbQ==",
-  "public_api_key": "sk-uc-6f32e3a30173c0a443087ad7cc5a0f48",
-  "api_key": "sk-uc-6f32e3a30173c0a443087ad7cc5a0f48",
+  "url_payload": "aHR0cHM6Ly9ib3VxdWV0LXJlc3VsdGVkLWF1YnVybi1wcmVzZW50aW5nLnRyeWNsb3VkZmxhcmUuY29t",
+  "public_api_key": "sk-uc-5ee8b0ad74ade07ad032685d9ae863e9",
+  "api_key": "sk-uc-5ee8b0ad74ade07ad032685d9ae863e9",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1",
-    "chat_completions": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1/models",
-    "native_chat": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/key",
-    "health": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/v1",
+    "chat_completions": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/v1/models",
+    "native_chat": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/key",
+    "health": "https://bouquet-resulted-auburn-presenting.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T11:36:11+00:00",
+  "updated_at": "2026-11-19T11:38:08+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44516279468",
-  "run_number": 42,
+  "run_number": 44,
   "commit": "9b7f8bf"
 }

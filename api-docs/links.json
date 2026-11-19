@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-fb15cef764e4893d1d4a29455a353492",
-  "api_key": "sk-uc-fb15cef764e4893d1d4a29455a353492",
+  "public_api_key": "sk-uc-6f32e3a30173c0a443087ad7cc5a0f48",
+  "api_key": "sk-uc-6f32e3a30173c0a443087ad7cc5a0f48",
   "status": "online",
   "online": true,
-  "base_url": "https://facilitate-blocks-count-petroleum.trycloudflare.com",
+  "base_url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://facilitate-blocks-count-petroleum.trycloudflare.com/v1",
-    "chat_completions": "https://facilitate-blocks-count-petroleum.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://facilitate-blocks-count-petroleum.trycloudflare.com/v1/models",
-    "native_chat": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/key",
-    "health": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1",
+    "chat_completions": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1/models",
+    "native_chat": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/key",
+    "health": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://facilitate-blocks-count-petroleum.trycloudflare.com",
-    "openai_base": "https://facilitate-blocks-count-petroleum.trycloudflare.com/v1",
-    "chat_completions": "https://facilitate-blocks-count-petroleum.trycloudflare.com/v1/chat/completions",
-    "api": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1",
-    "key": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/key",
-    "health": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/health",
-    "swagger": "https://facilitate-blocks-count-petroleum.trycloudflare.com/docs",
-    "redoc": "https://facilitate-blocks-count-petroleum.trycloudflare.com/redoc",
-    "openapi": "https://facilitate-blocks-count-petroleum.trycloudflare.com/openapi.json",
-    "guide": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api-docs",
-    "public_key_page": "https://facilitate-blocks-count-petroleum.trycloudflare.com/site/public-key/"
+    "panel": "https://pray-effectiveness-recommended-airfare.trycloudflare.com",
+    "openai_base": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1",
+    "chat_completions": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1/chat/completions",
+    "api": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1",
+    "key": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/key",
+    "health": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/health",
+    "swagger": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/docs",
+    "redoc": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/redoc",
+    "openapi": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/openapi.json",
+    "guide": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api-docs",
+    "public_key_page": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/key"
+      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://facilitate-blocks-count-petroleum.trycloudflare.com/v1/chat/completions"
+      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://facilitate-blocks-count-petroleum.trycloudflare.com/v1/models"
+      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/chat"
+      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/generate"
+      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1"
+      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/health"
+      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/ready"
+      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/info"
+      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/models"
+      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/config"
+      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://facilitate-blocks-count-petroleum.trycloudflare.com/api/v1/stats"
+      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://facilitate-blocks-count-petroleum.trycloudflare.com/health"
+      "url": "https://pray-effectiveness-recommended-airfare.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T11:23:15+00:00",
-  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44514333758",
-  "run_number": 40,
+  "updated_at": "2026-11-19T11:26:02+00:00",
+  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44514340452",
+  "run_number": 42,
   "commit": "238f55d"
 }

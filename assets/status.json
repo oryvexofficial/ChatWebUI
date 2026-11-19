@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9zdW5ueS1yZWNvbW1lbmRhdGlvbi1pbnZlc3RtZW50LWJhc2tldC50cnljbG91ZGZsYXJlLmNvbQ==",
-  "public_api_key": "sk-uc-cb0bf3af786e63981e3c398f0d40a7a9",
-  "api_key": "sk-uc-cb0bf3af786e63981e3c398f0d40a7a9",
+  "url_payload": "aHR0cHM6Ly9uYXBsZXMtcGFyYWRpc2UtbmVlZGxlLXdlZWQudHJ5Y2xvdWRmbGFyZS5jb20=",
+  "public_api_key": "sk-uc-3185a4acd243766858e07b9b4331b0c6",
+  "api_key": "sk-uc-3185a4acd243766858e07b9b4331b0c6",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://sunny-recommendation-investment-basket.trycloudflare.com/v1",
-    "chat_completions": "https://sunny-recommendation-investment-basket.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://sunny-recommendation-investment-basket.trycloudflare.com/v1/models",
-    "native_chat": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/key",
-    "health": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://naples-paradise-needle-weed.trycloudflare.com/v1",
+    "chat_completions": "https://naples-paradise-needle-weed.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://naples-paradise-needle-weed.trycloudflare.com/v1/models",
+    "native_chat": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/key",
+    "health": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T08:53:11+00:00",
-  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44491407924",
-  "run_number": 22,
+  "updated_at": "2026-11-19T08:54:37+00:00",
+  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44491369816",
+  "run_number": 23,
   "commit": "ecbc982"
 }

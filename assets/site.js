@@ -153,19 +153,29 @@
       } catch (e) {}
     }
 
-    // ۲. خواندن از api/links.json و assets/status.json (مخصوص GitHub Pages)
-    try {
-      const r = await fetch(ROOT_PREFIX + 'api/links.json' + bust, { cache: 'no-store' });
-      if (r.ok) {
-        const d = await r.json();
-        if (d) {
-          if (d.public_api_key) state.publicKey = d.public_api_key;
-          if (d.base_url) state.baseUrl = String(d.base_url).replace(/\/+$/, '');
-          if (d.status) state.status = d.status;
-          else if (state.baseUrl) state.status = 'online';
+    // ۲. خواندن از api/links.json و در صورت کش بودن CDN از raw.githubusercontent.com (مخصوص GitHub Pages)
+    const linkSources = [ROOT_PREFIX + 'api/links.json' + bust];
+    if (location.hostname.endsWith('.github.io')) {
+      const owner = location.hostname.replace(/\.github\.io$/i, '');
+      const segs = location.pathname.split('/').filter(Boolean);
+      const repo = segs.length ? segs[0] : (owner + '.github.io');
+      linkSources.push('https://raw.githubusercontent.com/' + owner + '/' + repo + '/gh-pages/api/links.json' + bust);
+    }
+    for (let i = 0; i < linkSources.length; i++) {
+      try {
+        const r = await fetch(linkSources[i], { cache: 'no-store' });
+        if (r.ok) {
+          const d = await r.json();
+          if (d) {
+            if (d.public_api_key) state.publicKey = d.public_api_key;
+            if (d.base_url) state.baseUrl = String(d.base_url).replace(/\/+$/, '');
+            if (d.status) state.status = d.status;
+            else if (state.baseUrl) state.status = 'online';
+            if (state.baseUrl && state.status === 'online') break;
+          }
         }
-      }
-    } catch (e) {}
+      } catch (e) {}
+    }
 
     try {
       const r2 = await fetch(ROOT_PREFIX + 'assets/status.json' + bust, { cache: 'no-store' });

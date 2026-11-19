@@ -1838,24 +1838,39 @@
   }
 
   /* ---------- تشخیص آدرس سرور و وضعیت سلامت ---------- */
-  async function resolveApiBase() {
+  function getRawGhPagesLinksUrl() {
+    if (!location.hostname.endsWith('.github.io')) return '';
+    const owner = location.hostname.replace(/\.github\.io$/i, '');
+    const segs = location.pathname.split('/').filter(Boolean);
+    const repo = segs.length && segs[0] !== 'chat' ? segs[0] : (owner + '.github.io');
+    return 'https://raw.githubusercontent.com/' + owner + '/' + repo + '/gh-pages/api/links.json';
+  }
+
+  async function resolveApiBase(forceRefresh) {
     if (!IS_PAGES) return '';
-    if (state.apiBase) return state.apiBase;
+    if (state.apiBase && !forceRefresh) return state.apiBase;
     const bust = '?t=' + Date.now();
-    try {
-      const r = await fetch(PAGES_ROOT + 'api/links.json' + bust, { cache: 'no-store' });
-      if (r.ok) {
-        const d = await r.json();
-        if (d) {
-          if (d.public_api_key) state.publicKey = d.public_api_key;
-          if (d.status) state.remoteStatus = d.status;
-          if (d.base_url) {
-            state.apiBase = String(d.base_url).replace(/\/+$/, '');
-            return state.apiBase;
+    const candidates = [PAGES_ROOT + 'api/links.json' + bust];
+    const rawUrl = getRawGhPagesLinksUrl();
+    if (rawUrl) candidates.push(rawUrl + bust);
+
+    for (let i = 0; i < candidates.length; i++) {
+      try {
+        const r = await fetch(candidates[i], { cache: 'no-store' });
+        if (r.ok) {
+          const d = await r.json();
+          if (d) {
+            if (d.public_api_key) state.publicKey = d.public_api_key;
+            if (d.status) state.remoteStatus = d.status;
+            if (d.base_url) {
+              state.apiBase = String(d.base_url).replace(/\/+$/, '');
+              return state.apiBase;
+            }
           }
         }
-      }
-    } catch (e) {}
+      } catch (e) {}
+    }
+
     try {
       const r2 = await fetch(PAGES_ROOT + 'assets/status.json' + bust, { cache: 'no-store' });
       if (r2.ok) {
@@ -1892,12 +1907,27 @@
 
   async function checkHealth() {
     try {
-      const base = await resolveApiBase();
+      let base = await resolveApiBase(IS_PAGES && !state.apiBase);
       if (IS_PAGES && !base) {
         state.health = state.remoteStatus === 'starting' ? { cls: 'warn', label: 'در حال راه‌اندازی سرور…', model: 'یونیکالکت چت مینی' } : { cls: 'bad', label: 'سرویس آفلاین است', model: 'یونیکالکت چت مینی' };
         applyHealthUI();
         return;
       }
+
+      let r = null;
+      try {
+        r = await fetch(base + '/health', { cache: 'no-store' });
+      } catch (firstErr) {
+        if (IS_PAGES) {
+          state.apiBase = '';
+          base = await resolveApiBase(true);
+          if (base) r = await fetch(base + '/health', { cache: 'no-store' });
+          else throw firstErr;
+        } else {
+          throw firstErr;
+        }
+      }
+
       try {
         const rk = await fetch(base + '/api/v1/key', { cache: 'no-store' });
         if (rk.ok) {
@@ -1907,13 +1937,13 @@
         }
       } catch (e) {}
 
-      const r = await fetch(base + '/health', { cache: 'no-store' });
       const d = await r.json();
       if (d && d.public_api_key) state.publicKey = d.public_api_key;
       state.health = d && d.status === 'ok'
         ? { cls: 'ok', label: 'آماده', model: 'یونیکالکت چت مینی' }
         : { cls: 'warn', label: 'مدل در حال بارگذاری…', model: 'یونیکالکت چت مینی' };
     } catch (e) {
+      if (IS_PAGES) state.apiBase = '';
       state.health = { cls: 'bad', label: 'سرور در دسترس نیست', model: 'یونیکالکت چت مینی' };
     }
     applyHealthUI();

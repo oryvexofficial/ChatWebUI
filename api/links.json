@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-1618a8485f491d420ec729b9b38a42bd",
-  "api_key": "sk-uc-1618a8485f491d420ec729b9b38a42bd",
+  "public_api_key": "sk-uc-70fce788131a42fe1e8100a92136986f",
+  "api_key": "sk-uc-70fce788131a42fe1e8100a92136986f",
   "status": "online",
   "online": true,
-  "base_url": "https://subsection-teaches-matter-accordingly.trycloudflare.com",
+  "base_url": "https://expired-knife-monster-rider.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/v1",
-    "chat_completions": "https://subsection-teaches-matter-accordingly.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://subsection-teaches-matter-accordingly.trycloudflare.com/v1/models",
-    "native_chat": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/key",
-    "health": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://expired-knife-monster-rider.trycloudflare.com/v1",
+    "chat_completions": "https://expired-knife-monster-rider.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://expired-knife-monster-rider.trycloudflare.com/v1/models",
+    "native_chat": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/key",
+    "health": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://subsection-teaches-matter-accordingly.trycloudflare.com",
-    "openai_base": "https://subsection-teaches-matter-accordingly.trycloudflare.com/v1",
-    "chat_completions": "https://subsection-teaches-matter-accordingly.trycloudflare.com/v1/chat/completions",
-    "api": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1",
-    "key": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/key",
-    "health": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/health",
-    "swagger": "https://subsection-teaches-matter-accordingly.trycloudflare.com/docs",
-    "redoc": "https://subsection-teaches-matter-accordingly.trycloudflare.com/redoc",
-    "openapi": "https://subsection-teaches-matter-accordingly.trycloudflare.com/openapi.json",
-    "guide": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api-docs",
-    "public_key_page": "https://subsection-teaches-matter-accordingly.trycloudflare.com/site/public-key/"
+    "panel": "https://expired-knife-monster-rider.trycloudflare.com",
+    "openai_base": "https://expired-knife-monster-rider.trycloudflare.com/v1",
+    "chat_completions": "https://expired-knife-monster-rider.trycloudflare.com/v1/chat/completions",
+    "api": "https://expired-knife-monster-rider.trycloudflare.com/api/v1",
+    "key": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/key",
+    "health": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/health",
+    "swagger": "https://expired-knife-monster-rider.trycloudflare.com/docs",
+    "redoc": "https://expired-knife-monster-rider.trycloudflare.com/redoc",
+    "openapi": "https://expired-knife-monster-rider.trycloudflare.com/openapi.json",
+    "guide": "https://expired-knife-monster-rider.trycloudflare.com/api-docs",
+    "public_key_page": "https://expired-knife-monster-rider.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/key"
+      "url": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/v1/chat/completions"
+      "url": "https://expired-knife-monster-rider.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/v1/models"
+      "url": "https://expired-knife-monster-rider.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/chat"
+      "url": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/generate"
+      "url": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1"
+      "url": "https://expired-knife-monster-rider.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/health"
+      "url": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/ready"
+      "url": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/info"
+      "url": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/models"
+      "url": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/config"
+      "url": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/stats"
+      "url": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/health"
+      "url": "https://expired-knife-monster-rider.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T06:33:49+00:00",
+  "updated_at": "2026-11-19T06:36:17+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44473056971",
-  "run_number": 16,
+  "run_number": 17,
   "commit": "9a53fde"
 }

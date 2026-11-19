@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9zdWJzZWN0aW9uLXRlYWNoZXMtbWF0dGVyLWFjY29yZGluZ2x5LnRyeWNsb3VkZmxhcmUuY29t",
-  "public_api_key": "sk-uc-1618a8485f491d420ec729b9b38a42bd",
-  "api_key": "sk-uc-1618a8485f491d420ec729b9b38a42bd",
+  "url_payload": "aHR0cHM6Ly9leHBpcmVkLWtuaWZlLW1vbnN0ZXItcmlkZXIudHJ5Y2xvdWRmbGFyZS5jb20=",
+  "public_api_key": "sk-uc-70fce788131a42fe1e8100a92136986f",
+  "api_key": "sk-uc-70fce788131a42fe1e8100a92136986f",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/v1",
-    "chat_completions": "https://subsection-teaches-matter-accordingly.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://subsection-teaches-matter-accordingly.trycloudflare.com/v1/models",
-    "native_chat": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/key",
-    "health": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://expired-knife-monster-rider.trycloudflare.com/v1",
+    "chat_completions": "https://expired-knife-monster-rider.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://expired-knife-monster-rider.trycloudflare.com/v1/models",
+    "native_chat": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/key",
+    "health": "https://expired-knife-monster-rider.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T06:33:49+00:00",
+  "updated_at": "2026-11-19T06:36:17+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44473056971",
-  "run_number": 16,
+  "run_number": 17,
   "commit": "9a53fde"
 }

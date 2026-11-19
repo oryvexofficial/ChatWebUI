@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-61bccf0cb9060872f422482f956f806b",
-  "api_key": "sk-uc-61bccf0cb9060872f422482f956f806b",
+  "public_api_key": "sk-uc-4ffa3f042adad541297313933dad586c",
+  "api_key": "sk-uc-4ffa3f042adad541297313933dad586c",
   "status": "online",
   "online": true,
-  "base_url": "https://contains-apparel-entity-reception.trycloudflare.com",
+  "base_url": "https://full-duties-sciences-wto.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://contains-apparel-entity-reception.trycloudflare.com/v1",
-    "chat_completions": "https://contains-apparel-entity-reception.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://contains-apparel-entity-reception.trycloudflare.com/v1/models",
-    "native_chat": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/key",
-    "health": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://full-duties-sciences-wto.trycloudflare.com/v1",
+    "chat_completions": "https://full-duties-sciences-wto.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://full-duties-sciences-wto.trycloudflare.com/v1/models",
+    "native_chat": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/key",
+    "health": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://contains-apparel-entity-reception.trycloudflare.com",
-    "openai_base": "https://contains-apparel-entity-reception.trycloudflare.com/v1",
-    "chat_completions": "https://contains-apparel-entity-reception.trycloudflare.com/v1/chat/completions",
-    "api": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1",
-    "key": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/key",
-    "health": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/health",
-    "swagger": "https://contains-apparel-entity-reception.trycloudflare.com/docs",
-    "redoc": "https://contains-apparel-entity-reception.trycloudflare.com/redoc",
-    "openapi": "https://contains-apparel-entity-reception.trycloudflare.com/openapi.json",
-    "guide": "https://contains-apparel-entity-reception.trycloudflare.com/api-docs",
-    "public_key_page": "https://contains-apparel-entity-reception.trycloudflare.com/site/public-key/"
+    "panel": "https://full-duties-sciences-wto.trycloudflare.com",
+    "openai_base": "https://full-duties-sciences-wto.trycloudflare.com/v1",
+    "chat_completions": "https://full-duties-sciences-wto.trycloudflare.com/v1/chat/completions",
+    "api": "https://full-duties-sciences-wto.trycloudflare.com/api/v1",
+    "key": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/key",
+    "health": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/health",
+    "swagger": "https://full-duties-sciences-wto.trycloudflare.com/docs",
+    "redoc": "https://full-duties-sciences-wto.trycloudflare.com/redoc",
+    "openapi": "https://full-duties-sciences-wto.trycloudflare.com/openapi.json",
+    "guide": "https://full-duties-sciences-wto.trycloudflare.com/api-docs",
+    "public_key_page": "https://full-duties-sciences-wto.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/key"
+      "url": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://contains-apparel-entity-reception.trycloudflare.com/v1/chat/completions"
+      "url": "https://full-duties-sciences-wto.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://contains-apparel-entity-reception.trycloudflare.com/v1/models"
+      "url": "https://full-duties-sciences-wto.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/chat"
+      "url": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/generate"
+      "url": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1"
+      "url": "https://full-duties-sciences-wto.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/health"
+      "url": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/ready"
+      "url": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/info"
+      "url": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/models"
+      "url": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/config"
+      "url": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/stats"
+      "url": "https://full-duties-sciences-wto.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://contains-apparel-entity-reception.trycloudflare.com/health"
+      "url": "https://full-duties-sciences-wto.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T10:26:10+00:00",
+  "updated_at": "2026-11-19T10:29:09+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44505590107",
-  "run_number": 36,
+  "run_number": 38,
   "commit": "77c77d0"
 }

@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-9b6f95ea3d1afc72b750d18cd197f44c",
-  "api_key": "sk-uc-9b6f95ea3d1afc72b750d18cd197f44c",
+  "public_api_key": "sk-uc-61bccf0cb9060872f422482f956f806b",
+  "api_key": "sk-uc-61bccf0cb9060872f422482f956f806b",
   "status": "online",
   "online": true,
-  "base_url": "https://faculty-probe-numbers-movie.trycloudflare.com",
+  "base_url": "https://contains-apparel-entity-reception.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://faculty-probe-numbers-movie.trycloudflare.com/v1",
-    "chat_completions": "https://faculty-probe-numbers-movie.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://faculty-probe-numbers-movie.trycloudflare.com/v1/models",
-    "native_chat": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/key",
-    "health": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://contains-apparel-entity-reception.trycloudflare.com/v1",
+    "chat_completions": "https://contains-apparel-entity-reception.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://contains-apparel-entity-reception.trycloudflare.com/v1/models",
+    "native_chat": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/key",
+    "health": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://faculty-probe-numbers-movie.trycloudflare.com",
-    "openai_base": "https://faculty-probe-numbers-movie.trycloudflare.com/v1",
-    "chat_completions": "https://faculty-probe-numbers-movie.trycloudflare.com/v1/chat/completions",
-    "api": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1",
-    "key": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/key",
-    "health": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/health",
-    "swagger": "https://faculty-probe-numbers-movie.trycloudflare.com/docs",
-    "redoc": "https://faculty-probe-numbers-movie.trycloudflare.com/redoc",
-    "openapi": "https://faculty-probe-numbers-movie.trycloudflare.com/openapi.json",
-    "guide": "https://faculty-probe-numbers-movie.trycloudflare.com/api-docs",
-    "public_key_page": "https://faculty-probe-numbers-movie.trycloudflare.com/site/public-key/"
+    "panel": "https://contains-apparel-entity-reception.trycloudflare.com",
+    "openai_base": "https://contains-apparel-entity-reception.trycloudflare.com/v1",
+    "chat_completions": "https://contains-apparel-entity-reception.trycloudflare.com/v1/chat/completions",
+    "api": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1",
+    "key": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/key",
+    "health": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/health",
+    "swagger": "https://contains-apparel-entity-reception.trycloudflare.com/docs",
+    "redoc": "https://contains-apparel-entity-reception.trycloudflare.com/redoc",
+    "openapi": "https://contains-apparel-entity-reception.trycloudflare.com/openapi.json",
+    "guide": "https://contains-apparel-entity-reception.trycloudflare.com/api-docs",
+    "public_key_page": "https://contains-apparel-entity-reception.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/key"
+      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://faculty-probe-numbers-movie.trycloudflare.com/v1/chat/completions"
+      "url": "https://contains-apparel-entity-reception.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://faculty-probe-numbers-movie.trycloudflare.com/v1/models"
+      "url": "https://contains-apparel-entity-reception.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/chat"
+      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/generate"
+      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1"
+      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/health"
+      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/ready"
+      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/info"
+      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/models"
+      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/config"
+      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/stats"
+      "url": "https://contains-apparel-entity-reception.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://faculty-probe-numbers-movie.trycloudflare.com/health"
+      "url": "https://contains-apparel-entity-reception.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T10:14:04+00:00",
-  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44503321436",
-  "run_number": 35,
+  "updated_at": "2026-11-19T10:14:29+00:00",
+  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44503327079",
+  "run_number": 36,
   "commit": "73e9a56"
 }

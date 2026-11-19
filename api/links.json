@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-035439de44cf7d4dccc5d2f3182e875d",
-  "api_key": "sk-uc-035439de44cf7d4dccc5d2f3182e875d",
+  "public_api_key": "sk-uc-d580cbf41e8d4bc9fd048d2716b879ba",
+  "api_key": "sk-uc-d580cbf41e8d4bc9fd048d2716b879ba",
   "status": "online",
   "online": true,
-  "base_url": "https://legends-cliff-nick-strength.trycloudflare.com",
+  "base_url": "https://filter-minnesota-players-carnival.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://legends-cliff-nick-strength.trycloudflare.com/v1",
-    "chat_completions": "https://legends-cliff-nick-strength.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://legends-cliff-nick-strength.trycloudflare.com/v1/models",
-    "native_chat": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/key",
-    "health": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://filter-minnesota-players-carnival.trycloudflare.com/v1",
+    "chat_completions": "https://filter-minnesota-players-carnival.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://filter-minnesota-players-carnival.trycloudflare.com/v1/models",
+    "native_chat": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/key",
+    "health": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://legends-cliff-nick-strength.trycloudflare.com",
-    "openai_base": "https://legends-cliff-nick-strength.trycloudflare.com/v1",
-    "chat_completions": "https://legends-cliff-nick-strength.trycloudflare.com/v1/chat/completions",
-    "api": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1",
-    "key": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/key",
-    "health": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/health",
-    "swagger": "https://legends-cliff-nick-strength.trycloudflare.com/docs",
-    "redoc": "https://legends-cliff-nick-strength.trycloudflare.com/redoc",
-    "openapi": "https://legends-cliff-nick-strength.trycloudflare.com/openapi.json",
-    "guide": "https://legends-cliff-nick-strength.trycloudflare.com/api-docs",
-    "public_key_page": "https://legends-cliff-nick-strength.trycloudflare.com/site/public-key/"
+    "panel": "https://filter-minnesota-players-carnival.trycloudflare.com",
+    "openai_base": "https://filter-minnesota-players-carnival.trycloudflare.com/v1",
+    "chat_completions": "https://filter-minnesota-players-carnival.trycloudflare.com/v1/chat/completions",
+    "api": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1",
+    "key": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/key",
+    "health": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/health",
+    "swagger": "https://filter-minnesota-players-carnival.trycloudflare.com/docs",
+    "redoc": "https://filter-minnesota-players-carnival.trycloudflare.com/redoc",
+    "openapi": "https://filter-minnesota-players-carnival.trycloudflare.com/openapi.json",
+    "guide": "https://filter-minnesota-players-carnival.trycloudflare.com/api-docs",
+    "public_key_page": "https://filter-minnesota-players-carnival.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/key"
+      "url": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://legends-cliff-nick-strength.trycloudflare.com/v1/chat/completions"
+      "url": "https://filter-minnesota-players-carnival.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://legends-cliff-nick-strength.trycloudflare.com/v1/models"
+      "url": "https://filter-minnesota-players-carnival.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/chat"
+      "url": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/generate"
+      "url": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1"
+      "url": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/health"
+      "url": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/ready"
+      "url": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/info"
+      "url": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/models"
+      "url": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/config"
+      "url": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://legends-cliff-nick-strength.trycloudflare.com/api/v1/stats"
+      "url": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://legends-cliff-nick-strength.trycloudflare.com/health"
+      "url": "https://filter-minnesota-players-carnival.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T18:01:05+00:00",
+  "updated_at": "2026-11-19T18:03:38+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44583277016",
-  "run_number": 60,
+  "run_number": 61,
   "commit": "a34d4bd"
 }

@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9maWx0ZXItbWlubmVzb3RhLXBsYXllcnMtY2Fybml2YWwudHJ5Y2xvdWRmbGFyZS5jb20=",
-  "public_api_key": "sk-uc-d580cbf41e8d4bc9fd048d2716b879ba",
-  "api_key": "sk-uc-d580cbf41e8d4bc9fd048d2716b879ba",
+  "url_payload": "aHR0cHM6Ly9wYXRpZW50cy1saWtlZC1kaWZmZXJlbmNlcy1zdWl0ZWQudHJ5Y2xvdWRmbGFyZS5jb20=",
+  "public_api_key": "sk-uc-0a803e1ead148cd7b476e087f2278e20",
+  "api_key": "sk-uc-0a803e1ead148cd7b476e087f2278e20",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://filter-minnesota-players-carnival.trycloudflare.com/v1",
-    "chat_completions": "https://filter-minnesota-players-carnival.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://filter-minnesota-players-carnival.trycloudflare.com/v1/models",
-    "native_chat": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/key",
-    "health": "https://filter-minnesota-players-carnival.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://patients-liked-differences-suited.trycloudflare.com/v1",
+    "chat_completions": "https://patients-liked-differences-suited.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://patients-liked-differences-suited.trycloudflare.com/v1/models",
+    "native_chat": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/key",
+    "health": "https://patients-liked-differences-suited.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T18:59:05+00:00",
+  "updated_at": "2026-11-19T19:01:43+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44593491944",
-  "run_number": 61,
+  "run_number": 63,
   "commit": "9c2bcc8"
 }

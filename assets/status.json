@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9jaGFtcGFnbmUtaGFyZHdvb2QtdHJhZGl0aW9ucy1yZWFsbS50cnljbG91ZGZsYXJlLmNvbQ==",
-  "public_api_key": "sk-uc-1c5507e30ae930afce1bcf8e230a9d67",
-  "api_key": "sk-uc-1c5507e30ae930afce1bcf8e230a9d67",
+  "url_payload": "aHR0cHM6Ly9zdWJzZWN0aW9uLXRlYWNoZXMtbWF0dGVyLWFjY29yZGluZ2x5LnRyeWNsb3VkZmxhcmUuY29t",
+  "public_api_key": "sk-uc-1618a8485f491d420ec729b9b38a42bd",
+  "api_key": "sk-uc-1618a8485f491d420ec729b9b38a42bd",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://champagne-hardwood-traditions-realm.trycloudflare.com/v1",
-    "chat_completions": "https://champagne-hardwood-traditions-realm.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://champagne-hardwood-traditions-realm.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://champagne-hardwood-traditions-realm.trycloudflare.com/v1/models",
-    "native_chat": "https://champagne-hardwood-traditions-realm.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://champagne-hardwood-traditions-realm.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://champagne-hardwood-traditions-realm.trycloudflare.com/api/v1/key",
-    "health": "https://champagne-hardwood-traditions-realm.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://subsection-teaches-matter-accordingly.trycloudflare.com/v1",
+    "chat_completions": "https://subsection-teaches-matter-accordingly.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://subsection-teaches-matter-accordingly.trycloudflare.com/v1/models",
+    "native_chat": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/key",
+    "health": "https://subsection-teaches-matter-accordingly.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T01:42:46+00:00",
+  "updated_at": "2026-11-19T01:46:15+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44438936476",
-  "run_number": 15,
+  "run_number": 16,
   "commit": "9a53fde"
 }

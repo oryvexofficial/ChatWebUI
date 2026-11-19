@@ -702,9 +702,12 @@
       return '\n\n@@BLOCK_' + idx + '@@\n\n';
     });
 
-    // 2. Display math blocks $$...$$ or \[...\]
-    working = working.replace(/\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]/g, function (_, m1, m2) {
+    // 2. Display math blocks $$...$$ or \[...\] (ignore non-math bracketed prose like \[شروع داستان\])
+    working = working.replace(/\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]/g, function (full, m1, m2) {
       const expr = (m1 != null ? m1 : m2).trim();
+      if (m2 != null && /[\u0600-\u06FF]/.test(expr) && !/[\\=+\-*/^_<>0-9∈∉⊂⊆∪∩∅∀∃∑∏∫√∞±×÷≤≥≠≈ℝℕℤℚℂ]/.test(expr)) {
+        return '[' + expr + ']';
+      }
       const idx = blocks.length;
       const encoded = encodeURIComponent(expr);
       blocks.push(

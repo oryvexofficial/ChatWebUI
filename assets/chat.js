@@ -841,9 +841,10 @@
   function renderMessages() {
     updateWelcomeState();
     if (!el.stream) return;
+    const existingPending = state.busy ? el.stream.querySelector('.turn.pending') : null;
     const active = getActiveThread();
     if (!active || !active.messages.length) {
-      el.stream.innerHTML = '';
+      if (!existingPending) el.stream.innerHTML = '';
       return;
     }
 
@@ -896,6 +897,7 @@
     });
 
     el.stream.innerHTML = html;
+    if (existingPending) el.stream.appendChild(existingPending);
     bindStreamEvents();
     requestAnimationFrame(function () { scrollToBottom(true); });
   }
@@ -1219,6 +1221,14 @@
           '<div id="pending-steps-box" class="thought-steps-wrap"></div>' +
         '</div>' +
         '<div class="writing-line" id="pending-writing" hidden><span class="shiny">در حال نوشتن پاسخ</span><span id="pending-model-badge"></span></div>' +
+        '<div class="think-card open" id="pending-think-card" hidden style="display:none">' +
+          '<button type="button" class="think-card-head" id="pending-think-head" aria-expanded="true">' +
+            '<span class="tc-dot live" id="pending-tc-dot"></span>' +
+            '<span class="tc-title shiny" id="pending-tc-title">در حال استدلال و تحلیل…</span>' +
+            '<span class="thinking-chev">' + ICONS.chevron + '</span>' +
+          '</button>' +
+          '<div class="think-card-body" id="pending-think-body" dir="auto"></div>' +
+        '</div>' +
         '<div class="md live" id="pending-md" hidden dir="rtl"></div>' +
       '</div></div>';
 
@@ -1261,6 +1271,63 @@
     const thinkingEl = document.getElementById('pending-thinking');
     const writingEl = document.getElementById('pending-writing');
     const mdEl = document.getElementById('pending-md');
+    const pThinkCard = document.getElementById('pending-think-card');
+    const pThinkHead = document.getElementById('pending-think-head');
+    const pThinkBody = document.getElementById('pending-think-body');
+    const pTcDot = document.getElementById('pending-tc-dot');
+    const pTcTitle = document.getElementById('pending-tc-title');
+    let pThinkShown = false;
+    let pThinkUserToggled = false;
+    let pThinkAutoCollapsed = false;
+    if (pThinkHead && pThinkCard && pThinkBody) {
+      pThinkHead.addEventListener('click', function () {
+        pThinkUserToggled = true;
+        const isOpen = pThinkCard.classList.toggle('open');
+        pThinkHead.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        if (isOpen) openAnimated(pThinkBody);
+        else closeAnimated(pThinkBody, 190);
+      });
+    }
+
+    function updateLivePendingDOM(currentReply, currentReasoning) {
+      const liveParsed = splitThinkReply(currentReply, currentReasoning);
+      if (liveParsed.think && pThinkCard && pThinkBody) {
+        if (!pThinkShown) {
+          pThinkShown = true;
+          openAnimated(pThinkCard);
+        }
+        pThinkBody.dir = textDir(liveParsed.think);
+        pThinkBody.innerHTML = renderMarkdown(liveParsed.think);
+        if (pThinkCard.classList.contains('open')) {
+          pThinkBody.scrollTop = pThinkBody.scrollHeight;
+        }
+        const stillThinking = liveParsed.thinkingOpen || !liveParsed.answer;
+        if (pTcDot) pTcDot.classList.toggle('live', stillThinking);
+        if (pTcTitle) {
+          pTcTitle.classList.toggle('shiny', stillThinking);
+          pTcTitle.textContent = stillThinking ? 'در حال استدلال و تحلیل…' : 'فرآیند استدلال مدل';
+        }
+        if (!stillThinking && !pThinkUserToggled && !pThinkAutoCollapsed) {
+          pThinkAutoCollapsed = true;
+          pThinkCard.classList.remove('open');
+          if (pThinkHead) pThinkHead.setAttribute('aria-expanded', 'false');
+          closeAnimated(pThinkBody, 190);
+        }
+      }
+      if (mdEl) {
+        if (liveParsed.answer) {
+          setHidden(mdEl, false);
+          mdEl.dir = textDir(liveParsed.answer);
+          mdEl.innerHTML = renderMarkdown(liveParsed.answer) + '<span class="stream-dot"></span>';
+        } else if (!liveParsed.think) {
+          setHidden(mdEl, false);
+          mdEl.innerHTML = '<span class="stream-dot"></span>';
+        } else {
+          setHidden(mdEl, true);
+        }
+      }
+      scrollToBottom(false);
+    }
 
     function updatePendingThinkingUI() {
       if (!stepsBox || timings.first) return;
@@ -1308,14 +1375,7 @@
         displayedReply += chars.slice(0, step).join('');
         streamQueue = chars.slice(step).join('');
       }
-      if (mdEl) {
-        const liveParsed = splitThinkReply(displayedReply, reasoningBuf);
-        const liveThinkHtml = renderThinkCardHtml(liveParsed.think, liveParsed.thinkingOpen || (!liveParsed.answer && !!liveParsed.think));
-        const ansHtml = liveParsed.answer ? renderMarkdown(liveParsed.answer) : '';
-        mdEl.dir = textDir(liveParsed.answer || liveParsed.think);
-        mdEl.innerHTML = liveThinkHtml + ansHtml + '<span class="stream-dot"></span>';
-      }
-      scrollToBottom(false);
+      updateLivePendingDOM(displayedReply, reasoningBuf);
     }
 
     function scheduleStreamPump() {
@@ -1392,12 +1452,7 @@
                 setHidden(mdEl, false);
               }
               reasoningBuf += obj.r;
-              if (mdEl) {
-                const liveParsed = splitThinkReply(displayedReply, reasoningBuf);
-                mdEl.dir = textDir(liveParsed.answer || liveParsed.think);
-                mdEl.innerHTML = renderThinkCardHtml(liveParsed.think, !liveParsed.answer) + (liveParsed.answer ? renderMarkdown(liveParsed.answer) : '') + '<span class="stream-dot"></span>';
-              }
-              scrollToBottom(false);
+              updateLivePendingDOM(displayedReply, reasoningBuf);
               continue;
             }
             if (obj && typeof obj.t === 'string' && obj.t) {
@@ -1555,7 +1610,7 @@
       if (wasActive) state.activeId = null;
       saveThreads();
       renderSidebar();
-      renderMessages();
+      if (wasActive || !state.busy) renderMessages();
 
       showToast('گفتگو حذف شد', {
         type: 'info',
@@ -1564,10 +1619,10 @@
           onClick: function () {
             state.enteringThreadId = removed.id;
             state.threads.splice(curIdx, 0, removed);
-            if (wasActive) state.activeId = removed.id;
+            if (wasActive && !state.busy) state.activeId = removed.id;
             saveThreads();
             renderSidebar();
-            renderMessages();
+            if (!state.busy) renderMessages();
           }
         }
       });

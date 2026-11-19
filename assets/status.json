@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9wcmVjaXNpb24taW52b2x2ZW1lbnQtem9uaW5nLXJvdXRlcnMudHJ5Y2xvdWRmbGFyZS5jb20=",
-  "public_api_key": "sk-uc-f01166f07dda28f84254860ce66870fd",
-  "api_key": "sk-uc-f01166f07dda28f84254860ce66870fd",
+  "url_payload": "aHR0cHM6Ly9zdW5ueS1yZWNvbW1lbmRhdGlvbi1pbnZlc3RtZW50LWJhc2tldC50cnljbG91ZGZsYXJlLmNvbQ==",
+  "public_api_key": "sk-uc-cb0bf3af786e63981e3c398f0d40a7a9",
+  "api_key": "sk-uc-cb0bf3af786e63981e3c398f0d40a7a9",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://precision-involvement-zoning-routers.trycloudflare.com/v1",
-    "chat_completions": "https://precision-involvement-zoning-routers.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://precision-involvement-zoning-routers.trycloudflare.com/v1/models",
-    "native_chat": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/key",
-    "health": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://sunny-recommendation-investment-basket.trycloudflare.com/v1",
+    "chat_completions": "https://sunny-recommendation-investment-basket.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://sunny-recommendation-investment-basket.trycloudflare.com/v1/models",
+    "native_chat": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/key",
+    "health": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T08:43:36+00:00",
+  "updated_at": "2026-11-19T08:45:01+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44490027370",
-  "run_number": 19,
+  "run_number": 22,
   "commit": "7f64bc6"
 }

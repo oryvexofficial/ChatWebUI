@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-f01166f07dda28f84254860ce66870fd",
-  "api_key": "sk-uc-f01166f07dda28f84254860ce66870fd",
+  "public_api_key": "sk-uc-cb0bf3af786e63981e3c398f0d40a7a9",
+  "api_key": "sk-uc-cb0bf3af786e63981e3c398f0d40a7a9",
   "status": "online",
   "online": true,
-  "base_url": "https://precision-involvement-zoning-routers.trycloudflare.com",
+  "base_url": "https://sunny-recommendation-investment-basket.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://precision-involvement-zoning-routers.trycloudflare.com/v1",
-    "chat_completions": "https://precision-involvement-zoning-routers.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://precision-involvement-zoning-routers.trycloudflare.com/v1/models",
-    "native_chat": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/key",
-    "health": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://sunny-recommendation-investment-basket.trycloudflare.com/v1",
+    "chat_completions": "https://sunny-recommendation-investment-basket.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://sunny-recommendation-investment-basket.trycloudflare.com/v1/models",
+    "native_chat": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/key",
+    "health": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://precision-involvement-zoning-routers.trycloudflare.com",
-    "openai_base": "https://precision-involvement-zoning-routers.trycloudflare.com/v1",
-    "chat_completions": "https://precision-involvement-zoning-routers.trycloudflare.com/v1/chat/completions",
-    "api": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1",
-    "key": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/key",
-    "health": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/health",
-    "swagger": "https://precision-involvement-zoning-routers.trycloudflare.com/docs",
-    "redoc": "https://precision-involvement-zoning-routers.trycloudflare.com/redoc",
-    "openapi": "https://precision-involvement-zoning-routers.trycloudflare.com/openapi.json",
-    "guide": "https://precision-involvement-zoning-routers.trycloudflare.com/api-docs",
-    "public_key_page": "https://precision-involvement-zoning-routers.trycloudflare.com/site/public-key/"
+    "panel": "https://sunny-recommendation-investment-basket.trycloudflare.com",
+    "openai_base": "https://sunny-recommendation-investment-basket.trycloudflare.com/v1",
+    "chat_completions": "https://sunny-recommendation-investment-basket.trycloudflare.com/v1/chat/completions",
+    "api": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1",
+    "key": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/key",
+    "health": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/health",
+    "swagger": "https://sunny-recommendation-investment-basket.trycloudflare.com/docs",
+    "redoc": "https://sunny-recommendation-investment-basket.trycloudflare.com/redoc",
+    "openapi": "https://sunny-recommendation-investment-basket.trycloudflare.com/openapi.json",
+    "guide": "https://sunny-recommendation-investment-basket.trycloudflare.com/api-docs",
+    "public_key_page": "https://sunny-recommendation-investment-basket.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/key"
+      "url": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://precision-involvement-zoning-routers.trycloudflare.com/v1/chat/completions"
+      "url": "https://sunny-recommendation-investment-basket.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://precision-involvement-zoning-routers.trycloudflare.com/v1/models"
+      "url": "https://sunny-recommendation-investment-basket.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/chat"
+      "url": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/generate"
+      "url": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1"
+      "url": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/health"
+      "url": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/ready"
+      "url": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/info"
+      "url": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/models"
+      "url": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/config"
+      "url": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://precision-involvement-zoning-routers.trycloudflare.com/api/v1/stats"
+      "url": "https://sunny-recommendation-investment-basket.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://precision-involvement-zoning-routers.trycloudflare.com/health"
+      "url": "https://sunny-recommendation-investment-basket.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T08:43:36+00:00",
+  "updated_at": "2026-11-19T08:45:01+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44490027370",
-  "run_number": 19,
+  "run_number": 22,
   "commit": "7f64bc6"
 }

@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9jb25zdWx0YW50LWluY2lkZW50LWh1bWFuLXNvbWVib2R5LnRyeWNsb3VkZmxhcmUuY29t",
-  "public_api_key": "sk-uc-19b5ae2b2120ed50192f71612fc51f41",
-  "api_key": "sk-uc-19b5ae2b2120ed50192f71612fc51f41",
+  "url_payload": "aHR0cHM6Ly9mcmllbmRzLW1hcmluYS1ncmFwaHMtY29sb24udHJ5Y2xvdWRmbGFyZS5jb20=",
+  "public_api_key": "sk-uc-40f533af8383a6e9bb309637dfc13c27",
+  "api_key": "sk-uc-40f533af8383a6e9bb309637dfc13c27",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://consultant-incident-human-somebody.trycloudflare.com/v1",
-    "chat_completions": "https://consultant-incident-human-somebody.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://consultant-incident-human-somebody.trycloudflare.com/v1/models",
-    "native_chat": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/key",
-    "health": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://friends-marina-graphs-colon.trycloudflare.com/v1",
+    "chat_completions": "https://friends-marina-graphs-colon.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://friends-marina-graphs-colon.trycloudflare.com/v1/models",
+    "native_chat": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/key",
+    "health": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T09:40:24+00:00",
+  "updated_at": "2026-11-19T09:43:03+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44498530843",
-  "run_number": 28,
+  "run_number": 30,
   "commit": "f066d2a"
 }

@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-19b5ae2b2120ed50192f71612fc51f41",
-  "api_key": "sk-uc-19b5ae2b2120ed50192f71612fc51f41",
+  "public_api_key": "sk-uc-40f533af8383a6e9bb309637dfc13c27",
+  "api_key": "sk-uc-40f533af8383a6e9bb309637dfc13c27",
   "status": "online",
   "online": true,
-  "base_url": "https://consultant-incident-human-somebody.trycloudflare.com",
+  "base_url": "https://friends-marina-graphs-colon.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://consultant-incident-human-somebody.trycloudflare.com/v1",
-    "chat_completions": "https://consultant-incident-human-somebody.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://consultant-incident-human-somebody.trycloudflare.com/v1/models",
-    "native_chat": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/key",
-    "health": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://friends-marina-graphs-colon.trycloudflare.com/v1",
+    "chat_completions": "https://friends-marina-graphs-colon.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://friends-marina-graphs-colon.trycloudflare.com/v1/models",
+    "native_chat": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/key",
+    "health": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://consultant-incident-human-somebody.trycloudflare.com",
-    "openai_base": "https://consultant-incident-human-somebody.trycloudflare.com/v1",
-    "chat_completions": "https://consultant-incident-human-somebody.trycloudflare.com/v1/chat/completions",
-    "api": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1",
-    "key": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/key",
-    "health": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/health",
-    "swagger": "https://consultant-incident-human-somebody.trycloudflare.com/docs",
-    "redoc": "https://consultant-incident-human-somebody.trycloudflare.com/redoc",
-    "openapi": "https://consultant-incident-human-somebody.trycloudflare.com/openapi.json",
-    "guide": "https://consultant-incident-human-somebody.trycloudflare.com/api-docs",
-    "public_key_page": "https://consultant-incident-human-somebody.trycloudflare.com/site/public-key/"
+    "panel": "https://friends-marina-graphs-colon.trycloudflare.com",
+    "openai_base": "https://friends-marina-graphs-colon.trycloudflare.com/v1",
+    "chat_completions": "https://friends-marina-graphs-colon.trycloudflare.com/v1/chat/completions",
+    "api": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1",
+    "key": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/key",
+    "health": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/health",
+    "swagger": "https://friends-marina-graphs-colon.trycloudflare.com/docs",
+    "redoc": "https://friends-marina-graphs-colon.trycloudflare.com/redoc",
+    "openapi": "https://friends-marina-graphs-colon.trycloudflare.com/openapi.json",
+    "guide": "https://friends-marina-graphs-colon.trycloudflare.com/api-docs",
+    "public_key_page": "https://friends-marina-graphs-colon.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/key"
+      "url": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://consultant-incident-human-somebody.trycloudflare.com/v1/chat/completions"
+      "url": "https://friends-marina-graphs-colon.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://consultant-incident-human-somebody.trycloudflare.com/v1/models"
+      "url": "https://friends-marina-graphs-colon.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/chat"
+      "url": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/generate"
+      "url": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1"
+      "url": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/health"
+      "url": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/ready"
+      "url": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/info"
+      "url": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/models"
+      "url": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/config"
+      "url": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://consultant-incident-human-somebody.trycloudflare.com/api/v1/stats"
+      "url": "https://friends-marina-graphs-colon.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://consultant-incident-human-somebody.trycloudflare.com/health"
+      "url": "https://friends-marina-graphs-colon.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T09:40:24+00:00",
+  "updated_at": "2026-11-19T09:43:03+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44498530843",
-  "run_number": 28,
+  "run_number": 30,
   "commit": "f066d2a"
 }

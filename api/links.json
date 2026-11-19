@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-3185a4acd243766858e07b9b4331b0c6",
-  "api_key": "sk-uc-3185a4acd243766858e07b9b4331b0c6",
+  "public_api_key": "sk-uc-4c8b1fe6c8737e36d35f53cca8fb7397",
+  "api_key": "sk-uc-4c8b1fe6c8737e36d35f53cca8fb7397",
   "status": "online",
   "online": true,
-  "base_url": "https://naples-paradise-needle-weed.trycloudflare.com",
+  "base_url": "https://jewellery-currency-very-junior.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://naples-paradise-needle-weed.trycloudflare.com/v1",
-    "chat_completions": "https://naples-paradise-needle-weed.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://naples-paradise-needle-weed.trycloudflare.com/v1/models",
-    "native_chat": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/key",
-    "health": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://jewellery-currency-very-junior.trycloudflare.com/v1",
+    "chat_completions": "https://jewellery-currency-very-junior.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://jewellery-currency-very-junior.trycloudflare.com/v1/models",
+    "native_chat": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/key",
+    "health": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://naples-paradise-needle-weed.trycloudflare.com",
-    "openai_base": "https://naples-paradise-needle-weed.trycloudflare.com/v1",
-    "chat_completions": "https://naples-paradise-needle-weed.trycloudflare.com/v1/chat/completions",
-    "api": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1",
-    "key": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/key",
-    "health": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/health",
-    "swagger": "https://naples-paradise-needle-weed.trycloudflare.com/docs",
-    "redoc": "https://naples-paradise-needle-weed.trycloudflare.com/redoc",
-    "openapi": "https://naples-paradise-needle-weed.trycloudflare.com/openapi.json",
-    "guide": "https://naples-paradise-needle-weed.trycloudflare.com/api-docs",
-    "public_key_page": "https://naples-paradise-needle-weed.trycloudflare.com/site/public-key/"
+    "panel": "https://jewellery-currency-very-junior.trycloudflare.com",
+    "openai_base": "https://jewellery-currency-very-junior.trycloudflare.com/v1",
+    "chat_completions": "https://jewellery-currency-very-junior.trycloudflare.com/v1/chat/completions",
+    "api": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1",
+    "key": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/key",
+    "health": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/health",
+    "swagger": "https://jewellery-currency-very-junior.trycloudflare.com/docs",
+    "redoc": "https://jewellery-currency-very-junior.trycloudflare.com/redoc",
+    "openapi": "https://jewellery-currency-very-junior.trycloudflare.com/openapi.json",
+    "guide": "https://jewellery-currency-very-junior.trycloudflare.com/api-docs",
+    "public_key_page": "https://jewellery-currency-very-junior.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/key"
+      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://naples-paradise-needle-weed.trycloudflare.com/v1/chat/completions"
+      "url": "https://jewellery-currency-very-junior.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://naples-paradise-needle-weed.trycloudflare.com/v1/models"
+      "url": "https://jewellery-currency-very-junior.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/chat"
+      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/generate"
+      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1"
+      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/health"
+      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/ready"
+      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/info"
+      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/models"
+      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/config"
+      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/stats"
+      "url": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://naples-paradise-needle-weed.trycloudflare.com/health"
+      "url": "https://jewellery-currency-very-junior.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T08:54:37+00:00",
-  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44491369816",
-  "run_number": 23,
+  "updated_at": "2026-11-19T08:55:33+00:00",
+  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44491407924",
+  "run_number": 24,
   "commit": "ecbc982"
 }

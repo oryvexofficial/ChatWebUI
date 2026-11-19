@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9uYXBsZXMtcGFyYWRpc2UtbmVlZGxlLXdlZWQudHJ5Y2xvdWRmbGFyZS5jb20=",
-  "public_api_key": "sk-uc-3185a4acd243766858e07b9b4331b0c6",
-  "api_key": "sk-uc-3185a4acd243766858e07b9b4331b0c6",
+  "url_payload": "aHR0cHM6Ly9qZXdlbGxlcnktY3VycmVuY3ktdmVyeS1qdW5pb3IudHJ5Y2xvdWRmbGFyZS5jb20=",
+  "public_api_key": "sk-uc-4c8b1fe6c8737e36d35f53cca8fb7397",
+  "api_key": "sk-uc-4c8b1fe6c8737e36d35f53cca8fb7397",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://naples-paradise-needle-weed.trycloudflare.com/v1",
-    "chat_completions": "https://naples-paradise-needle-weed.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://naples-paradise-needle-weed.trycloudflare.com/v1/models",
-    "native_chat": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/key",
-    "health": "https://naples-paradise-needle-weed.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://jewellery-currency-very-junior.trycloudflare.com/v1",
+    "chat_completions": "https://jewellery-currency-very-junior.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://jewellery-currency-very-junior.trycloudflare.com/v1/models",
+    "native_chat": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/key",
+    "health": "https://jewellery-currency-very-junior.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T08:54:37+00:00",
-  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44491369816",
-  "run_number": 23,
+  "updated_at": "2026-11-19T08:55:33+00:00",
+  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44491407924",
+  "run_number": 24,
   "commit": "ecbc982"
 }

@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-8ff414692e67602b5acf80309db7efe1",
-  "api_key": "sk-uc-8ff414692e67602b5acf80309db7efe1",
+  "public_api_key": "sk-uc-400c1c2f4e1f5f12c15103f24dab4948",
+  "api_key": "sk-uc-400c1c2f4e1f5f12c15103f24dab4948",
   "status": "online",
   "online": true,
-  "base_url": "https://compounds-far-elections-browsers.trycloudflare.com",
+  "base_url": "https://enough-shannon-mit-very.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://compounds-far-elections-browsers.trycloudflare.com/v1",
-    "chat_completions": "https://compounds-far-elections-browsers.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://compounds-far-elections-browsers.trycloudflare.com/v1/models",
-    "native_chat": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/key",
-    "health": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://enough-shannon-mit-very.trycloudflare.com/v1",
+    "chat_completions": "https://enough-shannon-mit-very.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://enough-shannon-mit-very.trycloudflare.com/v1/models",
+    "native_chat": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/key",
+    "health": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://compounds-far-elections-browsers.trycloudflare.com",
-    "openai_base": "https://compounds-far-elections-browsers.trycloudflare.com/v1",
-    "chat_completions": "https://compounds-far-elections-browsers.trycloudflare.com/v1/chat/completions",
-    "api": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1",
-    "key": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/key",
-    "health": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/health",
-    "swagger": "https://compounds-far-elections-browsers.trycloudflare.com/docs",
-    "redoc": "https://compounds-far-elections-browsers.trycloudflare.com/redoc",
-    "openapi": "https://compounds-far-elections-browsers.trycloudflare.com/openapi.json",
-    "guide": "https://compounds-far-elections-browsers.trycloudflare.com/api-docs",
-    "public_key_page": "https://compounds-far-elections-browsers.trycloudflare.com/site/public-key/"
+    "panel": "https://enough-shannon-mit-very.trycloudflare.com",
+    "openai_base": "https://enough-shannon-mit-very.trycloudflare.com/v1",
+    "chat_completions": "https://enough-shannon-mit-very.trycloudflare.com/v1/chat/completions",
+    "api": "https://enough-shannon-mit-very.trycloudflare.com/api/v1",
+    "key": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/key",
+    "health": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/health",
+    "swagger": "https://enough-shannon-mit-very.trycloudflare.com/docs",
+    "redoc": "https://enough-shannon-mit-very.trycloudflare.com/redoc",
+    "openapi": "https://enough-shannon-mit-very.trycloudflare.com/openapi.json",
+    "guide": "https://enough-shannon-mit-very.trycloudflare.com/api-docs",
+    "public_key_page": "https://enough-shannon-mit-very.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/key"
+      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://compounds-far-elections-browsers.trycloudflare.com/v1/chat/completions"
+      "url": "https://enough-shannon-mit-very.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://compounds-far-elections-browsers.trycloudflare.com/v1/models"
+      "url": "https://enough-shannon-mit-very.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/chat"
+      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/generate"
+      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1"
+      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/health"
+      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/ready"
+      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/info"
+      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/models"
+      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/config"
+      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://compounds-far-elections-browsers.trycloudflare.com/api/v1/stats"
+      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://compounds-far-elections-browsers.trycloudflare.com/health"
+      "url": "https://enough-shannon-mit-very.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T13:12:57+00:00",
+  "updated_at": "2026-11-19T13:15:15+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44531218668",
-  "run_number": 54,
+  "run_number": 56,
   "commit": "8b5dbbc"
 }

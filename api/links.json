@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-400c1c2f4e1f5f12c15103f24dab4948",
-  "api_key": "sk-uc-400c1c2f4e1f5f12c15103f24dab4948",
+  "public_api_key": "sk-uc-74ae342c861855d360cbffbc84d0070b",
+  "api_key": "sk-uc-74ae342c861855d360cbffbc84d0070b",
   "status": "online",
   "online": true,
-  "base_url": "https://enough-shannon-mit-very.trycloudflare.com",
+  "base_url": "https://vpn-museums-mixture-operational.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://enough-shannon-mit-very.trycloudflare.com/v1",
-    "chat_completions": "https://enough-shannon-mit-very.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://enough-shannon-mit-very.trycloudflare.com/v1/models",
-    "native_chat": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/key",
-    "health": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://vpn-museums-mixture-operational.trycloudflare.com/v1",
+    "chat_completions": "https://vpn-museums-mixture-operational.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://vpn-museums-mixture-operational.trycloudflare.com/v1/models",
+    "native_chat": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/key",
+    "health": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://enough-shannon-mit-very.trycloudflare.com",
-    "openai_base": "https://enough-shannon-mit-very.trycloudflare.com/v1",
-    "chat_completions": "https://enough-shannon-mit-very.trycloudflare.com/v1/chat/completions",
-    "api": "https://enough-shannon-mit-very.trycloudflare.com/api/v1",
-    "key": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/key",
-    "health": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/health",
-    "swagger": "https://enough-shannon-mit-very.trycloudflare.com/docs",
-    "redoc": "https://enough-shannon-mit-very.trycloudflare.com/redoc",
-    "openapi": "https://enough-shannon-mit-very.trycloudflare.com/openapi.json",
-    "guide": "https://enough-shannon-mit-very.trycloudflare.com/api-docs",
-    "public_key_page": "https://enough-shannon-mit-very.trycloudflare.com/site/public-key/"
+    "panel": "https://vpn-museums-mixture-operational.trycloudflare.com",
+    "openai_base": "https://vpn-museums-mixture-operational.trycloudflare.com/v1",
+    "chat_completions": "https://vpn-museums-mixture-operational.trycloudflare.com/v1/chat/completions",
+    "api": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1",
+    "key": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/key",
+    "health": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/health",
+    "swagger": "https://vpn-museums-mixture-operational.trycloudflare.com/docs",
+    "redoc": "https://vpn-museums-mixture-operational.trycloudflare.com/redoc",
+    "openapi": "https://vpn-museums-mixture-operational.trycloudflare.com/openapi.json",
+    "guide": "https://vpn-museums-mixture-operational.trycloudflare.com/api-docs",
+    "public_key_page": "https://vpn-museums-mixture-operational.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/key"
+      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://enough-shannon-mit-very.trycloudflare.com/v1/chat/completions"
+      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://enough-shannon-mit-very.trycloudflare.com/v1/models"
+      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/chat"
+      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/generate"
+      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1"
+      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/health"
+      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/ready"
+      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/info"
+      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/models"
+      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/config"
+      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://enough-shannon-mit-very.trycloudflare.com/api/v1/stats"
+      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://enough-shannon-mit-very.trycloudflare.com/health"
+      "url": "https://vpn-museums-mixture-operational.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T13:36:34+00:00",
-  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44535100349",
-  "run_number": 56,
+  "updated_at": "2026-11-19T13:38:36+00:00",
+  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44535111402",
+  "run_number": 58,
   "commit": "28974d2"
 }

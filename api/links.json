@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-14c1f081d9a5d3f66647846be0632210",
-  "api_key": "sk-uc-14c1f081d9a5d3f66647846be0632210",
+  "public_api_key": "sk-uc-f8452e76759c968eec6f1024eee905ba",
+  "api_key": "sk-uc-f8452e76759c968eec6f1024eee905ba",
   "status": "online",
   "online": true,
-  "base_url": "https://album-notebooks-tiles-alex.trycloudflare.com",
+  "base_url": "https://aids-founder-handling-elements.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://album-notebooks-tiles-alex.trycloudflare.com/v1",
-    "chat_completions": "https://album-notebooks-tiles-alex.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://album-notebooks-tiles-alex.trycloudflare.com/v1/models",
-    "native_chat": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/key",
-    "health": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://aids-founder-handling-elements.trycloudflare.com/v1",
+    "chat_completions": "https://aids-founder-handling-elements.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://aids-founder-handling-elements.trycloudflare.com/v1/models",
+    "native_chat": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/key",
+    "health": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://album-notebooks-tiles-alex.trycloudflare.com",
-    "openai_base": "https://album-notebooks-tiles-alex.trycloudflare.com/v1",
-    "chat_completions": "https://album-notebooks-tiles-alex.trycloudflare.com/v1/chat/completions",
-    "api": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1",
-    "key": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/key",
-    "health": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/health",
-    "swagger": "https://album-notebooks-tiles-alex.trycloudflare.com/docs",
-    "redoc": "https://album-notebooks-tiles-alex.trycloudflare.com/redoc",
-    "openapi": "https://album-notebooks-tiles-alex.trycloudflare.com/openapi.json",
-    "guide": "https://album-notebooks-tiles-alex.trycloudflare.com/api-docs",
-    "public_key_page": "https://album-notebooks-tiles-alex.trycloudflare.com/site/public-key/"
+    "panel": "https://aids-founder-handling-elements.trycloudflare.com",
+    "openai_base": "https://aids-founder-handling-elements.trycloudflare.com/v1",
+    "chat_completions": "https://aids-founder-handling-elements.trycloudflare.com/v1/chat/completions",
+    "api": "https://aids-founder-handling-elements.trycloudflare.com/api/v1",
+    "key": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/key",
+    "health": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/health",
+    "swagger": "https://aids-founder-handling-elements.trycloudflare.com/docs",
+    "redoc": "https://aids-founder-handling-elements.trycloudflare.com/redoc",
+    "openapi": "https://aids-founder-handling-elements.trycloudflare.com/openapi.json",
+    "guide": "https://aids-founder-handling-elements.trycloudflare.com/api-docs",
+    "public_key_page": "https://aids-founder-handling-elements.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/key"
+      "url": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://album-notebooks-tiles-alex.trycloudflare.com/v1/chat/completions"
+      "url": "https://aids-founder-handling-elements.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://album-notebooks-tiles-alex.trycloudflare.com/v1/models"
+      "url": "https://aids-founder-handling-elements.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/chat"
+      "url": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/generate"
+      "url": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1"
+      "url": "https://aids-founder-handling-elements.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/health"
+      "url": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/ready"
+      "url": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/info"
+      "url": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/models"
+      "url": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/config"
+      "url": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/stats"
+      "url": "https://aids-founder-handling-elements.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://album-notebooks-tiles-alex.trycloudflare.com/health"
+      "url": "https://aids-founder-handling-elements.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T12:52:32+00:00",
-  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44527523770",
-  "run_number": 51,
+  "updated_at": "2026-11-19T12:53:08+00:00",
+  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44527536605",
+  "run_number": 52,
   "commit": "eee1669"
 }

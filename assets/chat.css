@@ -231,3 +231,33 @@
 .think-card-body::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.35)}
 
 .m-box{display:inline-block;padding:2px 8px;border:1.5px solid currentColor;border-radius:6px;margin:0 2px}
+
+
+/* Stacked Big Math Operators (∏, ∑, ∫, lim) */
+.md .math-block{direction:ltr;unicode-bidi:isolate}
+.m-op{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;vertical-align:middle;line-height:1;margin:0 6px;font-style:normal}
+.m-op .m-sym{font-size:1.75em;line-height:.95;font-weight:400}
+.m-op .m-sym.m-lim{font-size:1.05em;font-family:var(--font);font-weight:600}
+.m-op .m-top,.m-op .m-bot{font-size:.58em;line-height:1.25;font-style:italic;white-space:nowrap}
+.m-op .m-top{margin-bottom:2px}
+.m-op .m-bot{margin-top:2px}
+
+
+/* === Complete LaTeX Environments & Nested Markdown Styles === */
+.m-cases{display:inline-flex;align-items:center;border-left:2.5px solid currentColor;border-radius:10px 0 0 10px;padding:3px 0 3px 10px;margin:0 4px;font-style:normal}
+.m-cases table,.m-align table{border-collapse:collapse;width:auto}
+.m-cases td,.m-align td{border:0!important;padding:2px 8px!important;text-align:left!important}
+.m-align{display:inline-block;vertical-align:middle;font-style:normal}
+.m-binom{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;padding:0 7px;margin:0 3px;border-left:1.8px solid currentColor;border-right:1.8px solid currentColor;border-radius:10px;line-height:1.15;font-style:normal}
+.m-binom .m-num{border-bottom:0;padding:0 2px}
+.m-binom .m-den{padding:0 2px}
+.m-tilde{position:relative;display:inline-block}
+.m-tilde:before{content:"~";position:absolute;top:-.65em;left:0;right:0;text-align:center;font-size:.8em;font-style:normal}
+.m-ubar{border-bottom:1.5px solid currentColor;padding-bottom:1px}
+.m-bf{font-style:normal;font-weight:700}
+.m-cal{font-family:"Brush Script MT","Segoe Script",cursive;font-style:normal}
+.m-deg{font-size:.65em;margin-inline-end:1px;vertical-align:super}
+.m-mat-V{border-left:3px double currentColor;border-right:3px double currentColor;border-radius:0}
+.m-mat-B{border-left:2px solid currentColor;border-right:2px solid currentColor;border-radius:14px}
+.md li.li-nested{margin-inline-start:1.4em;list-style-type:circle}
+.md h5,.md h6{font-size:15px;margin:1em 0 .4em;color:var(--ink-2)}

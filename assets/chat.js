@@ -277,62 +277,313 @@
     URL.revokeObjectURL(url);
   }
 
-  /* ---------- موتور رندر مارک‌داون و فرمول ریاضی پیشرفته (Vanilla JS) ---------- */
-  const TEX_RULES = [
-    [/\\(?:d|t)?frac\{([^{}]*)\}\{([^{}]*)\}/g, '<span class="m-frac"><span class="m-num">$1</span><span class="m-den">$2</span></span>'],
-    [/\\sqrt\[([^\]]+)\]\{([^{}]*)\}/g, '<span class="m-root"><sup>$1</sup>√<span class="m-rad">$2</span></span>'],
-    [/\\sqrt\{([^{}]*)\}/g, '<span class="m-root">√<span class="m-rad">$1</span></span>'],
-    [/\\vec\{([^{}]*)\}/g, '<span class="m-vec">$1</span>'],
-    [/\\hat\{([^{}]*)\}/g, '<span class="m-hat">$1</span>'],
-    [/\\overline\{([^{}]*)\}|\\bar\{([^{}]*)\}/g, '<span class="m-bar">$1$2</span>'],
-    [/\\iiint\b/g, '∭'], [/\\iint\b/g, '∬'], [/\\oint\b/g, '∮'], [/\\int\b/g, '∫'], [/\\sum\b/g, '∑'], [/\\prod\b/g, '∏'], [/\\infty\b/g, '∞'],
-    [/\\boxed\{([^{}]*)\}/g, '<span class="m-box">$1</span>'],
-    [/\\pi/g, 'π'], [/\\alpha/g, 'α'], [/\\beta/g, 'β'], [/\\gamma/g, 'γ'], [/\\Gamma/g, 'Γ'],
-    [/\\delta/g, 'δ'], [/\\Delta/g, 'Δ'], [/\\epsilon|\\varepsilon/g, 'ε'], [/\\zeta/g, 'ζ'], [/\\eta/g, 'η'],
-    [/\\theta|\\vartheta/g, 'θ'], [/\\Theta/g, 'Θ'], [/\\lambda/g, 'λ'], [/\\Lambda/g, 'Λ'], [/\\mu/g, 'μ'],
-    [/\\nu/g, 'ν'], [/\\xi/g, 'ξ'], [/\\rho/g, 'ρ'], [/\\sigma/g, 'σ'], [/\\Sigma/g, 'Σ'], [/\\tau/g, 'τ'],
-    [/\\phi|\\varphi/g, 'φ'], [/\\Phi/g, 'Φ'], [/\\chi/g, 'χ'], [/\\psi/g, 'ψ'], [/\\Psi/g, 'Ψ'],
-    [/\\omega/g, 'ω'], [/\\Omega/g, 'Ω'],
-    [/\\times/g, '×'], [/\\cdot|\\bullet/g, '·'], [/\\div/g, '÷'], [/\\pm/g, '±'], [/\\mp/g, '∓'],
-    [/\\leqslant\b|\\leq\b|\\le\b/g, '≤'], [/\\geqslant\b|\\geq\b|\\ge\b/g, '≥'], [/\\neq\b|\\ne\b/g, '≠'], [/\\approx\b/g, '≈'],
-    [/\\equiv\b/g, '≡'], [/\\cong\b/g, '≅'], [/\\sim\b/g, '∼'], [/\\propto\b/g, '∝'], [/\\ll\b/g, '≪'], [/\\gg\b/g, '≫'],
-    [/\\Leftrightarrow\b|\\leftrightarrow\b|\\iff\b/g, '⇔'], [/\\Rightarrow\b|\\implies\b/g, '⇒'], [/\\Leftarrow\b/g, '⇐'],
-    [/\\rightarrow\b|\\to\b/g, '→'], [/\\leftarrow\b/g, '←'], [/\\mapsto\b/g, '↦'],
-    [/\\notin\b/g, '∉'], [/\\in\b/g, '∈'], [/\\subseteq\b/g, '⊆'], [/\\subset\b/g, '⊂'], [/\\supseteq\b/g, '⊇'], [/\\supset\b/g, '⊃'],
-    [/\\cup\b/g, '∪'], [/\\cap\b/g, '∩'], [/\\cdots\b|\\ldots\b|\\dots\b/g, '…'],
-    [/\\emptyset|\\varnothing/g, '∅'], [/\\forall/g, '∀'], [/\\exists/g, '∃'], [/\\neg|\\lnot/g, '¬'],
-    [/\\land|\\wedge/g, '∧'], [/\\lor|\\vee/g, '∨'], [/\\therefore/g, '∴'], [/\\because/g, '∵'],
-    [/\\partial/g, '∂'], [/\\nabla/g, '∇'], [/\\degree|\^\\circ/g, '°'], [/\\angle/g, '∠'], [/\\perp/g, '⊥'], [/\\parallel/g, '∥'],
-    [/\\mathbb\{R\}/g, 'ℝ'], [/\\mathbb\{N\}/g, 'ℕ'], [/\\mathbb\{Z\}/g, 'ℤ'], [/\\mathbb\{Q\}/g, 'ℚ'], [/\\mathbb\{C\}/g, 'ℂ'],
-    [/\\(?:sin|cos|tan|cot|sec|csc|log|ln|exp|lim|max|min|det|gcd|mod)/g, function (m) { return '<span class="m-fn">' + m.slice(1) + '</span>'; }],
-    [/\\,|\\;|\\:|\\!|\\quad|\\qquad/g, ' '],
-    [/\\left|\\right/g, ''],
-    [/\\(?:text|mathrm|mathbf|operatorname|textrm)\{([^{}]*)\}/g, '<span class="m-txt">$1</span>']
-  ];
-
-  function formatTexHtml(rawExpr) {
-    let t = escapeHtml(String(rawExpr || '').trim());
-    // Matrices (pmatrix / bmatrix / vmatrix)
-    t = t.replace(/\\begin\{([pbv]?)matrix\}([\s\S]*?)\\end\{\1matrix\}/g, function (_, kind, body) {
-      const rows = body.trim().split(/\\\\/).map(function (r) {
-        const cols = r.split('&').map(function (c) { return '<td>' + formatTexHtml(c) + '</td>'; }).join('');
-        return '<tr>' + cols + '</tr>';
-      }).join('');
-      const cls = kind === 'b' ? 'm-mat m-mat-b' : kind === 'v' ? 'm-mat m-mat-v' : 'm-mat m-mat-p';
-      return '<span class="' + cls + '"><table><tbody>' + rows + '</tbody></table></span>';
-    });
-    // Repeat fraction/root replacement twice to handle one level of nesting
-    for (let pass = 0; pass < 2; pass++) {
-      for (let i = 0; i < TEX_RULES.length; i++) {
-        t = t.replace(TEX_RULES[i][0], TEX_RULES[i][1]);
+  /* ---------- موتور کامل رندر مارک‌داون و LaTeX ریاضی (Vanilla JS خالص) ---------- */
+  function readBalancedGroup(str, startIdx, openCh, closeCh) {
+    if (str[startIdx] !== openCh) return null;
+    let depth = 0;
+    for (let i = startIdx; i < str.length; i++) {
+      if (str[i] === '\\' && i + 1 < str.length) { i++; continue; }
+      if (str[i] === openCh) depth++;
+      else if (str[i] === closeCh) {
+        depth--;
+        if (depth === 0) return { content: str.slice(startIdx + 1, i), end: i + 1 };
       }
     }
-    // Superscripts & subscripts
-    t = t.replace(/\^\{([^{}]+)\}/g, '<sup>$1</sup>');
-    t = t.replace(/_\{([^{}]+)\}/g, '<sub>$1</sub>');
-    t = t.replace(/\^([A-Za-z0-9+\-*])/g, '<sup>$1</sup>');
-    t = t.replace(/_([A-Za-z0-9])/g, '<sub>$1</sub>');
-    return t.replace(/[{}]/g, '');
+    return null;
+  }
+
+  function replaceTexCmd1(str, cmdName, fn) {
+    const needle = '\\' + cmdName;
+    let out = '';
+    let i = 0;
+    while (i < str.length) {
+      const idx = str.indexOf(needle, i);
+      if (idx === -1) { out += str.slice(i); break; }
+      const after = idx + needle.length;
+      if (/[A-Za-z]/.test(str[after] || '')) {
+        out += str.slice(i, after);
+        i = after;
+        continue;
+      }
+      let p = after;
+      while (p < str.length && str[p] === ' ') p++;
+      const g1 = readBalancedGroup(str, p, '{', '}');
+      if (!g1) {
+        out += str.slice(i, after);
+        i = after;
+        continue;
+      }
+      out += str.slice(i, idx) + fn(g1.content);
+      i = g1.end;
+    }
+    return out;
+  }
+
+  function replaceTexCmd2(str, cmdName, fn) {
+    const needle = '\\' + cmdName;
+    let out = '';
+    let i = 0;
+    while (i < str.length) {
+      const idx = str.indexOf(needle, i);
+      if (idx === -1) { out += str.slice(i); break; }
+      const after = idx + needle.length;
+      if (/[A-Za-z]/.test(str[after] || '')) {
+        out += str.slice(i, after);
+        i = after;
+        continue;
+      }
+      let p = after;
+      while (p < str.length && str[p] === ' ') p++;
+      const g1 = readBalancedGroup(str, p, '{', '}');
+      if (!g1) { out += str.slice(i, after); i = after; continue; }
+      let p2 = g1.end;
+      while (p2 < str.length && str[p2] === ' ') p2++;
+      const g2 = readBalancedGroup(str, p2, '{', '}');
+      if (!g2) { out += str.slice(i, after); i = after; continue; }
+      out += str.slice(i, idx) + fn(g1.content, g2.content);
+      i = g2.end;
+    }
+    return out;
+  }
+
+  function replaceTexSqrt(str) {
+    const needle = '\\sqrt';
+    let out = '';
+    let i = 0;
+    while (i < str.length) {
+      const idx = str.indexOf(needle, i);
+      if (idx === -1) { out += str.slice(i); break; }
+      const after = idx + needle.length;
+      if (/[A-Za-z]/.test(str[after] || '')) { out += str.slice(i, after); i = after; continue; }
+      let p = after;
+      while (p < str.length && str[p] === ' ') p++;
+      let deg = null;
+      if (str[p] === '[') {
+        const opt = readBalancedGroup(str, p, '[', ']');
+        if (opt) { deg = opt.content; p = opt.end; while (p < str.length && str[p] === ' ') p++; }
+      }
+      const g1 = readBalancedGroup(str, p, '{', '}');
+      if (!g1) { out += str.slice(i, after); i = after; continue; }
+      const bodyHtml = formatTexInner(g1.content);
+      const degHtml = deg ? '<sup class="m-deg">' + formatTexInner(deg) + '</sup>' : '';
+      out += str.slice(i, idx) + '<span class="m-root">' + degHtml + '√<span class="m-rad">' + bodyHtml + '</span></span>';
+      i = g1.end;
+    }
+    return out;
+  }
+
+  function replaceBigOps(str) {
+    const BIG_OPS = {
+      prod: '∏', coprod: '∐', sum: '∑', iiint: '∭', iint: '∬', oint: '∮', int: '∫',
+      bigcup: '⋃', bigcap: '⋂', bigoplus: '⨁', bigotimes: '⨂', lim: 'lim', sup: 'sup', inf: 'inf'
+    };
+    const re = /\\(prod|coprod|sum|iiint|iint|oint|int|bigcup|bigcap|bigoplus|bigotimes|lim|sup|inf)(?![A-Za-z])/g;
+    let out = '';
+    let last = 0;
+    let m;
+    while ((m = re.exec(str)) !== null) {
+      const op = m[1];
+      let p = re.lastIndex;
+      let lo = null;
+      let hi = null;
+      for (let k = 0; k < 2; k++) {
+        let q = p;
+        while (q < str.length && str[q] === ' ') q++;
+        if (str[q] === '_' || str[q] === '^') {
+          const isSub = str[q] === '_';
+          q++;
+          while (q < str.length && str[q] === ' ') q++;
+          let val = null;
+          if (str[q] === '{') {
+            const g = readBalancedGroup(str, q, '{', '}');
+            if (g) { val = g.content; q = g.end; }
+          } else if (q < str.length) {
+            val = str[q]; q++;
+          }
+          if (val !== null) {
+            if (isSub && lo === null) { lo = val; p = q; }
+            else if (!isSub && hi === null) { hi = val; p = q; }
+          }
+        }
+      }
+      if (lo !== null || hi !== null) {
+        const isWord = op === 'lim' || op === 'sup' || op === 'inf';
+        const symCls = isWord ? 'm-sym m-lim' : 'm-sym';
+        out += str.slice(last, m.index) +
+          '<span class="m-op">' +
+            (hi !== null ? '<span class="m-top">' + formatTexInner(hi) + '</span>' : '') +
+            '<span class="' + symCls + '">' + BIG_OPS[op] + '</span>' +
+            (lo !== null ? '<span class="m-bot">' + formatTexInner(lo) + '</span>' : '') +
+          '</span>';
+        last = p;
+        re.lastIndex = p;
+      }
+    }
+    out += str.slice(last);
+    return out;
+  }
+
+  function replaceSupSub(str) {
+    let out = '';
+    let i = 0;
+    while (i < str.length) {
+      const ch = str[i];
+      if ((ch === '^' || ch === '_') && str[i - 1] !== '\\') {
+        const tag = ch === '^' ? 'sup' : 'sub';
+        let p = i + 1;
+        while (p < str.length && str[p] === ' ') p++;
+        if (str[p] === '{') {
+          const g = readBalancedGroup(str, p, '{', '}');
+          if (g) {
+            out += '<' + tag + '>' + formatTexInner(g.content) + '</' + tag + '>';
+            i = g.end;
+            continue;
+          }
+        } else if (p < str.length && /[A-Za-z0-9+\-*']/.test(str[p])) {
+          out += '<' + tag + '>' + str[p] + '</' + tag + '>';
+          i = p + 1;
+          continue;
+        }
+      }
+      out += ch;
+      i++;
+    }
+    return out;
+  }
+
+  const BB_MAP = { R: 'ℝ', N: 'ℕ', Z: 'ℤ', Q: 'ℚ', C: 'ℂ', P: 'ℙ', E: '𝔼', F: '𝔽', H: 'ℍ' };
+
+  const TEX_SYM_RULES = [
+    [/\\(?:displaystyle|textstyle|scriptstyle|scriptscriptstyle|limits|nolimits)(?![A-Za-z])/g, ''],
+    [/\\left\s*\./g, ''], [/\\right\s*\./g, ''],
+    [/\\left\s*\\\{/g, '{'], [/\\right\s*\\\}/g, '}'],
+    [/\\left(?![A-Za-z])/g, ''], [/\\right(?![A-Za-z])/g, ''],
+    [/\\(?:qquad|quad|,|;|:|!)(?![A-Za-z])/g, ' '],
+    [/\\\{/g, '{'], [/\\\}/g, '}'], [/\\_/g, '_'], [/\\%/g, '%'], [/\\&/g, '&amp;'], [/\\#/g, '#'], [/\\\$/g, '$'],
+    // Big ops standalone (without limits)
+    [/\\iiint(?![A-Za-z])/g, '∭'], [/\\iint(?![A-Za-z])/g, '∬'], [/\\oint(?![A-Za-z])/g, '∮'], [/\\int(?![A-Za-z])/g, '∫'],
+    [/\\prod(?![A-Za-z])/g, '∏'], [/\\coprod(?![A-Za-z])/g, '∐'], [/\\sum(?![A-Za-z])/g, '∑'],
+    [/\\bigcup(?![A-Za-z])/g, '⋃'], [/\\bigcap(?![A-Za-z])/g, '⋂'],
+    // Greek letters
+    [/\\varepsilon(?![A-Za-z])/g, 'ε'], [/\\vartheta(?![A-Za-z])/g, 'ϑ'], [/\\varphi(?![A-Za-z])/g, 'φ'],
+    [/\\varrho(?![A-Za-z])/g, 'ϱ'], [/\\varsigma(?![A-Za-z])/g, 'ς'],
+    [/\\alpha(?![A-Za-z])/g, 'α'], [/\\beta(?![A-Za-z])/g, 'β'], [/\\gamma(?![A-Za-z])/g, 'γ'], [/\\Gamma(?![A-Za-z])/g, 'Γ'],
+    [/\\delta(?![A-Za-z])/g, 'δ'], [/\\Delta(?![A-Za-z])/g, 'Δ'], [/\\epsilon(?![A-Za-z])/g, 'ε'], [/\\zeta(?![A-Za-z])/g, 'ζ'],
+    [/\\eta(?![A-Za-z])/g, 'η'], [/\\theta(?![A-Za-z])/g, 'θ'], [/\\Theta(?![A-Za-z])/g, 'Θ'], [/\\iota(?![A-Za-z])/g, 'ι'],
+    [/\\kappa(?![A-Za-z])/g, 'κ'], [/\\lambda(?![A-Za-z])/g, 'λ'], [/\\Lambda(?![A-Za-z])/g, 'Λ'], [/\\mu(?![A-Za-z])/g, 'μ'],
+    [/\\nu(?![A-Za-z])/g, 'ν'], [/\\xi(?![A-Za-z])/g, 'ξ'], [/\\Xi(?![A-Za-z])/g, 'Ξ'], [/\\pi(?![A-Za-z])/g, 'π'], [/\\Pi(?![A-Za-z])/g, 'Π'],
+    [/\\rho(?![A-Za-z])/g, 'ρ'], [/\\sigma(?![A-Za-z])/g, 'σ'], [/\\Sigma(?![A-Za-z])/g, 'Σ'], [/\\tau(?![A-Za-z])/g, 'τ'],
+    [/\\upsilon(?![A-Za-z])/g, 'υ'], [/\\Upsilon(?![A-Za-z])/g, 'Υ'], [/\\phi(?![A-Za-z])/g, 'φ'], [/\\Phi(?![A-Za-z])/g, 'Φ'],
+    [/\\chi(?![A-Za-z])/g, 'χ'], [/\\psi(?![A-Za-z])/g, 'ψ'], [/\\Psi(?![A-Za-z])/g, 'Ψ'], [/\\omega(?![A-Za-z])/g, 'ω'], [/\\Omega(?![A-Za-z])/g, 'Ω'],
+    // Arrows (longest first)
+    [/\\Longleftrightarrow(?![A-Za-z])/g, '⟺'], [/\\longleftrightarrow(?![A-Za-z])/g, '⟷'],
+    [/\\Longrightarrow(?![A-Za-z])/g, '⟹'], [/\\longrightarrow(?![A-Za-z])/g, '⟶'],
+    [/\\Longleftarrow(?![A-Za-z])/g, '⟸'], [/\\longleftarrow(?![A-Za-z])/g, '⟵'],
+    [/\\Leftrightarrow(?![A-Za-z])/g, '⇔'], [/\\leftrightarrow(?![A-Za-z])/g, '↔'], [/\\iff(?![A-Za-z])/g, '⇔'],
+    [/\\Rightarrow(?![A-Za-z])/g, '⇒'], [/\\implies(?![A-Za-z])/g, '⇒'], [/\\Leftarrow(?![A-Za-z])/g, '⇐'],
+    [/\\rightarrow(?![A-Za-z])/g, '→'], [/\\to(?![A-Za-z])/g, '→'], [/\\leftarrow(?![A-Za-z])/g, '←'], [/\\gets(?![A-Za-z])/g, '←'],
+    [/\\mapsto(?![A-Za-z])/g, '↦'], [/\\uparrow(?![A-Za-z])/g, '↑'], [/\\downarrow(?![A-Za-z])/g, '↓'],
+    // Relations & Sets (longest first)
+    [/\\leqslant(?![A-Za-z])/g, '≤'], [/\\leq(?![A-Za-z])/g, '≤'], [/\\le(?![A-Za-z])/g, '≤'],
+    [/\\geqslant(?![A-Za-z])/g, '≥'], [/\\geq(?![A-Za-z])/g, '≥'], [/\\ge(?![A-Za-z])/g, '≥'],
+    [/\\neq(?![A-Za-z])/g, '≠'], [/\\ne(?![A-Za-z])/g, '≠'], [/\\approx(?![A-Za-z])/g, '≈'],
+    [/\\equiv(?![A-Za-z])/g, '≡'], [/\\cong(?![A-Za-z])/g, '≅'], [/\\simeq(?![A-Za-z])/g, '≃'], [/\\sim(?![A-Za-z])/g, '∼'],
+    [/\\propto(?![A-Za-z])/g, '∝'], [/\\ll(?![A-Za-z])/g, '≪'], [/\\gg(?![A-Za-z])/g, '≫'],
+    [/\\notin(?![A-Za-z])/g, '∉'], [/\\in(?![A-Za-z])/g, '∈'], [/\\ni(?![A-Za-z])/g, '∋'],
+    [/\\subsetneq(?![A-Za-z])/g, '⊊'], [/\\subseteq(?![A-Za-z])/g, '⊆'], [/\\subset(?![A-Za-z])/g, '⊂'],
+    [/\\supseteq(?![A-Za-z])/g, '⊇'], [/\\supset(?![A-Za-z])/g, '⊃'], [/\\setminus(?![A-Za-z])/g, '∖'],
+    [/\\cup(?![A-Za-z])/g, '∪'], [/\\cap(?![A-Za-z])/g, '∩'], [/\\emptyset(?![A-Za-z])/g, '∅'], [/\\varnothing(?![A-Za-z])/g, '∅'],
+    [/\\forall(?![A-Za-z])/g, '∀'], [/\\nexists(?![A-Za-z])/g, '∄'], [/\\exists(?![A-Za-z])/g, '∃'],
+    [/\\lnot(?![A-Za-z])/g, '¬'], [/\\neg(?![A-Za-z])/g, '¬'], [/\\land(?![A-Za-z])/g, '∧'], [/\\wedge(?![A-Za-z])/g, '∧'],
+    [/\\lor(?![A-Za-z])/g, '∨'], [/\\vee(?![A-Za-z])/g, '∨'], [/\\oplus(?![A-Za-z])/g, '⊕'], [/\\otimes(?![A-Za-z])/g, '⊗'],
+    [/\\therefore(?![A-Za-z])/g, '∴'], [/\\because(?![A-Za-z])/g, '∵'],
+    [/\\nmid(?![A-Za-z])/g, '∤'], [/\\mid(?![A-Za-z])/g, '∣'], [/\\perp(?![A-Za-z])/g, '⊥'], [/\\parallel(?![A-Za-z])/g, '∥'],
+    // Arithmetic & Misc
+    [/\\times(?![A-Za-z])/g, '×'], [/\\cdots(?![A-Za-z])/g, '⋯'], [/\\ldots(?![A-Za-z])/g, '…'], [/\\vdots(?![A-Za-z])/g, '⋮'], [/\\ddots(?![A-Za-z])/g, '⋱'], [/\\dots(?![A-Za-z])/g, '…'],
+    [/\\cdot(?![A-Za-z])/g, '·'], [/\\bullet(?![A-Za-z])/g, '•'], [/\\div(?![A-Za-z])/g, '÷'], [/\\pm(?![A-Za-z])/g, '±'], [/\\mp(?![A-Za-z])/g, '∓'],
+    [/\\circ(?![A-Za-z])/g, '∘'], [/\\star(?![A-Za-z])/g, '⋆'], [/\\ast(?![A-Za-z])/g, '∗'],
+    [/\\infty(?![A-Za-z])/g, '∞'], [/\\partial(?![A-Za-z])/g, '∂'], [/\\nabla(?![A-Za-z])/g, '∇'],
+    [/\\hbar(?![A-Za-z])/g, 'ℏ'], [/\\ell(?![A-Za-z])/g, 'ℓ'], [/\\angle(?![A-Za-z])/g, '∠'], [/\\triangle(?![A-Za-z])/g, '△'],
+    [/\\degree(?![A-Za-z])|\^\s*\\circ(?![A-Za-z])/g, '°'], [/\\prime(?![A-Za-z])/g, '′'],
+    [/\\blacksquare(?![A-Za-z])|\\qed(?![A-Za-z])/g, '∎'], [/\\square(?![A-Za-z])/g, '□'],
+    // Named math functions
+    [/\\(arcsin|arccos|arctan|sinh|cosh|tanh|sin|cos|tan|cot|sec|csc|log|ln|exp|lim|max|min|sup|inf|det|gcd|lcm|mod|deg|dim|ker|arg|rank|tr|Pr|Var|Cov)(?![A-Za-z])/g, '<span class="m-fn">$1</span>']
+  ];
+
+  function formatTexInner(escapedExpr) {
+    let t = String(escapedExpr || '');
+    // Environments: cases, aligned/align/gather, matrices
+    t = t.replace(/\\begin\{cases\}([\s\S]*?)\\end\{cases\}/g, function (_, body) {
+      const rows = body.trim().split(/\\\\/).map(function (r) {
+        const cols = r.split('&').map(function (c) { return '<td>' + formatTexInner(c.trim()) + '</td>'; }).join('');
+        return '<tr>' + cols + '</tr>';
+      }).join('');
+      return '<span class="m-cases"><table><tbody>' + rows + '</tbody></table></span>';
+    });
+    t = t.replace(/\\begin\{(?:aligned|align\*?|gather\*?)\}([\s\S]*?)\\end\{(?:aligned|align\*?|gather\*?)\}/g, function (_, body) {
+      const rows = body.trim().split(/\\\\/).map(function (r) {
+        const cols = r.split('&').map(function (c) { return '<td>' + formatTexInner(c.trim()) + '</td>'; }).join('');
+        return '<tr>' + cols + '</tr>';
+      }).join('');
+      return '<span class="m-align"><table><tbody>' + rows + '</tbody></table></span>';
+    });
+    t = t.replace(/\\begin\{([pbvVB]?)matrix\}([\s\S]*?)\\end\{\1matrix\}/g, function (_, kind, body) {
+      const rows = body.trim().split(/\\\\/).map(function (r) {
+        const cols = r.split('&').map(function (c) { return '<td>' + formatTexInner(c.trim()) + '</td>'; }).join('');
+        return '<tr>' + cols + '</tr>';
+      }).join('');
+      const cls = kind === 'b' ? 'm-mat m-mat-b' : kind === 'v' ? 'm-mat m-mat-v' : kind === 'V' ? 'm-mat m-mat-V' : kind === 'B' ? 'm-mat m-mat-B' : kind === 'p' ? 'm-mat m-mat-p' : 'm-mat';
+      return '<span class="' + cls + '"><table><tbody>' + rows + '</tbody></table></span>';
+    });
+
+    // Balanced-brace 2-arg commands: \frac, \dfrac, \tfrac, \binom, \choose
+    for (let pass = 0; pass < 3; pass++) {
+      t = replaceTexCmd2(t, 'dfrac', function (a, b) { return '<span class="m-frac"><span class="m-num">' + formatTexInner(a) + '</span><span class="m-den">' + formatTexInner(b) + '</span></span>'; });
+      t = replaceTexCmd2(t, 'tfrac', function (a, b) { return '<span class="m-frac"><span class="m-num">' + formatTexInner(a) + '</span><span class="m-den">' + formatTexInner(b) + '</span></span>'; });
+      t = replaceTexCmd2(t, 'frac', function (a, b) { return '<span class="m-frac"><span class="m-num">' + formatTexInner(a) + '</span><span class="m-den">' + formatTexInner(b) + '</span></span>'; });
+      t = replaceTexCmd2(t, 'binom', function (a, b) { return '<span class="m-binom"><span class="m-num">' + formatTexInner(a) + '</span><span class="m-den">' + formatTexInner(b) + '</span></span>'; });
+      t = replaceTexSqrt(t);
+    }
+
+    // Stacked big operators with limits
+    t = replaceBigOps(t);
+
+    // Balanced-brace 1-arg commands
+    t = replaceTexCmd1(t, 'mathbb', function (a) {
+      return a.split('').map(function (ch) { return BB_MAP[ch] || ch; }).join('');
+    });
+    t = replaceTexCmd1(t, 'boxed', function (a) { return '<span class="m-box">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'vec', function (a) { return '<span class="m-vec">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'hat', function (a) { return '<span class="m-hat">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'tilde', function (a) { return '<span class="m-tilde">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'overline', function (a) { return '<span class="m-bar">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'bar', function (a) { return '<span class="m-bar">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'underline', function (a) { return '<span class="m-ubar">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'underbrace', function (a) { return '<span class="m-ubar">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'overbrace', function (a) { return '<span class="m-bar">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'mathbf', function (a) { return '<strong class="m-bf">' + formatTexInner(a) + '</strong>'; });
+    t = replaceTexCmd1(t, 'mathcal', function (a) { return '<span class="m-cal">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'text', function (a) { return '<span class="m-txt" dir="auto">' + a + '</span>'; });
+    t = replaceTexCmd1(t, 'textrm', function (a) { return '<span class="m-txt" dir="auto">' + a + '</span>'; });
+    t = replaceTexCmd1(t, 'mathrm', function (a) { return '<span class="m-fn">' + a + '</span>'; });
+    t = replaceTexCmd1(t, 'operatorname', function (a) { return '<span class="m-fn">' + a + '</span>'; });
+    t = replaceTexCmd1(t, 'pmod', function (a) { return '<span class="m-fn"> (mod ' + formatTexInner(a) + ')</span>'; });
+
+    // Superscripts & subscripts (balanced)
+    t = replaceSupSub(t);
+
+    // Line breaks \\ inside display math
+    t = t.replace(/\\\\/g, '<br>');
+
+    // Symbol replacements
+    for (let i = 0; i < TEX_SYM_RULES.length; i++) {
+      t = t.replace(TEX_SYM_RULES[i][0], TEX_SYM_RULES[i][1]);
+    }
+    return t;
+  }
+
+  function formatTexHtml(rawExpr) {
+    return formatTexInner(escapeHtml(String(rawExpr || '').trim()));
   }
 
   function highlightCode(rawCode, lang) {
@@ -351,7 +602,7 @@
     s = s.replace(/(\/\/[^\n]*|#[^\n]*|\/\*[\s\S]*?\*\/)/g, function (m) {
       return stash('<span class="hl-com">' + m + '</span>');
     });
-    s = s.replace(/\b(function|return|const|let|var|if|else|for|while|switch|case|break|continue|async|await|try|catch|finally|throw|new|class|extends|import|from|export|default|def|elif|pass|with|as|lambda|yield|True|False|None|true|false|null|undefined|SELECT|FROM|WHERE|INSERT|INTO|UPDATE|DELETE|JOIN|ORDER|BY|GROUP|LIMIT|curl|sudo|git|npm|pip|python|python3|bash|sh)\b/g, '<span class="hl-kw">$1</span>');
+    s = s.replace(/\b(function|return|const|let|var|if|else|for|while|do|switch|case|break|continue|async|await|try|catch|finally|throw|new|class|extends|interface|type|enum|import|from|export|default|def|elif|pass|with|as|lambda|yield|pub|fn|struct|impl|match|mut|go|defer|package|True|False|None|true|false|null|undefined|SELECT|FROM|WHERE|INSERT|INTO|UPDATE|DELETE|JOIN|ORDER|BY|GROUP|LIMIT|curl|sudo|git|npm|pip|python|python3|bash|sh)\b/g, '<span class="hl-kw">$1</span>');
     s = s.replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="hl-num">$1</span>');
     return s.replace(/\uE010HL(\d+)\uE011/g, function (_, idx) { return tokens[+idx] || ''; });
   }
@@ -364,15 +615,17 @@
       codeTokens.push('<code class="inline-code">' + code + '</code>');
       return '\uE002CODE' + idx + '\uE003';
     });
-    // Inline math $...$ or \(...\)
+    // Inline math \(...\) (also catches missing closing ')') or $...$
     s = s.replace(/\\\(([\s\S]+?)(?:\\\)|\\(?=\s|$))|(^|[^\\$\w])\$([^\s$][^$\n]*?)\$(?!\$)/g, function (_, p1, pre, p2) {
       const expr = p1 != null ? p1 : p2;
       const idx = mathTokens.length;
-      mathTokens.push('<span class="math" dir="ltr">' + formatTexHtml(expr) + '</span>');
+      mathTokens.push('<span class="math" dir="ltr">' + formatTexInner(expr) + '</span>');
       return (pre || '') + '\uE000MATH' + idx + '\uE001';
     });
-    // Links [label](url)
+    // Markdown links [label](url)
     s = s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+    // Auto-link bare URLs not already inside href="..."
+    s = s.replace(/(^|[\s(>])(https?:\/\/[^\s<)"]+)/g, '$1<a href="$2" target="_blank" rel="noopener noreferrer">$2</a>');
     // Highlight ==...==
     s = s.replace(/==([^=\n]+)==/g, '<mark class="md-mark">$1</mark>');
     // Keyboard keys [[Ctrl+K]]
@@ -386,7 +639,7 @@
     // Strikethrough ~~...~~
     s = s.replace(/~~([^~]+)~~/g, '<del>$1</del>');
 
-    // Restore tokens
+    // Restore protected tokens
     s = s.replace(/\uE000MATH(\d+)\uE001/g, function (_, i) { return mathTokens[+i] || ''; });
     s = s.replace(/\uE002CODE(\d+)\uE003/g, function (_, i) { return codeTokens[+i] || ''; });
     return s;
@@ -400,7 +653,7 @@
     const mathTokens = [];
     const codeTokens = [];
 
-    // ۱. استخراج بلوک‌های کد (بسته و حتی نیمه‌باز حین استریم)
+    // 1. Fenced code blocks (closed or streaming unclosed)
     let working = src.replace(/```([a-zA-Z0-9_+#.-]*)\n?([\s\S]*?)(?:```|$)/g, function (full, lang, code) {
       const cleanCode = code.replace(/\n$/, '');
       const idx = blocks.length;
@@ -420,7 +673,7 @@
       return '\n\n@@BLOCK_' + idx + '@@\n\n';
     });
 
-    // ۲. استخراج فرمول‌های ریاضی بلوکی $$...$$ یا \[...\]
+    // 2. Display math blocks $$...$$ or \[...\]
     working = working.replace(/\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]/g, function (_, m1, m2) {
       const expr = (m1 != null ? m1 : m2).trim();
       const idx = blocks.length;
@@ -437,7 +690,7 @@
       return '\n\n@@BLOCK_' + idx + '@@\n\n';
     });
 
-    // ۳. پردازش خط‌به‌خط پاراگراف‌ها، کال‌اوت‌ها، لیست‌ها، چک‌لیست‌ها، جدول‌ها، خط جداکننده و عناوین
+    // 3. Line-by-line block parser
     const lines = working.split(/\r?\n/);
     const out = [];
     let i = 0;
@@ -446,71 +699,62 @@
       const line = lines[i];
       const trimmed = line.trim();
 
-      if (!trimmed) {
-        i++;
-        continue;
-      }
+      if (!trimmed) { i++; continue; }
 
       const bm = /^@@BLOCK_(\d+)@@$/.exec(trimmed);
-      if (bm) {
-        out.push(blocks[+bm[1]]);
-        i++;
-        continue;
-      }
+      if (bm) { out.push(blocks[+bm[1]]); i++; continue; }
 
-      if (/^(?:---+|\*\*\*+|___+)$/.test(trimmed)) {
-        out.push('<hr>');
-        i++;
-        continue;
-      }
+      if (/^(?:---+|\*\*\*+|___+)$/.test(trimmed)) { out.push('<hr>'); i++; continue; }
 
-      const hm = /^(#{1,4})\s+(.+)$/.exec(trimmed);
+      const hm = /^(#{1,6})\s+(.+)$/.exec(trimmed);
       if (hm) {
-        const level = Math.min(4, hm[1].length);
+        const level = Math.min(6, hm[1].length);
         out.push('<h' + level + '>' + renderInlineMarkdown(escapeHtml(hm[2]), mathTokens, codeTokens) + '</h' + level + '>');
         i++;
         continue;
       }
 
+      // GFM Table with column alignment (:---, :---:, ---:)
       if (trimmed.includes('|') && i + 1 < lines.length && /^\s*\|?[\s:-]+\|[\s|:-]*$/.test(lines[i + 1])) {
-        const parseRow = function (r) {
-          return r.trim().replace(/^\||\|$/g, '').split('|').map(function (c) {
-            return renderInlineMarkdown(escapeHtml(c.trim()), mathTokens, codeTokens);
-          });
-        };
-        const headers = parseRow(trimmed);
+        const splitRow = function (r) { return r.trim().replace(/^\||\|$/g, '').split('|').map(function (c) { return c.trim(); }); };
+        const aligns = splitRow(lines[i + 1]).map(function (a) {
+          if (a.startsWith(':') && a.endsWith(':')) return 'center';
+          if (a.endsWith(':')) return 'right';
+          if (a.startsWith(':')) return 'left';
+          return '';
+        });
+        const headers = splitRow(trimmed).map(function (c, idx) {
+          const al = aligns[idx] ? ' style="text-align:' + aligns[idx] + '"' : '';
+          return '<th' + al + '>' + renderInlineMarkdown(escapeHtml(c), mathTokens, codeTokens) + '</th>';
+        });
         i += 2;
         const rowsHtml = [];
         while (i < lines.length && lines[i].trim().includes('|')) {
-          const cells = parseRow(lines[i]);
-          rowsHtml.push('<tr>' + cells.map(function (c) { return '<td>' + c + '</td>'; }).join('') + '</tr>');
+          const cells = splitRow(lines[i]).map(function (c, idx) {
+            const al = aligns[idx] ? ' style="text-align:' + aligns[idx] + '"' : '';
+            return '<td' + al + '>' + renderInlineMarkdown(escapeHtml(c), mathTokens, codeTokens) + '</td>';
+          });
+          rowsHtml.push('<tr>' + cells.join('') + '</tr>');
           i++;
         }
-        out.push(
-          '<div class="md-table"><table><thead><tr>' +
-          headers.map(function (h) { return '<th>' + h + '</th>'; }).join('') +
-          '</tr></thead><tbody>' + rowsHtml.join('') + '</tbody></table></div>'
-        );
+        out.push('<div class="md-table"><table><thead><tr>' + headers.join('') + '</tr></thead><tbody>' + rowsHtml.join('') + '</tbody></table></div>');
         continue;
       }
 
+      // Blockquote & Callouts
       if (trimmed.startsWith('>')) {
         const rawQLines = [];
         while (i < lines.length && lines[i].trim().startsWith('>')) {
           rawQLines.push(lines[i].trim().replace(/^>\s?/, ''));
           i++;
         }
-        const calloutMatch = /^\[!(NOTE|TIP|WARNING|IMPORTANT|INFO|نکته|هشدار)\]\s*(.*)$/i.exec(rawQLines[0] || '');
+        const calloutMatch = /^\[!(NOTE|TIP|WARNING|CAUTION|IMPORTANT|INFO|نکته|هشدار)\]\s*(.*)$/i.exec(rawQLines[0] || '');
         if (calloutMatch) {
           const kindRaw = calloutMatch[1].toUpperCase();
           const kindMap = {
-            NOTE: ['info', 'نکته'],
-            INFO: ['info', 'اطلاعات'],
-            'نکته': ['info', 'نکته'],
-            TIP: ['tip', 'پیشنهاد'],
-            IMPORTANT: ['tip', 'مهم'],
-            WARNING: ['warn', 'هشدار'],
-            'هشدار': ['warn', 'هشدار']
+            NOTE: ['info', 'نکته'], INFO: ['info', 'اطلاعات'], 'نکته': ['info', 'نکته'],
+            TIP: ['tip', 'پیشنهاد'], IMPORTANT: ['tip', 'مهم'],
+            WARNING: ['warn', 'هشدار'], CAUTION: ['warn', 'احتیاط'], 'هشدار': ['warn', 'هشدار']
           };
           const meta = kindMap[kindRaw] || ['info', 'نکته'];
           const bodyLines = [];
@@ -531,10 +775,11 @@
         continue;
       }
 
-      if (/^[-*]\s+\[[ xX]\]\s+/.test(trimmed)) {
+      // Task List (- [ ] / - [x])
+      if (/^[-*+]\s+\[[ xX]\]\s+/.test(trimmed)) {
         const items = [];
-        while (i < lines.length && /^[-*]\s+\[[ xX]\]\s+/.test(lines[i].trim())) {
-          const mTask = /^[-*]\s+\[([ xX])\]\s+(.+)$/.exec(lines[i].trim());
+        while (i < lines.length && /^[-*+]\s+\[[ xX]\]\s+/.test(lines[i].trim())) {
+          const mTask = /^[-*+]\s+\[([ xX])\]\s+(.+)$/.exec(lines[i].trim());
           const done = mTask && mTask[1].toLowerCase() === 'x';
           const label = mTask ? mTask[2] : '';
           items.push(
@@ -549,17 +794,21 @@
         continue;
       }
 
-      if (/^[-*•]\s+/.test(trimmed)) {
+      // Unordered List (-, *, +, •) with nested indentation support
+      if (/^[-*+•]\s+/.test(trimmed)) {
         const items = [];
-        while (i < lines.length && /^[-*•]\s+/.test(lines[i].trim()) && !/^[-*]\s+\[[ xX]\]\s+/.test(lines[i].trim())) {
-          const itemText = lines[i].trim().replace(/^[-*•]\s+/, '');
-          items.push('<li>' + renderInlineMarkdown(escapeHtml(itemText), mathTokens, codeTokens) + '</li>');
+        while (i < lines.length && /^[-*+•]\s+/.test(lines[i].trim()) && !/^[-*+]\s+\[[ xX]\]\s+/.test(lines[i].trim())) {
+          const indent = lines[i].length - lines[i].trimStart().length;
+          const itemText = lines[i].trim().replace(/^[-*+•]\s+/, '');
+          const nestedCls = indent >= 2 ? ' class="li-nested"' : '';
+          items.push('<li' + nestedCls + '>' + renderInlineMarkdown(escapeHtml(itemText), mathTokens, codeTokens) + '</li>');
           i++;
         }
         out.push('<ul>' + items.join('') + '</ul>');
         continue;
       }
 
+      // Ordered List (1. or ۱.)
       if (/^(\d+|[۰-۹]+)[.)]\s+/.test(trimmed)) {
         const items = [];
         while (i < lines.length && /^(\d+|[۰-۹]+)[.)]\s+/.test(lines[i].trim())) {
@@ -571,14 +820,15 @@
         continue;
       }
 
+      // Regular paragraph
       const pLines = [];
       while (
         i < lines.length &&
         lines[i].trim() &&
         !/^@@BLOCK_\d+@@$/.test(lines[i].trim()) &&
         !/^(?:---+|\*\*\*+|___+)$/.test(lines[i].trim()) &&
-        !/^(#{1,4})\s+/.test(lines[i].trim()) &&
-        !/^[-*•]\s+/.test(lines[i].trim()) &&
+        !/^(#{1,6})\s+/.test(lines[i].trim()) &&
+        !/^[-*+•]\s+/.test(lines[i].trim()) &&
         !/^(\d+|[۰-۹]+)[.)]\s+/.test(lines[i].trim()) &&
         !lines[i].trim().startsWith('>')
       ) {
@@ -927,13 +1177,14 @@
           '</div>';
       } else {
         const parsed = splitThinkReply(m.reply, m.reasoning);
-        const finalAns = parsed.answer || (parsed.think ? '> [!WARNING] پاسخ مدل در مرحله‌ی استدلال متوقف شد؛ می‌توانید روی «فرآیند استدلال مدل» بالا کلیک کنید یا دکمه‌ی تلاش مجدد را بزنید.' : m.reply);
+        const onlyThink = !parsed.answer && !!parsed.think;
+        const finalAns = parsed.answer || (onlyThink ? '> [!NOTE] پاسخ کامل روی بخش «فرآیند استدلال مدل» بالا نمایش داده شده است؛ در صورت نیاز می‌توانید دکمه‌ی پاسخ دوباره را بزنید.' : m.reply);
         const bDir = textDir(finalAns);
         html +=
           '<div class="msg bot">' +
             '<div class="bot-body">' +
               renderThoughtLineHtml(m.thinkingMs, m.steps, m.model, m.isMath) +
-              renderThinkCardHtml(parsed.think, false) +
+              renderThinkCardHtml(parsed.think, onlyThink) +
               '<div class="md" dir="' + bDir + '">' + renderMarkdown(finalAns) + '</div>' +
               '<div class="actions">' +
                 '<button class="icon-btn sm" type="button" data-copy-bot="' + escapeHtml(m.id) + '" title="کپی پاسخ" aria-label="کپی پاسخ">' + ICONS.copy + '</button>' +

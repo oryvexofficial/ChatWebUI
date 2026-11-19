@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-1996d5b8ba9db1f08b5590309cff2cc3",
-  "api_key": "sk-uc-1996d5b8ba9db1f08b5590309cff2cc3",
+  "public_api_key": "sk-uc-d0d84f8f7c224b7203cfc182ece0e43e",
+  "api_key": "sk-uc-d0d84f8f7c224b7203cfc182ece0e43e",
   "status": "online",
   "online": true,
-  "base_url": "https://lenses-col-closing-cruz.trycloudflare.com",
+  "base_url": "https://from-strategic-theology-showcase.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://lenses-col-closing-cruz.trycloudflare.com/v1",
-    "chat_completions": "https://lenses-col-closing-cruz.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://lenses-col-closing-cruz.trycloudflare.com/v1/models",
-    "native_chat": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/key",
-    "health": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://from-strategic-theology-showcase.trycloudflare.com/v1",
+    "chat_completions": "https://from-strategic-theology-showcase.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://from-strategic-theology-showcase.trycloudflare.com/v1/models",
+    "native_chat": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/key",
+    "health": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://lenses-col-closing-cruz.trycloudflare.com",
-    "openai_base": "https://lenses-col-closing-cruz.trycloudflare.com/v1",
-    "chat_completions": "https://lenses-col-closing-cruz.trycloudflare.com/v1/chat/completions",
-    "api": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1",
-    "key": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/key",
-    "health": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/health",
-    "swagger": "https://lenses-col-closing-cruz.trycloudflare.com/docs",
-    "redoc": "https://lenses-col-closing-cruz.trycloudflare.com/redoc",
-    "openapi": "https://lenses-col-closing-cruz.trycloudflare.com/openapi.json",
-    "guide": "https://lenses-col-closing-cruz.trycloudflare.com/api-docs",
-    "public_key_page": "https://lenses-col-closing-cruz.trycloudflare.com/site/public-key/"
+    "panel": "https://from-strategic-theology-showcase.trycloudflare.com",
+    "openai_base": "https://from-strategic-theology-showcase.trycloudflare.com/v1",
+    "chat_completions": "https://from-strategic-theology-showcase.trycloudflare.com/v1/chat/completions",
+    "api": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1",
+    "key": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/key",
+    "health": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/health",
+    "swagger": "https://from-strategic-theology-showcase.trycloudflare.com/docs",
+    "redoc": "https://from-strategic-theology-showcase.trycloudflare.com/redoc",
+    "openapi": "https://from-strategic-theology-showcase.trycloudflare.com/openapi.json",
+    "guide": "https://from-strategic-theology-showcase.trycloudflare.com/api-docs",
+    "public_key_page": "https://from-strategic-theology-showcase.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/key"
+      "url": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://lenses-col-closing-cruz.trycloudflare.com/v1/chat/completions"
+      "url": "https://from-strategic-theology-showcase.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://lenses-col-closing-cruz.trycloudflare.com/v1/models"
+      "url": "https://from-strategic-theology-showcase.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/chat"
+      "url": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/generate"
+      "url": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1"
+      "url": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/health"
+      "url": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/ready"
+      "url": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/info"
+      "url": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/models"
+      "url": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/config"
+      "url": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://lenses-col-closing-cruz.trycloudflare.com/api/v1/stats"
+      "url": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://lenses-col-closing-cruz.trycloudflare.com/health"
+      "url": "https://from-strategic-theology-showcase.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-19T10:00:15+00:00",
-  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44501495415",
-  "run_number": 32,
+  "updated_at": "2026-11-19T10:01:48+00:00",
+  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44501500353",
+  "run_number": 34,
   "commit": "9b815aa"
 }

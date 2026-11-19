@@ -177,3 +177,20 @@
 .bubble.user-md .callout{margin:8px 0;background:rgba(0,0,0,.2)}
 .bubble.user-md .md-table{margin:8px 0;background:rgba(0,0,0,.18)}
 .bubble.user-md blockquote{margin:6px 0;border-inline-start-color:rgba(255,255,255,.35)}
+
+
+/* === Composer Card Formatting Toolbar & Live Preview (IN + OUT) === */
+.round-btn.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.round-btn.on:hover{background:var(--btn-bg-hover);color:var(--accent-ink)}
+.composer-fmt{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:2px 4px 10px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.composer-fmt:not([hidden]){animation:uc-slide-down .22s var(--ease-out) both}
+.composer-fmt.closing{animation:uc-slide-up .18s var(--ease-out) both!important;pointer-events:none}
+.fmt-btn{display:inline-flex;align-items:center;justify-content:center;height:28px;min-width:30px;padding:0 9px;border-radius:8px;font-size:12.5px;font-weight:600;color:var(--ink-2);background:rgba(255,255,255,.05);border:1px solid var(--line);transition:background-color .16s ease,color .16s ease,border-color .16s ease,transform .18s var(--ease-spring)}
+.fmt-btn:hover{background:rgba(255,255,255,.12);color:var(--ink);border-color:var(--line-2);transform:translateY(-1px)}
+.fmt-btn:active{transform:scale(.94)}
+.composer-preview{max-height:220px;overflow-y:auto;padding:10px 12px;margin-bottom:10px;border-radius:16px;background:rgba(0,0,0,.28);border:1px solid var(--line);font-size:15px;line-height:1.75;scrollbar-width:thin}
+.composer-preview:not([hidden]){animation:uc-slide-down .24s var(--ease-out) both}
+.composer-preview.closing{animation:uc-slide-up .18s var(--ease-out) both!important;pointer-events:none}
+.composer-preview>:first-child{margin-top:0}
+.composer-preview>:last-child{margin-bottom:0}
+.composer-preview-empty{color:var(--ink-3);font-size:13.5px}

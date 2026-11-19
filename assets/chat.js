@@ -104,6 +104,16 @@
       .replace(/'/g, '&#39;');
   }
 
+  function stripMarkdown(s) {
+    return String(s || '')
+      .replace(/```[a-zA-Z0-9_+#.-]*\n?/g, '')
+      .replace(/\$\$([\s\S]+?)\$\$/g, '$1')
+      .replace(/\$([^$\n]+)\$/g, '$1')
+      .replace(/[*_`~=#>]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
   function newId(prefix) {
     return (prefix || 'id') + '_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 7);
   }
@@ -485,6 +495,8 @@
     activeId: null,
     freshId: null,
     enteringThreadId: null,
+    fmtOpen: false,
+    previewOpen: false,
     busy: false,
     aborted: false,
     ctrl: null,
@@ -517,6 +529,10 @@
     sbBackdrop: document.getElementById('sb-backdrop'),
     composerArea: document.querySelector('.composer-area'),
     composer: document.getElementById('composer'),
+    composerFmt: document.getElementById('composer-fmt'),
+    composerPreview: document.getElementById('composer-preview'),
+    btnFmtToggle: document.getElementById('btn-fmt-toggle'),
+    btnPreviewToggle: document.getElementById('btn-preview-toggle'),
     taWrap: document.getElementById('ta-wrap'),
     taPh: document.getElementById('ta-ph'),
     input: document.getElementById('chat-input'),
@@ -909,7 +925,20 @@
         setHidden(el.counter, true);
       }
     }
+    updateComposerPreview();
     updateSendButtonState();
+  }
+
+  function updateComposerPreview() {
+    if (!el.composerPreview || !state.previewOpen || !el.input) return;
+    const raw = el.input.value;
+    if (!raw.trim()) {
+      el.composerPreview.dir = 'rtl';
+      el.composerPreview.innerHTML = '<span class="composer-preview-empty">پیش‌نمایش زنده مارک‌داون، کد و فرمول ریاضی اینجا نمایش داده می‌شود…</span>';
+      return;
+    }
+    el.composerPreview.dir = textDir(raw);
+    el.composerPreview.innerHTML = renderMarkdown(raw);
   }
 
   function updateSendButtonState() {
@@ -1074,7 +1103,7 @@
       const oneLine = text.replace(/\s+/g, ' ');
       thread = {
         id: newId('th'),
-        title: oneLine.slice(0, 40) + (oneLine.length > 40 ? '…' : ''),
+        title: (stripMarkdown(oneLine) || oneLine).slice(0, 40) + ((stripMarkdown(oneLine) || oneLine).length > 40 ? '…' : ''),
         createdAt: Date.now(),
         updatedAt: Date.now(),
         messages: []
@@ -1115,6 +1144,17 @@
       '</div></div>';
 
     el.stream.appendChild(pendingTurn);
+    pendingTurn.querySelectorAll('[data-copy-encoded]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const code = decodeURIComponent(btn.getAttribute('data-copy-encoded') || '');
+        copyText(code).then(function () {
+          const sp = btn.querySelector('span');
+          if (sp) sp.textContent = 'کپی شد';
+          showToast('کد کپی شد');
+          setTimeout(function () { if (sp) sp.textContent = 'کپی'; }, 1400);
+        });
+      });
+    });
     scrollToBottom(true);
 
     const t0 = performance.now();
@@ -1756,6 +1796,58 @@
       } catch (e) {
         showToast('دسترسی به کلیپ‌بورد ممکن نیست');
       }
+    });
+
+    on('btn-fmt-toggle', 'click', function () {
+      state.fmtOpen = !state.fmtOpen;
+      if (el.btnFmtToggle) {
+        el.btnFmtToggle.classList.toggle('on', state.fmtOpen);
+        el.btnFmtToggle.setAttribute('aria-pressed', state.fmtOpen ? 'true' : 'false');
+      }
+      if (state.fmtOpen) openAnimated(el.composerFmt);
+      else closeAnimated(el.composerFmt, 190);
+    });
+
+    on('btn-preview-toggle', 'click', function () {
+      state.previewOpen = !state.previewOpen;
+      if (el.btnPreviewToggle) {
+        el.btnPreviewToggle.classList.toggle('on', state.previewOpen);
+        el.btnPreviewToggle.setAttribute('aria-pressed', state.previewOpen ? 'true' : 'false');
+      }
+      if (state.previewOpen) {
+        updateComposerPreview();
+        openAnimated(el.composerPreview);
+      } else {
+        closeAnimated(el.composerPreview, 190);
+      }
+    });
+
+    document.querySelectorAll('[data-fmt]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (!el.input) return;
+        const kind = btn.getAttribute('data-fmt');
+        const s = el.input.selectionStart || 0;
+        const e = el.input.selectionEnd || 0;
+        const sel = el.input.value.slice(s, e);
+        const templates = {
+          bold: ['**', '**', 'متن ضخیم'],
+          italic: ['*', '*', 'متن مورب'],
+          mark: ['==', '==', 'متن مهم'],
+          code: ['`', '`', 'code'],
+          codeblock: ['```text\n', '\n```', 'متن یا کد'],
+          math: ['$$\n', '\n$$', '\\frac{a}{b} = c'],
+          callout: ['> [!NOTE] ', '', 'نکته‌ی مهم'],
+          task: ['- [ ] ', '', 'عنوان کار']
+        };
+        const t = templates[kind];
+        if (!t) return;
+        const body = sel || t[2];
+        const inserted = t[0] + body + t[1];
+        el.input.setRangeText(inserted, s, e, 'select');
+        el.input.setSelectionRange(s + t[0].length, s + t[0].length + body.length);
+        syncComposerSize(false);
+        el.input.focus();
+      });
     });
 
     // پیشنهادهای شروع گفتگو (Starter Chips)

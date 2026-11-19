@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#0a0a0a">
   <link rel="preload" href="../assets/fonts/Vazirmatn.woff2?v=1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-  <link rel="stylesheet" href="../assets/chat.css?v=bw4">
+  <link rel="stylesheet" href="../assets/chat.css?v=bw5">
   <style>[hidden]{display:none!important}</style>
 </head>
 <body>
@@ -83,6 +83,17 @@
         <div class="composer-area">
           <div class="col">
             <div class="composer" id="composer">
+              <div class="composer-preview md" id="composer-preview" hidden style="display:none"></div>
+              <div class="composer-fmt" id="composer-fmt" hidden style="display:none" role="toolbar" aria-label="ابزار قالب‌بندی متن">
+                <button class="fmt-btn" type="button" data-fmt="bold" title="ضخیم (**متن**)"><b>B</b></button>
+                <button class="fmt-btn" type="button" data-fmt="italic" title="مورب (*متن*)"><i>I</i></button>
+                <button class="fmt-btn" type="button" data-fmt="mark" title="هایلایت (==متن==)"><span>==</span></button>
+                <button class="fmt-btn mono" type="button" data-fmt="code" title="کد خطی (`کد`)">&lt;/&gt;</button>
+                <button class="fmt-btn mono" type="button" data-fmt="codeblock" title="باکس کد (```)">```</button>
+                <button class="fmt-btn mono" type="button" data-fmt="math" title="فرمول ریاضی ($$...$$)">∑</button>
+                <button class="fmt-btn" type="button" data-fmt="callout" title="کادر نکته (> [!NOTE])">نکته</button>
+                <button class="fmt-btn" type="button" data-fmt="task" title="چک‌لیست (- [ ])">چک‌لیست</button>
+              </div>
               <div class="ta-wrap" id="ta-wrap" style="height: 28px;">
                 <div class="ta-ph" id="ta-ph" aria-hidden="true">از یونیکالکت بپرس…</div>
                 <textarea id="chat-input" rows="1" dir="rtl" maxlength="8000" aria-label="پیام" spellcheck="false" autocomplete="off" enterkeyhint="send" style="height: 28px; overflow-y: hidden;"></textarea>
@@ -90,6 +101,8 @@
               <div class="composer-row">
                 <div class="cr-start">
                   <button class="round-btn" type="button" id="btn-paste" title="جای‌گذاری از کلیپ‌بورد" aria-label="جای‌گذاری از کلیپ‌بورد"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button>
+                  <button class="round-btn" type="button" id="btn-fmt-toggle" title="ابزار قالب‌بندی (کد، ریاضی، مارک‌داون)" aria-label="ابزار قالب‌بندی" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></button>
+                  <button class="round-btn" type="button" id="btn-preview-toggle" title="پیش‌نمایش زنده مارک‌داون و ریاضی" aria-label="پیش‌نمایش زنده" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg></button>
                   <button class="pill-btn" type="button" id="btn-status-pill">
                     <span class="sdot warn" data-health-dot></span>
                     <span data-health-label>در حال اتصال…</span>
@@ -212,6 +225,6 @@
   </div>
 </div>
 <noscript><p style="font-family:Vazirmatn,Tahoma,sans-serif;text-align:center;padding:40px">برای استفاده از پنل، جاوااسکریپت را روشن کنید. API همچنان در <a href="/api/v1">/api/v1</a> در دسترس است.</p></noscript>
-<script src="../assets/chat.js?v=bw4"></script>
+<script src="../assets/chat.js?v=bw5"></script>
 </body>
 </html>

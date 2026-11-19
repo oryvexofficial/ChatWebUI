@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9yZXNwb25zZS1waGFybWFjZXV0aWNhbHMtYmVsbGUtZGVjbGluZWQudHJ5Y2xvdWRmbGFyZS5jb20=",
-  "public_api_key": "sk-uc-caa5d7f84f273b49b69d4e32bf7ae71f",
-  "api_key": "sk-uc-caa5d7f84f273b49b69d4e32bf7ae71f",
+  "url_payload": "aHR0cHM6Ly9hbGJ1bS1ub3RlYm9va3MtdGlsZXMtYWxleC50cnljbG91ZGZsYXJlLmNvbQ==",
+  "public_api_key": "sk-uc-14c1f081d9a5d3f66647846be0632210",
+  "api_key": "sk-uc-14c1f081d9a5d3f66647846be0632210",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://response-pharmaceuticals-belle-declined.trycloudflare.com/v1",
-    "chat_completions": "https://response-pharmaceuticals-belle-declined.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://response-pharmaceuticals-belle-declined.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://response-pharmaceuticals-belle-declined.trycloudflare.com/v1/models",
-    "native_chat": "https://response-pharmaceuticals-belle-declined.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://response-pharmaceuticals-belle-declined.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://response-pharmaceuticals-belle-declined.trycloudflare.com/api/v1/key",
-    "health": "https://response-pharmaceuticals-belle-declined.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://album-notebooks-tiles-alex.trycloudflare.com/v1",
+    "chat_completions": "https://album-notebooks-tiles-alex.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://album-notebooks-tiles-alex.trycloudflare.com/v1/models",
+    "native_chat": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/key",
+    "health": "https://album-notebooks-tiles-alex.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T12:50:06+00:00",
-  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44527536605",
-  "run_number": 50,
+  "updated_at": "2026-11-19T12:52:32+00:00",
+  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44527523770",
+  "run_number": 51,
   "commit": "eee1669"
 }

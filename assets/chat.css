@@ -194,3 +194,12 @@
 .composer-preview>:first-child{margin-top:0}
 .composer-preview>:last-child{margin-bottom:0}
 .composer-preview-empty{color:var(--ink-3);font-size:13.5px}
+
+
+/* === Active Model Indicator Badge === */
+.thought-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.writing-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.model-tag{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:999px;font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--ink-2);background:rgba(255,255,255,.06);border:1px solid var(--line);letter-spacing:.01em}
+.model-tag:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ink-2)}
+.model-tag.is-math{color:var(--safe);background:var(--safe-soft);border-color:rgba(52,211,153,.32)}
+.model-tag.is-math:before{background:var(--safe)}

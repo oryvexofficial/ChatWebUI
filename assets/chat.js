@@ -723,17 +723,25 @@
     return '<ol class="think-steps live">' + itemsHtml + '</ol>';
   }
 
-  function renderThoughtLineHtml(ms, steps) {
+  function renderModelBadgeHtml(modelName, isMath) {
+    const label = modelName || 'Unicollect Chat Mini';
+    return '<span class="model-tag' + (isMath ? ' is-math' : '') + '" dir="ltr">' + escapeHtml(label) + '</span>';
+  }
+
+  function renderThoughtLineHtml(ms, steps, modelName, isMath) {
     if (typeof ms !== 'number') return '';
     const hasSteps = Array.isArray(steps) && steps.length > 0;
     return (
       '<div class="thought" data-thought-box>' +
-        '<button type="button" class="thought-line" data-thought-toggle ' + (hasSteps ? 'aria-expanded="false"' : 'disabled') + '>' +
-          PETAL_MARK_HTML +
-          '<span>' + secs(ms) + ' ثانیه فکر کرد</span>' +
-          (hasSteps ? '<span class="thought-count">· ' + fa(steps.length) + ' مرحله</span>' : '') +
-          (hasSteps ? '<span class="thinking-chev">' + ICONS.chevron + '</span>' : '') +
-        '</button>' +
+        '<div class="thought-row">' +
+          '<button type="button" class="thought-line" data-thought-toggle ' + (hasSteps ? 'aria-expanded="false"' : 'disabled') + '>' +
+            PETAL_MARK_HTML +
+            '<span>' + secs(ms) + ' ثانیه فکر کرد</span>' +
+            (hasSteps ? '<span class="thought-count">· ' + fa(steps.length) + ' مرحله</span>' : '') +
+            (hasSteps ? '<span class="thinking-chev">' + ICONS.chevron + '</span>' : '') +
+          '</button>' +
+          renderModelBadgeHtml(modelName, isMath) +
+        '</div>' +
         (hasSteps ? '<div class="thought-steps-wrap" hidden>' + renderStepListHtml(steps) + '</div>' : '') +
       '</div>'
     );
@@ -805,7 +813,7 @@
         html +=
           '<div class="msg bot">' +
             '<div class="bot-body">' +
-              renderThoughtLineHtml(m.thinkingMs, m.steps) +
+              renderThoughtLineHtml(m.thinkingMs, m.steps, m.model, m.isMath) +
               '<div class="err-line"><span class="err-icon">' + ICONS.alert + '</span><span class="err-text">' + escapeHtml(m.error || 'خطا در دریافت پاسخ') + '</span></div>' +
               '<div class="actions">' +
                 '<button class="icon-btn sm" type="button" data-redo-msg="' + escapeHtml(m.id) + '" title="تلاش مجدد" aria-label="تلاش مجدد">' + ICONS.refresh + '</button>' +
@@ -817,7 +825,7 @@
         html +=
           '<div class="msg bot">' +
             '<div class="bot-body">' +
-              renderThoughtLineHtml(m.thinkingMs, m.steps) +
+              renderThoughtLineHtml(m.thinkingMs, m.steps, m.model, m.isMath) +
               '<div class="md" dir="' + bDir + '">' + renderMarkdown(m.reply) + '</div>' +
               '<div class="actions">' +
                 '<button class="icon-btn sm" type="button" data-copy-bot="' + escapeHtml(m.id) + '" title="کپی پاسخ" aria-label="کپی پاسخ">' + ICONS.copy + '</button>' +
@@ -1139,7 +1147,7 @@
           '</button>' +
           '<div id="pending-steps-box" class="thought-steps-wrap"></div>' +
         '</div>' +
-        '<div class="writing-line" id="pending-writing" hidden><span class="shiny">در حال نوشتن پاسخ</span></div>' +
+        '<div class="writing-line" id="pending-writing" hidden><span class="shiny">در حال نوشتن پاسخ</span><span id="pending-model-badge"></span></div>' +
         '<div class="md live" id="pending-md" hidden dir="rtl"></div>' +
       '</div></div>';
 
@@ -1206,6 +1214,8 @@
     const timeoutId = setTimeout(function () { ctrl.abort(); }, REQUEST_TIMEOUT_MS);
 
     let reply = '';
+    let usedModel = 'Unicollect Chat Mini';
+    let usedMath = false;
     let displayedReply = '';
     let streamQueue = '';
     let streamRaf = 0;
@@ -1278,6 +1288,13 @@
             if (payload === '[DONE]') break outer;
             let obj = null;
             try { obj = JSON.parse(payload); } catch (e) { continue; }
+            if (obj && obj.meta && obj.meta.model) {
+              usedModel = String(obj.meta.model);
+              usedMath = !!obj.meta.is_math;
+              const badgeEl = document.getElementById('pending-model-badge');
+              if (badgeEl) badgeEl.innerHTML = renderModelBadgeHtml(usedModel, usedMath);
+              continue;
+            }
             if (obj && typeof obj.t === 'string' && obj.t) {
               if (!timings.first) {
                 timings.first = performance.now();
@@ -1354,6 +1371,8 @@
       ts: Date.now(),
       reply: ok ? reply : null,
       error: ok ? null : (error || 'پاسخی از سرور دریافت نشد'),
+      model: usedModel,
+      isMath: usedMath,
       thinkingMs: Math.round((timings.first || timings.end) - timings.t0),
       steps: buildChatSteps(text, history.length / 2, timings, reply, ok ? (state.aborted ? 'متوقف شد' : error) : error)
     };

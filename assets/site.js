@@ -20,21 +20,30 @@
   function showToast(text, type) {
     const host = document.getElementById('toast-host');
     if (!host) return;
+    const kind = type || 'success';
+    const ms = 2600;
     const t = document.createElement('div');
-    t.className = 'toast t-' + (type || 'success');
-    t.setAttribute('role', 'status');
+    t.className = 'toast t-' + kind;
+    t.setAttribute('role', kind === 'error' ? 'alert' : 'status');
     t.innerHTML =
       '<span class="toast-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>' +
-      '<span class="toast-text"></span>';
+      '<span class="toast-text"></span>' +
+      '<button class="toast-x" type="button" aria-label="بستن"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>' +
+      '<span class="toast-bar" style="animation-duration:' + ms + 'ms"></span>';
     t.querySelector('.toast-text').textContent = text;
-    host.appendChild(t);
-    setTimeout(function () {
-      t.style.opacity = '0';
-      t.style.transform = 'translateY(-8px)';
+    const removeToast = function () {
+      if (!t.parentNode || t.classList.contains('closing')) return;
+      t.classList.add('closing');
       setTimeout(function () {
         if (t.parentNode) t.parentNode.removeChild(t);
       }, 220);
-    }, 2400);
+    };
+    const timer = setTimeout(removeToast, ms);
+    t.querySelector('.toast-x').addEventListener('click', function () {
+      clearTimeout(timer);
+      removeToast();
+    });
+    host.insertBefore(t, host.firstChild);
   }
 
   /* ---------- کپی در کلیپ‌بورد ---------- */
@@ -238,6 +247,20 @@
 
     detailsList.forEach(function (d) {
       d.addEventListener('toggle', updateCount);
+      const sum = d.querySelector('summary');
+      if (sum) {
+        sum.addEventListener('click', function (e) {
+          if (d.open && !d.classList.contains('closing')) {
+            e.preventDefault();
+            d.classList.add('closing');
+            setTimeout(function () {
+              d.classList.remove('closing');
+              d.open = false;
+              updateCount();
+            }, 200);
+          }
+        });
+      }
     });
     updateCount();
 
@@ -393,10 +416,29 @@
     // موبایل TOC
     const tocToggle = document.querySelector('[data-toc-toggle]');
     const tocEl = document.querySelector('.toc');
+    function closeTocAnimated() {
+      if (!tocEl || !tocEl.classList.contains('open') || tocEl.classList.contains('closing')) return;
+      tocEl.classList.remove('open');
+      tocEl.classList.add('closing');
+      if (tocToggle) tocToggle.setAttribute('aria-expanded', 'false');
+      setTimeout(function () {
+        tocEl.classList.remove('closing');
+      }, 190);
+    }
     if (tocToggle && tocEl) {
       tocToggle.addEventListener('click', function () {
-        const open = tocEl.classList.toggle('open');
-        tocToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (tocEl.classList.contains('open')) {
+          closeTocAnimated();
+        } else {
+          tocEl.classList.remove('closing');
+          tocEl.classList.add('open');
+          tocToggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+      document.addEventListener('click', function (e) {
+        if (tocEl.classList.contains('open') && !tocEl.contains(e.target)) {
+          closeTocAnimated();
+        }
       });
     }
     document.querySelectorAll('[data-toc-link]').forEach(function (a) {
@@ -407,7 +449,7 @@
           target.open = true;
           updateCount();
         }
-        if (tocEl) tocEl.classList.remove('open');
+        closeTocAnimated();
       });
     });
   }
@@ -424,17 +466,25 @@
         drawer.style.display = '';
       });
     });
+    function closeDrawerAnimated() {
+      if (!drawer || drawer.hasAttribute('hidden') || drawer.classList.contains('closing')) return;
+      drawer.classList.add('closing');
+      drawer._closeTimer = setTimeout(function () {
+        drawer.classList.remove('closing');
+        drawer.setAttribute('hidden', '');
+        drawer.style.display = 'none';
+        drawer._closeTimer = 0;
+      }, 210);
+    }
     document.querySelectorAll('[data-drawer-close]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        if (!drawer || drawer.hasAttribute('hidden')) return;
-        drawer.classList.add('closing');
-        drawer._closeTimer = setTimeout(function () {
-          drawer.classList.remove('closing');
-          drawer.setAttribute('hidden', '');
-          drawer.style.display = 'none';
-          drawer._closeTimer = 0;
-        }, 180);
-      });
+      btn.addEventListener('click', closeDrawerAnimated);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeDrawerAnimated();
+        const tocEl = document.querySelector('.toc.open');
+        if (tocEl) tocEl.classList.remove('open');
+      }
     });
 
     const topHeader = document.getElementById('top');
@@ -518,6 +568,21 @@
         }
       };
       window.addEventListener("scroll", onScrollSpy, { passive: true });
+    }
+    if ('IntersectionObserver' in window) {
+      const reveals = document.querySelectorAll('.reveal:not(.in)');
+      if (reveals.length) {
+        document.documentElement.classList.add('js');
+        const io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+        reveals.forEach(function (r) { io.observe(r); });
+      }
     }
   }
 

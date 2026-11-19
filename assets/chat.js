@@ -71,16 +71,17 @@
     if (node._closeTimer) { clearTimeout(node._closeTimer); node._closeTimer = 0; }
     node.classList.remove("closing");
     setHidden(node, false);
+    void node.offsetWidth;
   }
-  function closeAnimated(node) {
-    if (!node || node.hidden) return;
+  function closeAnimated(node, delay) {
+    if (!node || node.hidden || node.classList.contains("closing")) return;
     if (node._closeTimer) clearTimeout(node._closeTimer);
     node.classList.add("closing");
     node._closeTimer = setTimeout(function () {
       node.classList.remove("closing");
       setHidden(node, true);
       node._closeTimer = 0;
-    }, 180);
+    }, delay || 210);
   }
 
   function fa(n) {
@@ -166,33 +167,81 @@
     URL.revokeObjectURL(url);
   }
 
-  /* ---------- موتور رندر مارک‌داون و فرمول ریاضی (Vanilla JS) ---------- */
+  /* ---------- موتور رندر مارک‌داون و فرمول ریاضی پیشرفته (Vanilla JS) ---------- */
   const TEX_RULES = [
-    [/\\(?:d|t)?frac\{([^{}]*)\}\{([^{}]*)\}/g, '($1)/($2)'],
-    [/\\sqrt\{([^{}]*)\}/g, '√($1)'],
-    [/\\int/g, '∫'], [/\\sum/g, '∑'], [/\\prod/g, '∏'], [/\\infty/g, '∞'],
-    [/\\pi/g, 'π'], [/\\alpha/g, 'α'], [/\\beta/g, 'β'], [/\\gamma/g, 'γ'],
-    [/\\delta/g, 'δ'], [/\\theta/g, 'θ'], [/\\lambda/g, 'λ'], [/\\mu/g, 'μ'],
-    [/\\sigma/g, 'σ'], [/\\omega/g, 'ω'], [/\\Delta/g, 'Δ'], [/\\times/g, '×'],
-    [/\\cdot/g, '·'], [/\\div/g, '÷'], [/\\pm/g, '±'], [/\\leq?/g, '≤'],
-    [/\\geq?/g, '≥'], [/\\neq/g, '≠'], [/\\approx/g, '≈'], [/\\to|\\rightarrow/g, '→'],
-    [/\\Rightarrow/g, '⇒'], [/\\in/g, '∈'], [/\\forall/g, '∀'], [/\\exists/g, '∃'],
-    [/\\partial/g, '∂'], [/\\nabla/g, '∇'], [/\\,|\\;|\\!|\\quad/g, ' '],
+    [/\\(?:d|t)?frac\{([^{}]*)\}\{([^{}]*)\}/g, '<span class="m-frac"><span class="m-num">$1</span><span class="m-den">$2</span></span>'],
+    [/\\sqrt\[([^\]]+)\]\{([^{}]*)\}/g, '<span class="m-root"><sup>$1</sup>√<span class="m-rad">$2</span></span>'],
+    [/\\sqrt\{([^{}]*)\}/g, '<span class="m-root">√<span class="m-rad">$1</span></span>'],
+    [/\\vec\{([^{}]*)\}/g, '<span class="m-vec">$1</span>'],
+    [/\\hat\{([^{}]*)\}/g, '<span class="m-hat">$1</span>'],
+    [/\\overline\{([^{}]*)\}|\\bar\{([^{}]*)\}/g, '<span class="m-bar">$1$2</span>'],
+    [/\\int/g, '∫'], [/\\iint/g, '∬'], [/\\oint/g, '∮'], [/\\sum/g, '∑'], [/\\prod/g, '∏'], [/\\infty/g, '∞'],
+    [/\\pi/g, 'π'], [/\\alpha/g, 'α'], [/\\beta/g, 'β'], [/\\gamma/g, 'γ'], [/\\Gamma/g, 'Γ'],
+    [/\\delta/g, 'δ'], [/\\Delta/g, 'Δ'], [/\\epsilon|\\varepsilon/g, 'ε'], [/\\zeta/g, 'ζ'], [/\\eta/g, 'η'],
+    [/\\theta|\\vartheta/g, 'θ'], [/\\Theta/g, 'Θ'], [/\\lambda/g, 'λ'], [/\\Lambda/g, 'Λ'], [/\\mu/g, 'μ'],
+    [/\\nu/g, 'ν'], [/\\xi/g, 'ξ'], [/\\rho/g, 'ρ'], [/\\sigma/g, 'σ'], [/\\Sigma/g, 'Σ'], [/\\tau/g, 'τ'],
+    [/\\phi|\\varphi/g, 'φ'], [/\\Phi/g, 'Φ'], [/\\chi/g, 'χ'], [/\\psi/g, 'ψ'], [/\\Psi/g, 'Ψ'],
+    [/\\omega/g, 'ω'], [/\\Omega/g, 'Ω'],
+    [/\\times/g, '×'], [/\\cdot|\\bullet/g, '·'], [/\\div/g, '÷'], [/\\pm/g, '±'], [/\\mp/g, '∓'],
+    [/\\leq?|\\leqslant/g, '≤'], [/\\geq?|\\geqslant/g, '≥'], [/\\neq|\\ne/g, '≠'], [/\\approx/g, '≈'],
+    [/\\equiv/g, '≡'], [/\\sim/g, '∼'], [/\\propto/g, '∝'], [/\\ll/g, '≪'], [/\\gg/g, '≫'],
+    [/\\leftrightarrow|\\iff/g, '⇔'], [/\\Rightarrow|\\implies/g, '⇒'], [/\\Leftarrow/g, '⇐'],
+    [/\\to|\\rightarrow/g, '→'], [/\\leftarrow/g, '←'], [/\\mapsto/g, '↦'],
+    [/\\in/g, '∈'], [/\\notin/g, '∉'], [/\\subset/g, '⊂'], [/\\subseteq/g, '⊆'], [/\\cup/g, '∪'], [/\\cap/g, '∩'],
+    [/\\emptyset|\\varnothing/g, '∅'], [/\\forall/g, '∀'], [/\\exists/g, '∃'], [/\\neg|\\lnot/g, '¬'],
+    [/\\land|\\wedge/g, '∧'], [/\\lor|\\vee/g, '∨'], [/\\therefore/g, '∴'], [/\\because/g, '∵'],
+    [/\\partial/g, '∂'], [/\\nabla/g, '∇'], [/\\degree|\^\\circ/g, '°'], [/\\angle/g, '∠'], [/\\perp/g, '⊥'], [/\\parallel/g, '∥'],
+    [/\\mathbb\{R\}/g, 'ℝ'], [/\\mathbb\{N\}/g, 'ℕ'], [/\\mathbb\{Z\}/g, 'ℤ'], [/\\mathbb\{Q\}/g, 'ℚ'], [/\\mathbb\{C\}/g, 'ℂ'],
+    [/\\(?:sin|cos|tan|cot|sec|csc|log|ln|exp|lim|max|min|det|gcd|mod)/g, function (m) { return '<span class="m-fn">' + m.slice(1) + '</span>'; }],
+    [/\\,|\\;|\\:|\\!|\\quad|\\qquad/g, ' '],
     [/\\left|\\right/g, ''],
-    [/\\(?:text|mathrm|mathbf|operatorname)\{([^{}]*)\}/g, '$1'],
-    [/\^\{([^{}]*)\}/g, '^($1)'], [/_\{([^{}]*)\}/g, '_($1)']
+    [/\\(?:text|mathrm|mathbf|operatorname|textrm)\{([^{}]*)\}/g, '<span class="m-txt">$1</span>']
   ];
-  const SUP_MAP = { '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹', n: 'ⁿ', i: 'ⁱ', '+': '⁺', '-': '⁻' };
-  const SUB_MAP = { '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄', '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉', n: 'ₙ', i: 'ᵢ' };
 
-  function formatTex(s) {
-    let t = String(s || '').trim();
-    for (let i = 0; i < TEX_RULES.length; i++) {
-      t = t.replace(TEX_RULES[i][0], TEX_RULES[i][1]);
+  function formatTexHtml(rawExpr) {
+    let t = escapeHtml(String(rawExpr || '').trim());
+    // Matrices (pmatrix / bmatrix / vmatrix)
+    t = t.replace(/\\begin\{([pbv]?)matrix\}([\s\S]*?)\\end\{\1matrix\}/g, function (_, kind, body) {
+      const rows = body.trim().split(/\\\\/).map(function (r) {
+        const cols = r.split('&').map(function (c) { return '<td>' + formatTexHtml(c) + '</td>'; }).join('');
+        return '<tr>' + cols + '</tr>';
+      }).join('');
+      const cls = kind === 'b' ? 'm-mat m-mat-b' : kind === 'v' ? 'm-mat m-mat-v' : 'm-mat m-mat-p';
+      return '<span class="' + cls + '"><table><tbody>' + rows + '</tbody></table></span>';
+    });
+    // Repeat fraction/root replacement twice to handle one level of nesting
+    for (let pass = 0; pass < 2; pass++) {
+      for (let i = 0; i < TEX_RULES.length; i++) {
+        t = t.replace(TEX_RULES[i][0], TEX_RULES[i][1]);
+      }
     }
-    t = t.replace(/\^([0-9ni+-])/g, function (_, c) { return SUP_MAP[c] || c; });
-    t = t.replace(/_([0-9ni])/g, function (_, c) { return SUB_MAP[c] || c; });
+    // Superscripts & subscripts
+    t = t.replace(/\^\{([^{}]+)\}/g, '<sup>$1</sup>');
+    t = t.replace(/_\{([^{}]+)\}/g, '<sub>$1</sub>');
+    t = t.replace(/\^([A-Za-z0-9+\-*])/g, '<sup>$1</sup>');
+    t = t.replace(/_([A-Za-z0-9])/g, '<sub>$1</sub>');
     return t.replace(/[{}]/g, '');
+  }
+
+  function highlightCode(rawCode, lang) {
+    const l = String(lang || '').toLowerCase();
+    let s = escapeHtml(rawCode);
+    if (!l || l === 'text' || l === 'txt' || l === 'متن' || l === 'plain') return s;
+    const tokens = [];
+    const stash = function (html) {
+      const id = tokens.length;
+      tokens.push(html);
+      return '\uE010HL' + id + '\uE011';
+    };
+    s = s.replace(/(&quot;(?:\\.|[^&]|&(?!quot;))*?&quot;|&#39;(?:\\.|[^&]|&(?!#39;))*?&#39;|`[^`]*`)/g, function (m) {
+      return stash('<span class="hl-str">' + m + '</span>');
+    });
+    s = s.replace(/(\/\/[^\n]*|#[^\n]*|\/\*[\s\S]*?\*\/)/g, function (m) {
+      return stash('<span class="hl-com">' + m + '</span>');
+    });
+    s = s.replace(/\b(function|return|const|let|var|if|else|for|while|switch|case|break|continue|async|await|try|catch|finally|throw|new|class|extends|import|from|export|default|def|elif|pass|with|as|lambda|yield|True|False|None|true|false|null|undefined|SELECT|FROM|WHERE|INSERT|INTO|UPDATE|DELETE|JOIN|ORDER|BY|GROUP|LIMIT|curl|sudo|git|npm|pip|python|python3|bash|sh)\b/g, '<span class="hl-kw">$1</span>');
+    s = s.replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="hl-num">$1</span>');
+    return s.replace(/\uE010HL(\d+)\uE011/g, function (_, idx) { return tokens[+idx] || ''; });
   }
 
   function renderInlineMarkdown(escapedText, mathTokens, codeTokens) {
@@ -207,13 +256,17 @@
     s = s.replace(/\\\(([\s\S]+?)\\\)|(^|[^\\$\w])\$([^\s$][^$\n]*?)\$(?!\$)/g, function (_, p1, pre, p2) {
       const expr = p1 != null ? p1 : p2;
       const idx = mathTokens.length;
-      mathTokens.push('<span class="math" dir="ltr">' + escapeHtml(formatTex(expr)) + '</span>');
+      mathTokens.push('<span class="math" dir="ltr">' + formatTexHtml(expr) + '</span>');
       return (pre || '') + '\uE000MATH' + idx + '\uE001';
     });
     // Links [label](url)
     s = s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-    // Bold **...**
-    s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    // Highlight ==...==
+    s = s.replace(/==([^=\n]+)==/g, '<mark class="md-mark">$1</mark>');
+    // Keyboard keys [[Ctrl+K]]
+    s = s.replace(/\[\[([^\]\n]{1,24})\]\]/g, '<kbd class="kbd md-kbd">$1</kbd>');
+    // Bold **...** or __...__
+    s = s.replace(/\*\*([^*]+)\*\*|__([^_]+)__/g, function (_, a, b) { return '<strong>' + (a || b) + '</strong>'; });
     // Italic *...*
     s = s.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>');
     // Strikethrough ~~...~~
@@ -233,20 +286,21 @@
     const mathTokens = [];
     const codeTokens = [];
 
-    // ۱. استخراج بلوک‌های کد ```lang ... ```
-    let working = src.replace(/```([a-zA-Z0-9_-]*)\n?([\s\S]*?)```/g, function (_, lang, code) {
+    // ۱. استخراج بلوک‌های کد (بسته و حتی نیمه‌باز حین استریم)
+    let working = src.replace(/```([a-zA-Z0-9_+#.-]*)\n?([\s\S]*?)(?:```|$)/g, function (full, lang, code) {
       const cleanCode = code.replace(/\n$/, '');
       const idx = blocks.length;
       const encoded = encodeURIComponent(cleanCode);
+      const lineCount = cleanCode ? cleanCode.split('\n').length : 0;
       blocks.push(
         '<div class="code-block">' +
           '<div class="code-head">' +
-            '<span class="code-lang">' + escapeHtml(lang || 'متن') + '</span>' +
+            '<span class="code-lang-wrap"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">' + escapeHtml(lang || 'متن') + '</span>' + (lineCount > 1 ? '<span class="code-lines">' + fa(lineCount) + ' خط</span>' : '') + '</span>' +
             '<button type="button" class="code-copy" data-copy-encoded="' + encoded + '">' +
               ICONS.copy + '<span>کپی</span>' +
             '</button>' +
           '</div>' +
-          '<pre dir="ltr"><code>' + escapeHtml(cleanCode) + '</code></pre>' +
+          '<pre dir="ltr"><code>' + highlightCode(cleanCode, lang) + '</code></pre>' +
         '</div>'
       );
       return '\n\n@@BLOCK_' + idx + '@@\n\n';
@@ -254,13 +308,22 @@
 
     // ۲. استخراج فرمول‌های ریاضی بلوکی $$...$$ یا \[...\]
     working = working.replace(/\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]/g, function (_, m1, m2) {
-      const expr = m1 != null ? m1 : m2;
+      const expr = (m1 != null ? m1 : m2).trim();
       const idx = blocks.length;
-      blocks.push('<div class="math math-block" dir="ltr">' + escapeHtml(formatTex(expr)) + '</div>');
+      const encoded = encodeURIComponent(expr);
+      blocks.push(
+        '<div class="math-card">' +
+          '<div class="math-head">' +
+            '<span class="math-badge">فرمول ریاضی</span>' +
+            '<button type="button" class="code-copy" data-copy-encoded="' + encoded + '">' + ICONS.copy + '<span>کپی LaTeX</span></button>' +
+          '</div>' +
+          '<div class="math math-block" dir="ltr">' + formatTexHtml(expr) + '</div>' +
+        '</div>'
+      );
       return '\n\n@@BLOCK_' + idx + '@@\n\n';
     });
 
-    // ۳. پردازش خط‌به‌خط پاراگراف‌ها، لیست‌ها، جدول‌ها و عناوین
+    // ۳. پردازش خط‌به‌خط پاراگراف‌ها، کال‌اوت‌ها، لیست‌ها، چک‌لیست‌ها، جدول‌ها، خط جداکننده و عناوین
     const lines = working.split(/\r?\n/);
     const out = [];
     let i = 0;
@@ -274,7 +337,6 @@
         continue;
       }
 
-      // بلوک از پیش رندرشده
       const bm = /^@@BLOCK_(\d+)@@$/.exec(trimmed);
       if (bm) {
         out.push(blocks[+bm[1]]);
@@ -282,7 +344,12 @@
         continue;
       }
 
-      // عنوان‌ها (#, ##, ###)
+      if (/^(?:---+|\*\*\*+|___+)$/.test(trimmed)) {
+        out.push('<hr>');
+        i++;
+        continue;
+      }
+
       const hm = /^(#{1,4})\s+(.+)$/.exec(trimmed);
       if (hm) {
         const level = Math.min(4, hm[1].length);
@@ -291,7 +358,6 @@
         continue;
       }
 
-      // جدول مارک‌داون
       if (trimmed.includes('|') && i + 1 < lines.length && /^\s*\|?[\s:-]+\|[\s|:-]*$/.test(lines[i + 1])) {
         const parseRow = function (r) {
           return r.trim().replace(/^\||\|$/g, '').split('|').map(function (c) {
@@ -314,21 +380,64 @@
         continue;
       }
 
-      // نقل‌قول (>)
       if (trimmed.startsWith('>')) {
-        const qLines = [];
+        const rawQLines = [];
         while (i < lines.length && lines[i].trim().startsWith('>')) {
-          qLines.push(renderInlineMarkdown(escapeHtml(lines[i].trim().replace(/^>\s?/, '')), mathTokens, codeTokens));
+          rawQLines.push(lines[i].trim().replace(/^>\s?/, ''));
           i++;
         }
-        out.push('<blockquote><p>' + qLines.join('<br>') + '</p></blockquote>');
+        const calloutMatch = /^\[!(NOTE|TIP|WARNING|IMPORTANT|INFO|نکته|هشدار)\]\s*(.*)$/i.exec(rawQLines[0] || '');
+        if (calloutMatch) {
+          const kindRaw = calloutMatch[1].toUpperCase();
+          const kindMap = {
+            NOTE: ['info', 'نکته'],
+            INFO: ['info', 'اطلاعات'],
+            'نکته': ['info', 'نکته'],
+            TIP: ['tip', 'پیشنهاد'],
+            IMPORTANT: ['tip', 'مهم'],
+            WARNING: ['warn', 'هشدار'],
+            'هشدار': ['warn', 'هشدار']
+          };
+          const meta = kindMap[kindRaw] || ['info', 'نکته'];
+          const bodyLines = [];
+          if (calloutMatch[2]) bodyLines.push(renderInlineMarkdown(escapeHtml(calloutMatch[2]), mathTokens, codeTokens));
+          for (let q = 1; q < rawQLines.length; q++) {
+            bodyLines.push(renderInlineMarkdown(escapeHtml(rawQLines[q]), mathTokens, codeTokens));
+          }
+          out.push(
+            '<div class="callout c-' + meta[0] + '">' +
+              '<div class="callout-title">' + (meta[0] === 'warn' ? ICONS.alert : ICONS.info) + '<span>' + meta[1] + '</span></div>' +
+              '<div class="callout-body">' + bodyLines.join('<br>') + '</div>' +
+            '</div>'
+          );
+        } else {
+          const qHtml = rawQLines.map(function (ql) { return renderInlineMarkdown(escapeHtml(ql), mathTokens, codeTokens); });
+          out.push('<blockquote><p>' + qHtml.join('<br>') + '</p></blockquote>');
+        }
         continue;
       }
 
-      // لیست نامرتب (- یا *)
+      if (/^[-*]\s+\[[ xX]\]\s+/.test(trimmed)) {
+        const items = [];
+        while (i < lines.length && /^[-*]\s+\[[ xX]\]\s+/.test(lines[i].trim())) {
+          const mTask = /^[-*]\s+\[([ xX])\]\s+(.+)$/.exec(lines[i].trim());
+          const done = mTask && mTask[1].toLowerCase() === 'x';
+          const label = mTask ? mTask[2] : '';
+          items.push(
+            '<li class="task-item' + (done ? ' done' : '') + '">' +
+              '<span class="task-box" aria-hidden="true">' + (done ? ICONS.check : '') + '</span>' +
+              '<span>' + renderInlineMarkdown(escapeHtml(label), mathTokens, codeTokens) + '</span>' +
+            '</li>'
+          );
+          i++;
+        }
+        out.push('<ul class="task-list">' + items.join('') + '</ul>');
+        continue;
+      }
+
       if (/^[-*•]\s+/.test(trimmed)) {
         const items = [];
-        while (i < lines.length && /^[-*•]\s+/.test(lines[i].trim())) {
+        while (i < lines.length && /^[-*•]\s+/.test(lines[i].trim()) && !/^[-*]\s+\[[ xX]\]\s+/.test(lines[i].trim())) {
           const itemText = lines[i].trim().replace(/^[-*•]\s+/, '');
           items.push('<li>' + renderInlineMarkdown(escapeHtml(itemText), mathTokens, codeTokens) + '</li>');
           i++;
@@ -337,7 +446,6 @@
         continue;
       }
 
-      // لیست مرتب (1. یا ۱.)
       if (/^(\d+|[۰-۹]+)[.)]\s+/.test(trimmed)) {
         const items = [];
         while (i < lines.length && /^(\d+|[۰-۹]+)[.)]\s+/.test(lines[i].trim())) {
@@ -349,12 +457,12 @@
         continue;
       }
 
-      // پاراگراف عادی
       const pLines = [];
       while (
         i < lines.length &&
         lines[i].trim() &&
         !/^@@BLOCK_\d+@@$/.test(lines[i].trim()) &&
+        !/^(?:---+|\*\*\*+|___+)$/.test(lines[i].trim()) &&
         !/^(#{1,4})\s+/.test(lines[i].trim()) &&
         !/^[-*•]\s+/.test(lines[i].trim()) &&
         !/^(\d+|[۰-۹]+)[.)]\s+/.test(lines[i].trim()) &&
@@ -376,6 +484,7 @@
     threads: [],
     activeId: null,
     freshId: null,
+    enteringThreadId: null,
     busy: false,
     aborted: false,
     ctrl: null,
@@ -538,8 +647,9 @@
       html += '<div class="sb-group"><div class="sb-group-label">' + escapeHtml(label) + '</div>';
       items.forEach(function (t) {
         const isActive = t.id === state.activeId;
+        const isEntering = t.id === state.enteringThreadId;
         html +=
-          '<div class="thread-row">' +
+          '<div class="thread-row' + (isEntering ? ' entering' : '') + '">' +
             '<div class="thread' + (isActive ? ' active' : '') + '" role="button" tabindex="0" data-thread-id="' + escapeHtml(t.id) + '">' +
               (isActive ? '<span class="thread-ink"></span>' : '') +
               '<span class="t-left"><span class="t-dot dot-chat"></span><span class="t-title" dir="auto">' + escapeHtml(t.title || 'گفتگوی جدید') + '</span></span>' +
@@ -551,6 +661,7 @@
     });
 
     el.sbThreads.innerHTML = html;
+    state.enteringThreadId = null;
 
     el.sbThreads.querySelectorAll('[data-thread-id]').forEach(function (row) {
       row.addEventListener('click', function (e) {
@@ -719,7 +830,8 @@
         if (!box || !wrap) return;
         const isOpen = box.classList.toggle('open');
         btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        setHidden(wrap, !isOpen);
+        if (isOpen) openAnimated(wrap);
+        else closeAnimated(wrap, 210);
       });
     });
 
@@ -759,6 +871,14 @@
   }
 
   /* ---------- کادر ورودی پیام (Composer) و تغییر اندازه خودکار ---------- */
+  let _composerRaf = 0;
+  function scheduleComposerSize() {
+    if (_composerRaf) return;
+    _composerRaf = requestAnimationFrame(function () {
+      _composerRaf = 0;
+      syncComposerSize(false);
+    });
+  }
   function syncComposerSize(instant) {
     if (!el.input || !el.taWrap) return;
     const val = el.input.value;
@@ -961,6 +1081,7 @@
       };
       state.threads.unshift(thread);
       state.activeId = thread.id;
+      state.enteringThreadId = thread.id;
       createdNew = true;
       saveThreads();
       renderSidebar();
@@ -987,7 +1108,7 @@
             '<span class="thinking-time mono" id="pending-time" hidden>۰ ثانیه</span>' +
             '<span class="thinking-chev" style="transform:rotate(180deg)">' + ICONS.chevron + '</span>' +
           '</button>' +
-          '<div id="pending-steps-box"></div>' +
+          '<div id="pending-steps-box" class="thought-steps-wrap"></div>' +
         '</div>' +
         '<div class="writing-line" id="pending-writing" hidden><span class="shiny">در حال نوشتن پاسخ</span></div>' +
         '<div class="md live" id="pending-md" hidden dir="rtl"></div>' +
@@ -1009,7 +1130,8 @@
         pHead.addEventListener('click', function () {
           const isOpen = pendingThinking.classList.toggle('open');
           pHead.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-          setHidden(stepsBox, !isOpen);
+          if (isOpen) openAnimated(stepsBox);
+          else closeAnimated(stepsBox, 210);
         });
       }
     }
@@ -1044,7 +1166,39 @@
     const timeoutId = setTimeout(function () { ctrl.abort(); }, REQUEST_TIMEOUT_MS);
 
     let reply = '';
+    let displayedReply = '';
+    let streamQueue = '';
+    let streamRaf = 0;
     let error = null;
+
+    function flushStreamFrame(forceAll) {
+      if (!streamQueue.length) return;
+      if (forceAll) {
+        displayedReply += streamQueue;
+        streamQueue = '';
+      } else {
+        const chars = Array.from(streamQueue);
+        const step = Math.max(2, Math.min(20, Math.ceil(chars.length / 7)));
+        displayedReply += chars.slice(0, step).join('');
+        streamQueue = chars.slice(step).join('');
+      }
+      if (mdEl) {
+        mdEl.dir = textDir(displayedReply);
+        mdEl.innerHTML = renderMarkdown(displayedReply) + '<span class="stream-dot"></span>';
+      }
+      scrollToBottom(false);
+    }
+
+    function scheduleStreamPump() {
+      if (streamRaf) return;
+      streamRaf = requestAnimationFrame(function () {
+        streamRaf = 0;
+        flushStreamFrame(false);
+        if (streamQueue.length && !state.aborted) {
+          scheduleStreamPump();
+        }
+      });
+    }
 
     try {
       const base = await resolveApiBase();
@@ -1092,16 +1246,28 @@
                 setHidden(mdEl, false);
               }
               reply += obj.t;
-              if (mdEl) {
-                mdEl.dir = textDir(reply);
-                mdEl.innerHTML = renderMarkdown(reply) + '<span class="stream-dot"></span>';
-              }
-              scrollToBottom(false);
+              streamQueue += obj.t;
+              scheduleStreamPump();
             } else if (obj && obj.error) {
               error = typeof obj.error === 'string' ? obj.error : (obj.error.message || 'خطا در دریافت پاسخ');
               break outer;
             }
           }
+        }
+        if (streamQueue.length && !state.aborted) {
+          await new Promise(function (resolve) {
+            const finishStart = performance.now();
+            function drainTail() {
+              if (!streamQueue.length || state.aborted || performance.now() - finishStart > 320) {
+                flushStreamFrame(true);
+                resolve();
+                return;
+              }
+              flushStreamFrame(false);
+              requestAnimationFrame(drainTail);
+            }
+            requestAnimationFrame(drainTail);
+          });
         }
       }
     } catch (e) {
@@ -1112,6 +1278,7 @@
       }
       checkHealth();
     } finally {
+      if (streamRaf) { cancelAnimationFrame(streamRaf); streamRaf = 0; }
       clearTimeout(phaseTimer1);
       clearTimeout(phaseTimer2);
       clearInterval(clockInterval);
@@ -1210,27 +1377,43 @@
     }
     const idx = state.threads.findIndex(function (t) { return t.id === id; });
     if (idx === -1) return;
-    const removed = state.threads[idx];
-    const wasActive = id === state.activeId;
-    state.threads.splice(idx, 1);
-    if (wasActive) state.activeId = null;
-    saveThreads();
-    renderSidebar();
-    renderMessages();
+    const row = el.sbThreads ? el.sbThreads.querySelector('[data-thread-id="' + id + '"]') : null;
+    const wrapRow = row ? row.closest('.thread-row') : null;
+    if (wrapRow && wrapRow.classList.contains('closing')) return;
 
-    showToast('گفتگو حذف شد', {
-      type: 'info',
-      action: {
-        label: 'بازگردانی',
-        onClick: function () {
-          state.threads.splice(idx, 0, removed);
-          if (wasActive) state.activeId = removed.id;
-          saveThreads();
-          renderSidebar();
-          renderMessages();
+    const finalizeDelete = function () {
+      const curIdx = state.threads.findIndex(function (t) { return t.id === id; });
+      if (curIdx === -1) return;
+      const removed = state.threads[curIdx];
+      const wasActive = id === state.activeId;
+      state.threads.splice(curIdx, 1);
+      if (wasActive) state.activeId = null;
+      saveThreads();
+      renderSidebar();
+      renderMessages();
+
+      showToast('گفتگو حذف شد', {
+        type: 'info',
+        action: {
+          label: 'بازگردانی',
+          onClick: function () {
+            state.enteringThreadId = removed.id;
+            state.threads.splice(curIdx, 0, removed);
+            if (wasActive) state.activeId = removed.id;
+            saveThreads();
+            renderSidebar();
+            renderMessages();
+          }
         }
-      }
-    });
+      });
+    };
+
+    if (wrapRow) {
+      wrapRow.classList.add('closing');
+      setTimeout(finalizeDelete, 220);
+      return;
+    }
+    finalizeDelete();
   }
 
   function redoMessage(msgId) {
@@ -1531,7 +1714,7 @@
     // کادر ورودی پیام (Composer)
     if (el.input) {
       el.input.addEventListener('input', function () {
-        syncComposerSize(false);
+        scheduleComposerSize();
       });
       el.input.addEventListener('focus', function () {
         if (el.composer) el.composer.classList.add('focused');
@@ -1599,7 +1782,7 @@
       }
       if (e.key === 'Escape') {
         if (el.confirmModal && !el.confirmModal.hidden) {
-          el.confirmModal.hidden = true;
+          closeAnimated(el.confirmModal);
           return;
         }
         if (el.searchModal && !el.searchModal.hidden) {

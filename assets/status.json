@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9mcm9tLXN0cmF0ZWdpYy10aGVvbG9neS1zaG93Y2FzZS50cnljbG91ZGZsYXJlLmNvbQ==",
-  "public_api_key": "sk-uc-d0d84f8f7c224b7203cfc182ece0e43e",
-  "api_key": "sk-uc-d0d84f8f7c224b7203cfc182ece0e43e",
+  "url_payload": "aHR0cHM6Ly9mYWN1bHR5LXByb2JlLW51bWJlcnMtbW92aWUudHJ5Y2xvdWRmbGFyZS5jb20=",
+  "public_api_key": "sk-uc-9b6f95ea3d1afc72b750d18cd197f44c",
+  "api_key": "sk-uc-9b6f95ea3d1afc72b750d18cd197f44c",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://from-strategic-theology-showcase.trycloudflare.com/v1",
-    "chat_completions": "https://from-strategic-theology-showcase.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://from-strategic-theology-showcase.trycloudflare.com/v1/models",
-    "native_chat": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/key",
-    "health": "https://from-strategic-theology-showcase.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://faculty-probe-numbers-movie.trycloudflare.com/v1",
+    "chat_completions": "https://faculty-probe-numbers-movie.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://faculty-probe-numbers-movie.trycloudflare.com/v1/models",
+    "native_chat": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/key",
+    "health": "https://faculty-probe-numbers-movie.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-19T10:11:38+00:00",
-  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44503327079",
-  "run_number": 34,
+  "updated_at": "2026-11-19T10:14:04+00:00",
+  "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44503321436",
+  "run_number": 35,
   "commit": "73e9a56"
 }

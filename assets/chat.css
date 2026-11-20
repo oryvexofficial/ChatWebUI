@@ -5834,3 +5834,71 @@ body.chat-body,
 .sidebar {
   transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), width 240ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms ease !important;
 }
+
+
+/* ==========================================================================
+   v105 — Flagship Editorial Polish (Claude Comfort × ChatGPT Dark Monochrome)
+   ========================================================================== */
+
+/* 1. Subtle calm ambient depth on main canvas */
+.main {
+  background: radial-gradient(900px 420px at 50% -120px, rgba(255, 255, 255, 0.032), transparent 70%), #212121 !important;
+}
+
+/* 2. Frosted sleek topbar */
+.topbar {
+  background: rgba(33, 33, 33, 0.86) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  backdrop-filter: blur(14px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.065) !important;
+}
+
+/* 3. Crisp emerald online status dot */
+.sdot.ok {
+  background: #34d399 !important;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.18) !important;
+}
+
+/* 4. Elevated custom Model Picker Modal polish */
+.modal-card.mp-modal {
+  background: linear-gradient(180deg, #242424 0%, #1d1d1d 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+.mp-card {
+  position: relative !important;
+  background: #292929 !important;
+  border: 1px solid rgba(255, 255, 255, 0.085) !important;
+  box-shadow: 0 4px 16px -10px rgba(0, 0, 0, 0.55) !important;
+}
+
+.mp-card:hover {
+  background: #333333 !important;
+  border-color: rgba(255, 255, 255, 0.26) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 28px -14px rgba(0, 0, 0, 0.78) !important;
+}
+
+.mp-card.active {
+  background: #303030 !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35), 0 12px 26px -14px rgba(0, 0, 0, 0.75) !important;
+}
+
+/* 5. Refined composer & primary send button */
+.composer {
+  background: #2d2d2d !important;
+  border: 1px solid rgba(255, 255, 255, 0.11) !important;
+  box-shadow: 0 10px 32px -16px rgba(0, 0, 0, 0.72), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+}
+
+.composer:focus-within {
+  background: #2f2f2f !important;
+  border-color: rgba(255, 255, 255, 0.24) !important;
+  box-shadow: 0 14px 38px -16px rgba(0, 0, 0, 0.85), 0 0 0 3px rgba(255, 255, 255, 0.045) !important;
+}
+
+/* 6. Clean scrollbars across the entire app */
+* {
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+}

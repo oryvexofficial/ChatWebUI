@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-1e2c6392e77df61ffa4698b8a5f0b422",
-  "api_key": "sk-uc-1e2c6392e77df61ffa4698b8a5f0b422",
+  "public_api_key": "sk-uc-080493e1373390e87ec40ff11279a0d5",
+  "api_key": "sk-uc-080493e1373390e87ec40ff11279a0d5",
   "status": "online",
   "online": true,
-  "base_url": "https://planning-hourly-adjustments-hence.trycloudflare.com",
+  "base_url": "https://laser-ranks-salem-longer.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://planning-hourly-adjustments-hence.trycloudflare.com/v1",
-    "chat_completions": "https://planning-hourly-adjustments-hence.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://planning-hourly-adjustments-hence.trycloudflare.com/v1/models",
-    "native_chat": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/key",
-    "health": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://laser-ranks-salem-longer.trycloudflare.com/v1",
+    "chat_completions": "https://laser-ranks-salem-longer.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://laser-ranks-salem-longer.trycloudflare.com/v1/models",
+    "native_chat": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/key",
+    "health": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://planning-hourly-adjustments-hence.trycloudflare.com",
-    "openai_base": "https://planning-hourly-adjustments-hence.trycloudflare.com/v1",
-    "chat_completions": "https://planning-hourly-adjustments-hence.trycloudflare.com/v1/chat/completions",
-    "api": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1",
-    "key": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/key",
-    "health": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/health",
-    "swagger": "https://planning-hourly-adjustments-hence.trycloudflare.com/docs",
-    "redoc": "https://planning-hourly-adjustments-hence.trycloudflare.com/redoc",
-    "openapi": "https://planning-hourly-adjustments-hence.trycloudflare.com/openapi.json",
-    "guide": "https://planning-hourly-adjustments-hence.trycloudflare.com/api-docs",
-    "public_key_page": "https://planning-hourly-adjustments-hence.trycloudflare.com/site/public-key/"
+    "panel": "https://laser-ranks-salem-longer.trycloudflare.com",
+    "openai_base": "https://laser-ranks-salem-longer.trycloudflare.com/v1",
+    "chat_completions": "https://laser-ranks-salem-longer.trycloudflare.com/v1/chat/completions",
+    "api": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1",
+    "key": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/key",
+    "health": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/health",
+    "swagger": "https://laser-ranks-salem-longer.trycloudflare.com/docs",
+    "redoc": "https://laser-ranks-salem-longer.trycloudflare.com/redoc",
+    "openapi": "https://laser-ranks-salem-longer.trycloudflare.com/openapi.json",
+    "guide": "https://laser-ranks-salem-longer.trycloudflare.com/api-docs",
+    "public_key_page": "https://laser-ranks-salem-longer.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/key"
+      "url": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/v1/chat/completions"
+      "url": "https://laser-ranks-salem-longer.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/v1/models"
+      "url": "https://laser-ranks-salem-longer.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/chat"
+      "url": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/generate"
+      "url": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1"
+      "url": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/health"
+      "url": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/ready"
+      "url": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/info"
+      "url": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/models"
+      "url": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/config"
+      "url": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/stats"
+      "url": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/health"
+      "url": "https://laser-ranks-salem-longer.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-20T11:21:03+00:00",
+  "updated_at": "2026-11-20T11:27:58+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44726662834",
-  "run_number": 80,
+  "run_number": 83,
   "commit": "3bed453"
 }

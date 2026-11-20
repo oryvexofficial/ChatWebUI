@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-a715451daa8c9f136172c16021a1c183",
-  "api_key": "sk-uc-a715451daa8c9f136172c16021a1c183",
+  "public_api_key": "sk-uc-1e2c6392e77df61ffa4698b8a5f0b422",
+  "api_key": "sk-uc-1e2c6392e77df61ffa4698b8a5f0b422",
   "status": "online",
   "online": true,
-  "base_url": "https://edit-mailed-says-doing.trycloudflare.com",
+  "base_url": "https://planning-hourly-adjustments-hence.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://edit-mailed-says-doing.trycloudflare.com/v1",
-    "chat_completions": "https://edit-mailed-says-doing.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://edit-mailed-says-doing.trycloudflare.com/v1/models",
-    "native_chat": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/key",
-    "health": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://planning-hourly-adjustments-hence.trycloudflare.com/v1",
+    "chat_completions": "https://planning-hourly-adjustments-hence.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://planning-hourly-adjustments-hence.trycloudflare.com/v1/models",
+    "native_chat": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/key",
+    "health": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://edit-mailed-says-doing.trycloudflare.com",
-    "openai_base": "https://edit-mailed-says-doing.trycloudflare.com/v1",
-    "chat_completions": "https://edit-mailed-says-doing.trycloudflare.com/v1/chat/completions",
-    "api": "https://edit-mailed-says-doing.trycloudflare.com/api/v1",
-    "key": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/key",
-    "health": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/health",
-    "swagger": "https://edit-mailed-says-doing.trycloudflare.com/docs",
-    "redoc": "https://edit-mailed-says-doing.trycloudflare.com/redoc",
-    "openapi": "https://edit-mailed-says-doing.trycloudflare.com/openapi.json",
-    "guide": "https://edit-mailed-says-doing.trycloudflare.com/api-docs",
-    "public_key_page": "https://edit-mailed-says-doing.trycloudflare.com/site/public-key/"
+    "panel": "https://planning-hourly-adjustments-hence.trycloudflare.com",
+    "openai_base": "https://planning-hourly-adjustments-hence.trycloudflare.com/v1",
+    "chat_completions": "https://planning-hourly-adjustments-hence.trycloudflare.com/v1/chat/completions",
+    "api": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1",
+    "key": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/key",
+    "health": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/health",
+    "swagger": "https://planning-hourly-adjustments-hence.trycloudflare.com/docs",
+    "redoc": "https://planning-hourly-adjustments-hence.trycloudflare.com/redoc",
+    "openapi": "https://planning-hourly-adjustments-hence.trycloudflare.com/openapi.json",
+    "guide": "https://planning-hourly-adjustments-hence.trycloudflare.com/api-docs",
+    "public_key_page": "https://planning-hourly-adjustments-hence.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/key"
+      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://edit-mailed-says-doing.trycloudflare.com/v1/chat/completions"
+      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://edit-mailed-says-doing.trycloudflare.com/v1/models"
+      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/chat"
+      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/generate"
+      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1"
+      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/health"
+      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/ready"
+      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/info"
+      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/models"
+      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/config"
+      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/stats"
+      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://edit-mailed-says-doing.trycloudflare.com/health"
+      "url": "https://planning-hourly-adjustments-hence.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-20T11:14:00+00:00",
+  "updated_at": "2026-11-20T11:17:05+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44725875969",
-  "run_number": 79,
+  "run_number": 80,
   "commit": "dbfaa93"
 }

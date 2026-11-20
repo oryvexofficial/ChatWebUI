@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9yb3VnaGx5LXZpY3RvcnktcGhyYXNlLW1pcmFjbGUudHJ5Y2xvdWRmbGFyZS5jb20=",
-  "public_api_key": "sk-uc-0f3925737e706f29217d95a659319c52",
-  "api_key": "sk-uc-0f3925737e706f29217d95a659319c52",
+  "url_payload": "aHR0cHM6Ly9iYWNrdXAtbWF0aGVtYXRpY2FsLXBvci1wcm9tcHRseS50cnljbG91ZGZsYXJlLmNvbQ==",
+  "public_api_key": "sk-uc-16efc8a663df0be09a3e60f312ed95cc",
+  "api_key": "sk-uc-16efc8a663df0be09a3e60f312ed95cc",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1",
-    "chat_completions": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1/models",
-    "native_chat": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/key",
-    "health": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://backup-mathematical-por-promptly.trycloudflare.com/v1",
+    "chat_completions": "https://backup-mathematical-por-promptly.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://backup-mathematical-por-promptly.trycloudflare.com/v1/models",
+    "native_chat": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/key",
+    "health": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-20T19:33:52+00:00",
+  "updated_at": "2026-11-20T19:40:47+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44803283810",
-  "run_number": 103,
+  "run_number": 104,
   "commit": "0d3902d"
 }

@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-0f3925737e706f29217d95a659319c52",
-  "api_key": "sk-uc-0f3925737e706f29217d95a659319c52",
+  "public_api_key": "sk-uc-16efc8a663df0be09a3e60f312ed95cc",
+  "api_key": "sk-uc-16efc8a663df0be09a3e60f312ed95cc",
   "status": "online",
   "online": true,
-  "base_url": "https://roughly-victory-phrase-miracle.trycloudflare.com",
+  "base_url": "https://backup-mathematical-por-promptly.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1",
-    "chat_completions": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1/models",
-    "native_chat": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/key",
-    "health": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://backup-mathematical-por-promptly.trycloudflare.com/v1",
+    "chat_completions": "https://backup-mathematical-por-promptly.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://backup-mathematical-por-promptly.trycloudflare.com/v1/models",
+    "native_chat": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/key",
+    "health": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://roughly-victory-phrase-miracle.trycloudflare.com",
-    "openai_base": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1",
-    "chat_completions": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1/chat/completions",
-    "api": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1",
-    "key": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/key",
-    "health": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/health",
-    "swagger": "https://roughly-victory-phrase-miracle.trycloudflare.com/docs",
-    "redoc": "https://roughly-victory-phrase-miracle.trycloudflare.com/redoc",
-    "openapi": "https://roughly-victory-phrase-miracle.trycloudflare.com/openapi.json",
-    "guide": "https://roughly-victory-phrase-miracle.trycloudflare.com/api-docs",
-    "public_key_page": "https://roughly-victory-phrase-miracle.trycloudflare.com/site/public-key/"
+    "panel": "https://backup-mathematical-por-promptly.trycloudflare.com",
+    "openai_base": "https://backup-mathematical-por-promptly.trycloudflare.com/v1",
+    "chat_completions": "https://backup-mathematical-por-promptly.trycloudflare.com/v1/chat/completions",
+    "api": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1",
+    "key": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/key",
+    "health": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/health",
+    "swagger": "https://backup-mathematical-por-promptly.trycloudflare.com/docs",
+    "redoc": "https://backup-mathematical-por-promptly.trycloudflare.com/redoc",
+    "openapi": "https://backup-mathematical-por-promptly.trycloudflare.com/openapi.json",
+    "guide": "https://backup-mathematical-por-promptly.trycloudflare.com/api-docs",
+    "public_key_page": "https://backup-mathematical-por-promptly.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/key"
+      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1/chat/completions"
+      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1/models"
+      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat"
+      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/generate"
+      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1"
+      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/health"
+      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/ready"
+      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/info"
+      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/models"
+      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/config"
+      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/stats"
+      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/health"
+      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-20T19:33:52+00:00",
+  "updated_at": "2026-11-20T19:40:47+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44803283810",
-  "run_number": 103,
+  "run_number": 104,
   "commit": "0d3902d"
 }

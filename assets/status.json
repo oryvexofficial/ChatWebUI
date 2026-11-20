@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9lbW90aW9uYWwtd2lmZS1vdXRsZXQtZGl2aW5nLnRyeWNsb3VkZmxhcmUuY29t",
-  "public_api_key": "sk-uc-580085899135b25b3d1069a79f6b6a9f",
-  "api_key": "sk-uc-580085899135b25b3d1069a79f6b6a9f",
+  "url_payload": "aHR0cHM6Ly9nb3Zlcm5tZW50LXZpbGxhcy1yZWNvbW1lbmRzLW5pY2tuYW1lLnRyeWNsb3VkZmxhcmUuY29t",
+  "public_api_key": "sk-uc-0c899ada27fd0666aa56015285a53f64",
+  "api_key": "sk-uc-0c899ada27fd0666aa56015285a53f64",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://emotional-wife-outlet-diving.trycloudflare.com/v1",
-    "chat_completions": "https://emotional-wife-outlet-diving.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://emotional-wife-outlet-diving.trycloudflare.com/v1/models",
-    "native_chat": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/key",
-    "health": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://government-villas-recommends-nickname.trycloudflare.com/v1",
+    "chat_completions": "https://government-villas-recommends-nickname.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://government-villas-recommends-nickname.trycloudflare.com/v1/models",
+    "native_chat": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/key",
+    "health": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-20T12:42:30+00:00",
+  "updated_at": "2026-11-20T12:45:27+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44738017025",
-  "run_number": 86,
+  "run_number": 87,
   "commit": "d01b4a2"
 }

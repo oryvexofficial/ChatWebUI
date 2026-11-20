@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-580085899135b25b3d1069a79f6b6a9f",
-  "api_key": "sk-uc-580085899135b25b3d1069a79f6b6a9f",
+  "public_api_key": "sk-uc-0c899ada27fd0666aa56015285a53f64",
+  "api_key": "sk-uc-0c899ada27fd0666aa56015285a53f64",
   "status": "online",
   "online": true,
-  "base_url": "https://emotional-wife-outlet-diving.trycloudflare.com",
+  "base_url": "https://government-villas-recommends-nickname.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://emotional-wife-outlet-diving.trycloudflare.com/v1",
-    "chat_completions": "https://emotional-wife-outlet-diving.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://emotional-wife-outlet-diving.trycloudflare.com/v1/models",
-    "native_chat": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/key",
-    "health": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://government-villas-recommends-nickname.trycloudflare.com/v1",
+    "chat_completions": "https://government-villas-recommends-nickname.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://government-villas-recommends-nickname.trycloudflare.com/v1/models",
+    "native_chat": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/key",
+    "health": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://emotional-wife-outlet-diving.trycloudflare.com",
-    "openai_base": "https://emotional-wife-outlet-diving.trycloudflare.com/v1",
-    "chat_completions": "https://emotional-wife-outlet-diving.trycloudflare.com/v1/chat/completions",
-    "api": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1",
-    "key": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/key",
-    "health": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/health",
-    "swagger": "https://emotional-wife-outlet-diving.trycloudflare.com/docs",
-    "redoc": "https://emotional-wife-outlet-diving.trycloudflare.com/redoc",
-    "openapi": "https://emotional-wife-outlet-diving.trycloudflare.com/openapi.json",
-    "guide": "https://emotional-wife-outlet-diving.trycloudflare.com/api-docs",
-    "public_key_page": "https://emotional-wife-outlet-diving.trycloudflare.com/site/public-key/"
+    "panel": "https://government-villas-recommends-nickname.trycloudflare.com",
+    "openai_base": "https://government-villas-recommends-nickname.trycloudflare.com/v1",
+    "chat_completions": "https://government-villas-recommends-nickname.trycloudflare.com/v1/chat/completions",
+    "api": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1",
+    "key": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/key",
+    "health": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/health",
+    "swagger": "https://government-villas-recommends-nickname.trycloudflare.com/docs",
+    "redoc": "https://government-villas-recommends-nickname.trycloudflare.com/redoc",
+    "openapi": "https://government-villas-recommends-nickname.trycloudflare.com/openapi.json",
+    "guide": "https://government-villas-recommends-nickname.trycloudflare.com/api-docs",
+    "public_key_page": "https://government-villas-recommends-nickname.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/key"
+      "url": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://emotional-wife-outlet-diving.trycloudflare.com/v1/chat/completions"
+      "url": "https://government-villas-recommends-nickname.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://emotional-wife-outlet-diving.trycloudflare.com/v1/models"
+      "url": "https://government-villas-recommends-nickname.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/chat"
+      "url": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/generate"
+      "url": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1"
+      "url": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/health"
+      "url": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/ready"
+      "url": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/info"
+      "url": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/models"
+      "url": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/config"
+      "url": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/stats"
+      "url": "https://government-villas-recommends-nickname.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://emotional-wife-outlet-diving.trycloudflare.com/health"
+      "url": "https://government-villas-recommends-nickname.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-20T12:42:30+00:00",
+  "updated_at": "2026-11-20T12:45:27+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44738017025",
-  "run_number": 86,
+  "run_number": 87,
   "commit": "d01b4a2"
 }

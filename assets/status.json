@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly92b2x2by1tZXNzYWdpbmctY29uc29saWRhdGlvbi1wZWVycy50cnljbG91ZGZsYXJlLmNvbQ==",
-  "public_api_key": "sk-uc-9a138e9ad5121bdf875255c24628514f",
-  "api_key": "sk-uc-9a138e9ad5121bdf875255c24628514f",
+  "url_payload": "aHR0cHM6Ly9leHBsYWluLWFrYS10b3duc2hpcC10b29sYm94LnRyeWNsb3VkZmxhcmUuY29t",
+  "public_api_key": "sk-uc-65ba0ec79c0bd943d90379035d48a8d7",
+  "api_key": "sk-uc-65ba0ec79c0bd943d90379035d48a8d7",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/v1",
-    "chat_completions": "https://volvo-messaging-consolidation-peers.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://volvo-messaging-consolidation-peers.trycloudflare.com/v1/models",
-    "native_chat": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/key",
-    "health": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://explain-aka-township-toolbox.trycloudflare.com/v1",
+    "chat_completions": "https://explain-aka-township-toolbox.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://explain-aka-township-toolbox.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://explain-aka-township-toolbox.trycloudflare.com/v1/models",
+    "native_chat": "https://explain-aka-township-toolbox.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://explain-aka-township-toolbox.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://explain-aka-township-toolbox.trycloudflare.com/api/v1/key",
+    "health": "https://explain-aka-township-toolbox.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-20T14:04:54+00:00",
+  "updated_at": "2026-11-20T14:07:18+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44750015150",
-  "run_number": 92,
+  "run_number": 93,
   "commit": "6faae8c"
 }

@@ -10,7 +10,7 @@
   <link rel="preload" href="../assets/fonts/Vazirmatn.woff2?v=1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/JetBrainsMono.woff2?v=1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-  <link rel="stylesheet" href="../assets/chat.css?v=bw30">
+  <link rel="stylesheet" href="../assets/chat.css?v=bw32">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
   <script async src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
   <style>[hidden]{display:none!important}</style>
@@ -26,11 +26,11 @@
         </div>
         <nav class="sb-nav" aria-label="منوی پنل">
           <button class="sb-item" type="button" id="btn-new-chat"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path></svg><span>گفتگوی جدید</span></button>
-          <button class="sb-item" type="button" id="btn-open-search"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span>جستجوی گفتگوها</span><kbd class="kbd sb-kbd">Ctrl K</kbd></button>
+          <button class="sb-item" type="button" id="btn-open-search"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span>جستجوی گفتگوها</span><kbd class="kbd sb-kbd" dir="ltr">Ctrl K</kbd></button>
           <button class="sb-item" type="button" id="btn-open-settings"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path></svg><span>مدل‌ها و وضعیت</span></button>
-          <a class="sb-item" href="../public-key/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg><span>کلید عمومی API</span></a>
-          <a class="sb-item" href="../api/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg><span>مستندات API</span></a>
-          <a class="sb-item" href="/docs" data-swagger-link target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Swagger / OpenAPI</span></a>
+          <a class="sb-item" href="../public-key/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg><span>کلید عمومی دسترسی</span></a>
+          <a class="sb-item" href="../api/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg><span>راهنمای توسعه‌دهندگان</span></a>
+          <a class="sb-item" href="/docs" data-swagger-link target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>مستندات تعاملی API</span></a>
           <a class="sb-item" href="../"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1Z"></path></svg><span>سایت یونیکالکت</span></a>
         </nav>
         <div class="sb-label">گفتگوها</div>
@@ -66,7 +66,7 @@
           <a class="icon-btn hide-sm" href="../public-key/" title="کلید عمومی API" aria-label="کلید عمومی API"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg></a>
           <a class="icon-btn hide-sm" href="../api/" title="مستندات API" aria-label="مستندات API"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></a>
           <button class="icon-btn" type="button" id="btn-tb-search" title="جستجو (Ctrl+K)" aria-label="جستجو"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></button>
-          <button class="icon-btn" type="button" id="btn-tb-export" title="خروجی JSON گفتگو" aria-label="خروجی JSON گفتگو"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" x2="12" y1="2" y2="15"></line></svg></button>
+          <button class="icon-btn" type="button" id="btn-tb-export" title="ذخیره گفتگو (JSON)" aria-label="ذخیره گفتگو"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" x2="12" y1="2" y2="15"></line></svg></button>
         </div>
       </header>
 
@@ -122,7 +122,6 @@
             </div>
 
             <div class="chips" id="starter-chips">
-              <button class="chip" type="button" data-starter="یک عکس سینمایی و مینیمال سیاه‌وسفید از کوهستان برفی زیر آسمان پرستاره بساز"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path></svg><span>ساخت تصویر</span></button>
               <button class="chip" type="button" data-starter="یک ایمیل کوتاه و رسمی بنویس که جلسه‌ی فردا را یک ساعت عقب بیندازم."><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path></svg><span>یک ایمیل رسمی بنویس</span></button>
               <button class="chip" type="button" data-starter="یادگیری ماشین را برای یک نوجوان با یک مثال ساده توضیح بده."><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg><span>یک مفهوم را ساده کن</span></button>
               <button class="chip" type="button" data-starter="این جمله را به انگلیسی روان ترجمه کن: «هر روز یک قدم کوچک، از یک جهش بزرگ بهتر است.»"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg><span>ترجمه کن</span></button>
@@ -149,8 +148,8 @@
         </div>
         <div class="search-foot">
           <span><kbd class="kbd">↑</kbd><kbd class="kbd">↓</kbd> جابه‌جایی</span>
-          <span><kbd class="kbd">Enter</kbd> باز کردن</span>
-          <span><kbd class="kbd">Esc</kbd> بستن</span>
+          <span><kbd class="kbd">ورود</kbd> باز کردن</span>
+          <span><kbd class="kbd">خروج</kbd> بستن</span>
         </div>
       </div>
     </div>
@@ -168,37 +167,29 @@
             <b class="kv-val"><span class="sdot warn" data-health-dot></span><span data-health-label>در حال اتصال…</span></b>
           </div>
           <div class="kv">
-            <span>مدل چت عمومی</span>
-            <b class="ltr">Unicollect Chat Mini <span class="kv-sub">(GPTOSS20B)</span></b>
+            <span>مدل گفتگوی عمومی</span>
+            <b>یونیکالکت چت مینی</b>
           </div>
           <div class="kv">
-            <span>مدل ریاضی</span>
-            <b class="ltr">Unicollect Math Model <span class="kv-sub">(GPTOSS20)</span></b>
-          </div>
-          <div class="kv">
-            <span>مدل تصویر سریع</span>
-            <b class="ltr">Unicollect Image Mini <span class="kv-sub">(SDXL-Lightning)</span></b>
-          </div>
-          <div class="kv">
-            <span>مدل تصویر پیشرفته</span>
-            <b class="ltr">Unicollect Image 1.0 <span class="kv-sub">(Z-Image Turbo)</span></b>
+            <span>مدل تخصصی ریاضی</span>
+            <b>مدل ریاضی یونیکالکت</b>
           </div>
           <div class="kv kv-copy">
-            <span>کلید عمومی API</span>
+            <span>کلید عمومی دسترسی</span>
             <b class="mono kv-code-row">
               <code class="ltr" id="modal-pub-key">sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26</code>
               <button class="icon-btn sm" type="button" id="btn-copy-modal-key" title="کپی کلید عمومی" aria-label="کپی کلید عمومی"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button>
             </b>
           </div>
           <div class="kv kv-copy">
-            <span>آدرس روتر (Base URL)</span>
+            <span>آدرس پایه روتر</span>
             <b class="mono kv-code-row">
               <code class="ltr" id="modal-router-url">/v1</code>
               <button class="icon-btn sm" type="button" id="btn-copy-modal-router" title="کپی آدرس روتر" aria-label="کپی آدرس روتر"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button>
             </b>
           </div>
           <div class="kv">
-            <span>API و مستندات</span>
+            <span>مسیرهای سرویس</span>
             <b class="mono">
               <a href="../public-key/">/public-key</a> ·
               <a href="../api/">/api/v1</a> ·
@@ -238,69 +229,10 @@
       </div>
     </div>
 
-
-    <!-- مودال انتخاب مدل تولید تصویر (Custom Image Model Selection Modal) -->
-    <div class="modal img-select-modal" id="image-model-modal" hidden style="display:none">
-      <div class="modal-card img-modal-card" role="dialog" aria-modal="true" aria-labelledby="img-modal-title" aria-describedby="img-modal-desc">
-        <div class="modal-head">
-          <div class="img-modal-head-group">
-            <span class="img-modal-ico" aria-hidden="true">
-              <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path></svg>
-            </span>
-            <h3 id="img-modal-title">تولید تصویر · Image Generation</h3>
-          </div>
-          <button class="icon-btn" type="button" id="btn-img-modal-close" aria-label="بستن" title="بستن"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
-        </div>
-        <div class="modal-body img-modal-body">
-          <p id="img-modal-desc" class="img-modal-desc ltr">Choose the model you want to generate the image with.</p>
-          <div class="img-prompt-preview" id="img-modal-prompt" dir="auto" hidden></div>
-          <div class="img-model-grid" role="group" aria-label="Image generation models">
-            <button type="button" class="img-model-opt" id="btn-img-opt-mini" data-image-model="unicollect-image-mini">
-              <div class="imo-top">
-                <span class="imo-badge mono">FAST · 1</span>
-                <span class="imo-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
-              </div>
-              <div class="imo-name ltr">Unicollect Image Mini</div>
-              <div class="imo-sub">سریع و سبک · SDXL-Lightning</div>
-            </button>
-            <button type="button" class="img-model-opt is-pro" id="btn-img-opt-pro" data-image-model="unicollect-image-1.0">
-              <div class="imo-top">
-                <span class="imo-badge mono">HD · 2</span>
-                <span class="imo-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></span>
-              </div>
-              <div class="imo-name ltr">Unicollect Image 1.0</div>
-              <div class="imo-sub">کیفیت بالا و جزئیات دقیق · Z-Image Turbo</div>
-            </button>
-          </div>
-        </div>
-        <div class="modal-foot img-modal-foot">
-          <span class="img-modal-hint"><kbd class="kbd">1</kbd> <kbd class="kbd">2</kbd> انتخاب سریع · <kbd class="kbd">Esc</kbd> انصراف</span>
-          <button class="btn-ghost" type="button" id="btn-img-modal-cancel">انصراف</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- مودال نمایش تمام‌صفحه تصویر (Image Lightbox) -->
-    <div class="modal lightbox-modal" id="image-lightbox-modal" hidden style="display:none">
-      <div class="lightbox-card" role="dialog" aria-modal="true" aria-label="پیش‌نمایش تصویر">
-        <div class="lightbox-bar">
-          <span class="lightbox-meta ltr" id="lightbox-meta">Unicollect Image</span>
-          <div class="lightbox-actions">
-            <a class="icon-btn" id="btn-lightbox-download" download="unicollect-image.png" title="دانلود تصویر" aria-label="دانلود تصویر"><svg class="ic" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg></a>
-            <button class="icon-btn" type="button" id="btn-lightbox-close" title="بستن" aria-label="بستن"><svg class="ic" viewBox="0 0 24 24"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
-          </div>
-        </div>
-        <div class="lightbox-stage">
-          <img id="lightbox-img" alt="تصویر تولیدشده">
-        </div>
-        <p class="lightbox-caption" id="lightbox-caption" dir="auto"></p>
-      </div>
-    </div>
-
     <div class="toast-host" id="toast-host" aria-live="polite"></div>
   </div>
 </div>
 <noscript><p style="font-family:Vazirmatn,Tahoma,sans-serif;text-align:center;padding:40px">برای استفاده از پنل، جاوااسکریپت را روشن کنید. API همچنان در <a href="/api/v1">/api/v1</a> در دسترس است.</p></noscript>
-<script src="../assets/chat.js?v=bw30"></script>
+<script src="../assets/chat.js?v=bw32"></script>
 </body>
 </html>

@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-25e4d6901dbbe20b70a889a3c3fbcf5b",
-  "api_key": "sk-uc-25e4d6901dbbe20b70a889a3c3fbcf5b",
+  "public_api_key": "sk-uc-a715451daa8c9f136172c16021a1c183",
+  "api_key": "sk-uc-a715451daa8c9f136172c16021a1c183",
   "status": "online",
   "online": true,
-  "base_url": "https://roger-steven-next-powerseller.trycloudflare.com",
+  "base_url": "https://edit-mailed-says-doing.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://roger-steven-next-powerseller.trycloudflare.com/v1",
-    "chat_completions": "https://roger-steven-next-powerseller.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://roger-steven-next-powerseller.trycloudflare.com/v1/models",
-    "native_chat": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/key",
-    "health": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://edit-mailed-says-doing.trycloudflare.com/v1",
+    "chat_completions": "https://edit-mailed-says-doing.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://edit-mailed-says-doing.trycloudflare.com/v1/models",
+    "native_chat": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/key",
+    "health": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://roger-steven-next-powerseller.trycloudflare.com",
-    "openai_base": "https://roger-steven-next-powerseller.trycloudflare.com/v1",
-    "chat_completions": "https://roger-steven-next-powerseller.trycloudflare.com/v1/chat/completions",
-    "api": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1",
-    "key": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/key",
-    "health": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/health",
-    "swagger": "https://roger-steven-next-powerseller.trycloudflare.com/docs",
-    "redoc": "https://roger-steven-next-powerseller.trycloudflare.com/redoc",
-    "openapi": "https://roger-steven-next-powerseller.trycloudflare.com/openapi.json",
-    "guide": "https://roger-steven-next-powerseller.trycloudflare.com/api-docs",
-    "public_key_page": "https://roger-steven-next-powerseller.trycloudflare.com/site/public-key/"
+    "panel": "https://edit-mailed-says-doing.trycloudflare.com",
+    "openai_base": "https://edit-mailed-says-doing.trycloudflare.com/v1",
+    "chat_completions": "https://edit-mailed-says-doing.trycloudflare.com/v1/chat/completions",
+    "api": "https://edit-mailed-says-doing.trycloudflare.com/api/v1",
+    "key": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/key",
+    "health": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/health",
+    "swagger": "https://edit-mailed-says-doing.trycloudflare.com/docs",
+    "redoc": "https://edit-mailed-says-doing.trycloudflare.com/redoc",
+    "openapi": "https://edit-mailed-says-doing.trycloudflare.com/openapi.json",
+    "guide": "https://edit-mailed-says-doing.trycloudflare.com/api-docs",
+    "public_key_page": "https://edit-mailed-says-doing.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/key"
+      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://roger-steven-next-powerseller.trycloudflare.com/v1/chat/completions"
+      "url": "https://edit-mailed-says-doing.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://roger-steven-next-powerseller.trycloudflare.com/v1/models"
+      "url": "https://edit-mailed-says-doing.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/chat"
+      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/generate"
+      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1"
+      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/health"
+      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/ready"
+      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/info"
+      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/models"
+      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/config"
+      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://roger-steven-next-powerseller.trycloudflare.com/api/v1/stats"
+      "url": "https://edit-mailed-says-doing.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://roger-steven-next-powerseller.trycloudflare.com/health"
+      "url": "https://edit-mailed-says-doing.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-20T11:05:34+00:00",
+  "updated_at": "2026-11-20T11:10:30+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44724677335",
-  "run_number": 75,
+  "run_number": 79,
   "commit": "dbfaa93"
 }

@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-2bb7895c440a35c1b62f601d60c80802",
-  "api_key": "sk-uc-2bb7895c440a35c1b62f601d60c80802",
+  "public_api_key": "sk-uc-5597b1255fab120d4a9eb133a0d01841",
+  "api_key": "sk-uc-5597b1255fab120d4a9eb133a0d01841",
   "status": "online",
   "online": true,
-  "base_url": "https://payroll-shakira-marking-field.trycloudflare.com",
+  "base_url": "https://hrs-dna-cardiac-approval.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://payroll-shakira-marking-field.trycloudflare.com/v1",
-    "chat_completions": "https://payroll-shakira-marking-field.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://payroll-shakira-marking-field.trycloudflare.com/v1/models",
-    "native_chat": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/key",
-    "health": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://hrs-dna-cardiac-approval.trycloudflare.com/v1",
+    "chat_completions": "https://hrs-dna-cardiac-approval.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://hrs-dna-cardiac-approval.trycloudflare.com/v1/models",
+    "native_chat": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/key",
+    "health": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://payroll-shakira-marking-field.trycloudflare.com",
-    "openai_base": "https://payroll-shakira-marking-field.trycloudflare.com/v1",
-    "chat_completions": "https://payroll-shakira-marking-field.trycloudflare.com/v1/chat/completions",
-    "api": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1",
-    "key": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/key",
-    "health": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/health",
-    "swagger": "https://payroll-shakira-marking-field.trycloudflare.com/docs",
-    "redoc": "https://payroll-shakira-marking-field.trycloudflare.com/redoc",
-    "openapi": "https://payroll-shakira-marking-field.trycloudflare.com/openapi.json",
-    "guide": "https://payroll-shakira-marking-field.trycloudflare.com/api-docs",
-    "public_key_page": "https://payroll-shakira-marking-field.trycloudflare.com/site/public-key/"
+    "panel": "https://hrs-dna-cardiac-approval.trycloudflare.com",
+    "openai_base": "https://hrs-dna-cardiac-approval.trycloudflare.com/v1",
+    "chat_completions": "https://hrs-dna-cardiac-approval.trycloudflare.com/v1/chat/completions",
+    "api": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1",
+    "key": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/key",
+    "health": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/health",
+    "swagger": "https://hrs-dna-cardiac-approval.trycloudflare.com/docs",
+    "redoc": "https://hrs-dna-cardiac-approval.trycloudflare.com/redoc",
+    "openapi": "https://hrs-dna-cardiac-approval.trycloudflare.com/openapi.json",
+    "guide": "https://hrs-dna-cardiac-approval.trycloudflare.com/api-docs",
+    "public_key_page": "https://hrs-dna-cardiac-approval.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/key"
+      "url": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://payroll-shakira-marking-field.trycloudflare.com/v1/chat/completions"
+      "url": "https://hrs-dna-cardiac-approval.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://payroll-shakira-marking-field.trycloudflare.com/v1/models"
+      "url": "https://hrs-dna-cardiac-approval.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/chat"
+      "url": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/generate"
+      "url": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1"
+      "url": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/health"
+      "url": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/ready"
+      "url": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/info"
+      "url": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/models"
+      "url": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/config"
+      "url": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/stats"
+      "url": "https://hrs-dna-cardiac-approval.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://payroll-shakira-marking-field.trycloudflare.com/health"
+      "url": "https://hrs-dna-cardiac-approval.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-20T18:07:12+00:00",
+  "updated_at": "2026-11-20T18:17:31+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44789713328",
-  "run_number": 98,
+  "run_number": 99,
   "commit": "3b2190d"
 }

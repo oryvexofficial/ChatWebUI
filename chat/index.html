@@ -10,7 +10,7 @@
   <link rel="preload" href="../assets/fonts/Vazirmatn.woff2?v=1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/JetBrainsMono.woff2?v=1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-  <link rel="stylesheet" href="../assets/chat.css?v=v60">
+  <link rel="stylesheet" href="../assets/chat.css?v=v70">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
   <script async src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
   <style>[hidden]{display:none!important}</style>
@@ -122,10 +122,38 @@
             </div>
 
             <div class="chips" id="starter-chips">
-              <button class="chip" type="button" data-starter="یک ایمیل کوتاه و رسمی بنویس که جلسه‌ی فردا را یک ساعت عقب بیندازم."><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path></svg><span>یک ایمیل رسمی بنویس</span></button>
-              <button class="chip" type="button" data-starter="یادگیری ماشین را برای یک نوجوان با یک مثال ساده توضیح بده."><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg><span>یک مفهوم را ساده کن</span></button>
-              <button class="chip" type="button" data-starter="این جمله را به انگلیسی روان ترجمه کن: «هر روز یک قدم کوچک، از یک جهش بزرگ بهتر است.»"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg><span>ترجمه کن</span></button>
-              <button class="chip" type="button" data-starter="پنج ایده‌ی خلاقانه برای اسم یک کافه‌ی کتاب در تهران بده."><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.94 14.06 8.5 19l-1.44-4.94L2 12.5l5.06-1.44L8.5 6l1.44 5.06L15 12.5z"></path><path d="M18 3v4M16 5h4M19 15v4M17 17h4"></path></svg><span>ایده بده</span></button>
+              <button class="chip prompt-card" type="button" data-starter="یک ایمیل کوتاه و رسمی بنویس که جلسه‌ی فردا را یک ساعت عقب بیندازم.">
+                <div class="pc-head">
+                  <span class="pc-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path></svg></span>
+                  <span class="pc-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg></span>
+                </div>
+                <span class="pc-title">نگارش ایمیل رسمی</span>
+                <span class="pc-sub">تنظیم متن کوتاه و حرفه‌ای برای تغییر زمان جلسه</span>
+              </button>
+              <button class="chip prompt-card" type="button" data-starter="یادگیری ماشین را برای یک نوجوان با یک مثال ساده توضیح بده.">
+                <div class="pc-head">
+                  <span class="pc-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg></span>
+                  <span class="pc-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg></span>
+                </div>
+                <span class="pc-title">ساده‌سازی مفاهیم</span>
+                <span class="pc-sub">توضیح یادگیری ماشین با یک مثال ملموس و روان</span>
+              </button>
+              <button class="chip prompt-card" type="button" data-starter="این جمله را به انگلیسی روان ترجمه کن: «هر روز یک قدم کوچک، از یک جهش بزرگ بهتر است.»">
+                <div class="pc-head">
+                  <span class="pc-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg></span>
+                  <span class="pc-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg></span>
+                </div>
+                <span class="pc-title">ترجمه‌ی طبیعی</span>
+                <span class="pc-sub">برگردان روان و دقیق جملات فارسی به انگلیسی</span>
+              </button>
+              <button class="chip prompt-card" type="button" data-starter="پنج ایده‌ی خلاقانه برای اسم یک کافه‌ی کتاب در تهران بده.">
+                <div class="pc-head">
+                  <span class="pc-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.94 14.06 8.5 19l-1.44-4.94L2 12.5l5.06-1.44L8.5 6l1.44 5.06L15 12.5z"></path><path d="M18 3v4M16 5h4M19 15v4M17 17h4"></path></svg></span>
+                  <span class="pc-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg></span>
+                </div>
+                <span class="pc-title">ایده‌پردازی خلاق</span>
+                <span class="pc-sub">پیشنهاد پنج نام ماندگار برای یک کافه‌ی کتاب</span>
+              </button>
             </div>
 
             <p class="disclaimer">یونیکالکت ممکن است اشتباه کند؛ اطلاعات مهم را بررسی کنید.</p>
@@ -233,6 +261,6 @@
   </div>
 </div>
 <noscript><p style="font-family:Vazirmatn,Tahoma,sans-serif;text-align:center;padding:40px">برای استفاده از پنل، جاوااسکریپت را روشن کنید. API همچنان در <a href="/api/v1">/api/v1</a> در دسترس است.</p></noscript>
-<script src="../assets/chat.js?v=v60"></script>
+<script src="../assets/chat.js?v=v70"></script>
 </body>
 </html>

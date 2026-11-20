@@ -4147,3 +4147,223 @@ svg.uc-mark .uc-star {
 .chip:hover svg.ic {
   color: #ffffff;
 }
+
+
+/* ==========================================================================
+   UNICOLLECT v70 · BRAND-NEW FLOATING CODEX SHELL & RICH PROMPT CARDS
+   ========================================================================== */
+
+body.chat-body,
+#root,
+.app {
+  background: #050506 !important;
+}
+
+/* Pure obsidian sidebar rail */
+.sidebar {
+  background: #050506 !important;
+  border-inline-end: 0 !important;
+}
+
+/* Brand-new Floating Inset Workspace Stage on Desktop (Codex / Linear / Arc style) */
+.main {
+  margin: 10px 0 10px 10px;
+  border-radius: 22px;
+  background: #111114 !important;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  box-shadow: 0 24px 64px -24px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  transition: margin 240ms cubic-bezier(0.16, 1, 0.3, 1), border-radius 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.app.collapsed .main {
+  margin: 10px;
+}
+
+/* Subtle dot-grid + radial spotlight behind welcome hero only */
+.body.is-welcome {
+  background-image:
+    radial-gradient(56% 44% at 50% 24%, rgba(255, 255, 255, 0.055), transparent 72%),
+    radial-gradient(rgba(255, 255, 255, 0.085) 1px, transparent 1px);
+  background-size: 100% 100%, 26px 26px;
+  background-position: center top, center center;
+}
+
+.topbar {
+  background: rgba(17, 17, 20, 0.78) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.065) !important;
+  padding: 10px 18px;
+}
+
+.model-btn.static {
+  background: #19191e !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Hero emblem & headline */
+.hero-mark {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  background: #1a1a20 !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 0 20px 44px -18px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+/* Elevated Floating Composer */
+.composer {
+  background: #18181d !important;
+  border: 1px solid rgba(255, 255, 255, 0.13) !important;
+  border-radius: 22px !important;
+  padding: 16px 18px 13px !important;
+  box-shadow: 0 24px 56px -22px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+.composer.focused {
+  background: #1c1c22 !important;
+  border-color: rgba(255, 255, 255, 0.30) !important;
+  box-shadow: 0 28px 64px -22px rgba(0, 0, 0, 0.96), 0 0 0 1px rgba(255, 255, 255, 0.10) !important;
+}
+
+/* ---------- Brand-New Rich 2x2 Prompt Cards (fixes flat pills!) ---------- */
+.chips {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  margin-top: 16px !important;
+  overflow: visible !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
+}
+
+.chip.prompt-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 6px !important;
+  padding: 15px 16px !important;
+  border-radius: 18px !important;
+  background: #16161b !important;
+  border: 1px solid rgba(255, 255, 255, 0.085) !important;
+  text-align: start !important;
+  box-shadow: 0 8px 24px -14px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), background-color 160ms ease, border-color 160ms ease, box-shadow 200ms ease !important;
+}
+
+.chip.prompt-card:hover {
+  background: #1d1d24 !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 18px 36px -18px rgba(0, 0, 0, 0.92), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+.chip.prompt-card:active {
+  transform: translateY(-1px) scale(0.985) !important;
+}
+
+.pc-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.pc-ico {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #e4e4ec;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.pc-ico svg.ic {
+  width: 16px;
+  height: 16px;
+  color: inherit;
+}
+
+.chip.prompt-card:hover .pc-ico {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #09090b;
+}
+
+.pc-arrow {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  color: #6b6b76;
+  opacity: 0.65;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), color 160ms ease, opacity 160ms ease;
+}
+
+.pc-arrow svg.ic {
+  width: 14px;
+  height: 14px;
+}
+
+.chip.prompt-card:hover .pc-arrow {
+  color: #ffffff;
+  opacity: 1;
+  transform: translate(-2px, -2px);
+}
+
+.pc-title {
+  font-size: 14.25px;
+  font-weight: 700;
+  color: #f4f4f7;
+  line-height: 1.4;
+}
+
+.pc-sub {
+  font-size: 12.25px;
+  font-weight: 400;
+  color: #8b8b96;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- Mobile & Tablet Adaptation ---------- */
+@media (max-width: 767px) {
+  .main,
+  .app.collapsed .main {
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .chips {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  .chip.prompt-card {
+    padding: 12px !important;
+    border-radius: 15px !important;
+  }
+
+  .pc-sub {
+    font-size: 11.5px;
+    -webkit-line-clamp: 1;
+  }
+}
+
+@media (max-width: 420px) {
+  .chips {
+    grid-template-columns: 1fr !important;
+  }
+}

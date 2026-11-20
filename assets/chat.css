@@ -4367,3 +4367,521 @@ body.chat-body,
     grid-template-columns: 1fr !important;
   }
 }
+
+
+/* ==========================================================================
+   UNICOLLECT v80 · ZERO-CLIP WELCOME LAYOUT & COMPLETE IN/OUT GPU ANIMATIONS
+   ========================================================================== */
+
+/* Prevent hero clipping on 720p/laptop viewports while keeping perfect centering */
+.body.is-welcome {
+  overflow-y: auto;
+  justify-content: safe center;
+  padding: 20px 0 18px !important;
+}
+
+.hero-area {
+  margin-bottom: 16px !important;
+  flex-shrink: 0;
+  animation: uc-welcome-in 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+.hero-area.closing,
+.chips.closing {
+  animation: uc-welcome-out 170ms cubic-bezier(0.4, 0, 1, 1) both !important;
+  pointer-events: none;
+}
+
+.hero-mark {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 16px !important;
+  margin-bottom: 4px !important;
+}
+
+.hero-prompt {
+  font-size: clamp(22px, 2.8vw, 29px) !important;
+}
+
+.chips {
+  gap: 10px !important;
+  margin-top: 12px !important;
+  animation: uc-welcome-in 340ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+.chip.prompt-card {
+  padding: 13px 15px !important;
+}
+
+/* Complete IN + OUT Modal & Alert Dialog Animations */
+.modal,
+.swal {
+  animation: uc-fade-in 210ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity;
+}
+
+.modal.closing,
+.swal.closing {
+  animation: uc-fade-out 180ms cubic-bezier(0.4, 0, 1, 1) both !important;
+  pointer-events: none;
+}
+
+.modal .modal-card,
+.modal .modal-bare,
+.swal .swal-card {
+  animation: uc-modal-in 250ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+.modal.closing .modal-card,
+.modal.closing .modal-bare,
+.swal.closing .swal-card {
+  animation: uc-modal-out 180ms cubic-bezier(0.4, 0, 1, 1) both !important;
+}
+
+/* Smooth Chat Scroller Entrance */
+.scroll {
+  animation: uc-fade-in 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Smooth Think Card & Writing Line IN/OUT */
+.think-card,
+.writing-line {
+  animation: uc-rise-in 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+.think-card.closing,
+.writing-line.closing {
+  animation: uc-welcome-out 170ms cubic-bezier(0.4, 0, 1, 1) both !important;
+}
+
+.thinking-chev {
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.think-card.open .thinking-chev,
+.thought.open .thinking-chev,
+.thinking-block.open .thinking-chev {
+  transform: rotate(180deg);
+}
+
+/* Smooth Sidebar Thread Row IN + OUT */
+.thread-row {
+  overflow: hidden;
+  transition: height 210ms cubic-bezier(0.16, 1, 0.3, 1), opacity 180ms ease, transform 210ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.thread-row.entering {
+  animation: uc-thread-in 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes uc-welcome-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes uc-welcome-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(-8px) scale(0.98); }
+}
+
+
+/* ==========================================================================
+   UNICOLLECT v90 · CLAUDE LAYOUT × CHATGPT DARK MONOCHROME + FULL HOVER AUDIT
+   ========================================================================== */
+
+:root,
+html.dark {
+  /* Authentic ChatGPT Dark Monochrome Surfaces */
+  --sunk: #121212;
+  --paper: #171717;
+  --panel: #171717;
+  --chat-bg: #212121;
+  --surface: #282828;
+  --panel-2: #2f2f2f;
+  --field: #2f2f2f;
+  --bubble: #2f2f2f;
+  --deep: #3a3a3a;
+
+  /* Guaranteed High-Contrast Ink */
+  --ink: #ececec;
+  --ink-2: #b4b4b4;
+  --ink-3: #8e8e8e;
+
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.14);
+  --line-3: rgba(255, 255, 255, 0.28);
+
+  --hover: rgba(255, 255, 255, 0.08);
+  --active: rgba(255, 255, 255, 0.14);
+
+  --accent: #ffffff;
+  --accent-2: #e5e5e5;
+  --btn-bg: #ffffff;
+  --btn-bg-hover: #e5e5e5;
+  --btn-ink: #171717;
+  --code-bg: #171717;
+  --code-head: #262626;
+}
+
+/* Clean Claude-style seamless 2-pane layout (no harsh outer black border or dot-grid noise) */
+body.chat-body,
+#root,
+.app {
+  background: #212121 !important;
+  color: #ececec !important;
+}
+
+.sidebar {
+  width: 260px !important;
+  background: #171717 !important;
+  border-inline-end: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+.main,
+.app.collapsed .main {
+  margin: 0 !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: #212121 !important;
+}
+
+/* Calm Claude editorial welcome canvas (zero dot-grid noise) */
+.body.is-welcome {
+  background: #212121 !important;
+  background-image: radial-gradient(50% 38% at 50% 28%, rgba(255, 255, 255, 0.035), transparent 72%) !important;
+}
+
+.topbar {
+  background: rgba(33, 33, 33, 0.86) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding: 8px 16px !important;
+}
+
+.model-btn.static {
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+  color: #ececec !important;
+  font-weight: 600 !important;
+  padding: 6px 10px !important;
+  border-radius: 10px !important;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.model-btn.static:hover {
+  background: rgba(255, 255, 255, 0.07) !important;
+  color: #ffffff !important;
+}
+
+/* ---------- Complete Icon, Text & Hover State Audit ---------- */
+/* 1. Brand 6-petal logos: ALWAYS crisp white on dark surfaces */
+.logo-btn,
+.avatar,
+.hero-mark,
+.thinking-head,
+.thought-line {
+  color: #ffffff !important;
+}
+
+.logo-btn,
+.avatar {
+  background: #2a2a2a !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  transition: background-color 150ms ease, border-color 150ms ease, transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logo-btn:hover,
+.profile:hover .avatar {
+  background: #363636 !important;
+  border-color: rgba(255, 255, 255, 0.24) !important;
+}
+
+.logo-btn svg.pg-mark,
+.avatar svg.pg-mark,
+.hero-mark svg.pg-mark,
+.thinking-head svg.pg-mark,
+.thought-line svg.pg-mark {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* 2. All icon buttons, round buttons & formatting buttons */
+.icon-btn,
+.round-btn,
+.fmt-btn,
+.t-del,
+.toast-x {
+  color: #b4b4b4 !important;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, transform 170ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.icon-btn svg.ic,
+.round-btn svg.ic,
+.t-del svg.ic,
+.toast-x svg.ic {
+  color: inherit !important;
+  stroke: currentColor !important;
+}
+
+.icon-btn:hover,
+.round-btn:hover,
+.fmt-btn:hover,
+.t-del:hover,
+.toast-x:hover {
+  background: rgba(255, 255, 255, 0.11) !important;
+  border-color: rgba(255, 255, 255, 0.20) !important;
+  color: #ffffff !important;
+}
+
+.round-btn.on,
+.fmt-btn.on {
+  background: #ffffff !important;
+  border-color: #ffffff !important;
+  color: #171717 !important;
+}
+
+.round-btn.on:hover,
+.fmt-btn.on:hover {
+  background: #e5e5e5 !important;
+  color: #0d0d0d !important;
+}
+
+/* 3. Sidebar navigation & threads */
+.sb-item {
+  color: #d1d1d1 !important;
+}
+
+.sb-item svg.ic {
+  color: #a3a3a3 !important;
+  transition: color 150ms ease;
+}
+
+.sb-item:hover {
+  background: #242424 !important;
+  color: #ffffff !important;
+}
+
+.sb-item:hover svg.ic {
+  color: #ffffff !important;
+}
+
+.thread {
+  color: #b4b4b4 !important;
+}
+
+.thread:hover {
+  background: #232323 !important;
+  color: #ffffff !important;
+}
+
+.thread.active,
+.thread.active .t-title {
+  color: #ffffff !important;
+}
+
+.thread-ink {
+  background: #2b2b2b !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+}
+
+.thread-ink::after {
+  background: #ffffff !important;
+}
+
+.profile {
+  color: #ececec !important;
+}
+
+.profile:hover {
+  background: #242424 !important;
+}
+
+.profile-name {
+  color: #f4f4f4 !important;
+}
+
+.profile-status {
+  color: #a3a3a3 !important;
+}
+
+/* 4. Primary inverted white buttons (dark icon & text on hover too!) */
+.send-btn.on,
+.btn-primary,
+.swal-ok,
+.swal-ok.danger,
+.toast-act {
+  background: #ffffff !important;
+  color: #171717 !important;
+  border-color: #ffffff !important;
+}
+
+.send-btn.on svg.ic,
+.btn-primary svg.ic,
+.swal-ok svg.ic {
+  color: #171717 !important;
+  stroke: #171717 !important;
+}
+
+.send-btn.on:hover,
+.btn-primary:hover,
+.swal-ok:hover,
+.swal-ok.danger:hover,
+.toast-act:hover {
+  background: #e2e2e2 !important;
+  color: #0d0d0d !important;
+}
+
+.send-btn:disabled {
+  background: #3a3a3a !important;
+  color: #7a7a7a !important;
+  opacity: 1 !important;
+}
+
+.send-btn:disabled svg.ic {
+  color: #7a7a7a !important;
+  stroke: #7a7a7a !important;
+}
+
+/* 5. Claude Editorial Welcome Hero + Elevated Composer */
+.col {
+  max-width: 740px !important;
+}
+
+.hero-mark {
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 15px !important;
+  background: #2a2a2a !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 10px 28px -12px rgba(0, 0, 0, 0.7) !important;
+}
+
+.hero-greeting {
+  color: #a3a3a3 !important;
+  font-size: 14px !important;
+}
+
+.hero-prompt {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.composer {
+  background: #2f2f2f !important;
+  border: 1px solid rgba(255, 255, 255, 0.11) !important;
+  border-radius: 22px !important;
+  padding: 15px 16px 12px !important;
+  box-shadow: 0 12px 32px -14px rgba(0, 0, 0, 0.55) !important;
+}
+
+.composer.focused {
+  background: #323232 !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  box-shadow: 0 16px 40px -14px rgba(0, 0, 0, 0.72), 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+}
+
+.pill-btn {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  color: #d4d4d4 !important;
+}
+
+.pill-btn:hover {
+  background: rgba(255, 255, 255, 0.13) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  color: #ffffff !important;
+}
+
+/* 6. Claude-Style Prompt Cards (ChatGPT #282828 surface + crisp hover) */
+.chip.prompt-card {
+  background: #282828 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 16px -10px rgba(0, 0, 0, 0.5) !important;
+}
+
+.chip.prompt-card:hover {
+  background: #313131 !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 26px -14px rgba(0, 0, 0, 0.7) !important;
+}
+
+.pc-ico {
+  background: #353535 !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  color: #ececec !important;
+}
+
+.chip.prompt-card:hover .pc-ico {
+  background: #ffffff !important;
+  border-color: #ffffff !important;
+  color: #171717 !important;
+}
+
+.chip.prompt-card:hover .pc-ico svg.ic {
+  color: #171717 !important;
+  stroke: #171717 !important;
+}
+
+.pc-title {
+  color: #f0f0f0 !important;
+}
+
+.chip.prompt-card:hover .pc-title {
+  color: #ffffff !important;
+}
+
+.pc-sub {
+  color: #a3a3a3 !important;
+}
+
+.chip.prompt-card:hover .pc-sub {
+  color: #cfcfcf !important;
+}
+
+.pc-arrow {
+  color: #8e8e8e !important;
+}
+
+.chip.prompt-card:hover .pc-arrow {
+  color: #ffffff !important;
+}
+
+/* 7. Claude-style Message Turns & Bubbles */
+.bubble {
+  background: #2f2f2f !important;
+  color: #f5f5f5 !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  border-radius: 18px !important;
+}
+
+.think-card {
+  background: #1b1b1b !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  color: #d4d4d4 !important;
+}
+
+.think-card-head:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #ffffff !important;
+}
+
+.modal-card,
+.modal-bare,
+.swal-card {
+  background: #242424 !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #ececec !important;
+}
+
+.search-item:hover,
+.search-sel {
+  background: #303030 !important;
+  color: #ffffff !important;
+}

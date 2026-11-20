@@ -1606,9 +1606,20 @@
     const beforeTop = (el.composerArea && prevWasWelcome !== isWelcome) ? el.composerArea.getBoundingClientRect().top : null;
     if (el.main) el.main.classList.toggle('welcome', isWelcome);
     if (el.body) el.body.classList.toggle('is-welcome', isWelcome);
-    setHidden(el.heroArea, !isWelcome);
-    setHidden(el.scroller, isWelcome);
-    setHidden(el.starterChips, !isWelcome);
+    if (isWelcome) {
+      openAnimated(el.heroArea);
+      openAnimated(el.starterChips);
+      setHidden(el.scroller, true);
+    } else {
+      if (prevWasWelcome && !prefersReducedMotion()) {
+        closeAnimated(el.heroArea, 170);
+        closeAnimated(el.starterChips, 170);
+      } else {
+        setHidden(el.heroArea, true);
+        setHidden(el.starterChips, true);
+      }
+      openAnimated(el.scroller);
+    }
     if (beforeTop !== null && el.composerArea && !prefersReducedMotion()) {
       const afterTop = el.composerArea.getBoundingClientRect().top;
       const dy = beforeTop - afterTop;

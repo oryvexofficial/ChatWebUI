@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-634f0f50fe2160521e4e398a02a51e23",
-  "api_key": "sk-uc-634f0f50fe2160521e4e398a02a51e23",
+  "public_api_key": "sk-uc-e5de6b512fb3f03baf0b2d6746743760",
+  "api_key": "sk-uc-e5de6b512fb3f03baf0b2d6746743760",
   "status": "online",
   "online": true,
-  "base_url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com",
+  "base_url": "https://brunette-world-relevance-attempted.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/v1",
-    "chat_completions": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/v1/models",
-    "native_chat": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/key",
-    "health": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://brunette-world-relevance-attempted.trycloudflare.com/v1",
+    "chat_completions": "https://brunette-world-relevance-attempted.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://brunette-world-relevance-attempted.trycloudflare.com/v1/models",
+    "native_chat": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/key",
+    "health": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://kidney-respiratory-findings-suppliers.trycloudflare.com",
-    "openai_base": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/v1",
-    "chat_completions": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/v1/chat/completions",
-    "api": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1",
-    "key": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/key",
-    "health": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/health",
-    "swagger": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/docs",
-    "redoc": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/redoc",
-    "openapi": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/openapi.json",
-    "guide": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api-docs",
-    "public_key_page": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/site/public-key/"
+    "panel": "https://brunette-world-relevance-attempted.trycloudflare.com",
+    "openai_base": "https://brunette-world-relevance-attempted.trycloudflare.com/v1",
+    "chat_completions": "https://brunette-world-relevance-attempted.trycloudflare.com/v1/chat/completions",
+    "api": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1",
+    "key": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/key",
+    "health": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/health",
+    "swagger": "https://brunette-world-relevance-attempted.trycloudflare.com/docs",
+    "redoc": "https://brunette-world-relevance-attempted.trycloudflare.com/redoc",
+    "openapi": "https://brunette-world-relevance-attempted.trycloudflare.com/openapi.json",
+    "guide": "https://brunette-world-relevance-attempted.trycloudflare.com/api-docs",
+    "public_key_page": "https://brunette-world-relevance-attempted.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/key"
+      "url": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/v1/chat/completions"
+      "url": "https://brunette-world-relevance-attempted.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/v1/models"
+      "url": "https://brunette-world-relevance-attempted.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/chat"
+      "url": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/generate"
+      "url": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1"
+      "url": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/health"
+      "url": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/ready"
+      "url": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/info"
+      "url": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/models"
+      "url": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/config"
+      "url": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/stats"
+      "url": "https://brunette-world-relevance-attempted.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/health"
+      "url": "https://brunette-world-relevance-attempted.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-20T15:44:56+00:00",
+  "updated_at": "2026-11-20T15:48:55+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44766354581",
-  "run_number": 94,
+  "run_number": 95,
   "commit": "05cd9f4"
 }

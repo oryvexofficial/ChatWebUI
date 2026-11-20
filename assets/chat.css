@@ -3983,3 +3983,167 @@ svg.uc-mark .uc-star {
     font-size: 13.5px;
   }
 }
+
+
+/* ==========================================================================
+   UNICOLLECT v60 · ICON CONTRAST FIX, ELEVATED CHATGPT UI & SILKY TYPING
+   ========================================================================== */
+
+/* CRITICAL ICON COLOR FIX: guarantee crisp pure white icons on all dark surfaces */
+.avatar,
+.logo-btn,
+.hero-mark,
+.thinking-head,
+.thought-line {
+  color: #ffffff !important;
+}
+
+.avatar {
+  background: #232329 !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.avatar svg.pg-mark,
+.logo-btn svg.pg-mark,
+.hero-mark svg.pg-mark,
+.thinking-head svg.pg-mark,
+.thought-line svg.pg-mark {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* Smooth composer typing & auto-resize */
+.ta-wrap {
+  transition: height 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ta-wrap textarea {
+  caret-color: #ffffff;
+  color: #f7f7f9;
+  font-size: 15.25px;
+  line-height: 1.75;
+  transition: opacity 150ms ease;
+}
+
+.ta-ph {
+  color: #7c7c86;
+  transition: opacity 160ms ease, transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ta-ph.off {
+  opacity: 0;
+  transform: translateY(-2px);
+}
+
+/* Silky smooth streaming caret & block fade-in */
+.stream-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.08em;
+  margin-inline-start: 3px;
+  border-radius: 2px;
+  background: #ffffff;
+  vertical-align: -0.16em;
+  animation: uc-smooth-caret 0.95s ease-in-out infinite;
+}
+
+@keyframes uc-smooth-caret {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50% { opacity: 0.22; transform: scaleY(0.88); }
+}
+
+.stream-block-in {
+  animation: uc-block-fade 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes uc-block-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Elevated ChatGPT / Codex Composer & Toolbar */
+.composer {
+  background: #1d1d21;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 24px;
+  padding: 15px 16px 12px;
+  box-shadow: 0 18px 46px -20px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: border-color 180ms ease, box-shadow 240ms ease, background-color 180ms ease;
+}
+
+.composer.focused {
+  background: #212126;
+  border-color: rgba(255, 255, 255, 0.30);
+  box-shadow: 0 22px 54px -20px rgba(0, 0, 0, 0.92), 0 0 0 1px rgba(255, 255, 255, 0.10);
+}
+
+.composer-row {
+  margin-top: 10px;
+}
+
+.round-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #c4c4cc;
+}
+
+.round-btn:hover,
+.round-btn.on {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+
+.pill-btn {
+  height: 34px;
+  padding: 0 13px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #d4d4dc;
+  font-size: 12.75px;
+}
+
+.pill-btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #ffffff;
+}
+
+/* Upgraded 2x2 Tactile Starter Cards */
+.chips {
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.chip {
+  padding: 13px 15px;
+  border-radius: 16px;
+  background: #1a1a1e;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  color: #e4e4ea;
+  font-size: 13.75px;
+  font-weight: 500;
+  box-shadow: 0 4px 14px -8px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.chip svg.ic {
+  width: 17px;
+  height: 17px;
+  color: #b4b4be;
+}
+
+.chip:hover {
+  background: #232329;
+  border-color: rgba(255, 255, 255, 0.20);
+  color: #ffffff;
+  box-shadow: 0 12px 28px -14px rgba(0, 0, 0, 0.78);
+}
+
+.chip:hover svg.ic {
+  color: #ffffff;
+}

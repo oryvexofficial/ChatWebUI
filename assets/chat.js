@@ -2266,7 +2266,7 @@
       } else {
         if (reasonQueue.length) {
           const rChars = Array.from(reasonQueue);
-          const rRate = Math.min(1100, 95 + rChars.length * 5.2);
+          const rRate = Math.min(920, 78 + rChars.length * 4.2);
           rsnCarry += (rRate * dt) / 1000;
           const rStep = Math.floor(rsnCarry);
           if (rStep > 0) {
@@ -2278,7 +2278,7 @@
         }
         if (streamQueue.length) {
           const aChars = Array.from(streamQueue);
-          const aRate = Math.min(950, 72 + aChars.length * 4.6);
+          const aRate = Math.min(820, 62 + aChars.length * 3.8);
           ansCarry += (aRate * dt) / 1000;
           const aStep = Math.floor(ansCarry);
           if (aStep > 0) {

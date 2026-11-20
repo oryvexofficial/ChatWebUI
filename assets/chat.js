@@ -2218,7 +2218,7 @@
       const r = await fetch(base + '/api/image/generate', {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify({ prompt: prompt, model: meta.id, size: '1024x1024' }),
+        body: JSON.stringify({ prompt: prompt, model: meta.id }),
         signal: ctrl.signal
       });
       const j = await r.json().catch(function () { return null; });

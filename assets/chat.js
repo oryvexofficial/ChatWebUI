@@ -205,8 +205,8 @@
       .trim();
   }
 
-  async function requestAiThreadTitle(thread, userText, replyText) {
-    if (!thread || thread.aiTitled) return;
+  async function requestAiThreadTitle(thread, userText, replyText, forceRetitle) {
+    if (!thread || (thread.aiTitled && !forceRetitle)) return;
     thread.aiTitled = true;
     try {
       const base = await resolveApiBase();
@@ -2546,8 +2546,9 @@
     state.freshId = null;
     state.justFinishedId = msgObj.id;
     saveThreads();
-    if (isFirstTurn) {
-      requestAiThreadTitle(thread, text, reply || reasoningBuf);
+    const isSecondTopicTurn = thread.messages.length === 2 && (thread.messages[0].text || '').trim().length <= 18;
+    if (isFirstTurn || isSecondTopicTurn) {
+      requestAiThreadTitle(thread, text, reply || reasoningBuf, isSecondTopicTurn);
     }
 
     state.busy = false;
@@ -3155,7 +3156,7 @@
   function closeModelPickerModal() {
     const modal = document.getElementById('model-picker-modal');
     if (!modal) return;
-    closeAnimated(modal, 170);
+    closeAnimated(modal, 195);
   }
 
   function initModelPicker() {

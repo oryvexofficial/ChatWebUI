@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9leHBsYWluLWFrYS10b3duc2hpcC10b29sYm94LnRyeWNsb3VkZmxhcmUuY29t",
-  "public_api_key": "sk-uc-65ba0ec79c0bd943d90379035d48a8d7",
-  "api_key": "sk-uc-65ba0ec79c0bd943d90379035d48a8d7",
+  "url_payload": "aHR0cHM6Ly9raWRuZXktcmVzcGlyYXRvcnktZmluZGluZ3Mtc3VwcGxpZXJzLnRyeWNsb3VkZmxhcmUuY29t",
+  "public_api_key": "sk-uc-634f0f50fe2160521e4e398a02a51e23",
+  "api_key": "sk-uc-634f0f50fe2160521e4e398a02a51e23",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://explain-aka-township-toolbox.trycloudflare.com/v1",
-    "chat_completions": "https://explain-aka-township-toolbox.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://explain-aka-township-toolbox.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://explain-aka-township-toolbox.trycloudflare.com/v1/models",
-    "native_chat": "https://explain-aka-township-toolbox.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://explain-aka-township-toolbox.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://explain-aka-township-toolbox.trycloudflare.com/api/v1/key",
-    "health": "https://explain-aka-township-toolbox.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/v1",
+    "chat_completions": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/v1/models",
+    "native_chat": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/key",
+    "health": "https://kidney-respiratory-findings-suppliers.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-20T15:35:31+00:00",
+  "updated_at": "2026-11-20T15:38:03+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44764790070",
-  "run_number": 93,
+  "run_number": 94,
   "commit": "6c714d8"
 }

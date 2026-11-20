@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-92cc0c90256bc10ea3d1d8b92a29d85b",
-  "api_key": "sk-uc-92cc0c90256bc10ea3d1d8b92a29d85b",
+  "public_api_key": "sk-uc-4d7b6ebb1bad95581d16e47e393ea795",
+  "api_key": "sk-uc-4d7b6ebb1bad95581d16e47e393ea795",
   "status": "online",
   "online": true,
-  "base_url": "https://bags-corp-museums-belong.trycloudflare.com",
+  "base_url": "https://led-coalition-melissa-paper.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://bags-corp-museums-belong.trycloudflare.com/v1",
-    "chat_completions": "https://bags-corp-museums-belong.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://bags-corp-museums-belong.trycloudflare.com/v1/models",
-    "native_chat": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/key",
-    "health": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://led-coalition-melissa-paper.trycloudflare.com/v1",
+    "chat_completions": "https://led-coalition-melissa-paper.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://led-coalition-melissa-paper.trycloudflare.com/v1/models",
+    "native_chat": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/key",
+    "health": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://bags-corp-museums-belong.trycloudflare.com",
-    "openai_base": "https://bags-corp-museums-belong.trycloudflare.com/v1",
-    "chat_completions": "https://bags-corp-museums-belong.trycloudflare.com/v1/chat/completions",
-    "api": "https://bags-corp-museums-belong.trycloudflare.com/api/v1",
-    "key": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/key",
-    "health": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/health",
-    "swagger": "https://bags-corp-museums-belong.trycloudflare.com/docs",
-    "redoc": "https://bags-corp-museums-belong.trycloudflare.com/redoc",
-    "openapi": "https://bags-corp-museums-belong.trycloudflare.com/openapi.json",
-    "guide": "https://bags-corp-museums-belong.trycloudflare.com/api-docs",
-    "public_key_page": "https://bags-corp-museums-belong.trycloudflare.com/site/public-key/"
+    "panel": "https://led-coalition-melissa-paper.trycloudflare.com",
+    "openai_base": "https://led-coalition-melissa-paper.trycloudflare.com/v1",
+    "chat_completions": "https://led-coalition-melissa-paper.trycloudflare.com/v1/chat/completions",
+    "api": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1",
+    "key": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/key",
+    "health": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/health",
+    "swagger": "https://led-coalition-melissa-paper.trycloudflare.com/docs",
+    "redoc": "https://led-coalition-melissa-paper.trycloudflare.com/redoc",
+    "openapi": "https://led-coalition-melissa-paper.trycloudflare.com/openapi.json",
+    "guide": "https://led-coalition-melissa-paper.trycloudflare.com/api-docs",
+    "public_key_page": "https://led-coalition-melissa-paper.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/key"
+      "url": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://bags-corp-museums-belong.trycloudflare.com/v1/chat/completions"
+      "url": "https://led-coalition-melissa-paper.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://bags-corp-museums-belong.trycloudflare.com/v1/models"
+      "url": "https://led-coalition-melissa-paper.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/chat"
+      "url": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/generate"
+      "url": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://bags-corp-museums-belong.trycloudflare.com/api/v1"
+      "url": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/health"
+      "url": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/ready"
+      "url": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/info"
+      "url": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/models"
+      "url": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/config"
+      "url": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://bags-corp-museums-belong.trycloudflare.com/api/v1/stats"
+      "url": "https://led-coalition-melissa-paper.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://bags-corp-museums-belong.trycloudflare.com/health"
+      "url": "https://led-coalition-melissa-paper.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-20T03:52:46+00:00",
+  "updated_at": "2026-11-20T03:55:05+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44670644148",
-  "run_number": 73,
+  "run_number": 74,
   "commit": "1afa727"
 }

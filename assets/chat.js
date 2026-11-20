@@ -42,16 +42,7 @@
     search: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>'
   };
 
-  const PETAL_MARK_HTML =
-    '<svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true">' +
-    '<g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k:0"></path></g>' +
-    '<g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k:1"></path></g>' +
-    '<g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k:2"></path></g>' +
-    '<g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k:3"></path></g>' +
-    '<g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k:4"></path></g>' +
-    '<g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k:5"></path></g>' +
-    '<circle class="core" cx="12" cy="12" r="2.1"></circle>' +
-    '</svg>';
+  const PETAL_MARK_HTML = '<svg class="uc-mark pg-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path class="uc-u" d="M6.25 6.5v6.25a5.75 5.75 0 0 0 11.5 0V6.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><path class="uc-star" d="M12 4.2l1.05 3.25L16.3 8.5l-3.25 1.05L12 12.8l-1.05-3.25L7.7 8.5l3.25-1.05L12 4.2Z" fill="currentColor"/></svg>';
 
   /* ---------- توابع کمکی پایه ---------- */
   function setHidden(node, flag) {

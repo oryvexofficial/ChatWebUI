@@ -10,7 +10,7 @@
   <link rel="preload" href="../assets/fonts/Vazirmatn.woff2?v=1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/JetBrainsMono.woff2?v=1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-  <link rel="stylesheet" href="../assets/chat.css?v=bw32">
+  <link rel="stylesheet" href="../assets/chat.css?v=bw40">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
   <script async src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
   <style>[hidden]{display:none!important}</style>
@@ -21,7 +21,7 @@
     <aside class="sidebar" aria-label="نوار کناری">
       <div class="sidebar-inner">
         <div class="sb-top">
-          <button class="icon-btn logo-btn" type="button" id="btn-logo-new" title="یونیکالکت چت مینی" aria-label="گفتگوی جدید"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></button>
+          <button class="icon-btn logo-btn" type="button" id="btn-logo-new" title="یونیکالکت چت مینی" aria-label="گفتگوی جدید"><svg class="uc-mark pg-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path class="uc-u" d="M6.25 6.5v6.25a5.75 5.75 0 0 0 11.5 0V6.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><path class="uc-star" d="M12 4.2l1.05 3.25L16.3 8.5l-3.25 1.05L12 12.8l-1.05-3.25L7.7 8.5l3.25-1.05L12 4.2Z" fill="currentColor"/></svg></button>
           <button class="icon-btn" type="button" id="btn-sb-toggle" title="بستن نوار کناری" aria-label="بستن نوار کناری"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M15 3v18"></path></svg></button>
         </div>
         <nav class="sb-nav" aria-label="منوی پنل">
@@ -39,7 +39,7 @@
         </div>
         <div class="sb-footer">
           <button class="profile" type="button" id="btn-profile-settings">
-            <span class="avatar"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
+            <span class="avatar"><svg class="uc-mark pg-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path class="uc-u" d="M6.25 6.5v6.25a5.75 5.75 0 0 0 11.5 0V6.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><path class="uc-star" d="M12 4.2l1.05 3.25L16.3 8.5l-3.25 1.05L12 12.8l-1.05-3.25L7.7 8.5l3.25-1.05L12 4.2Z" fill="currentColor"/></svg></span>
             <span class="profile-text">
               <span class="profile-name">یونیکالکت چت مینی</span>
               <span class="profile-status"><span class="sdot warn" data-health-dot></span><span data-health-label>در حال اتصال…</span></span>
@@ -73,7 +73,7 @@
       <div class="body is-welcome" id="chat-body">
         <div class="hero-area" id="hero-area">
           <h1 class="hero">
-            <span class="hero-mark"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
+            <span class="hero-mark"><svg class="uc-mark pg-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path class="uc-u" d="M6.25 6.5v6.25a5.75 5.75 0 0 0 11.5 0V6.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><path class="uc-star" d="M12 4.2l1.05 3.25L16.3 8.5l-3.25 1.05L12 12.8l-1.05-3.25L7.7 8.5l3.25-1.05L12 4.2Z" fill="currentColor"/></svg></span>
             <span class="hero-greeting" id="hero-greeting">وقت بخیر</span>
             <span class="hero-prompt" id="hero-prompt">امروز چطور کمکت کنم؟</span>
           </h1>
@@ -233,6 +233,6 @@
   </div>
 </div>
 <noscript><p style="font-family:Vazirmatn,Tahoma,sans-serif;text-align:center;padding:40px">برای استفاده از پنل، جاوااسکریپت را روشن کنید. API همچنان در <a href="/api/v1">/api/v1</a> در دسترس است.</p></noscript>
-<script src="../assets/chat.js?v=bw32"></script>
+<script src="../assets/chat.js?v=bw40"></script>
 </body>
 </html>

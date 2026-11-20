@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-3226edab949e349e6fddcbc51ee57a7c",
-  "api_key": "sk-uc-3226edab949e349e6fddcbc51ee57a7c",
+  "public_api_key": "sk-uc-dec207287ed9564cd5fedd7cb39b9da2",
+  "api_key": "sk-uc-dec207287ed9564cd5fedd7cb39b9da2",
   "status": "online",
   "online": true,
-  "base_url": "https://ordinance-shannon-circumstances-true.trycloudflare.com",
+  "base_url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://ordinance-shannon-circumstances-true.trycloudflare.com/v1",
-    "chat_completions": "https://ordinance-shannon-circumstances-true.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://ordinance-shannon-circumstances-true.trycloudflare.com/v1/models",
-    "native_chat": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/key",
-    "health": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/v1",
+    "chat_completions": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/v1/models",
+    "native_chat": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/key",
+    "health": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://ordinance-shannon-circumstances-true.trycloudflare.com",
-    "openai_base": "https://ordinance-shannon-circumstances-true.trycloudflare.com/v1",
-    "chat_completions": "https://ordinance-shannon-circumstances-true.trycloudflare.com/v1/chat/completions",
-    "api": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1",
-    "key": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/key",
-    "health": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/health",
-    "swagger": "https://ordinance-shannon-circumstances-true.trycloudflare.com/docs",
-    "redoc": "https://ordinance-shannon-circumstances-true.trycloudflare.com/redoc",
-    "openapi": "https://ordinance-shannon-circumstances-true.trycloudflare.com/openapi.json",
-    "guide": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api-docs",
-    "public_key_page": "https://ordinance-shannon-circumstances-true.trycloudflare.com/site/public-key/"
+    "panel": "https://entertainment-mariah-consider-bathroom.trycloudflare.com",
+    "openai_base": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/v1",
+    "chat_completions": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/v1/chat/completions",
+    "api": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1",
+    "key": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/key",
+    "health": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/health",
+    "swagger": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/docs",
+    "redoc": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/redoc",
+    "openapi": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/openapi.json",
+    "guide": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api-docs",
+    "public_key_page": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/key"
+      "url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://ordinance-shannon-circumstances-true.trycloudflare.com/v1/chat/completions"
+      "url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://ordinance-shannon-circumstances-true.trycloudflare.com/v1/models"
+      "url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/chat"
+      "url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/generate"
+      "url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1"
+      "url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/health"
+      "url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/ready"
+      "url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/info"
+      "url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/models"
+      "url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/config"
+      "url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://ordinance-shannon-circumstances-true.trycloudflare.com/api/v1/stats"
+      "url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://ordinance-shannon-circumstances-true.trycloudflare.com/health"
+      "url": "https://entertainment-mariah-consider-bathroom.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-20T13:19:41+00:00",
+  "updated_at": "2026-11-20T13:22:38+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44743320392",
-  "run_number": 89,
+  "run_number": 90,
   "commit": "ebeaaa5"
 }

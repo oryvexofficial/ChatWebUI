@@ -2076,6 +2076,12 @@
       return;
     }
 
+    // 1. Run router to detect MATH vs CHAT, then auto-open filtered custom model picker modal
+    const detectedCat = await detectMessageCategory(text);
+    const pickedModelId = await promptModelForCategory(detectedCat);
+    if (!pickedModelId) return;
+    applySelectedModel(pickedModelId, true);
+
     const ctrl = new AbortController();
     state.ctrl = ctrl;
     state.aborted = false;
@@ -2860,8 +2866,8 @@
     };
 
     on('btn-logo-new', 'click', startNewThread);
-    on('btn-new-chat', 'click', function () { startNewThread(); openModelPickerModal(); });
-    on('btn-tb-new', 'click', function () { startNewThread(); openModelPickerModal(); });
+    on('btn-new-chat', 'click', startNewThread);
+    on('btn-tb-new', 'click', startNewThread);
     on('btn-sb-toggle', 'click', toggleSidebar);
     on('btn-tb-sidebar', 'click', toggleSidebar);
     on('sb-backdrop', 'click', function () {
@@ -3113,13 +3119,14 @@
 
   /* ---------- راه‌اندازی اولیه ---------- */
 
-  /* ---------- انتخابگر اختصاصی مدل یونیکالکت ---------- */
+  /* ---------- انتخابگر اختصاصی مدل یونیکالکت (متصل به روتر هوشمند) ---------- */
   const UC_MODEL_LABELS = {
     'unicollect-chat-mini': 'Unicollect Chat Mini',
     'unicollect-chat-1.2': 'Unicollect Chat 1.2',
     'unicollect-math-mini': 'Unicollect Math Mini',
     'unicollect-math-1.2': 'Unicollect Math 1.2'
   };
+  let _pendingModelResolver = null;
 
   function getSelectedModelId() {
     try {
@@ -3133,7 +3140,6 @@
     const id = UC_MODEL_LABELS[modelId] ? modelId : 'unicollect-chat-mini';
     state.selectedModel = id;
     try { localStorage.setItem('uc_selected_model', id); } catch (e) {}
-    try { sessionStorage.setItem('uc_model_picked', '1'); } catch (e) {}
     const nameEl = document.getElementById('active-model-name');
     if (nameEl) nameEl.textContent = UC_MODEL_LABELS[id];
     document.querySelectorAll('[data-pick-model]').forEach(function (btn) {
@@ -3146,17 +3152,94 @@
     }
   }
 
-  function openModelPickerModal() {
+  function openModelPickerModal(filterCategory) {
     const modal = document.getElementById('model-picker-modal');
     if (!modal) return;
+    const chatSec = document.getElementById('mp-section-chat');
+    const mathSec = document.getElementById('mp-section-math');
+    const titleEl = document.getElementById('mp-title');
+    const subEl = modal.querySelector('.mp-sub');
+
+    if (filterCategory === 'math') {
+      if (chatSec) chatSec.hidden = true;
+      if (mathSec) mathSec.hidden = false;
+      if (titleEl) titleEl.textContent = 'درخواست ریاضی تشخیص داده شد';
+      if (subEl) subEl.textContent = 'مدل ریاضی مورد نظر خود را برای حل این مسئله انتخاب کنید';
+    } else if (filterCategory === 'chat') {
+      if (chatSec) chatSec.hidden = false;
+      if (mathSec) mathSec.hidden = true;
+      if (titleEl) titleEl.textContent = 'درخواست گفتگو تشخیص داده شد';
+      if (subEl) subEl.textContent = 'مدل گفتگوی مورد نظر خود را برای پاسخ به این پیام انتخاب کنید';
+    } else {
+      if (chatSec) chatSec.hidden = false;
+      if (mathSec) mathSec.hidden = false;
+      if (titleEl) titleEl.textContent = 'انتخاب مدل گفتگو';
+      if (subEl) subEl.textContent = 'مدل مورد نظر خود را برای گفتگو یا حل مسائل ریاضی انتخاب کنید';
+    }
+
     applySelectedModel(state.selectedModel || getSelectedModelId(), true);
     openAnimated(modal);
   }
 
-  function closeModelPickerModal() {
+  function closeModelPickerModal(chosenId) {
     const modal = document.getElementById('model-picker-modal');
-    if (!modal) return;
-    closeAnimated(modal, 195);
+    if (modal) closeAnimated(modal, 195);
+    if (_pendingModelResolver) {
+      const res = _pendingModelResolver;
+      _pendingModelResolver = null;
+      res(chosenId || null);
+    }
+  }
+
+  function localDetectMath(text) {
+    const stripped = String(text || '')
+      .replace(/https?:\/\/\S+|www\.\S+|\b[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}\b|\b\d{4}[-/]\d{1,2}[-/]\d{1,2}\b/gi, ' ')
+      .trim();
+    if (!stripped) return false;
+    if (/\\(?:frac|dfrac|sqrt|prod|sum|int|lim|log|sin|cos|tan|binom)|\$\$|\$[^$\n]+\$|[∈∉⊂⊆∪∩∅∀∃∑∏∫√∞±×÷≤≥≠≈]/.test(stripped)) return true;
+    const norm = stripped.replace(/[۰-۹]/g, function (d) { return String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)); })
+      .replace(/[٠-٩]/g, function (d) { return String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)); })
+      .replace(/×/g, '*').replace(/÷/g, '/');
+    if (/(?<![a-zA-Z0-9])\d+\s*[+*/^=]\s*\d+(?![a-zA-Z0-9])/.test(norm)) return true;
+    if (/(?<![a-zA-Z0-9])\d+\s+-\s+\d+(?![a-zA-Z0-9])/.test(norm)) return true;
+    if (/(?:معادله|انتگرال|مشتق|لگاریتم|ماتریس|حاصلضرب|ثابت کنید|اثبات|فاکتوریل|کسر|احتمال|مثلثات|\b(?:integral|derivative|equation|logarithm|matrix|factorial|prove|solve)\b)/i.test(stripped)) return true;
+    return false;
+  }
+
+  async function detectMessageCategory(text) {
+    try {
+      const base = await resolveApiBase();
+      const headers = { 'Content-Type': 'application/json' };
+      const urlTok = new URLSearchParams(location.search).get('token');
+      if (urlTok) headers['X-Panel-Token'] = urlTok;
+      if (state.publicKey) headers['X-API-Key'] = state.publicKey;
+      const ctrl = new AbortController();
+      const timer = setTimeout(function () { ctrl.abort(); }, 3500);
+      const r = await fetch(base + '/api/chat/route', {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({ message: text }),
+        signal: ctrl.signal
+      });
+      clearTimeout(timer);
+      if (r.ok) {
+        const d = await r.json();
+        if (d && typeof d.is_math === 'boolean') return d.is_math ? 'math' : 'chat';
+      }
+    } catch (e) {}
+    return localDetectMath(text) ? 'math' : 'chat';
+  }
+
+  function promptModelForCategory(category) {
+    return new Promise(function (resolve) {
+      if (_pendingModelResolver) {
+        const prev = _pendingModelResolver;
+        _pendingModelResolver = null;
+        prev(null);
+      }
+      _pendingModelResolver = resolve;
+      openModelPickerModal(category);
+    });
   }
 
   function initModelPicker() {
@@ -3164,30 +3247,24 @@
     const pickerBtn = document.getElementById('btn-model-picker');
     const closeBtn = document.getElementById('btn-mp-close');
     const modal = document.getElementById('model-picker-modal');
-    if (pickerBtn) pickerBtn.addEventListener('click', openModelPickerModal);
-    if (closeBtn) closeBtn.addEventListener('click', closeModelPickerModal);
+    if (pickerBtn) pickerBtn.addEventListener('click', function () { openModelPickerModal(null); });
+    if (closeBtn) closeBtn.addEventListener('click', function () { closeModelPickerModal(null); });
     if (modal) {
       modal.addEventListener('click', function (e) {
-        if (e.target === modal) closeModelPickerModal();
+        if (e.target === modal) closeModelPickerModal(null);
       });
     }
     document.querySelectorAll('[data-pick-model]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         const id = btn.getAttribute('data-pick-model');
-        applySelectedModel(id, false);
-        closeModelPickerModal();
-        if (el.input) el.input.focus();
+        applySelectedModel(id, !!_pendingModelResolver);
+        closeModelPickerModal(id);
+        if (el.input && !_pendingModelResolver) el.input.focus();
       });
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && modal && !modal.hidden) closeModelPickerModal();
+      if (e.key === 'Escape' && modal && !modal.hidden) closeModelPickerModal(null);
     });
-    // Pop up custom model selector once on entering Chat so user picks their model
-    let picked = false;
-    try { picked = sessionStorage.getItem('uc_model_picked') === '1'; } catch (e) {}
-    if (!picked) {
-      setTimeout(openModelPickerModal, 220);
-    }
   }
 
   function init() {

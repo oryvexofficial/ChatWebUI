@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9sYXNlci1yYW5rcy1zYWxlbS1sb25nZXIudHJ5Y2xvdWRmbGFyZS5jb20=",
-  "public_api_key": "sk-uc-080493e1373390e87ec40ff11279a0d5",
-  "api_key": "sk-uc-080493e1373390e87ec40ff11279a0d5",
+  "url_payload": "aHR0cHM6Ly9lbW90aW9uYWwtd2lmZS1vdXRsZXQtZGl2aW5nLnRyeWNsb3VkZmxhcmUuY29t",
+  "public_api_key": "sk-uc-580085899135b25b3d1069a79f6b6a9f",
+  "api_key": "sk-uc-580085899135b25b3d1069a79f6b6a9f",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://laser-ranks-salem-longer.trycloudflare.com/v1",
-    "chat_completions": "https://laser-ranks-salem-longer.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://laser-ranks-salem-longer.trycloudflare.com/v1/models",
-    "native_chat": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/key",
-    "health": "https://laser-ranks-salem-longer.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://emotional-wife-outlet-diving.trycloudflare.com/v1",
+    "chat_completions": "https://emotional-wife-outlet-diving.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://emotional-wife-outlet-diving.trycloudflare.com/v1/models",
+    "native_chat": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/key",
+    "health": "https://emotional-wife-outlet-diving.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-20T11:39:11+00:00",
+  "updated_at": "2026-11-20T11:46:33+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44729101645",
-  "run_number": 83,
+  "run_number": 86,
   "commit": "fc46a6e"
 }

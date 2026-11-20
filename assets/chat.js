@@ -196,9 +196,11 @@
       .replace(/\\frac\{([^{}]*)\}\{([^{}]*)\}/g, '$1/$2')
       .replace(/\\(?:in|notin|cap|cup|subseteq|subset|varnothing|emptyset|infty|forall|exists|to|rightarrow)(?![A-Za-z])/g, ' ')
       .replace(/\\[A-Za-z]+/g, ' ')
-      .replace(/\$\$([\s\S]+?)\$\$/g, '$1')
-      .replace(/\$([^$\n]+)\$/g, '$1')
-      .replace(/[*_`~=#>{}]/g, '')
+      .replace(/\$\$[\s\S]*?\$\$/g, ' ')
+      .replace(/\$[^$\n]*\$/g, ' ')
+      .replace(/\$[\s\S]*$/g, ' ')
+      .replace(/\\[A-Za-z]+/g, ' ')
+      .replace(/[*_`~=#>{}$^]/g, '')
       .replace(/\s+/g, ' ')
       .trim();
   }
@@ -220,7 +222,8 @@
       if (!r.ok) return;
       const d = await r.json();
       if (d && d.title && d.title.trim()) {
-        thread.title = d.title.trim();
+        const cleaned = stripMarkdown(d.title.trim());
+        thread.title = cleaned || thread.title;
         saveThreads();
         renderSidebar();
       }
@@ -256,17 +259,27 @@
 
   function renderThinkMarkdown(rawThink, isLive) {
     let s = String(rawThink || '');
+    // Normalize \[...\] and \(...\) delimiters so KaTeX parses them cleanly
+    s = s.replace(/\\\[([\s\S]+?)\\\]/g, function (_, inner) { return '\n$$\n' + inner.trim() + '\n$$\n'; });
+    s = s.replace(/\\\(([\s\S]+?)\\\)/g, function (_, inner) { return '$' + inner.trim() + '$'; });
+    // Protect existing $$...$$ and $...$ math blocks before auto-wrapping bare LaTeX
+    const kept = [];
+    s = s.replace(/\$\$[\s\S]+?\$\$|\$[^$\n]+?\$/g, function (m) {
+      const idx = kept.length;
+      kept.push(m);
+      return '@@THMATH_' + idx + '@@';
+    });
     // Convert Unicode big operators with LaTeX limits (e.g. ∏_{k=2}^{100}, ∑_{i=1}^{n}, ∫_{a}^{b}) into inline math
     s = s.replace(/([∏∑∫])((?:_(?:\{[^{}]+\}|[A-Za-z0-9]+)|\^(?:\{[^{}]+\}|[A-Za-z0-9]+)){1,2})/g, function (_, sym, lims) {
       const cmd = sym === '∏' ? '\\prod' : sym === '∑' ? '\\sum' : '\\int';
       return '$' + cmd + lims + '$';
     });
-    // Auto-wrap bare LaTeX expressions in reasoning that are not already inside $...$
-    if (s.indexOf('\\(') === -1 && s.indexOf('\\[') === -1) {
-      s = s.replace(/(^|[^$\\])(\\(?:sum|prod|int|lim)(?:_(?:\{[^{}]+\}|[A-Za-z0-9]+)|\^(?:\{[^{}]+\}|[A-Za-z0-9]+)){1,2})/g, '$1$$$2$$');
-      s = s.replace(/(^|[^$\\])(\\(?:d|t)?frac\{[^{}]+\}\{[^{}]+\})/g, '$1$$$2$$');
-      s = s.replace(/(^|[^$\\])(\\sqrt(?:\[[^\]]+\])?\{[^{}]+\})/g, '$1$$$2$$');
-    }
+    // Auto-wrap bare LaTeX commands outside already-delimited math
+    s = s.replace(/(^|[^$\\])(\\(?:sum|prod|int|lim)(?:_(?:\{[^{}]+\}|[A-Za-z0-9]+)|\^(?:\{[^{}]+\}|[A-Za-z0-9]+)){1,2})/g, '$1$$$2$$');
+    s = s.replace(/(^|[^$\\])(\\(?:d|t)?frac\{[^{}]+\}\{[^{}]+\})/g, '$1$$$2$$');
+    s = s.replace(/(^|[^$\\])(\\sqrt(?:\[[^\]]+\])?\{[^{}]+\})/g, '$1$$$2$$');
+    // Restore protected math blocks
+    s = s.replace(/@@THMATH_(\d+)@@/g, function (_, i) { return kept[Number(i)] || ''; });
     return renderMarkdown(s, isLive);
   }
 
@@ -814,6 +827,7 @@
       try {
         return window.katex.renderToString(clean, {
           displayMode: !!isDisplay,
+          output: 'html',
           throwOnError: false,
           strict: false,
           trust: false,
@@ -1088,11 +1102,8 @@
       const idx = blocks.length;
       const encoded = encodeURIComponent(expr);
       blocks.push(
-        '<div class="math-card">' +
-          '<div class="math-head">' +
-            '<span class="math-badge">فرمول ریاضی</span>' +
-            '<button type="button" class="code-copy" data-copy-encoded="' + encoded + '">' + ICONS.copy + '<span>کپی LaTeX</span></button>' +
-          '</div>' +
+        '<div class="math-card math-sleek">' +
+          '<button type="button" class="math-copy-btn code-copy" data-copy-encoded="' + encoded + '" title="کپی فرمول">' + ICONS.copy + '<span>کپی</span></button>' +
           '<div class="math math-block" dir="ltr">' + formatTexHtml(expr, true) + '</div>' +
         '</div>'
       );
@@ -1505,7 +1516,7 @@
           '<div class="thread-row' + (isEntering ? ' entering' : '') + '">' +
             '<div class="thread' + (isActive ? ' active' : '') + '" role="button" tabindex="0" data-thread-id="' + escapeHtml(t.id) + '">' +
               (isActive ? '<span class="thread-ink"></span>' : '') +
-              '<span class="t-left"><span class="t-dot dot-chat"></span><span class="t-title" dir="auto">' + escapeHtml(t.title || 'گفتگوی جدید') + '</span></span>' +
+              '<span class="t-left"><span class="t-dot dot-chat"></span><span class="t-title" dir="auto">' + escapeHtml(stripMarkdown(t.title || '') || 'گفتگوی جدید') + '</span></span>' +
               '<button class="t-del" type="button" data-del-thread="' + escapeHtml(t.id) + '" title="حذف" aria-label="حذف گفتگو">' + ICONS.trash + '</button>' +
             '</div>' +
           '</div>';
@@ -1611,13 +1622,8 @@
       openAnimated(el.starterChips);
       setHidden(el.scroller, true);
     } else {
-      if (prevWasWelcome && !prefersReducedMotion()) {
-        closeAnimated(el.heroArea, 170);
-        closeAnimated(el.starterChips, 170);
-      } else {
-        setHidden(el.heroArea, true);
-        setHidden(el.starterChips, true);
-      }
+      setHidden(el.heroArea, true);
+      setHidden(el.starterChips, true);
       openAnimated(el.scroller);
     }
     if (beforeTop !== null && el.composerArea && !prefersReducedMotion()) {
@@ -2160,7 +2166,7 @@
           if (
             curEl.tagName === nextEl.tagName &&
             /^(P|H[1-6]|UL|OL|BLOCKQUOTE|DL)$/.test(curEl.tagName) &&
-            curEl.className.replace(/stream-block-in/g, '').trim() === nextEl.className.trim()
+            curEl.className.replace(/\bstream-block-in\b/g, '').trim() === nextEl.className.trim()
           ) {
             curEl.innerHTML = nextEl.innerHTML;
             curEl._sHtml = nextHtml;
@@ -2264,8 +2270,9 @@
     function flushStreamFrame(forceAll, nowTs) {
       if (!streamQueue.length && !reasonQueue.length) return;
       const now = nowTs || performance.now();
-      const dt = lastFrameTs ? Math.min(48, Math.max(8, now - lastFrameTs)) : 16;
+      const dt = lastFrameTs ? Math.min(40, Math.max(8, now - lastFrameTs)) : 16;
       lastFrameTs = now;
+      let changed = false;
 
       if (forceAll || prefersReducedMotion()) {
         displayedReply += streamQueue;
@@ -2274,10 +2281,11 @@
         reasonQueue = '';
         ansCarry = 0;
         rsnCarry = 0;
+        changed = true;
       } else {
         if (reasonQueue.length) {
           const rChars = Array.from(reasonQueue);
-          const rRate = Math.min(920, 78 + rChars.length * 4.2);
+          const rRate = Math.min(540, 64 + rChars.length * 2.8);
           rsnCarry += (rRate * dt) / 1000;
           const rStep = Math.floor(rsnCarry);
           if (rStep > 0) {
@@ -2285,11 +2293,12 @@
             const take = Math.min(rStep, rChars.length);
             displayedReason += rChars.slice(0, take).join('');
             reasonQueue = rChars.slice(take).join('');
+            changed = true;
           }
         }
         if (streamQueue.length) {
           const aChars = Array.from(streamQueue);
-          const aRate = Math.min(820, 62 + aChars.length * 3.8);
+          const aRate = Math.min(480, 52 + aChars.length * 2.5);
           ansCarry += (aRate * dt) / 1000;
           const aStep = Math.floor(ansCarry);
           if (aStep > 0) {
@@ -2297,10 +2306,11 @@
             const take = Math.min(aStep, aChars.length);
             displayedReply += aChars.slice(0, take).join('');
             streamQueue = aChars.slice(take).join('');
+            changed = true;
           }
         }
       }
-      updateLivePendingDOM(displayedReply, displayedReason);
+      if (changed) updateLivePendingDOM(displayedReply, displayedReason);
     }
 
     function scheduleStreamPump() {
@@ -2730,7 +2740,7 @@
           (isSel ? '<span class="search-sel"></span>' : '') +
           '<span class="si-ico">' + ICONS.msg + '<span class="t-dot dot-chat"></span></span>' +
           '<span class="si-text">' +
-            '<span class="si-title" dir="auto">' + highlightText(t.title || 'گفتگوی جدید', q) + '</span>' +
+            '<span class="si-title" dir="auto">' + highlightText(stripMarkdown(t.title || '') || 'گفتگوی جدید', q) + '</span>' +
             '<span class="si-snip" dir="auto">' + highlightText((item.snippet || '').replace(/\s+/g, ' '), q) + '</span>' +
           '</span>' +
           '<span class="si-time">' + escapeHtml(relTime(t.updatedAt || t.createdAt)) + '</span>' +

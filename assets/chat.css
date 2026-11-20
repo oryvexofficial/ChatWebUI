@@ -4885,3 +4885,363 @@ body.chat-body,
   background: #303030 !important;
   color: #ffffff !important;
 }
+
+
+/* ==========================================================================
+   v91 — KaTeX Single-Layer Fix, Sleek Math Blocks & Smooth Starter Cards
+   ========================================================================== */
+
+/* 1. Never show duplicate MathML layer even if CDN CSS is slow or cached */
+.katex-mathml {
+  display: none !important;
+}
+
+.katex {
+  font-size: 1.06em !important;
+  color: #ececec !important;
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+}
+
+.msg-text .katex:not(.katex-display > .katex) {
+  display: inline-block;
+  margin: 0 3px;
+  vertical-align: baseline;
+}
+
+.katex-display {
+  margin: 0 !important;
+  padding: 2px 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center !important;
+}
+
+/* 2. Sleek Claude/ChatGPT-style display math block (no bulky header bar) */
+.math-card.math-sleek {
+  position: relative !important;
+  margin: 14px 0 !important;
+  padding: 16px 20px !important;
+  border-radius: 14px !important;
+  background: rgba(255, 255, 255, 0.025) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.math-card.math-sleek .math-block {
+  padding: 4px 8px !important;
+  margin: 0 !important;
+  background: transparent !important;
+  font-size: 1.12em !important;
+  overflow-x: auto !important;
+  text-align: center !important;
+}
+
+.math-card.math-sleek .math-copy-btn {
+  position: absolute !important;
+  top: 8px !important;
+  left: 8px !important;
+  z-index: 2 !important;
+  opacity: 0 !important;
+  padding: 4px 9px !important;
+  border-radius: 8px !important;
+  font-size: 11.5px !important;
+  background: #2f2f2f !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #d4d4d4 !important;
+  transition: opacity 150ms ease, background-color 150ms ease, color 150ms ease !important;
+}
+
+.math-card.math-sleek:hover .math-copy-btn,
+.math-card.math-sleek:focus-within .math-copy-btn {
+  opacity: 1 !important;
+}
+
+.math-card.math-sleek .math-copy-btn:hover {
+  background: #3d3d3d !important;
+  color: #ffffff !important;
+}
+
+/* 3. Smooth, conflict-free starter prompt cards under chat box */
+@keyframes uc-card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Remove conflicting container animation so cards animate once cleanly */
+.chips {
+  animation: none !important;
+  will-change: auto !important;
+}
+
+/* Use backwards fill-mode so transform is released immediately after entrance for smooth hover */
+.chips:not([hidden]) .chip.prompt-card {
+  animation: uc-card-rise 300ms cubic-bezier(0.22, 1, 0.36, 1) backwards !important;
+  will-change: transform, opacity;
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 180ms ease !important;
+}
+
+.chips:not([hidden]) .chip.prompt-card:nth-child(1) { animation-delay: 20ms !important; }
+.chips:not([hidden]) .chip.prompt-card:nth-child(2) { animation-delay: 65ms !important; }
+.chips:not([hidden]) .chip.prompt-card:nth-child(3) { animation-delay: 110ms !important; }
+.chips:not([hidden]) .chip.prompt-card:nth-child(4) { animation-delay: 155ms !important; }
+
+.chips:not([hidden]) .chip.prompt-card:hover {
+  background: #303030 !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.65) !important;
+}
+
+.chips:not([hidden]) .chip.prompt-card:active {
+  transform: translateY(0) scale(0.985) !important;
+  transition-duration: 90ms !important;
+}
+
+/* Cleanly smooth icon + arrow hover inside starter cards */
+.chip.prompt-card .pc-ico {
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 180ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.chip.prompt-card:hover .pc-ico {
+  transform: scale(1.04);
+}
+
+.chip.prompt-card .pc-arrow {
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1), color 150ms ease, opacity 150ms ease !important;
+}
+
+
+/* ==========================================================================
+   v92 — Claude-Style Think Card UI, Crisp Text Colors & Silky Typing
+   ========================================================================== */
+
+/* 1. Think Card container (Claude disclosure style in ChatGPT dark monochrome) */
+.think-card {
+  margin: 10px 0 14px !important;
+  border-radius: 14px !important;
+  background: #262626 !important;
+  border: 1px solid rgba(255, 255, 255, 0.085) !important;
+  box-shadow: 0 2px 10px -6px rgba(0, 0, 0, 0.45) !important;
+  overflow: hidden !important;
+  transition: border-color 180ms ease, background-color 180ms ease !important;
+}
+
+.think-card:hover {
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+.think-card.open {
+  background: #242424 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Think Card Header */
+.think-card-head {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 11px 14px !important;
+  background: transparent !important;
+  border: none !important;
+  color: #e4e4e4 !important;
+  font-size: 13.25px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: background-color 150ms ease, color 150ms ease !important;
+}
+
+.think-card-head:hover {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: #ffffff !important;
+}
+
+.think-card-head .tc-title {
+  color: #e2e2e2 !important;
+  transition: color 150ms ease !important;
+}
+
+.think-card-head:hover .tc-title {
+  color: #ffffff !important;
+}
+
+.think-card-head .tc-dot {
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  background: #8e8e8e !important;
+  flex-shrink: 0 !important;
+  transition: background-color 180ms ease, box-shadow 180ms ease !important;
+}
+
+.think-card-head .tc-dot.live {
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18) !important;
+  animation: uc-tc-pulse 1.5s ease-in-out infinite !important;
+}
+
+@keyframes uc-tc-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.22); }
+  50% { opacity: 0.65; transform: scale(0.92); box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.06); }
+}
+
+.think-card-head .thinking-chev {
+  margin-inline-start: auto !important;
+  color: #a3a3a3 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), color 150ms ease !important;
+}
+
+.think-card-head:hover .thinking-chev {
+  color: #ffffff !important;
+}
+
+.think-card.open .think-card-head .thinking-chev {
+  transform: rotate(180deg) !important;
+}
+
+/* Think Card Body — Claude-style vertical rail + crisp readable text */
+.think-card-body {
+  padding: 12px 16px 14px !important;
+  margin: 0 12px 12px !important;
+  border-inline-start: 2px solid rgba(255, 255, 255, 0.14) !important;
+  background: rgba(0, 0, 0, 0.16) !important;
+  border-radius: 0 10px 10px 0 !important;
+  color: #d4d4d4 !important;
+  font-size: 13.5px !important;
+  line-height: 1.8 !important;
+  max-height: 360px !important;
+  overflow-y: auto !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent !important;
+}
+
+[dir="rtl"] .think-card-body {
+  border-radius: 10px 0 0 10px !important;
+}
+
+.think-card-body p,
+.think-card-body li {
+  color: #d4d4d4 !important;
+  margin: 0 0 8px !important;
+}
+
+.think-card-body p:last-child,
+.think-card-body li:last-child {
+  margin-bottom: 0 !important;
+}
+
+.think-card-body strong,
+.think-card-body b,
+.think-card-body h1,
+.think-card-body h2,
+.think-card-body h3,
+.think-card-body h4 {
+  color: #f2f2f2 !important;
+}
+
+.think-card-body code {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ececec !important;
+  padding: 1px 6px !important;
+  border-radius: 6px !important;
+}
+
+/* Crisp KaTeX inside Think Card */
+.think-card-body .katex {
+  font-size: 1.02em !important;
+  color: #ececec !important;
+}
+
+.think-card-body .math-card.math-sleek {
+  margin: 10px 0 !important;
+  padding: 12px 14px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: rgba(255, 255, 255, 0.07) !important;
+}
+
+/* 2. Thought Summary Pill & Step Timeline (e.g. "۲۲٫۹ ثانیه فکر کرد · ۵ مرحله") */
+.thought-line {
+  background: #262626 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #d4d4d4 !important;
+  border-radius: 12px !important;
+  padding: 7px 12px !important;
+}
+
+.thought-line:hover {
+  background: #2f2f2f !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+}
+
+.thought-line svg.ic,
+.thought-line .thinking-chev {
+  color: #b4b4b4 !important;
+}
+
+.thought-line:hover svg.ic,
+.thought-line:hover .thinking-chev {
+  color: #ffffff !important;
+}
+
+.thought-steps {
+  background: #242424 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  color: #d4d4d4 !important;
+}
+
+.thought-step-title {
+  color: #ececec !important;
+}
+
+.thought-step-detail,
+.thought-step-time {
+  color: #a8a8a8 !important;
+}
+
+/* 3. Claude-Style Fluid Streaming Caret & Soft Block Entrance */
+@keyframes uc-claude-block-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stream-block-in {
+  animation: uc-claude-block-in 180ms cubic-bezier(0.22, 1, 0.36, 1) backwards !important;
+}
+
+@keyframes uc-claude-caret {
+  0%, 100% { opacity: 0.92; transform: scaleY(1); }
+  50% { opacity: 0.25; transform: scaleY(0.88); }
+}
+
+.stream-caret {
+  display: inline-block !important;
+  width: 2.5px !important;
+  height: 1.08em !important;
+  margin-inline-start: 3px !important;
+  vertical-align: -0.16em !important;
+  border-radius: 2px !important;
+  background: #e8e8e8 !important;
+  animation: uc-claude-caret 0.95s cubic-bezier(0.4, 0, 0.2, 1) infinite !important;
+}

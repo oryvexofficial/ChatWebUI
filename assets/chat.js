@@ -257,11 +257,55 @@
     };
   }
 
+  function repairDisplayMathDelimiters(src) {
+    const str = String(src || '');
+    if (str.indexOf('$$') === -1) return str;
+    // Split on $$ and re-pair greedily, dropping any stray $$ that would wrap Persian/prose/emojis/placeholders
+    const parts = str.split('$$');
+    if (parts.length < 2) return str;
+    const isLikelyMath = function (seg) {
+      const t = seg.trim();
+      if (!t || !/[A-Za-z0-9\\]/.test(t)) return false;
+      const noText = t.replace(/\\(?:text|mathrm|textbf|textit|operatorname)\{[^{}]*\}/g, ' ');
+      if (/[\u0600-\u06FF]/.test(noText)) return false;
+      if (/[\u2700-\u27BF\u{1F300}-\u{1FAFF}]/u.test(noText)) return false;
+      const enWords = (noText.replace(/\\[A-Za-z]+/g, ' ').match(/\b[A-Za-z]{3,}\b/g) || []).length;
+      if (enWords >= 5) return false;
+      return true;
+    };
+    let out = parts[0];
+    let i = 1;
+    while (i < parts.length) {
+      if (i + 1 < parts.length && isLikelyMath(parts[i])) {
+        out += '\n$$\n' + parts[i].trim() + '\n$$\n' + parts[i + 1];
+        i += 2;
+      } else {
+        // Stray $$: discard the delimiter and keep the prose text intact, allowing next $$ to pair cleanly!
+        out += parts[i];
+        i += 1;
+      }
+    }
+    return out;
+  }
+
   function renderThinkMarkdown(rawThink, isLive) {
     let s = String(rawThink || '');
+    // Unwrap plain/markdown fenced drafts inside reasoning so Persian & LaTeX render cleanly
+    s = s.replace(/```(?:markdown|md|text|txt|latex|math)?\s*\n([\s\S]*?)(?:\n```|$)/gi, '\n$1\n');
     // Normalize \[...\] and \(...\) delimiters so KaTeX parses them cleanly
     s = s.replace(/\\\[([\s\S]+?)\\\]/g, function (_, inner) { return '\n$$\n' + inner.trim() + '\n$$\n'; });
     s = s.replace(/\\\(([\s\S]+?)\\\)/g, function (_, inner) { return '$' + inner.trim() + '$'; });
+    s = repairDisplayMathDelimiters(s);
+    // If live-streaming and an odd number of $$ exists, neutralize the trailing unclosed $$ so prose is never swallowed
+    if (isLive) {
+      const ddMatches = s.match(/\$\$/g);
+      if (ddMatches && ddMatches.length % 2 === 1) {
+        const lastDd = s.lastIndexOf('$$');
+        s = s.slice(0, lastDd) + s.slice(lastDd + 2);
+      }
+      // Hide dangling unclosed ** at the very tail of the live buffer
+      s = s.replace(/\*\*([^*\n]{1,60})$/, '$1');
+    }
     // Protect existing $$...$$ and $...$ math blocks before auto-wrapping bare LaTeX
     const kept = [];
     s = s.replace(/\$\$[\s\S]+?\$\$|\$[^$\n]+?\$/g, function (m) {
@@ -269,15 +313,24 @@
       kept.push(m);
       return '@@THMATH_' + idx + '@@';
     });
-    // Convert Unicode big operators with LaTeX limits (e.g. ∏_{k=2}^{100}, ∑_{i=1}^{n}, ∫_{a}^{b}) into inline math
+    // Convert Unicode big operators with LaTeX limits into inline math
     s = s.replace(/([∏∑∫])((?:_(?:\{[^{}]+\}|[A-Za-z0-9]+)|\^(?:\{[^{}]+\}|[A-Za-z0-9]+)){1,2})/g, function (_, sym, lims) {
       const cmd = sym === '∏' ? '\\prod' : sym === '∑' ? '\\sum' : '\\int';
       return '$' + cmd + lims + '$';
     });
-    // Auto-wrap bare LaTeX commands outside already-delimited math
-    s = s.replace(/(^|[^$\\])(\\(?:sum|prod|int|lim)(?:_(?:\{[^{}]+\}|[A-Za-z0-9]+)|\^(?:\{[^{}]+\}|[A-Za-z0-9]+)){1,2})/g, '$1$$$2$$');
-    s = s.replace(/(^|[^$\\])(\\(?:d|t)?frac\{[^{}]+\}\{[^{}]+\})/g, '$1$$$2$$');
-    s = s.replace(/(^|[^$\\])(\\sqrt(?:\[[^\]]+\])?\{[^{}]+\})/g, '$1$$$2$$');
+    // Auto-wrap bare LaTeX commands outside already-delimited math using safe callbacks
+    s = s.replace(/(^|[^$\\])(\\(?:sum|prod|int|lim)(?:_(?:\{[^{}]+\}|[A-Za-z0-9]+)|\^(?:\{[^{}]+\}|[A-Za-z0-9]+)){1,2})(?!\$)/g, function (_, pre, expr) {
+      return pre + '$' + expr + '$';
+    });
+    s = s.replace(/(^|[^$\\])(\\(?:d|t)?frac\{[^{}]+\}\{[^{}]+\})(?!\$)/g, function (_, pre, expr) {
+      return pre + '$' + expr + '$';
+    });
+    s = s.replace(/(^|[^$\\])(\\sqrt(?:\[[^\]]+\])?\{[^{}]+\})(?!\$)/g, function (_, pre, expr) {
+      return pre + '$' + expr + '$';
+    });
+    s = s.replace(/(^|[^$\\])(\\boxed\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\})(?!\$)/g, function (_, pre, expr) {
+      return pre + '$' + expr + '$';
+    });
     // Restore protected math blocks
     s = s.replace(/@@THMATH_(\d+)@@/g, function (_, i) { return kept[Number(i)] || ''; });
     return renderMarkdown(s, isLive);
@@ -828,6 +881,7 @@
         return window.katex.renderToString(clean, {
           displayMode: !!isDisplay,
           output: 'html',
+          errorColor: '#d4d4d4',
           throwOnError: false,
           strict: false,
           trust: false,
@@ -1098,6 +1152,15 @@
         const midx = mathTokens.length;
         mathTokens.push('<span class="math math-cell" dir="ltr">' + formatTexHtml(expr, false) + '</span>');
         return '\uE000MATH' + midx + '\uE001';
+      }
+      // Guard: if an unbalanced $$ accidentally spanned Persian prose, emojis, or long English sentences, render as normal text
+      const exprNoText = expr.replace(/\\(?:text|mathrm|textbf|textit|operatorname)\{[^{}]*\}/g, ' ');
+      const hasRawPersian = /[\u0600-\u06FF]/.test(exprNoText);
+      const hasEmoji = /[\u2700-\u27BF\u{1F300}-\u{1FAFF}]/u.test(exprNoText);
+      const englishWords = (exprNoText.replace(/\\[A-Za-z]+/g, ' ').match(/\b[A-Za-z]{3,}\b/g) || []).length;
+      const isPlaceholderOnly = !/[A-Za-z0-9\\]/.test(expr.trim());
+      if (isPlaceholderOnly || hasRawPersian || hasEmoji || englishWords >= 5) {
+        return expr;
       }
       const idx = blocks.length;
       const encoded = encodeURIComponent(expr);
@@ -1645,7 +1708,7 @@
     }
   }
 
-  function renderMessages() {
+  function renderMessages(skipAutoScroll) {
     updateWelcomeState();
     if (!el.stream) return;
     const existingPending = state.busy ? el.stream.querySelector('.turn.pending') : null;
@@ -1709,7 +1772,7 @@
     state.justFinishedId = null;
     if (existingPending) el.stream.appendChild(existingPending);
     bindStreamEvents();
-    requestAnimationFrame(function () { scrollToBottom(true); });
+    if (!skipAutoScroll) requestAnimationFrame(function () { scrollToBottom(true); });
   }
 
   function bindStreamEvents() {
@@ -2336,7 +2399,7 @@
       const r = await fetch(base + '/api/chat/stream', {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify({ message: text, history: history }),
+        body: JSON.stringify({ message: text, history: history, model: state.selectedModel || 'unicollect-chat-mini' }),
         signal: ctrl.signal
       });
 
@@ -2491,7 +2554,14 @@
     state.ctrl = null;
     updateSendButtonState();
     renderSidebar();
-    renderMessages();
+    // Preserve scroll position seamlessly when swapping pendingTurn -> final turn
+    const prevScrollTop = el.scroller ? el.scroller.scrollTop : 0;
+    const wasNearBottom = el.scroller ? (el.scroller.scrollHeight - el.scroller.scrollTop - el.scroller.clientHeight < 120) : true;
+    renderMessages(true);
+    if (el.scroller) {
+      if (wasNearBottom) el.scroller.scrollTop = el.scroller.scrollHeight;
+      else el.scroller.scrollTop = prevScrollTop;
+    }
     if (el.input) el.input.focus();
   }
 
@@ -2789,8 +2859,8 @@
     };
 
     on('btn-logo-new', 'click', startNewThread);
-    on('btn-new-chat', 'click', startNewThread);
-    on('btn-tb-new', 'click', startNewThread);
+    on('btn-new-chat', 'click', function () { startNewThread(); openModelPickerModal(); });
+    on('btn-tb-new', 'click', function () { startNewThread(); openModelPickerModal(); });
     on('btn-sb-toggle', 'click', toggleSidebar);
     on('btn-tb-sidebar', 'click', toggleSidebar);
     on('sb-backdrop', 'click', function () {
@@ -3041,6 +3111,84 @@
   }
 
   /* ---------- راه‌اندازی اولیه ---------- */
+
+  /* ---------- انتخابگر اختصاصی مدل یونیکالکت ---------- */
+  const UC_MODEL_LABELS = {
+    'unicollect-chat-mini': 'Unicollect Chat Mini',
+    'unicollect-chat-1.2': 'Unicollect Chat 1.2',
+    'unicollect-math-mini': 'Unicollect Math Mini',
+    'unicollect-math-1.2': 'Unicollect Math 1.2'
+  };
+
+  function getSelectedModelId() {
+    try {
+      const saved = localStorage.getItem('uc_selected_model');
+      if (saved && UC_MODEL_LABELS[saved]) return saved;
+    } catch (e) {}
+    return 'unicollect-chat-mini';
+  }
+
+  function applySelectedModel(modelId, silent) {
+    const id = UC_MODEL_LABELS[modelId] ? modelId : 'unicollect-chat-mini';
+    state.selectedModel = id;
+    try { localStorage.setItem('uc_selected_model', id); } catch (e) {}
+    try { sessionStorage.setItem('uc_model_picked', '1'); } catch (e) {}
+    const nameEl = document.getElementById('active-model-name');
+    if (nameEl) nameEl.textContent = UC_MODEL_LABELS[id];
+    document.querySelectorAll('[data-pick-model]').forEach(function (btn) {
+      const active = btn.getAttribute('data-pick-model') === id;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    if (!silent) {
+      showToast('مدل فعال: ' + UC_MODEL_LABELS[id]);
+    }
+  }
+
+  function openModelPickerModal() {
+    const modal = document.getElementById('model-picker-modal');
+    if (!modal) return;
+    applySelectedModel(state.selectedModel || getSelectedModelId(), true);
+    openAnimated(modal);
+  }
+
+  function closeModelPickerModal() {
+    const modal = document.getElementById('model-picker-modal');
+    if (!modal) return;
+    closeAnimated(modal, 170);
+  }
+
+  function initModelPicker() {
+    applySelectedModel(getSelectedModelId(), true);
+    const pickerBtn = document.getElementById('btn-model-picker');
+    const closeBtn = document.getElementById('btn-mp-close');
+    const modal = document.getElementById('model-picker-modal');
+    if (pickerBtn) pickerBtn.addEventListener('click', openModelPickerModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModelPickerModal);
+    if (modal) {
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeModelPickerModal();
+      });
+    }
+    document.querySelectorAll('[data-pick-model]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const id = btn.getAttribute('data-pick-model');
+        applySelectedModel(id, false);
+        closeModelPickerModal();
+        if (el.input) el.input.focus();
+      });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal && !modal.hidden) closeModelPickerModal();
+    });
+    // Pop up custom model selector once on entering Chat so user picks their model
+    let picked = false;
+    try { picked = sessionStorage.getItem('uc_model_picked') === '1'; } catch (e) {}
+    if (!picked) {
+      setTimeout(openModelPickerModal, 220);
+    }
+  }
+
   function init() {
     setHidden(el.searchModal, true);
     setHidden(el.settingsModal, true);
@@ -3052,6 +3200,7 @@
     renderMessages();
     syncComposerSize(true);
     bindEvents();
+    initModelPicker();
     checkHealth();
     setInterval(function () {
       if (!document.hidden) checkHealth();

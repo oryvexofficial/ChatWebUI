@@ -217,7 +217,7 @@
       const r = await fetch(base + '/api/chat/title', {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify({ message: userText, reply: (replyText || '').slice(0, 300) })
+        body: JSON.stringify({ message: userText, reply: (replyText || '').slice(0, 300), model: state.selectedModel || 'unicollect-chat-mini' })
       });
       if (!r.ok) return;
       const d = await r.json();

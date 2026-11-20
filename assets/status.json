@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9hc3AtcGFyY2VsLWZvcm1zLXN0YXlpbmcudHJ5Y2xvdWRmbGFyZS5jb20=",
-  "public_api_key": "sk-uc-8a683d705737466a4f9963cbbef0d5e0",
-  "api_key": "sk-uc-8a683d705737466a4f9963cbbef0d5e0",
+  "url_payload": "aHR0cHM6Ly9yb3VnaGx5LXZpY3RvcnktcGhyYXNlLW1pcmFjbGUudHJ5Y2xvdWRmbGFyZS5jb20=",
+  "public_api_key": "sk-uc-0f3925737e706f29217d95a659319c52",
+  "api_key": "sk-uc-0f3925737e706f29217d95a659319c52",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://asp-parcel-forms-staying.trycloudflare.com/v1",
-    "chat_completions": "https://asp-parcel-forms-staying.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://asp-parcel-forms-staying.trycloudflare.com/v1/models",
-    "native_chat": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/key",
-    "health": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1",
+    "chat_completions": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1/models",
+    "native_chat": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/key",
+    "health": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-20T19:13:51+00:00",
+  "updated_at": "2026-11-20T19:20:15+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44800168483",
-  "run_number": 102,
+  "run_number": 103,
   "commit": "f0d0c78"
 }

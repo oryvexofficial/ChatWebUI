@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-8a683d705737466a4f9963cbbef0d5e0",
-  "api_key": "sk-uc-8a683d705737466a4f9963cbbef0d5e0",
+  "public_api_key": "sk-uc-0f3925737e706f29217d95a659319c52",
+  "api_key": "sk-uc-0f3925737e706f29217d95a659319c52",
   "status": "online",
   "online": true,
-  "base_url": "https://asp-parcel-forms-staying.trycloudflare.com",
+  "base_url": "https://roughly-victory-phrase-miracle.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://asp-parcel-forms-staying.trycloudflare.com/v1",
-    "chat_completions": "https://asp-parcel-forms-staying.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://asp-parcel-forms-staying.trycloudflare.com/v1/models",
-    "native_chat": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/key",
-    "health": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1",
+    "chat_completions": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1/models",
+    "native_chat": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/key",
+    "health": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://asp-parcel-forms-staying.trycloudflare.com",
-    "openai_base": "https://asp-parcel-forms-staying.trycloudflare.com/v1",
-    "chat_completions": "https://asp-parcel-forms-staying.trycloudflare.com/v1/chat/completions",
-    "api": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1",
-    "key": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/key",
-    "health": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/health",
-    "swagger": "https://asp-parcel-forms-staying.trycloudflare.com/docs",
-    "redoc": "https://asp-parcel-forms-staying.trycloudflare.com/redoc",
-    "openapi": "https://asp-parcel-forms-staying.trycloudflare.com/openapi.json",
-    "guide": "https://asp-parcel-forms-staying.trycloudflare.com/api-docs",
-    "public_key_page": "https://asp-parcel-forms-staying.trycloudflare.com/site/public-key/"
+    "panel": "https://roughly-victory-phrase-miracle.trycloudflare.com",
+    "openai_base": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1",
+    "chat_completions": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1/chat/completions",
+    "api": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1",
+    "key": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/key",
+    "health": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/health",
+    "swagger": "https://roughly-victory-phrase-miracle.trycloudflare.com/docs",
+    "redoc": "https://roughly-victory-phrase-miracle.trycloudflare.com/redoc",
+    "openapi": "https://roughly-victory-phrase-miracle.trycloudflare.com/openapi.json",
+    "guide": "https://roughly-victory-phrase-miracle.trycloudflare.com/api-docs",
+    "public_key_page": "https://roughly-victory-phrase-miracle.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/key"
+      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://asp-parcel-forms-staying.trycloudflare.com/v1/chat/completions"
+      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://asp-parcel-forms-staying.trycloudflare.com/v1/models"
+      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/chat"
+      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/generate"
+      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1"
+      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/health"
+      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/ready"
+      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/info"
+      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/models"
+      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/config"
+      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://asp-parcel-forms-staying.trycloudflare.com/api/v1/stats"
+      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://asp-parcel-forms-staying.trycloudflare.com/health"
+      "url": "https://roughly-victory-phrase-miracle.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-20T19:13:51+00:00",
+  "updated_at": "2026-11-20T19:20:15+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44800168483",
-  "run_number": 102,
+  "run_number": 103,
   "commit": "f0d0c78"
 }

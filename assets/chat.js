@@ -2215,19 +2215,42 @@
       if (urlTok) headers['X-Panel-Token'] = urlTok;
       if (state.publicKey) headers['X-API-Key'] = state.publicKey;
 
-      const r = await fetch(base + '/api/image/generate', {
+      // Use async job + polling so Cloudflare's 100s HTTP 524 timeout never interrupts CPU renders
+      const startRes = await fetch(base + '/api/image/jobs', {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({ prompt: prompt, model: meta.id }),
         signal: ctrl.signal
       });
-      const j = await r.json().catch(function () { return null; });
-      if (!r.ok || !j || !j.image_url) {
-        error = (j && j.error && (j.error.message || j.error)) || ('خطا در تولید تصویر (HTTP ' + r.status + ')');
+      const startJson = await startRes.json().catch(function () { return null; });
+      if (!startRes.ok || !startJson || !startJson.job_id) {
+        error = (startJson && startJson.error && (startJson.error.message || startJson.error)) || ('خطا در شروع تولید تصویر (HTTP ' + startRes.status + ')');
       } else {
-        imageUrl = j.image_url;
-        resolvedLabel = j.model || meta.label;
-        resolvedEngine = j.engine || meta.engine;
+        const jobId = startJson.job_id;
+        while (!state.aborted) {
+          await new Promise(function (resolve) { setTimeout(resolve, 2000); });
+          if (state.aborted) break;
+          const pollRes = await fetch(base + '/api/image/jobs/' + encodeURIComponent(jobId), {
+            headers: headers,
+            cache: 'no-store',
+            signal: ctrl.signal
+          });
+          const pollJson = await pollRes.json().catch(function () { return null; });
+          if (!pollRes.ok || !pollJson) {
+            error = (pollJson && pollJson.error && (pollJson.error.message || pollJson.error)) || ('خطا در بررسی وضعیت تصویر (HTTP ' + pollRes.status + ')');
+            break;
+          }
+          if (pollJson.status === 'done' && pollJson.image_url) {
+            imageUrl = pollJson.image_url;
+            resolvedLabel = pollJson.model || meta.label;
+            resolvedEngine = pollJson.engine || meta.engine;
+            break;
+          }
+          if (pollJson.status === 'error') {
+            error = pollJson.error || 'خطا در تولید تصویر';
+            break;
+          }
+        }
       }
     } catch (e) {
       if (!state.aborted) {

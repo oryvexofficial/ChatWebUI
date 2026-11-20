@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9hZHZlbnR1cmVzLXJld2FyZC1idWZpbmctc3VydmV5LnRyeWNsb3VkZmxhcmUuY29t",
-  "public_api_key": "sk-uc-e701fd8a740717b53834f0f686dfec11",
-  "api_key": "sk-uc-e701fd8a740717b53834f0f686dfec11",
+  "url_payload": "aHR0cHM6Ly9oZWFkcGhvbmVzLWx1bmNoLXJlcG9ydGVkLWNyZWF0aXZpdHkudHJ5Y2xvdWRmbGFyZS5jb20=",
+  "public_api_key": "sk-uc-3d17c2e136f93bd97a0f4d3fa23d063c",
+  "api_key": "sk-uc-3d17c2e136f93bd97a0f4d3fa23d063c",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://adventures-reward-bufing-survey.trycloudflare.com/v1",
-    "chat_completions": "https://adventures-reward-bufing-survey.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://adventures-reward-bufing-survey.trycloudflare.com/v1/models",
-    "native_chat": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/key",
-    "health": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://headphones-lunch-reported-creativity.trycloudflare.com/v1",
+    "chat_completions": "https://headphones-lunch-reported-creativity.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://headphones-lunch-reported-creativity.trycloudflare.com/v1/models",
+    "native_chat": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/key",
+    "health": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-20T18:40:54+00:00",
+  "updated_at": "2026-11-20T18:49:14+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44795039428",
-  "run_number": 100,
+  "run_number": 101,
   "commit": "01435f0"
 }

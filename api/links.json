@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-e701fd8a740717b53834f0f686dfec11",
-  "api_key": "sk-uc-e701fd8a740717b53834f0f686dfec11",
+  "public_api_key": "sk-uc-3d17c2e136f93bd97a0f4d3fa23d063c",
+  "api_key": "sk-uc-3d17c2e136f93bd97a0f4d3fa23d063c",
   "status": "online",
   "online": true,
-  "base_url": "https://adventures-reward-bufing-survey.trycloudflare.com",
+  "base_url": "https://headphones-lunch-reported-creativity.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://adventures-reward-bufing-survey.trycloudflare.com/v1",
-    "chat_completions": "https://adventures-reward-bufing-survey.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://adventures-reward-bufing-survey.trycloudflare.com/v1/models",
-    "native_chat": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/key",
-    "health": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://headphones-lunch-reported-creativity.trycloudflare.com/v1",
+    "chat_completions": "https://headphones-lunch-reported-creativity.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://headphones-lunch-reported-creativity.trycloudflare.com/v1/models",
+    "native_chat": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/key",
+    "health": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://adventures-reward-bufing-survey.trycloudflare.com",
-    "openai_base": "https://adventures-reward-bufing-survey.trycloudflare.com/v1",
-    "chat_completions": "https://adventures-reward-bufing-survey.trycloudflare.com/v1/chat/completions",
-    "api": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1",
-    "key": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/key",
-    "health": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/health",
-    "swagger": "https://adventures-reward-bufing-survey.trycloudflare.com/docs",
-    "redoc": "https://adventures-reward-bufing-survey.trycloudflare.com/redoc",
-    "openapi": "https://adventures-reward-bufing-survey.trycloudflare.com/openapi.json",
-    "guide": "https://adventures-reward-bufing-survey.trycloudflare.com/api-docs",
-    "public_key_page": "https://adventures-reward-bufing-survey.trycloudflare.com/site/public-key/"
+    "panel": "https://headphones-lunch-reported-creativity.trycloudflare.com",
+    "openai_base": "https://headphones-lunch-reported-creativity.trycloudflare.com/v1",
+    "chat_completions": "https://headphones-lunch-reported-creativity.trycloudflare.com/v1/chat/completions",
+    "api": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1",
+    "key": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/key",
+    "health": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/health",
+    "swagger": "https://headphones-lunch-reported-creativity.trycloudflare.com/docs",
+    "redoc": "https://headphones-lunch-reported-creativity.trycloudflare.com/redoc",
+    "openapi": "https://headphones-lunch-reported-creativity.trycloudflare.com/openapi.json",
+    "guide": "https://headphones-lunch-reported-creativity.trycloudflare.com/api-docs",
+    "public_key_page": "https://headphones-lunch-reported-creativity.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/key"
+      "url": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://adventures-reward-bufing-survey.trycloudflare.com/v1/chat/completions"
+      "url": "https://headphones-lunch-reported-creativity.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://adventures-reward-bufing-survey.trycloudflare.com/v1/models"
+      "url": "https://headphones-lunch-reported-creativity.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/chat"
+      "url": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/generate"
+      "url": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1"
+      "url": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/health"
+      "url": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/ready"
+      "url": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/info"
+      "url": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/models"
+      "url": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/config"
+      "url": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://adventures-reward-bufing-survey.trycloudflare.com/api/v1/stats"
+      "url": "https://headphones-lunch-reported-creativity.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://adventures-reward-bufing-survey.trycloudflare.com/health"
+      "url": "https://headphones-lunch-reported-creativity.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-20T18:40:54+00:00",
+  "updated_at": "2026-11-20T18:49:14+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44795039428",
-  "run_number": 100,
+  "run_number": 101,
   "commit": "01435f0"
 }

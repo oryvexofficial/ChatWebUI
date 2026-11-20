@@ -39,7 +39,10 @@
     trash: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><path d="M10 11v6M14 11v6"></path></svg>',
     chevron: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>',
     msg: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>',
-    search: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>'
+    search: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>',
+    image: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path></svg>',
+    download: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>',
+    expand: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" x2="14" y1="3" y2="10"></line><line x1="3" x2="10" y1="21" y2="14"></line></svg>'
   };
 
   const PETAL_MARK_HTML =
@@ -1396,6 +1399,15 @@
     modalPubKey: document.getElementById('modal-pub-key'),
     modalRouterUrl: document.getElementById('modal-router-url'),
     confirmModal: document.getElementById('confirm-modal'),
+    imageModelModal: document.getElementById('image-model-modal'),
+    imageModalPrompt: document.getElementById('img-modal-prompt'),
+    btnImgOptMini: document.getElementById('btn-img-opt-mini'),
+    btnImgOptPro: document.getElementById('btn-img-opt-pro'),
+    lightboxModal: document.getElementById('image-lightbox-modal'),
+    lightboxImg: document.getElementById('lightbox-img'),
+    lightboxMeta: document.getElementById('lightbox-meta'),
+    lightboxCaption: document.getElementById('lightbox-caption'),
+    lightboxDownload: document.getElementById('btn-lightbox-download'),
     toastHost: document.getElementById('toast-host')
   };
 
@@ -1569,24 +1581,26 @@
     return '<ol class="think-steps live">' + itemsHtml + '</ol>';
   }
 
-  function renderModelBadgeHtml(modelName, isMath) {
+  function renderModelBadgeHtml(modelName, isMath, isImage) {
     const label = modelName || 'Unicollect Chat Mini';
-    return '<span class="model-tag' + (isMath ? ' is-math' : '') + '" dir="ltr">' + escapeHtml(label) + '</span>';
+    const cls = isImage ? ' is-image' : (isMath ? ' is-math' : '');
+    return '<span class="model-tag' + cls + '" dir="ltr">' + escapeHtml(label) + '</span>';
   }
 
-  function renderThoughtLineHtml(ms, steps, modelName, isMath) {
+  function renderThoughtLineHtml(ms, steps, modelName, isMath, isImage) {
     if (typeof ms !== 'number') return '';
     const hasSteps = Array.isArray(steps) && steps.length > 0;
+    const verb = isImage ? ' ثانیه تصویر ساخت' : ' ثانیه فکر کرد';
     return (
       '<div class="thought" data-thought-box>' +
         '<div class="thought-row">' +
           '<button type="button" class="thought-line" data-thought-toggle ' + (hasSteps ? 'aria-expanded="false"' : 'disabled') + '>' +
             PETAL_MARK_HTML +
-            '<span>' + secs(ms) + ' ثانیه فکر کرد</span>' +
+            '<span>' + secs(ms) + verb + '</span>' +
             (hasSteps ? '<span class="thought-count">· ' + fa(steps.length) + ' مرحله</span>' : '') +
             (hasSteps ? '<span class="thinking-chev">' + ICONS.chevron + '</span>' : '') +
           '</button>' +
-          renderModelBadgeHtml(modelName, isMath) +
+          renderModelBadgeHtml(modelName, isMath, isImage) +
         '</div>' +
         (hasSteps ? '<div class="thought-steps-wrap" hidden>' + renderStepListHtml(steps) + '</div>' : '') +
       '</div>'
@@ -1657,11 +1671,39 @@
             '</div>' +
           '</div>';
 
-      if (!m.reply) {
+      if (m.imageUrl) {
+        const imgLabel = m.model || 'Unicollect Image Mini';
+        const imgPrompt = m.imagePrompt || m.text || '';
         html +=
           '<div class="msg bot">' +
             '<div class="bot-body">' +
-              renderThoughtLineHtml(m.thinkingMs, m.steps, m.model, m.isMath) +
+              renderThoughtLineHtml(m.thinkingMs, m.steps, imgLabel, false, true) +
+              '<div class="gen-image-card">' +
+                '<div class="gen-image-frame">' +
+                  '<button type="button" class="gen-image-zoom" data-lightbox-msg="' + escapeHtml(m.id) + '" aria-label="بزرگ‌نمایی تصویر">' +
+                    '<img src="' + escapeHtml(m.imageUrl) + '" alt="' + escapeHtml(imgPrompt.slice(0, 120)) + '" loading="lazy">' +
+                    '<span class="gen-image-overlay">' + ICONS.expand + '<span>بزرگ‌نمایی</span></span>' +
+                  '</button>' +
+                '</div>' +
+                '<div class="gen-image-foot">' +
+                  '<div class="gen-image-meta">' +
+                    renderModelBadgeHtml(imgLabel, false, true) +
+                    (m.imageEngine ? '<span class="gen-image-engine mono">' + escapeHtml(m.imageEngine) + '</span>' : '') +
+                  '</div>' +
+                  '<div class="gen-image-btns">' +
+                    '<a class="icon-btn sm" href="' + escapeHtml(m.imageUrl) + '" download="unicollect-' + escapeHtml(m.id) + '.png" title="دانلود تصویر" aria-label="دانلود تصویر">' + ICONS.download + '</a>' +
+                    '<button class="icon-btn sm" type="button" data-copy-user="' + escapeHtml(m.id) + '" title="کپی پرامپت" aria-label="کپی پرامپت">' + ICONS.copy + '</button>' +
+                    '<button class="icon-btn sm" type="button" data-redo-image="' + escapeHtml(m.id) + '" title="تولید دوباره با انتخاب مدل" aria-label="تولید دوباره">' + ICONS.refresh + '</button>' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+      } else if (!m.reply) {
+        html +=
+          '<div class="msg bot">' +
+            '<div class="bot-body">' +
+              renderThoughtLineHtml(m.thinkingMs, m.steps, m.model, m.isMath, !!m.isImage) +
               '<div class="err-line"><span class="err-icon">' + ICONS.alert + '</span><span class="err-text">' + escapeHtml(m.error || 'خطا در دریافت پاسخ') + '</span></div>' +
               '<div class="actions">' +
                 '<button class="icon-btn sm" type="button" data-redo-msg="' + escapeHtml(m.id) + '" title="تلاش مجدد" aria-label="تلاش مجدد">' + ICONS.refresh + '</button>' +
@@ -1747,6 +1789,22 @@
     el.stream.querySelectorAll('[data-redo-msg]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         redoMessage(btn.getAttribute('data-redo-msg'));
+      });
+    });
+
+    el.stream.querySelectorAll('[data-lightbox-msg]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (!active) return;
+        const m = active.messages.find(function (x) { return x.id === btn.getAttribute('data-lightbox-msg'); });
+        if (m && m.imageUrl) openLightbox(m.imageUrl, m.model || 'Unicollect Image', m.imagePrompt || m.text || '');
+      });
+    });
+
+    el.stream.querySelectorAll('[data-redo-image]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (!active || state.busy) return;
+        const m = active.messages.find(function (x) { return x.id === btn.getAttribute('data-redo-image'); });
+        if (m) openImageModelModal(m.imagePrompt || m.text, { fromInput: false });
       });
     });
 
@@ -1990,11 +2048,263 @@
     return steps;
   }
 
-  async function sendMessage(rawText, fromInput) {
+  /* ---------- تشخیص نیت تولید تصویر و مودال انتخاب مدل ---------- */
+  const IMAGE_CMD_RE = /^\/(?:img|image|draw|imagine|paint)\b/i;
+  const IMAGE_EXCL_RE = /(?:\b(?:how\s+does|what\s+is|explain|describe\s+how|history\s+of|tutorial\s+on|compare)\b.*\b(?:image|sdxl|diffusion|z-image)\b|(?:توضیح\s*بده|چیست|چطور\s*کار\s*می|مقایسه\s*کن).*(?:تولید\s*تصویر|هوش\s*مصنوعی\s*تصویر))/i;
+  const IMAGE_EN_RE = /(?:\b(?:generate|create|make|draw|paint|render|sketch|illustrate|design|produce|visualize|imagine)\b(?:\s+(?:me|us|a|an|the|some|this|that|another|new|high[-\s]?res|realistic|photorealistic|minimalist|cute|cool|cinematic|3d|2d|anime|pixel|oil|watercolor|digital|black\s+and\s+white|monochrome|beautiful|stunning)){0,5}\s+(?:image|picture|photo|photograph|artwork|art|illustration|drawing|painting|portrait|landscape|wallpaper|poster|logo|icon|avatar|banner|thumbnail|concept\s+art|scene|render|visual|graphic|character|diagram|cover)\b|\b(?:text[-\s]?to[-\s]?image|image\s+generation|generate\s+art|draw\s+me\s+(?:a|an)\b|paint\s+me\s+(?:a|an)\b|sketch\s+(?:a|an)\b))/i;
+  const IMAGE_FA_RE = /(?:(?:بساز|درست\s*کن|تولید\s*کن|بکش|طراحی\s*کن|رسم\s*کن|خلق\s*کن|ایجاد\s*کن|برام\s*بساز|برایم\s*بساز|برام\s*بکش|برایم\s*بکش).{0,45}(?:عکس|تصویر|تصویری|عکسی|نقاشی|طرح|پوستر|لوگو|آواتار|والپیپر|پس[‌\s]?زمینه|کاراکتر|پرتره|منظره|تصویرسازی|آرت)|(?:عکس|تصویر|تصویری|عکسی|نقاشی|پوستر|لوگو|آواتار|والپیپر|پرتره|تصویرسازی).{0,55}(?:بساز|درست\s*کن|تولید\s*کن|بکش|طراحی\s*کن|رسم\s*کن|خلق\s*کن|ایجاد\s*کن|بده)|(?:تولید\s+تصویر|ساخت\s+(?:عکس|تصویر|لوگو|پوستر|والپیپر)|ایجاد\s+تصویر|کشیدن\s+نقاشی)|\b(?:aks|tasvir|naghashi|poster|logo)\s+(?:besaz|bekesh|dorost\s+kon|tarahi\s+kon)\b|\b(?:besaz|bekesh)\s+(?:aks|tasvir|naghashi)\b)/i;
+
+  const IMAGE_MODELS_META = {
+    'unicollect-image-mini': { id: 'unicollect-image-mini', label: 'Unicollect Image Mini', engine: 'sdxl-lightning' },
+    'unicollect-image-1.0': { id: 'unicollect-image-1.0', label: 'Unicollect Image 1.0', engine: 'z-image-turbo' }
+  };
+
+  let pendingImageRequest = null;
+
+  function detectImageIntentLocal(text) {
+    const t = String(text || '').trim();
+    if (!t) return false;
+    if (IMAGE_CMD_RE.test(t)) return true;
+    if (IMAGE_EXCL_RE.test(t)) return false;
+    return IMAGE_EN_RE.test(t) || IMAGE_FA_RE.test(t);
+  }
+
+  function stripImageCommand(text) {
+    return String(text || '').replace(IMAGE_CMD_RE, '').trim() || String(text || '').trim();
+  }
+
+  function openImageModelModal(promptText, opts) {
+    const cleanPrompt = String(promptText || '').trim();
+    if (!cleanPrompt || !el.imageModelModal) return;
+    pendingImageRequest = {
+      prompt: cleanPrompt,
+      fromInput: !!(opts && opts.fromInput)
+    };
+    if (el.imageModalPrompt) {
+      el.imageModalPrompt.textContent = stripImageCommand(cleanPrompt);
+      el.imageModalPrompt.dir = textDir(cleanPrompt);
+      setHidden(el.imageModalPrompt, false);
+    }
+    state.mobileOpen = false;
+    applyLayoutClasses();
+    openAnimated(el.imageModelModal);
+    setTimeout(function () {
+      if (el.btnImgOptMini) el.btnImgOptMini.focus();
+    }, 40);
+  }
+
+  function closeImageModelModal(restoreInput) {
+    const req = pendingImageRequest;
+    pendingImageRequest = null;
+    closeAnimated(el.imageModelModal);
+    if (restoreInput && req && req.fromInput && el.input && !el.input.value.trim()) {
+      el.input.value = req.prompt;
+      syncComposerSize(false);
+    }
+    if (el.input && restoreInput) {
+      setTimeout(function () { el.input.focus(); }, 60);
+    }
+  }
+
+  function selectImageModelAndGenerate(modelId) {
+    const req = pendingImageRequest;
+    pendingImageRequest = null;
+    closeAnimated(el.imageModelModal);
+    if (!req || !req.prompt) return;
+    generateImageMessage(req.prompt, modelId, req.fromInput);
+  }
+
+  function openLightbox(url, modelLabel, caption) {
+    if (!el.lightboxModal || !el.lightboxImg) return;
+    el.lightboxImg.src = url;
+    el.lightboxImg.alt = caption || 'تصویر تولیدشده';
+    if (el.lightboxMeta) el.lightboxMeta.textContent = modelLabel || 'Unicollect Image';
+    if (el.lightboxCaption) {
+      el.lightboxCaption.textContent = caption || '';
+      el.lightboxCaption.dir = textDir(caption || '');
+    }
+    if (el.lightboxDownload) {
+      el.lightboxDownload.href = url;
+      el.lightboxDownload.download = 'unicollect-image-' + Date.now() + '.png';
+    }
+    openAnimated(el.lightboxModal);
+  }
+
+  function closeLightbox() {
+    closeAnimated(el.lightboxModal);
+  }
+
+  async function generateImageMessage(rawText, modelId, fromInput) {
+    const text = String(rawText || '').trim();
+    const prompt = stripImageCommand(text);
+    if (!prompt || state.busy) return;
+
+    const meta = IMAGE_MODELS_META[modelId] || IMAGE_MODELS_META['unicollect-image-mini'];
+    const ctrl = new AbortController();
+    state.ctrl = ctrl;
+    state.aborted = false;
+    state.busy = true;
+    if (fromInput) clearComposer();
+    updateSendButtonState();
+
+    let thread = getActiveThread();
+    let createdNew = false;
+    if (!thread) {
+      const oneLine = prompt.replace(/\s+/g, ' ');
+      thread = {
+        id: newId('th'),
+        title: (stripMarkdown(oneLine) || oneLine).slice(0, 40) + ((stripMarkdown(oneLine) || oneLine).length > 40 ? '…' : ''),
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+        messages: []
+      };
+      state.threads.unshift(thread);
+      state.activeId = thread.id;
+      state.enteringThreadId = thread.id;
+      createdNew = true;
+      saveThreads();
+      renderSidebar();
+    }
+
+    renderMessages();
+    updateWelcomeState();
+
+    const pendingTurn = document.createElement('div');
+    pendingTurn.className = 'turn pending';
+    const uDir = textDir(text);
+    pendingTurn.innerHTML =
+      '<div class="msg user"><div class="ubox"><div class="bubble md user-md" dir="' + uDir + '">' + renderMarkdown(text) + '</div></div></div>' +
+      '<div class="msg bot"><div class="bot-body">' +
+        '<div class="writing-line">' +
+          '<span class="shiny">در حال تولید تصویر…</span>' +
+          renderModelBadgeHtml(meta.label, false, true) +
+          '<span class="thinking-time mono" id="pending-img-time">۰ ثانیه</span>' +
+        '</div>' +
+        '<div class="gen-image-skeleton" role="status" aria-live="polite">' +
+          '<div class="gis-shimmer"></div>' +
+          '<div class="gis-center">' +
+            ICONS.image +
+            '<span class="gis-model ltr">' + escapeHtml(meta.label) + '</span>' +
+            '<span class="gis-sub">در حال رندر تصویر با کیفیت بالا…</span>' +
+          '</div>' +
+        '</div>' +
+      '</div></div>';
+
+    el.stream.appendChild(pendingTurn);
+    scrollToBottom(true);
+
+    const t0 = performance.now();
+    const timeEl = document.getElementById('pending-img-time');
+    const clock = setInterval(function () {
+      if (timeEl) {
+        const s = Math.max(0, Math.floor((performance.now() - t0) / 1000));
+        timeEl.textContent = fa(s) + ' ثانیه';
+      }
+    }, 250);
+    const timeoutId = setTimeout(function () { ctrl.abort(); }, REQUEST_TIMEOUT_MS);
+
+    let imageUrl = '';
+    let resolvedLabel = meta.label;
+    let resolvedEngine = meta.engine;
+    let error = null;
+
+    try {
+      const base = await resolveApiBase();
+      const headers = { 'Content-Type': 'application/json' };
+      const urlTok = new URLSearchParams(location.search).get('token');
+      if (urlTok) headers['X-Panel-Token'] = urlTok;
+      if (state.publicKey) headers['X-API-Key'] = state.publicKey;
+
+      const r = await fetch(base + '/api/image/generate', {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({ prompt: prompt, model: meta.id, size: '1024x1024' }),
+        signal: ctrl.signal
+      });
+      const j = await r.json().catch(function () { return null; });
+      if (!r.ok || !j || !j.image_url) {
+        error = (j && j.error && (j.error.message || j.error)) || ('خطا در تولید تصویر (HTTP ' + r.status + ')');
+      } else {
+        imageUrl = j.image_url;
+        resolvedLabel = j.model || meta.label;
+        resolvedEngine = j.engine || meta.engine;
+      }
+    } catch (e) {
+      if (!state.aborted) {
+        error = e && e.name === 'AbortError' ? 'زمان تولید تصویر تمام شد' : 'ارتباط با سرویس تولید تصویر برقرار نشد';
+      }
+    } finally {
+      clearInterval(clock);
+      clearTimeout(timeoutId);
+    }
+
+    const totalMs = Math.round(performance.now() - t0);
+
+    if (state.aborted && !imageUrl) {
+      if (pendingTurn.parentNode) pendingTurn.parentNode.removeChild(pendingTurn);
+      if (createdNew && !thread.messages.length) {
+        state.threads = state.threads.filter(function (t) { return t.id !== thread.id; });
+        state.activeId = null;
+        saveThreads();
+        renderSidebar();
+      }
+      state.busy = false;
+      state.ctrl = null;
+      updateSendButtonState();
+      updateWelcomeState();
+      showToast('تولید تصویر متوقف شد');
+      return;
+    }
+
+    const imgSteps = [
+      { label: 'تشخیص درخواست تصویر', detail: fa(Array.from(prompt).length) + ' نویسه', state: 'done', ms: 40 },
+      { label: 'انتخاب مدل تصویر', detail: resolvedLabel + ' (' + resolvedEngine + ')', state: 'done', ms: 60 },
+      { label: 'تولید تصویر', detail: imageUrl ? 'تکمیل شد' : (error || 'خطا'), state: imageUrl ? 'done' : 'error', ms: Math.max(100, totalMs - 100) }
+    ];
+
+    const msgObj = {
+      id: newId('msg'),
+      text: text,
+      ts: Date.now(),
+      reply: imageUrl ? ('[تصویر تولیدشده با ' + resolvedLabel + ']') : null,
+      imageUrl: imageUrl || null,
+      imagePrompt: prompt,
+      imageModelId: meta.id,
+      imageEngine: resolvedEngine,
+      isImage: true,
+      isMath: false,
+      model: resolvedLabel,
+      error: imageUrl ? null : (error || 'تصویری دریافت نشد'),
+      thinkingMs: totalMs,
+      steps: imgSteps
+    };
+
+    thread.messages.push(msgObj);
+    thread.updatedAt = Date.now();
+    state.justFinishedId = msgObj.id;
+    saveThreads();
+
+    state.busy = false;
+    state.ctrl = null;
+    updateSendButtonState();
+    renderSidebar();
+    renderMessages();
+    if (el.input) el.input.focus();
+  }
+
+  async function sendMessage(rawText, fromInput, opts) {
     const text = String(rawText || '').trim();
     if (!text || state.busy) return;
     if (text.length > MAX_TEXT) {
       showToast('پیام طولانی است (حداکثر ' + fa(MAX_TEXT) + ' نویسه)');
+      return;
+    }
+
+    // Router image-intent detection -> show custom image model selection modal
+    const skipImgDetect = !!(opts && opts.skipImageDetect);
+    if (!skipImgDetect && detectImageIntentLocal(text)) {
+      if (fromInput) clearComposer();
+      openImageModelModal(text, { fromInput: fromInput });
       return;
     }
 
@@ -2348,6 +2658,22 @@
             if (obj && obj.phase === 'routing') {
               if (phaseIdx < 2) { phaseIdx = 2; updatePendingThinkingUI(); }
               continue;
+            }
+            if (obj && obj.phase === 'image_select') {
+              state.aborted = true;
+              if (pendingTurn.parentNode) pendingTurn.parentNode.removeChild(pendingTurn);
+              if (createdNew && !thread.messages.length) {
+                state.threads = state.threads.filter(function (t) { return t.id !== thread.id; });
+                state.activeId = null;
+                saveThreads();
+                renderSidebar();
+              }
+              state.busy = false;
+              state.ctrl = null;
+              updateSendButtonState();
+              updateWelcomeState();
+              openImageModelModal(obj.prompt || text, { fromInput: fromInput });
+              return;
             }
             if (obj && obj.meta && obj.meta.model) {
               usedModel = String(obj.meta.model);
@@ -2840,6 +3166,36 @@
       });
     }
 
+    on('btn-img-modal-close', 'click', function () { closeImageModelModal(true); });
+    on('btn-img-modal-cancel', 'click', function () { closeImageModelModal(true); });
+    on('btn-img-opt-mini', 'click', function () { selectImageModelAndGenerate('unicollect-image-mini'); });
+    on('btn-img-opt-pro', 'click', function () { selectImageModelAndGenerate('unicollect-image-1.0'); });
+    if (el.imageModelModal) {
+      el.imageModelModal.addEventListener('mousedown', function (e) {
+        if (e.target === el.imageModelModal) closeImageModelModal(true);
+      });
+      el.imageModelModal.addEventListener('keydown', function (e) {
+        if (e.key === '1') {
+          e.preventDefault();
+          selectImageModelAndGenerate('unicollect-image-mini');
+        } else if (e.key === '2') {
+          e.preventDefault();
+          selectImageModelAndGenerate('unicollect-image-1.0');
+        } else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (document.activeElement === el.btnImgOptMini && el.btnImgOptPro) el.btnImgOptPro.focus();
+          else if (el.btnImgOptMini) el.btnImgOptMini.focus();
+        }
+      });
+    }
+
+    on('btn-lightbox-close', 'click', closeLightbox);
+    if (el.lightboxModal) {
+      el.lightboxModal.addEventListener('mousedown', function (e) {
+        if (e.target === el.lightboxModal) closeLightbox();
+      });
+    }
+
     if (el.searchInput) {
       el.searchInput.addEventListener('input', function () {
         state.searchQuery = el.searchInput.value;
@@ -2994,6 +3350,14 @@
         return;
       }
       if (e.key === 'Escape') {
+        if (el.lightboxModal && !el.lightboxModal.hidden) {
+          closeLightbox();
+          return;
+        }
+        if (el.imageModelModal && !el.imageModelModal.hidden) {
+          closeImageModelModal(true);
+          return;
+        }
         if (el.confirmModal && !el.confirmModal.hidden) {
           closeAnimated(el.confirmModal);
           return;
@@ -3026,6 +3390,8 @@
     setHidden(el.searchModal, true);
     setHidden(el.settingsModal, true);
     setHidden(el.confirmModal, true);
+    setHidden(el.imageModelModal, true);
+    setHidden(el.lightboxModal, true);
     loadThreads();
     applyLayoutClasses();
     rotateHeroPrompt();

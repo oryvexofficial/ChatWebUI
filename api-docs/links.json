@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-a056b1f8dc2f1fe89b9b743837852842",
-  "api_key": "sk-uc-a056b1f8dc2f1fe89b9b743837852842",
+  "public_api_key": "sk-uc-2bb7895c440a35c1b62f601d60c80802",
+  "api_key": "sk-uc-2bb7895c440a35c1b62f601d60c80802",
   "status": "online",
   "online": true,
-  "base_url": "https://however-duration-replica-large.trycloudflare.com",
+  "base_url": "https://payroll-shakira-marking-field.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://however-duration-replica-large.trycloudflare.com/v1",
-    "chat_completions": "https://however-duration-replica-large.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://however-duration-replica-large.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://however-duration-replica-large.trycloudflare.com/v1/models",
-    "native_chat": "https://however-duration-replica-large.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://however-duration-replica-large.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://however-duration-replica-large.trycloudflare.com/api/v1/key",
-    "health": "https://however-duration-replica-large.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://payroll-shakira-marking-field.trycloudflare.com/v1",
+    "chat_completions": "https://payroll-shakira-marking-field.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://payroll-shakira-marking-field.trycloudflare.com/v1/models",
+    "native_chat": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/key",
+    "health": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://however-duration-replica-large.trycloudflare.com",
-    "openai_base": "https://however-duration-replica-large.trycloudflare.com/v1",
-    "chat_completions": "https://however-duration-replica-large.trycloudflare.com/v1/chat/completions",
-    "api": "https://however-duration-replica-large.trycloudflare.com/api/v1",
-    "key": "https://however-duration-replica-large.trycloudflare.com/api/v1/key",
-    "health": "https://however-duration-replica-large.trycloudflare.com/api/v1/health",
-    "swagger": "https://however-duration-replica-large.trycloudflare.com/docs",
-    "redoc": "https://however-duration-replica-large.trycloudflare.com/redoc",
-    "openapi": "https://however-duration-replica-large.trycloudflare.com/openapi.json",
-    "guide": "https://however-duration-replica-large.trycloudflare.com/api-docs",
-    "public_key_page": "https://however-duration-replica-large.trycloudflare.com/site/public-key/"
+    "panel": "https://payroll-shakira-marking-field.trycloudflare.com",
+    "openai_base": "https://payroll-shakira-marking-field.trycloudflare.com/v1",
+    "chat_completions": "https://payroll-shakira-marking-field.trycloudflare.com/v1/chat/completions",
+    "api": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1",
+    "key": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/key",
+    "health": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/health",
+    "swagger": "https://payroll-shakira-marking-field.trycloudflare.com/docs",
+    "redoc": "https://payroll-shakira-marking-field.trycloudflare.com/redoc",
+    "openapi": "https://payroll-shakira-marking-field.trycloudflare.com/openapi.json",
+    "guide": "https://payroll-shakira-marking-field.trycloudflare.com/api-docs",
+    "public_key_page": "https://payroll-shakira-marking-field.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://however-duration-replica-large.trycloudflare.com/api/v1/key"
+      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://however-duration-replica-large.trycloudflare.com/v1/chat/completions"
+      "url": "https://payroll-shakira-marking-field.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://however-duration-replica-large.trycloudflare.com/v1/models"
+      "url": "https://payroll-shakira-marking-field.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://however-duration-replica-large.trycloudflare.com/api/v1/chat"
+      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://however-duration-replica-large.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://however-duration-replica-large.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://however-duration-replica-large.trycloudflare.com/api/v1/generate"
+      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://however-duration-replica-large.trycloudflare.com/api/v1"
+      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://however-duration-replica-large.trycloudflare.com/api/v1/health"
+      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://however-duration-replica-large.trycloudflare.com/api/v1/ready"
+      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://however-duration-replica-large.trycloudflare.com/api/v1/info"
+      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://however-duration-replica-large.trycloudflare.com/api/v1/models"
+      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://however-duration-replica-large.trycloudflare.com/api/v1/config"
+      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://however-duration-replica-large.trycloudflare.com/api/v1/stats"
+      "url": "https://payroll-shakira-marking-field.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://however-duration-replica-large.trycloudflare.com/health"
+      "url": "https://payroll-shakira-marking-field.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-20T17:29:31+00:00",
+  "updated_at": "2026-11-20T17:33:33+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44783765378",
-  "run_number": 97,
+  "run_number": 98,
   "commit": "f7d9ef5"
 }

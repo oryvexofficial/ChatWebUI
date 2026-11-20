@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-2e79097ed6e27619fb415e5c2d3ffce3",
-  "api_key": "sk-uc-2e79097ed6e27619fb415e5c2d3ffce3",
+  "public_api_key": "sk-uc-9a138e9ad5121bdf875255c24628514f",
+  "api_key": "sk-uc-9a138e9ad5121bdf875255c24628514f",
   "status": "online",
   "online": true,
-  "base_url": "https://metabolism-julian-fonts-amenities.trycloudflare.com",
+  "base_url": "https://volvo-messaging-consolidation-peers.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://metabolism-julian-fonts-amenities.trycloudflare.com/v1",
-    "chat_completions": "https://metabolism-julian-fonts-amenities.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://metabolism-julian-fonts-amenities.trycloudflare.com/v1/models",
-    "native_chat": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/key",
-    "health": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/v1",
+    "chat_completions": "https://volvo-messaging-consolidation-peers.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://volvo-messaging-consolidation-peers.trycloudflare.com/v1/models",
+    "native_chat": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/key",
+    "health": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://metabolism-julian-fonts-amenities.trycloudflare.com",
-    "openai_base": "https://metabolism-julian-fonts-amenities.trycloudflare.com/v1",
-    "chat_completions": "https://metabolism-julian-fonts-amenities.trycloudflare.com/v1/chat/completions",
-    "api": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1",
-    "key": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/key",
-    "health": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/health",
-    "swagger": "https://metabolism-julian-fonts-amenities.trycloudflare.com/docs",
-    "redoc": "https://metabolism-julian-fonts-amenities.trycloudflare.com/redoc",
-    "openapi": "https://metabolism-julian-fonts-amenities.trycloudflare.com/openapi.json",
-    "guide": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api-docs",
-    "public_key_page": "https://metabolism-julian-fonts-amenities.trycloudflare.com/site/public-key/"
+    "panel": "https://volvo-messaging-consolidation-peers.trycloudflare.com",
+    "openai_base": "https://volvo-messaging-consolidation-peers.trycloudflare.com/v1",
+    "chat_completions": "https://volvo-messaging-consolidation-peers.trycloudflare.com/v1/chat/completions",
+    "api": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1",
+    "key": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/key",
+    "health": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/health",
+    "swagger": "https://volvo-messaging-consolidation-peers.trycloudflare.com/docs",
+    "redoc": "https://volvo-messaging-consolidation-peers.trycloudflare.com/redoc",
+    "openapi": "https://volvo-messaging-consolidation-peers.trycloudflare.com/openapi.json",
+    "guide": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api-docs",
+    "public_key_page": "https://volvo-messaging-consolidation-peers.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/key"
+      "url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://metabolism-julian-fonts-amenities.trycloudflare.com/v1/chat/completions"
+      "url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://metabolism-julian-fonts-amenities.trycloudflare.com/v1/models"
+      "url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/chat"
+      "url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/generate"
+      "url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1"
+      "url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/health"
+      "url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/ready"
+      "url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/info"
+      "url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/models"
+      "url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/config"
+      "url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://metabolism-julian-fonts-amenities.trycloudflare.com/api/v1/stats"
+      "url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://metabolism-julian-fonts-amenities.trycloudflare.com/health"
+      "url": "https://volvo-messaging-consolidation-peers.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-20T13:34:53+00:00",
+  "updated_at": "2026-11-20T13:37:23+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44745526218",
-  "run_number": 91,
+  "run_number": 92,
   "commit": "021ccfb"
 }

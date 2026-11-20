@@ -381,3 +381,373 @@ details.ep .ep-inner {
     transform: none !important;
   }
 }
+
+
+/* ==========================================================================
+   UNICOLLECT OFFICIAL SITE v50 · ARCHITECTURAL MONOCHROME FLAGSHIP REDESIGN
+   ========================================================================== */
+
+:root,
+html.dark {
+  --sunk: #050506;
+  --paper: #09090b;
+  --panel: #111114;
+  --chat-bg: #151519;
+  --panel-2: #18181c;
+  --field: #1b1b20;
+  --deep: #24242a;
+
+  --ink: #f5f5f7;
+  --ink-2: #a1a1aa;
+  --ink-3: #71717a;
+
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.15);
+  --hover: rgba(255, 255, 255, 0.06);
+  --active: rgba(255, 255, 255, 0.11);
+
+  --accent: #ffffff;
+  --accent-2: #e4e4e7;
+  --btn-bg: #ffffff;
+  --btn-bg-hover: #e4e4e7;
+  --btn-ink: #09090b;
+  --code-bg: #0b0b0e;
+  --code-head: #141418;
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Subtle architectural grid canvas across the official site */
+body {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(60% 45% at 50% 0%, rgba(255, 255, 255, 0.055), transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 100% 680px, 64px 64px, 64px 64px;
+  background-position: top center, top center, top center;
+  background-repeat: no-repeat, repeat, repeat;
+  color: var(--ink);
+}
+
+/* ---------- Floating Glass Pill Navbar ---------- */
+.top {
+  padding: 14px 20px 0;
+}
+
+.top-bar {
+  max-width: 1120px;
+  height: 58px;
+  padding: 0 14px 0 16px;
+  border-radius: 999px;
+  background: rgba(15, 15, 18, 0.82);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  backdrop-filter: blur(18px) saturate(1.2);
+  box-shadow: 0 12px 36px -14px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.top-progress {
+  display: none;
+}
+
+.brand {
+  gap: 9px;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.brand .logo {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #1b1b20;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.brand small {
+  border-radius: 999px;
+  padding: 2px 9px;
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #d4d4d8;
+}
+
+.nav {
+  gap: 4px;
+}
+
+.nav a {
+  padding: 7px 13px;
+  font-size: 13.75px;
+  font-weight: 500;
+  color: var(--ink-2);
+  transition: color 160ms ease, background-color 160ms ease;
+}
+
+.nav a[aria-current="page"] {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.nav-ink {
+  background: rgba(255, 255, 255, 0.10);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.pill {
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.11);
+  color: #d4d4d8;
+  font-size: 12.5px;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.pill:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #ffffff;
+}
+
+/* ---------- Monumental Editorial Hero ---------- */
+.hero {
+  padding: 158px 0 88px;
+}
+
+.eyebrow {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #141418;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  color: #d4d4d8;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 6px 20px -10px rgba(0, 0, 0, 0.7);
+}
+
+.display {
+  font-size: clamp(38px, 5.8vw, 68px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.18;
+  color: #ffffff;
+  max-width: 16ch;
+  margin: 22px auto 18px;
+}
+
+/* Replace dated tilted stamp outline with sleek architectural editorial underline */
+.display em:after {
+  display: none !important;
+}
+
+.display em {
+  color: #ffffff;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.35);
+  padding-bottom: 2px;
+}
+
+.lead {
+  font-size: clamp(16.5px, 1.55vw, 19.5px);
+  color: var(--ink-2);
+  max-width: 44ch;
+  margin: 0 auto 32px;
+  line-height: 1.9;
+}
+
+.cta {
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn {
+  border-radius: 999px;
+  font-weight: 600;
+  transition: background-color 160ms ease, color 160ms ease, box-shadow 180ms ease, transform 200ms var(--ease-spring);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.btn-ink {
+  background: #ffffff;
+  color: #09090b;
+  box-shadow: 0 10px 28px -10px rgba(255, 255, 255, 0.32);
+}
+
+.btn-ink:hover {
+  background: #e4e4e7;
+  color: #09090b;
+}
+
+.btn-line {
+  background: rgba(255, 255, 255, 0.03);
+  color: #f4f4f5;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.btn-line:hover {
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+}
+
+/* Structured monochrome meta strip */
+.meta-row {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px 26px;
+  margin-top: 38px;
+  padding: 14px 24px;
+  border-radius: 18px;
+  background: #111114;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 16px 40px -20px rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+}
+
+.meta-row b {
+  font-size: 15px;
+  color: #ffffff;
+}
+
+/* ---------- Bento Cards, API Showcase & Code Terminal ---------- */
+.section {
+  padding: 84px 0;
+}
+
+.page-hero {
+  padding: 152px 0 48px;
+}
+
+.card,
+.qa,
+.links-card,
+.console,
+.steps li,
+details.ep,
+.table-wrap {
+  background: #111114;
+  border-radius: 20px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: box-shadow 200ms ease, transform 220ms var(--ease-spring), background-color 180ms ease;
+}
+
+.card:hover,
+.qa:hover,
+.steps li:hover,
+details.ep:hover {
+  background: #141418;
+  box-shadow: 0 16px 40px -20px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.16);
+}
+
+.card:hover,
+.qa:hover {
+  transform: translateY(-2px);
+}
+
+.v1 {
+  background: #16161b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e4e4e7;
+  font-size: 12.5px;
+}
+
+.code {
+  background: var(--code-bg);
+  border-radius: 18px;
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.code-bar {
+  padding: 10px 12px;
+  background: var(--code-head);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.code-bar .tab[aria-selected="true"] {
+  background: #ffffff;
+  color: #09090b;
+  font-weight: 700;
+}
+
+.closing-card {
+  border-radius: 28px;
+  padding: 76px 28px;
+  background:
+    radial-gradient(75% 90% at 50% 0%, rgba(255, 255, 255, 0.07), transparent 72%),
+    #111114;
+  box-shadow: 0 24px 64px -24px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+/* ---------- Flagship Footer ---------- */
+.foot {
+  padding: 48px 20px 32px;
+}
+
+.foot-card {
+  max-width: 1120px;
+  border-radius: 24px;
+  background: #0e0e11;
+  padding: 6px 24px 18px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.foot-cols a:hover {
+  color: #ffffff;
+  transform: translateX(-2px);
+  transition: color 150ms ease, transform 180ms var(--ease-spring);
+}
+
+/* ---------- Mobile & Tablet Responsiveness ---------- */
+@media (max-width: 900px) {
+  .top {
+    padding: 10px 12px 0;
+  }
+  .top-bar {
+    height: 54px;
+    padding: 0 12px;
+  }
+  .hero {
+    padding: 124px 0 60px;
+  }
+  .api-teaser {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .qa-list {
+    grid-template-columns: 1fr;
+  }
+  .foot-top {
+    grid-template-columns: 1fr;
+  }
+  .foot-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .meta-row {
+    width: 100%;
+    padding: 14px 16px;
+    gap: 10px 18px;
+  }
+  .closing-card {
+    padding: 48px 18px;
+    border-radius: 22px;
+  }
+  .foot-card {
+    padding: 6px 16px 16px;
+    border-radius: 20px;
+  }
+  .foot-cols {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1684,7 +1684,7 @@
             '<span class="st-label">' + escapeHtml(s.label) + '</span>' +
             (s.detail ? '<span class="st-detail" dir="auto">' + escapeHtml(s.detail) + '</span>' : '') +
           '</span>' +
-          (typeof s.ms === 'number' && st !== 'wait' ? '<span class="st-time mono">' + secs(s.ms) + 'ث</span>' : '') +
+          (typeof s.ms === 'number' && st !== 'wait' ? '<span class="st-time">' + secs(s.ms) + ' ثانیه</span>' : '') +
         '</li>';
     });
     return '<ol class="think-steps live">' + itemsHtml + '</ol>';
@@ -1709,12 +1709,10 @@
       '<div class="thought" data-thought-box>' +
         '<div class="thought-row">' +
           '<button type="button" class="thought-line" data-thought-toggle ' + (hasSteps ? 'aria-expanded="false"' : 'disabled') + '>' +
-            PETAL_MARK_HTML +
-            '<span>' + secs(ms) + ' ثانیه فکر کرد</span>' +
-            (hasSteps ? '<span class="thought-count">· ' + fa(steps.length) + ' مرحله</span>' : '') +
+            '<span>فرآیند تفکر · ' + secs(ms) + ' ثانیه</span>' +
+            (hasSteps ? '<span class="thought-count">(' + fa(steps.length) + ' مرحله)</span>' : '') +
             (hasSteps ? '<span class="thinking-chev">' + ICONS.chevron + '</span>' : '') +
           '</button>' +
-          renderModelBadgeHtml(modelName, isMath) +
         '</div>' +
         (hasSteps ? '<div class="thought-steps-wrap" hidden>' + renderStepListHtml(steps) + '</div>' : '') +
       '</div>'
@@ -2250,7 +2248,7 @@
           '<button type="button" class="thinking-head" aria-expanded="true">' +
             PETAL_MARK_HTML +
             '<span class="thinking-label shiny" id="pending-phase-lbl">' + STEPS[0] + '</span>' +
-            '<span class="thinking-time mono" id="pending-time" hidden>۰ ثانیه</span>' +
+            '<span class="thinking-time" id="pending-time" hidden>۰ ثانیه</span>' +
             '<span class="thinking-chev">' + ICONS.chevron + '</span>' +
           '</button>' +
           '<div id="pending-steps-box" class="thought-steps-wrap"></div>' +

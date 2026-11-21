@@ -6,9 +6,7 @@
 /* ---------- 1. Local Offline Fonts ---------- */
 @font-face {
   font-family: "Vazirmatn";
-  src:
-    url("fonts/Vazirmatn.woff2?v=1") format("woff2-variations"),
-    url("fonts/Vazirmatn.woff2?v=1") format("woff2");
+  src: url("fonts/Vazirmatn.woff2?v=1") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -16,12 +14,11 @@
 
 @font-face {
   font-family: "JetBrains Mono";
-  src:
-    url("fonts/JetBrainsMono.woff2?v=1") format("woff2-variations"),
-    url("fonts/JetBrainsMono.woff2?v=1") format("woff2");
+  src: url("fonts/JetBrainsMono.woff2?v=1") format("woff2");
   font-weight: 100 800;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2010-205E, U+20AC, U+2122, U+2190-21FF, U+2212, U+2500-257F;
 }
 
 /* ---------- 2. Design System Tokens (Gemini Matte Dark Default + Light Mode) ---------- */
@@ -67,7 +64,7 @@
 
   /* Typography */
   --font: "Vazirmatn", Tahoma, "Segoe UI", system-ui, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --mono: "JetBrains Mono", "Vazirmatn", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   /* Layout & Radii */
   --sb-w: 272px;
@@ -1118,6 +1115,7 @@ svg.pg-mark.live {
   color: var(--text-primary);
   padding: 12px 18px;
   border-radius: var(--r-lg);
+  border-start-start-radius: 6px;
   font-size: 15px;
   line-height: 1.75;
   overflow-wrap: anywhere;
@@ -1249,9 +1247,7 @@ svg.pg-mark.live {
 .thought-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 8px 12px;
+  width: 100%;
 }
 
 .thought-line,
@@ -1272,9 +1268,8 @@ svg.pg-mark.live {
 }
 
 .thought-row .thought-line {
-  width: auto;
-  padding: 4px 6px;
-  border-radius: var(--r-xs);
+  width: 100%;
+  padding: 9px 14px;
 }
 
 .thought-line:hover:not(:disabled),
@@ -1290,8 +1285,10 @@ svg.pg-mark.live {
 
 .thought-count,
 .thinking-time {
+  font-family: var(--font);
   font-size: 12px;
   font-weight: 500;
+  font-variant-numeric: tabular-nums;
   color: var(--text-muted);
 }
 
@@ -1437,9 +1434,12 @@ svg.pg-mark.live {
 }
 
 .st-time {
-  font-size: 11.5px;
+  font-family: var(--font);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
   color: var(--text-muted);
   flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .writing-line {
@@ -1850,7 +1850,7 @@ svg.pg-mark.live {
 
 .math {
   display: inline-block;
-  font-family: "STIX Two Math", "Cambria Math", "Times New Roman", Georgia, serif;
+  font-family: "STIX Two Math", "Cambria Math", "Times New Roman", Georgia, "Vazirmatn", serif;
   font-style: italic;
   font-size: 1.05em;
   line-height: 1.5;
@@ -1942,7 +1942,7 @@ svg.pg-mark.live {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 14px 16px 10px;
+  padding: 14px 18px 12px;
   border-radius: var(--r-pill);
   background: var(--bg-composer);
   border: 1px solid var(--border-subtle);
@@ -1980,6 +1980,7 @@ svg.pg-mark.live {
 }
 
 .fmt-btn {
+  font-family: var(--font);
   padding: 4px 10px;
   border-radius: var(--r-full);
   background: var(--bg-surface);

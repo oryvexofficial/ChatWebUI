@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-0df74cb0608a0a178ca975c413c9f774",
-  "api_key": "sk-uc-0df74cb0608a0a178ca975c413c9f774",
+  "public_api_key": "sk-uc-9e1d2aa15e8706f1f0cb8eed70d173e2",
+  "api_key": "sk-uc-9e1d2aa15e8706f1f0cb8eed70d173e2",
   "status": "online",
   "online": true,
-  "base_url": "https://banners-thread-picnic-secret.trycloudflare.com",
+  "base_url": "https://born-lion-leaders-accommodations.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://banners-thread-picnic-secret.trycloudflare.com/v1",
-    "chat_completions": "https://banners-thread-picnic-secret.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://banners-thread-picnic-secret.trycloudflare.com/v1/models",
-    "native_chat": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/key",
-    "health": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://born-lion-leaders-accommodations.trycloudflare.com/v1",
+    "chat_completions": "https://born-lion-leaders-accommodations.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://born-lion-leaders-accommodations.trycloudflare.com/v1/models",
+    "native_chat": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/key",
+    "health": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://banners-thread-picnic-secret.trycloudflare.com",
-    "openai_base": "https://banners-thread-picnic-secret.trycloudflare.com/v1",
-    "chat_completions": "https://banners-thread-picnic-secret.trycloudflare.com/v1/chat/completions",
-    "api": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1",
-    "key": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/key",
-    "health": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/health",
-    "swagger": "https://banners-thread-picnic-secret.trycloudflare.com/docs",
-    "redoc": "https://banners-thread-picnic-secret.trycloudflare.com/redoc",
-    "openapi": "https://banners-thread-picnic-secret.trycloudflare.com/openapi.json",
-    "guide": "https://banners-thread-picnic-secret.trycloudflare.com/api-docs",
-    "public_key_page": "https://banners-thread-picnic-secret.trycloudflare.com/site/public-key/"
+    "panel": "https://born-lion-leaders-accommodations.trycloudflare.com",
+    "openai_base": "https://born-lion-leaders-accommodations.trycloudflare.com/v1",
+    "chat_completions": "https://born-lion-leaders-accommodations.trycloudflare.com/v1/chat/completions",
+    "api": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1",
+    "key": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/key",
+    "health": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/health",
+    "swagger": "https://born-lion-leaders-accommodations.trycloudflare.com/docs",
+    "redoc": "https://born-lion-leaders-accommodations.trycloudflare.com/redoc",
+    "openapi": "https://born-lion-leaders-accommodations.trycloudflare.com/openapi.json",
+    "guide": "https://born-lion-leaders-accommodations.trycloudflare.com/api-docs",
+    "public_key_page": "https://born-lion-leaders-accommodations.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/key"
+      "url": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://banners-thread-picnic-secret.trycloudflare.com/v1/chat/completions"
+      "url": "https://born-lion-leaders-accommodations.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://banners-thread-picnic-secret.trycloudflare.com/v1/models"
+      "url": "https://born-lion-leaders-accommodations.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/chat"
+      "url": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/generate"
+      "url": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1"
+      "url": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/health"
+      "url": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/ready"
+      "url": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/info"
+      "url": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/models"
+      "url": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/config"
+      "url": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/stats"
+      "url": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://banners-thread-picnic-secret.trycloudflare.com/health"
+      "url": "https://born-lion-leaders-accommodations.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-21T05:05:11+00:00",
+  "updated_at": "2026-11-21T05:12:33+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44869160197",
-  "run_number": 105,
+  "run_number": 106,
   "commit": "0d3902d"
 }

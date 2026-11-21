@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-16efc8a663df0be09a3e60f312ed95cc",
-  "api_key": "sk-uc-16efc8a663df0be09a3e60f312ed95cc",
+  "public_api_key": "sk-uc-0df74cb0608a0a178ca975c413c9f774",
+  "api_key": "sk-uc-0df74cb0608a0a178ca975c413c9f774",
   "status": "online",
   "online": true,
-  "base_url": "https://backup-mathematical-por-promptly.trycloudflare.com",
+  "base_url": "https://banners-thread-picnic-secret.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://backup-mathematical-por-promptly.trycloudflare.com/v1",
-    "chat_completions": "https://backup-mathematical-por-promptly.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://backup-mathematical-por-promptly.trycloudflare.com/v1/models",
-    "native_chat": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/key",
-    "health": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://banners-thread-picnic-secret.trycloudflare.com/v1",
+    "chat_completions": "https://banners-thread-picnic-secret.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://banners-thread-picnic-secret.trycloudflare.com/v1/models",
+    "native_chat": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/key",
+    "health": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://backup-mathematical-por-promptly.trycloudflare.com",
-    "openai_base": "https://backup-mathematical-por-promptly.trycloudflare.com/v1",
-    "chat_completions": "https://backup-mathematical-por-promptly.trycloudflare.com/v1/chat/completions",
-    "api": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1",
-    "key": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/key",
-    "health": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/health",
-    "swagger": "https://backup-mathematical-por-promptly.trycloudflare.com/docs",
-    "redoc": "https://backup-mathematical-por-promptly.trycloudflare.com/redoc",
-    "openapi": "https://backup-mathematical-por-promptly.trycloudflare.com/openapi.json",
-    "guide": "https://backup-mathematical-por-promptly.trycloudflare.com/api-docs",
-    "public_key_page": "https://backup-mathematical-por-promptly.trycloudflare.com/site/public-key/"
+    "panel": "https://banners-thread-picnic-secret.trycloudflare.com",
+    "openai_base": "https://banners-thread-picnic-secret.trycloudflare.com/v1",
+    "chat_completions": "https://banners-thread-picnic-secret.trycloudflare.com/v1/chat/completions",
+    "api": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1",
+    "key": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/key",
+    "health": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/health",
+    "swagger": "https://banners-thread-picnic-secret.trycloudflare.com/docs",
+    "redoc": "https://banners-thread-picnic-secret.trycloudflare.com/redoc",
+    "openapi": "https://banners-thread-picnic-secret.trycloudflare.com/openapi.json",
+    "guide": "https://banners-thread-picnic-secret.trycloudflare.com/api-docs",
+    "public_key_page": "https://banners-thread-picnic-secret.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/key"
+      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/v1/chat/completions"
+      "url": "https://banners-thread-picnic-secret.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/v1/models"
+      "url": "https://banners-thread-picnic-secret.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/chat"
+      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/generate"
+      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1"
+      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/health"
+      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/ready"
+      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/info"
+      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/models"
+      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/config"
+      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/api/v1/stats"
+      "url": "https://banners-thread-picnic-secret.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://backup-mathematical-por-promptly.trycloudflare.com/health"
+      "url": "https://banners-thread-picnic-secret.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-21T00:19:35+00:00",
+  "updated_at": "2026-11-21T00:25:59+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44843043864",
-  "run_number": 104,
+  "run_number": 105,
   "commit": "0d3902d"
 }

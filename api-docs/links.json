@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-feaa843bd103ae5f011d9bd25d4eb635",
-  "api_key": "sk-uc-feaa843bd103ae5f011d9bd25d4eb635",
+  "public_api_key": "sk-uc-4564d9dcf44c2a7969b39ded65aabf4b",
+  "api_key": "sk-uc-4564d9dcf44c2a7969b39ded65aabf4b",
   "status": "online",
   "online": true,
-  "base_url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com",
+  "base_url": "https://lips-system-comparable-cpu.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/v1",
-    "chat_completions": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/v1/models",
-    "native_chat": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/key",
-    "health": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://lips-system-comparable-cpu.trycloudflare.com/v1",
+    "chat_completions": "https://lips-system-comparable-cpu.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://lips-system-comparable-cpu.trycloudflare.com/v1/models",
+    "native_chat": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/key",
+    "health": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://notebook-elvis-difficulties-desirable.trycloudflare.com",
-    "openai_base": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/v1",
-    "chat_completions": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/v1/chat/completions",
-    "api": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1",
-    "key": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/key",
-    "health": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/health",
-    "swagger": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/docs",
-    "redoc": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/redoc",
-    "openapi": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/openapi.json",
-    "guide": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api-docs",
-    "public_key_page": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/site/public-key/"
+    "panel": "https://lips-system-comparable-cpu.trycloudflare.com",
+    "openai_base": "https://lips-system-comparable-cpu.trycloudflare.com/v1",
+    "chat_completions": "https://lips-system-comparable-cpu.trycloudflare.com/v1/chat/completions",
+    "api": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1",
+    "key": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/key",
+    "health": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/health",
+    "swagger": "https://lips-system-comparable-cpu.trycloudflare.com/docs",
+    "redoc": "https://lips-system-comparable-cpu.trycloudflare.com/redoc",
+    "openapi": "https://lips-system-comparable-cpu.trycloudflare.com/openapi.json",
+    "guide": "https://lips-system-comparable-cpu.trycloudflare.com/api-docs",
+    "public_key_page": "https://lips-system-comparable-cpu.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/key"
+      "url": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/v1/chat/completions"
+      "url": "https://lips-system-comparable-cpu.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/v1/models"
+      "url": "https://lips-system-comparable-cpu.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/chat"
+      "url": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/generate"
+      "url": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1"
+      "url": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/health"
+      "url": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/ready"
+      "url": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/info"
+      "url": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/models"
+      "url": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/config"
+      "url": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/stats"
+      "url": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/health"
+      "url": "https://lips-system-comparable-cpu.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-21T16:39:56+00:00",
+  "updated_at": "2026-11-21T16:45:48+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44925792057",
-  "run_number": 117,
+  "run_number": 118,
   "commit": "e138bf2"
 }

@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9ub3RlYm9vay1lbHZpcy1kaWZmaWN1bHRpZXMtZGVzaXJhYmxlLnRyeWNsb3VkZmxhcmUuY29t",
-  "public_api_key": "sk-uc-feaa843bd103ae5f011d9bd25d4eb635",
-  "api_key": "sk-uc-feaa843bd103ae5f011d9bd25d4eb635",
+  "url_payload": "aHR0cHM6Ly9saXBzLXN5c3RlbS1jb21wYXJhYmxlLWNwdS50cnljbG91ZGZsYXJlLmNvbQ==",
+  "public_api_key": "sk-uc-4564d9dcf44c2a7969b39ded65aabf4b",
+  "api_key": "sk-uc-4564d9dcf44c2a7969b39ded65aabf4b",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/v1",
-    "chat_completions": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/v1/models",
-    "native_chat": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/key",
-    "health": "https://notebook-elvis-difficulties-desirable.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://lips-system-comparable-cpu.trycloudflare.com/v1",
+    "chat_completions": "https://lips-system-comparable-cpu.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://lips-system-comparable-cpu.trycloudflare.com/v1/models",
+    "native_chat": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/key",
+    "health": "https://lips-system-comparable-cpu.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-21T16:39:56+00:00",
+  "updated_at": "2026-11-21T16:45:48+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44925792057",
-  "run_number": 117,
+  "run_number": 118,
   "commit": "e138bf2"
 }

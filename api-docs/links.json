@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-ea1250d9986fdbaefc394c8922ba96ac",
-  "api_key": "sk-uc-ea1250d9986fdbaefc394c8922ba96ac",
+  "public_api_key": "sk-uc-bdd3a15ef9f4f4acca66e08edfe252bc",
+  "api_key": "sk-uc-bdd3a15ef9f4f4acca66e08edfe252bc",
   "status": "online",
   "online": true,
-  "base_url": "https://you-buildings-portfolio-fraction.trycloudflare.com",
+  "base_url": "https://cooked-cabinets-total-buys.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://you-buildings-portfolio-fraction.trycloudflare.com/v1",
-    "chat_completions": "https://you-buildings-portfolio-fraction.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://you-buildings-portfolio-fraction.trycloudflare.com/v1/models",
-    "native_chat": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/key",
-    "health": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://cooked-cabinets-total-buys.trycloudflare.com/v1",
+    "chat_completions": "https://cooked-cabinets-total-buys.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://cooked-cabinets-total-buys.trycloudflare.com/v1/models",
+    "native_chat": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/key",
+    "health": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://you-buildings-portfolio-fraction.trycloudflare.com",
-    "openai_base": "https://you-buildings-portfolio-fraction.trycloudflare.com/v1",
-    "chat_completions": "https://you-buildings-portfolio-fraction.trycloudflare.com/v1/chat/completions",
-    "api": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1",
-    "key": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/key",
-    "health": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/health",
-    "swagger": "https://you-buildings-portfolio-fraction.trycloudflare.com/docs",
-    "redoc": "https://you-buildings-portfolio-fraction.trycloudflare.com/redoc",
-    "openapi": "https://you-buildings-portfolio-fraction.trycloudflare.com/openapi.json",
-    "guide": "https://you-buildings-portfolio-fraction.trycloudflare.com/api-docs",
-    "public_key_page": "https://you-buildings-portfolio-fraction.trycloudflare.com/site/public-key/"
+    "panel": "https://cooked-cabinets-total-buys.trycloudflare.com",
+    "openai_base": "https://cooked-cabinets-total-buys.trycloudflare.com/v1",
+    "chat_completions": "https://cooked-cabinets-total-buys.trycloudflare.com/v1/chat/completions",
+    "api": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1",
+    "key": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/key",
+    "health": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/health",
+    "swagger": "https://cooked-cabinets-total-buys.trycloudflare.com/docs",
+    "redoc": "https://cooked-cabinets-total-buys.trycloudflare.com/redoc",
+    "openapi": "https://cooked-cabinets-total-buys.trycloudflare.com/openapi.json",
+    "guide": "https://cooked-cabinets-total-buys.trycloudflare.com/api-docs",
+    "public_key_page": "https://cooked-cabinets-total-buys.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/key"
+      "url": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://you-buildings-portfolio-fraction.trycloudflare.com/v1/chat/completions"
+      "url": "https://cooked-cabinets-total-buys.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://you-buildings-portfolio-fraction.trycloudflare.com/v1/models"
+      "url": "https://cooked-cabinets-total-buys.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/chat"
+      "url": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/generate"
+      "url": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1"
+      "url": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/health"
+      "url": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/ready"
+      "url": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/info"
+      "url": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/models"
+      "url": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/config"
+      "url": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://you-buildings-portfolio-fraction.trycloudflare.com/api/v1/stats"
+      "url": "https://cooked-cabinets-total-buys.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://you-buildings-portfolio-fraction.trycloudflare.com/health"
+      "url": "https://cooked-cabinets-total-buys.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-21T15:55:25+00:00",
+  "updated_at": "2026-11-21T16:03:16+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44921724243",
-  "run_number": 115,
+  "run_number": 116,
   "commit": "d3382f6"
 }

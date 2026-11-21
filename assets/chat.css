@@ -374,35 +374,45 @@ svg.pg-mark.live {
   justify-content: space-between;
   gap: 8px;
   padding-inline: 2px;
-  min-height: 40px;
+  min-height: 42px;
+  flex-shrink: 0;
 }
 
+.icon-btn.logo-btn,
 .logo-btn {
   display: inline-flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
   gap: 9px;
   width: auto;
-  height: 36px;
-  padding-inline: 10px;
+  min-width: 0;
+  height: 38px;
+  padding-inline: 10px 12px;
   border-radius: var(--r-full);
   font-size: 15px;
   font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
   color: var(--text-primary);
   transition:
     background-color var(--dur-fast) var(--ease),
     transform var(--dur-fast) var(--ease);
 }
 
+.icon-btn.logo-btn:hover,
 .logo-btn:hover {
   background: var(--bg-hover);
   transform: scale(1.03);
 }
 
+.icon-btn.logo-btn:active,
 .logo-btn:active {
   transform: scale(0.95);
 }
 
 .sb-new-btn {
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
@@ -438,6 +448,7 @@ svg.pg-mark.live {
 
 /* Compact Sidebar Search Trigger + Filter */
 .sb-search-trigger {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -476,7 +487,12 @@ svg.pg-mark.live {
   transform: scale(0.96);
 }
 
+.sb-search-trigger .kbd {
+  margin-inline-end: 0;
+}
+
 .sb-search-box {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -514,6 +530,7 @@ svg.pg-mark.live {
 }
 
 .sb-label {
+  flex-shrink: 0;
   padding: 6px 10px 2px;
   font-size: 11.5px;
   font-weight: 600;
@@ -662,6 +679,7 @@ svg.pg-mark.live {
 
 /* Pinned Bottom Utility Nav & Footer */
 .sb-bottom {
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: 6px;

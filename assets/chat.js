@@ -761,6 +761,26 @@
     [/\\(arcsin|arccos|arctan|sinh|cosh|tanh|coth|sech|csch|sin|cos|tan|cot|sec|csc|log|ln|lg|exp|liminf|limsup|lim|max|min|sup|inf|det|gcd|lcm|mod|deg|dim|ker|hom|arg|rank|tr|Pr|Var|Cov|sgn|diag)(?![A-Za-z])/g, '<span class="m-fn">$1</span>']
   ];
 
+  function renderChemExpr(raw) {
+    let c = String(raw || '').trim();
+    c = c.replace(/&lt;=&gt;|&lt;--&gt;/g, ' <span class="m-arrow">⇌</span> ');
+    c = c.replace(/-&gt;|--&gt;/g, ' <span class="m-arrow">⟶</span> ');
+    c = c.replace(/&lt;-|&lt;--/g, ' <span class="m-arrow">⟵</span> ');
+    c = c.replace(/\^\{([^{}]+)\}/g, function (_, chg) { return '<sup>' + chg.replace(/-/g, '−') + '</sup>'; });
+    c = c.replace(/\^(\d*[+-])/g, function (_, chg) { return '<sup>' + chg.replace(/-/g, '−') + '</sup>'; });
+    c = c.replace(/_\{([^{}]+)\}/g, '<sub>$1</sub>');
+    c = c.replace(/([A-Za-z)])(\d+)/g, '$1<sub>$2</sub>');
+    c = c.replace(/\s+\+\s+/g, ' <span class="m-rel">+</span> ');
+    return '<span class="m-txt">' + c + '</span>';
+  }
+
+  function formatTexTextSpan(a, tag) {
+    const isRtl = /[\u0600-\u06FF\u0750-\u077F]/.test(a);
+    const cls = isRtl ? 'm-txt-rtl' : 'm-txt';
+    const dir = isRtl ? 'rtl' : 'ltr';
+    return '<' + tag + ' class="' + cls + '" dir="' + dir + '">' + a + '</' + tag + '>';
+  }
+
   function formatTexInner(escapedExpr) {
     let t = String(escapedExpr || '');
 
@@ -857,15 +877,17 @@
     t = replaceTexCmd1(t, 'mathcal', function (a) { return '<span class="m-cal">' + formatTexInner(a) + '</span>'; });
     t = replaceTexCmd1(t, 'mathscr', function (a) { return '<span class="m-cal">' + formatTexInner(a) + '</span>'; });
     t = replaceTexCmd1(t, 'substack', function (a) { return '<span class="m-stack">' + formatTexInner(a) + '</span>'; });
-    t = replaceTexCmd1(t, 'textbf', function (a) { return '<strong class="m-txt" dir="auto">' + a + '</strong>'; });
-    t = replaceTexCmd1(t, 'textit', function (a) { return '<em class="m-txt" dir="auto">' + a + '</em>'; });
+    t = replaceTexCmd1(t, 'ce', function (a) { return renderChemExpr(a); });
+    t = replaceTexCmd1(t, 'pu', function (a) { return formatTexTextSpan(a, 'span'); });
+    t = replaceTexCmd1(t, 'textbf', function (a) { return formatTexTextSpan(a, 'strong'); });
+    t = replaceTexCmd1(t, 'textit', function (a) { return formatTexTextSpan(a, 'em'); });
     t = replaceTexCmd1(t, 'texttt', function (a) { return '<code class="m-tt">' + a + '</code>'; });
     t = replaceTexCmd1(t, 'textsf', function (a) { return '<span class="m-sf" dir="auto">' + a + '</span>'; });
-    t = replaceTexCmd1(t, 'text', function (a) { return '<span class="m-txt" dir="auto">' + a + '</span>'; });
-    t = replaceTexCmd1(t, 'textrm', function (a) { return '<span class="m-txt" dir="auto">' + a + '</span>'; });
-    t = replaceTexCmd1(t, 'textnormal', function (a) { return '<span class="m-txt" dir="auto">' + a + '</span>'; });
-    t = replaceTexCmd1(t, 'textup', function (a) { return '<span class="m-txt" dir="auto">' + a + '</span>'; });
-    t = replaceTexCmd1(t, 'emph', function (a) { return '<em class="m-txt" dir="auto">' + a + '</em>'; });
+    t = replaceTexCmd1(t, 'text', function (a) { return formatTexTextSpan(a, 'span'); });
+    t = replaceTexCmd1(t, 'textrm', function (a) { return formatTexTextSpan(a, 'span'); });
+    t = replaceTexCmd1(t, 'textnormal', function (a) { return formatTexTextSpan(a, 'span'); });
+    t = replaceTexCmd1(t, 'textup', function (a) { return formatTexTextSpan(a, 'span'); });
+    t = replaceTexCmd1(t, 'emph', function (a) { return formatTexTextSpan(a, 'em'); });
     t = replaceTexCmd1(t, 'mathrel', function (a) { return '<span class="m-rel">' + formatTexInner(a) + '</span>'; });
     t = replaceTexCmd1(t, 'mathbin', function (a) { return '<span class="m-rel">' + formatTexInner(a) + '</span>'; });
     t = replaceTexCmd1(t, 'mathord', function (a) { return formatTexInner(a); });
@@ -883,6 +905,7 @@
     t = replaceTexCmd1(t, 'label', function () { return ''; });
 
     // Superscripts & subscripts (balanced)
+    t = t.replace(/\(\s*<span class="m-txt" dir="ltr">\(/g, '<span class="m-txt" dir="ltr">(');
     t = replaceSupSub(t);
 
     // Line breaks \\ inside display math
@@ -921,24 +944,27 @@
   }
 
   function polishMathTypography(html) {
-    // Only transform plain text segments outside HTML tags (<...>) and inside non-text math runs
     const parts = String(html || '').split(/(<[^>]+>)/g);
     let inPlainText = 0;
+    let inScript = 0;
     for (let i = 0; i < parts.length; i++) {
       const seg = parts[i];
       if (!seg) continue;
       if (seg[0] === '<') {
-        if (/^<(?:span|strong|em|code)[^>]*class="[^"]*(?:m-txt|m-fn|m-tt)/i.test(seg)) inPlainText++;
+        if (/^<(?:sup|sub)\b/i.test(seg)) inScript++;
+        else if (/^<\/(?:sup|sub)>/i.test(seg) && inScript > 0) inScript--;
+        if (/^<(?:span|strong|em|code)[^>]*class="[^"]*\b(?:m-txt|m-txt-rtl|m-fn|m-tt|m-arrow)\b/i.test(seg)) inPlainText++;
         else if (/^<\/(?:span|strong|em|code)>/i.test(seg) && inPlainText > 0) inPlainText--;
         continue;
       }
       if (inPlainText > 0) continue;
-      // Protect HTML entities (&lt; &gt; &amp; &#8201; &ensp;) while styling digits, punctuation & operators
-      parts[i] = seg.replace(/(&(?:lt|gt|amp|ensp|#8201);|\d+(?:\.\d+)?|[()\[\],.]|[=+×÷±∓⇒⇐⇔→←↔≤≥≠≈≡·∈∉⊂⊆∪∩]|(?<![A-Za-z0-9])-(?![A-Za-z0-9]))/g, function (m) {
+      parts[i] = seg.replace(/(&(?:lt|gt|amp|ensp|#8201);|\d+(?:\.\d+)?|[()\[\],.]|[⟶⟵⟷⟺⟹⟸⇌]|[=+×÷±∓⇒⇐⇔→←↔≤≥≠≈≡·∈∉⊂⊆∪∩]|(?<![A-Za-z0-9])-(?![A-Za-z0-9]))/g, function (m) {
         if (m === '&lt;' || m === '&gt;') return '<span class="m-rel">' + m + '</span>';
         if (m[0] === '&') return m;
+        if (/^[⟶⟵⟷⟺⟹⟸⇌]$/.test(m)) return '<span class="m-arrow">' + m + '</span>';
         if (/^\d/.test(m)) return '<span class="m-lit">' + m + '</span>';
         if (/^[()\[\],.]$/.test(m)) return '<span class="m-punc">' + m + '</span>';
+        if (inScript > 0 && (m === '+' || m === '-')) return '<span class="m-chg">' + (m === '-' ? '−' : '+') + '</span>';
         if (m === '-') return '<span class="m-rel">−</span>';
         return '<span class="m-rel">' + m + '</span>';
       });
@@ -979,18 +1005,26 @@
 
   const APPLE_EMOJI_RE = /(?:[\u{1F1E6}-\u{1F1FF}]{2}|(?:\p{Extended_Pictographic}|[#*0-9]\uFE0F?\u20E3)(?:\uFE0F|\u20E3|[\u{1F3FB}-\u{1F3FF}])?(?:\u200D(?:\p{Extended_Pictographic})(?:\uFE0F|[\u{1F3FB}-\u{1F3FF}])?)*)/gu;
 
+  function hasEmojiContent(raw) {
+    if (!raw) return false;
+    APPLE_EMOJI_RE.lastIndex = 0;
+    return APPLE_EMOJI_RE.test(raw);
+  }
+
   function renderAppleEmojis(htmlStr) {
     const base = IS_PAGES ? (PAGES_ROOT + 'assets/emojis/apple/') : '/static/emojis/apple/';
-    return htmlStr.split(/(<[^>]+>)/g).map(function (seg) {
+    return String(htmlStr || '').split(/(<[^>]+>)/g).map(function (seg) {
       if (!seg || seg[0] === '<') return seg;
+      APPLE_EMOJI_RE.lastIndex = 0;
       return seg.replace(APPLE_EMOJI_RE, function (match) {
         const fullCp = emojiToAppleCodepoint(match);
-        const noFe0f = fullCp.replace(/-fe0f/g, '');
+        const hasFe0f = fullCp.indexOf('-fe0f') !== -1;
+        const altCp = hasFe0f ? fullCp.replace(/-fe0f/g, '') : (fullCp + '-fe0f');
         const primary = base + fullCp + '.png';
-        const fallback = noFe0f !== fullCp ? (base + noFe0f + '.png') : '';
+        const fallback = altCp !== fullCp ? (base + altCp + '.png') : '';
         const onerr = fallback
-          ? 'if(!this.dataset.fb){this.dataset.fb=1;this.src=\'' + fallback + '\';}else{this.replaceWith(document.createTextNode(this.alt));}'
-          : 'this.replaceWith(document.createTextNode(this.alt));';
+          ? 'if(!this.dataset.fb){this.dataset.fb=1;this.src=\'' + fallback + '\';}else{this.remove();}'
+          : 'this.remove();';
         return '<img class="apple-emoji" src="' + primary + '" alt="' + escapeHtml(match) + '" draggable="false" loading="lazy" onerror="' + onerr + '">';
       });
     }).join('');
@@ -1068,6 +1102,12 @@
     s = s.replace(/(^|[^*\w])\*(?!\s)([^*\n]+?)(?<!\s)\*(?!\*)/g, '$1<em>$2</em>');
     s = s.replace(/(^|[\s(>«"'])_(?!\s|\{)([^_\n{}]+?)(?<!\s)_(?=[\s.,;:!?)<»"']|$)/g, '$1<em>$2</em>');
     s = s.replace(/~~([^~]+)~~/g, '<del>$1</del>');
+
+    // 10.4. Isolate bare Unicode chemical ions/formulas (e.g. Fe²⁺, OH⁻, H₂O, SO₄²⁻) in LTR so RTL never flips charges
+    s = s.replace(/(?<![A-Za-z0-9])([A-Z][a-z]?(?:[₀-₉]+|[A-Z][a-z]?[₀-₉]*)*(?:[⁰¹²³⁴⁵⁶⁷⁸⁹]*[⁺⁻+-]|[₀-₉]+))(?![A-Za-z0-9])/g, function (full) {
+      if (!/[₀-₉⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]/.test(full)) return full;
+      return '<span class="chem-ltr" dir="ltr">' + full + '</span>';
+    });
 
     // 10.5. Render Apple Emoji PNGs (outside code/math tokens, with seamless fallback)
     s = renderAppleEmojis(s);
@@ -1213,6 +1253,11 @@
       }
       working = merged.join('\n');
     })();
+
+    // 1.9. Wrap bare LaTeX math environments not already inside $$...$$
+    working = working.replace(/(^|\n)[ \t]*(\\begin\{(?:align\*?|aligned|equation\*?|gather\*?|multline\*?|cases|dcases|[pbvVB]?matrix)\}[\s\S]*?\\end\{(?:align\*?|aligned|equation\*?|gather\*?|multline\*?|cases|dcases|[pbvVB]?matrix)\})[ \t]*(?=\n|$)/g, function (_, pre, env) {
+      return pre + '\n$$\n' + env + '\n$$\n';
+    });
 
     // 2. Display math blocks $$...$$ or \[...\]
     //    - Ignore non-math Persian bracketed prose like \[شروع داستان\]
@@ -2049,7 +2094,7 @@
   function updateComposerPreview() {
     if (!el.composerPreview || !el.input) return;
     const raw = el.input.value;
-    const show = hasLatexContent(raw);
+    const show = hasLatexContent(raw) || hasEmojiContent(raw);
     if (!show) {
       if (!el.composerPreview.hidden) setHidden(el.composerPreview, true);
       el.composerPreview.innerHTML = '';
@@ -3033,8 +3078,8 @@
           (isSel ? '<span class="search-sel"></span>' : '') +
           '<span class="si-ico">' + ICONS.msg + '<span class="t-dot dot-chat"></span></span>' +
           '<span class="si-text">' +
-            '<span class="si-title" dir="auto">' + highlightText(stripMarkdown(t.title || '') || 'گفتگوی جدید', q) + '</span>' +
-            '<span class="si-snip" dir="auto">' + highlightText((item.snippet || '').replace(/\s+/g, ' '), q) + '</span>' +
+            '<span class="si-title" dir="auto">' + renderAppleEmojis(highlightText(stripMarkdown(t.title || '') || 'گفتگوی جدید', q)) + '</span>' +
+            '<span class="si-snip" dir="auto">' + renderAppleEmojis(highlightText((item.snippet || '').replace(/\s+/g, ' '), q)) + '</span>' +
           '</span>' +
           '<span class="si-time">' + escapeHtml(relTime(t.updatedAt || t.createdAt)) + '</span>' +
         '</button>';

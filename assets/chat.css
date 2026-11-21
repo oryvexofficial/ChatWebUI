@@ -1927,19 +1927,28 @@ svg.pg-mark.live {
   line-height: 0;
   position: relative;
   vertical-align: baseline;
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-style: normal;
 }
 
-.math sup { top: -0.48em; margin-inline-start: 1px; }
-.math sub { bottom: -0.24em; margin-inline: 1px 2px; }
+.math sup { top: -0.46em; margin: 0; }
+.math sub { bottom: -0.24em; margin: 0; }
+.math sup .m-rel,
+.math sub .m-rel { margin-inline: 0.04em; color: inherit; }
+.m-chg { font-style: normal; margin: 0; color: inherit; }
 .m-lit, .m-punc { font-style: normal; font-variant-numeric: lining-nums; }
-.m-rel { font-style: normal; margin-inline: 0.24em; color: var(--text-secondary); }
+.m-rel { font-style: normal; margin-inline: 0.22em; color: var(--text-secondary); }
+.m-arrow { font-style: normal; margin-inline: 0.35em; color: var(--text-primary); }
 .m-frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 5px; line-height: 1.18; font-style: normal; font-size: 0.94em; }
 .m-num { border-bottom: 1.3px solid currentColor; padding: 0 6px 3px; text-align: center; }
 .m-den { padding: 3px 6px 0; text-align: center; }
 .m-root { display: inline-flex; align-items: center; font-style: normal; margin-inline: 2px; }
 .m-rad { border-top: 1.3px solid currentColor; padding: 1px 4px 0; font-style: italic; line-height: 1.2; }
-.m-fn { font-style: normal; font-family: "STIX Two Math", "Cambria Math", Georgia, serif; padding-inline: 1px 2px; }
-.m-txt { font-style: normal; font-family: var(--font); font-size: 0.9em; padding-inline: 4px; }
+.m-fn { font-style: normal; font-family: "STIX Two Math", "Cambria Math", "Times New Roman", Georgia, serif; padding-inline: 0 1px; }
+.m-txt { font-style: normal; font-family: "STIX Two Math", "Cambria Math", "Times New Roman", Georgia, "Vazirmatn", serif; padding: 0; direction: ltr; unicode-bidi: isolate; }
+.m-txt-rtl { font-style: normal; font-family: var(--font); font-size: 0.9em; padding-inline: 0.22em; direction: rtl; unicode-bidi: isolate; }
+.chem-ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; font-feature-settings: "ss01" 0, "lnum"; }
 .m-vec, .m-hat, .m-tilde, .m-acc { position: relative; display: inline-block; }
 .m-vec::before { content: "→"; position: absolute; top: -0.72em; inset-inline: 0; text-align: center; font-size: 0.7em; font-style: normal; }
 .m-hat::before { content: "^"; position: absolute; top: -0.65em; inset-inline: 0; text-align: center; font-size: 0.8em; font-style: normal; }

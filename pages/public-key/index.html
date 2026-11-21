@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>کلید عمومی API · یونیکالکت</title>
+  <meta name="description" content="کلید عمومی تولیدشده توسط بک‌اند و آدرس روترهای فعال یونیکالکت چت مینی.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a0a0a">
+  
+  <link rel="preload" href="../assets/fonts/Vazirmatn.woff2?v=1" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/JetBrainsMono.woff2?v=1" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../assets/site.css?v=v108">
+  <meta property="og:title" content="کلید عمومی API · یونیکالکت">
+  <meta property="og:description" content="کلید عمومی تولیدشده توسط بک‌اند و آدرس روترهای فعال یونیکالکت چت مینی.">
+  <style>[hidden]{display:none!important}</style>
+</head>
+<body data-page="publickey" data-root="../">
+<div id="root">
+  <a class="skip" href="#main">رفتن به محتوا</a>
+  <header class="top" id="top" data-top="true">
+    <div class="top-bar">
+      <a class="brand" href="../" aria-label="یونیکالکت، صفحه اصلی">
+        <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
+        <span>یونیکالکت</span>
+        <small>چت مینی</small>
+      </a>
+      <nav class="nav" aria-label="ناوبری اصلی">
+        <a href="../" data-nav-key="home"><span>خانه</span></a>
+        <a href="../chat/" data-nav-key="chat"><span>چت</span></a>
+        <a href="../public-key/" aria-current="page" data-nav-key="publickey"><span class="nav-ink" style="opacity: 1;"></span><span>کلید عمومی API</span></a>
+        <a href="../api/" data-nav-key="api"><span>مستندات API</span></a>
+        <a href="../how-it-works/" data-nav-key="how"><span>فرآیند</span></a>
+        <a href="../about/" data-nav-key="about"><span>درباره</span></a>
+        <a href="../privacy/" data-nav-key="privacy"><span>حریم خصوصی</span></a>
+      </nav>
+      <div class="top-end">
+        <a class="pill" data-live-pill href="../public-key/">
+          <span class="dot warn" data-live-dot></span>
+          <span data-live-label>در حال بررسی…</span>
+        </a>
+        <a class="icon-btn top-chat" href="../chat/" aria-label="باز کردن چت" title="چت"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></a>
+        <button class="icon-btn menu-btn" type="button" data-drawer-open aria-label="باز کردن منو" aria-controls="drawer"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+      </div>
+    </div>
+    <span class="top-progress" id="top-progress" aria-hidden="true" style="transform: scaleX(0);"></span>
+  </header>
+
+  <div class="drawer" id="drawer" hidden style="display:none">
+    <div class="shade" data-drawer-close></div>
+    <aside class="sheet" aria-label="منوی موبایل">
+      <div class="sheet-head">
+        <a class="brand" href="../">
+          <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
+          <span>یونیکالکت</span>
+          <small>چت مینی</small>
+        </a>
+        <button class="icon-btn" type="button" data-drawer-close aria-label="بستن منو"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+      </div>
+      <nav aria-label="منوی صفحات">
+        <a href="../">خانه</a>
+        <a href="../chat/">چت</a>
+        <a href="../public-key/" aria-current="page">کلید عمومی API</a>
+        <a href="../api/">مستندات API</a>
+        <a href="../how-it-works/">فرآیند</a>
+        <a href="../about/">درباره</a>
+        <a href="../privacy/">حریم خصوصی</a>
+      </nav>
+      <div class="sheet-foot">
+        <a class="btn btn-ink" href="../chat/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>شروع گفتگو</span></a>
+        <a class="btn btn-line" href="../public-key/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg><span>کلید عمومی API</span></a>
+      </div>
+    </aside>
+  </div>
+  <main id="main">
+    <section class="page-hero">
+      <div class="page-hero-bg" aria-hidden="true"></div>
+      <div class="wrap ph-grid">
+        <div class="ph-copy">
+          <span class="reveal in eyebrow"><span class="bar"></span>دسترسی توسعه‌دهندگان و روتر</span>
+          <h1>کلید عمومی API برای استفاده</h1>
+          <p class="reveal in">کلید عمومی تولیدشده توسط بک‌اند و آدرس روترهای فعال برای اتصال مستقیم در برنامه‌ها، اسکریپت‌ها، 9router و کلاینت‌های استاندارد.</p>
+        </div>
+        <div class="reveal in post-stamp-wrap" aria-hidden="true">
+          <div class="tilt post-stamp">
+            <div class="ps-paper">
+              <div class="ps-in">
+                <span class="ps-top mono">UNICOLLECT</span>
+                <span class="ps-icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg></span>
+                <b class="ps-word">کلید API</b>
+                <span class="ps-code mono">UNICOLLECT</span>
+              </div>
+            </div>
+            <svg class="ps-mark" viewBox="0 0 220 120">
+              <circle cx="150" cy="60" r="44"></circle>
+              <circle cx="150" cy="60" r="36" class="thin"></circle>
+              <path d="M0 38c14-8 26 8 40 0s26 8 40 0M0 60c14-8 26 8 40 0s26 8 40 0M0 82c14-8 26 8 40 0s26 8 40 0"></path>
+              <text x="150" y="56" text-anchor="middle">MUVIXO</text>
+              <text x="150" y="76" text-anchor="middle" class="sm">۱۴۰۵</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="links-card">
+          <div class="links-top">
+            <h2><span class="dot warn" data-live-dot></span>مشخصات روتر و کلید عمومی زنده</h2>
+            <span class="when" data-live-label>در حال بررسی…</span>
+          </div>
+          <div class="base-box">
+            <span style="font-size: 13px; color: var(--ink-2);">کلید عمومی API:</span>
+            <code class="ltr" data-live-key>sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26</code>
+            <button class="btn btn-ink btn-sm" type="button" data-copy-target="live-key"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی کلید</span></button>
+          </div>
+          <div class="base-box" style="margin-top: 10px;">
+            <span style="font-size: 13px; color: var(--ink-2);">آدرس پایه روتر (Base URL):</span>
+            <code class="ltr" data-route-v1><span data-live-url>https://YOUR-LINK.trycloudflare.com</span>/v1</code>
+            <button class="btn btn-line btn-sm" type="button" data-copy-selector="[data-route-v1]"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی آدرس روتر</span></button>
+          </div>
+          <div class="base-box" style="margin-top: 10px;">
+            <span style="font-size: 13px; color: var(--ink-2);">مسیر تکمیل گفتگو:</span>
+            <code class="ltr" data-route-comp><span data-live-url>https://YOUR-LINK.trycloudflare.com</span>/v1/chat/completions</code>
+            <button class="btn btn-line btn-sm" type="button" data-copy-selector="[data-route-comp]"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+          </div>
+          <div class="base-box" style="margin-top: 10px;">
+            <span style="font-size: 13px; color: var(--ink-2);">مسیر فهرست مدل‌ها:</span>
+            <code class="ltr" data-route-models><span data-live-url>https://YOUR-LINK.trycloudflare.com</span>/v1/models</code>
+            <button class="btn btn-line btn-sm" type="button" data-copy-selector="[data-route-models]"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+          </div>
+          <div class="base-box" style="margin-top: 10px;">
+            <span style="font-size: 13px; color: var(--ink-2);">مسیر گفتگوی مستقیم:</span>
+            <code class="ltr" data-route-chat><span data-live-url>https://YOUR-LINK.trycloudflare.com</span>/api/v1/chat</code>
+            <button class="btn btn-line btn-sm" type="button" data-copy-selector="[data-route-chat]"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+          </div>
+          <div class="base-box" style="margin-top: 10px;">
+            <span style="font-size: 13px; color: var(--ink-2);">مسیر دریافت کلید و وضعیت روتر:</span>
+            <code class="ltr" data-route-key><span data-live-url>https://YOUR-LINK.trycloudflare.com</span>/api/v1/key</code>
+            <button class="btn btn-line btn-sm" type="button" data-copy-selector="[data-route-key]"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+          </div>
+          <p class="links-note">نام مدل: <code class="inline-code">یونیکالکت چت مینی</code> · شناسه فنی مدل در روتر: <code class="inline-code ltr">unicollect-chat-mini</code> · ساخته‌ی موویکسو</p>
+        </div>
+
+        <div style="margin-top: 28px;">
+          <h3 style="margin-bottom: 12px;">نمونه‌کدهای اتصال سریع با کلید عمومی</h3>
+          <div class="code" data-code-tabs>
+  <div class="code-bar" role="tablist">
+    <button type="button" role="tab" class="tab" aria-selected="true" data-tab-btn="0">تنظیمات روتر (9router / کلاینت‌ها)</button><button type="button" role="tab" class="tab" aria-selected="false" data-tab-btn="1">curl (روتر استاندارد)</button><button type="button" role="tab" class="tab" aria-selected="false" data-tab-btn="2">Python</button><button type="button" role="tab" class="tab" aria-selected="false" data-tab-btn="3">JavaScript</button>
+    <button class="copy" type="button" data-copy-code><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+  </div>
+  <pre data-tab-panel="0" dir="ltr"><code>Provider Type : OpenAI Compatible
+Base URL      : <span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/v1
+API Key       : sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26
+Model ID      : unicollect-chat-mini
+Display Name  : یونیکالکت چت مینی</code></pre><pre data-tab-panel="1" hidden dir="ltr" style="display:none"><code>curl -X POST <span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/v1/chat/completions \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26&quot; \
+  -d &#x27;{
+    &quot;model&quot;: &quot;unicollect-chat-mini&quot;,
+    &quot;messages&quot;: [
+      {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;سلام! ۵۲ ضربدر ۹۵ چند می‌شود؟&quot;}
+    ]
+  }&#x27;</code></pre><pre data-tab-panel="2" hidden dir="ltr" style="display:none"><code>import requests
+
+BASE_URL = &quot;<span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/v1&quot;
+API_KEY = &quot;sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26&quot;
+
+r = requests.post(
+    f&quot;{BASE_URL}/chat/completions&quot;,
+    headers={&quot;Authorization&quot;: f&quot;Bearer {API_KEY}&quot;},
+    json={
+        &quot;model&quot;: &quot;unicollect-chat-mini&quot;,
+        &quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;سلام! خودت را معرفی کن&quot;}]
+    },
+    timeout=60,
+)
+print(r.json()[&quot;choices&quot;][0][&quot;message&quot;][&quot;content&quot;])</code></pre><pre data-tab-panel="3" hidden dir="ltr" style="display:none"><code>const r = await fetch(&quot;<span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/v1/chat/completions&quot;, {
+  method: &quot;POST&quot;,
+  headers: {
+    &quot;Content-Type&quot;: &quot;application/json&quot;,
+    &quot;Authorization&quot;: &quot;Bearer sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26&quot;
+  },
+  body: JSON.stringify({
+    model: &quot;unicollect-chat-mini&quot;,
+    messages: [{ role: &quot;user&quot;, content: &quot;سلام! خودت را معرفی کن&quot; }]
+  })
+});
+const data = await r.json();
+console.log(data.choices[0].message.content);</code></pre>
+</div>
+        </div>
+
+        <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <a class="btn btn-ink" href="../api/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg><span>مستندات کامل API و کنسول زنده</span></a>
+          <a class="btn btn-line" href="../chat/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>باز کردن چت یونیکالکت</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="foot" data-foot="true">
+    <div class="foot-card">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <a class="brand" href="../" aria-label="یونیکالکت، صفحه اصلی">
+            <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
+            <span>یونیکالکت</span>
+            <small>چت مینی</small>
+          </a>
+          <p>دستیار هوش مصنوعی یونیکالکت چت مینی ساخته‌ی موویکسو با استریم زنده و کلید عمومی API.</p>
+          <a class="foot-status" data-live-pill href="../public-key/">
+            <span class="dot warn" data-live-dot></span>
+            <span data-live-label>در حال بررسی…</span>
+          </a>
+        </div>
+        <nav class="foot-cols" aria-label="پیوندهای پایانی">
+          <div>
+            <h4>سایت یونیکالکت</h4>
+            <a href="../">سایت یونیکالکت</a>
+            <a href="../chat/">چت یونیکالکت</a>
+            <a href="../how-it-works/">فرآیند</a>
+            <a href="../about/">درباره</a>
+          </div>
+          <div>
+            <h4>توسعه‌دهنده و API</h4>
+            <a href="../public-key/">کلید عمومی API</a>
+            <a href="../api/#links">مدل‌ها و وضعیت</a>
+            <a href="../api/">مستندات API</a>
+            <a href="../api-docs/" data-swagger-link>Swagger / OpenAPI</a>
+            <a href="../api/links.json" class="ltr">links.json</a>
+          </div>
+          <div>
+            <h4>حقوقی</h4>
+            <a href="../privacy/">حریم خصوصی</a>
+            <a href="../api/#auth">کلید و محدودیت</a>
+          </div>
+        </nav>
+      </div>
+      <div class="foot-bottom">
+        <span>© یونیکالکت · ساخته‌ی موویکسو</span>
+        <span class="foot-note">یونیکالکت می‌تواند اشتباه کند؛ نتیجه‌های مهم را خودت هم مرور کن.</span>
+        <button class="to-top" type="button" data-to-top aria-label="برگشت به بالا">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m18 15-6-6-6 6"></path></svg>
+          <span>بالا</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+  <div class="toast-host" id="toast-host" aria-live="polite"></div>
+</div>
+<script src="../assets/site.js?v=bw6" defer></script>
+</body>
+</html>

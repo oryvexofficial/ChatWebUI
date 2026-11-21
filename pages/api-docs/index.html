@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>مستندات API · یونیکالکت</title>
+  <meta name="description" content="همه‌ی مسیرهای API نسخه‌ی ۱ یونیکالکت به همراه کلید عمومی، کنسول زنده و Swagger / OpenAPI.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a0a0a">
+  
+  <link rel="preload" href="../assets/fonts/Vazirmatn.woff2?v=1" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/JetBrainsMono.woff2?v=1" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../assets/site.css?v=v108">
+  <meta property="og:title" content="مستندات API · یونیکالکت">
+  <meta property="og:description" content="همه‌ی مسیرهای API نسخه‌ی ۱ یونیکالکت به همراه کلید عمومی، کنسول زنده و Swagger / OpenAPI.">
+  <style>[hidden]{display:none!important}</style>
+</head>
+<body data-page="api" data-root="../">
+<div id="root">
+  <a class="skip" href="#main">رفتن به محتوا</a>
+  <header class="top" id="top" data-top="true">
+    <div class="top-bar">
+      <a class="brand" href="../" aria-label="یونیکالکت، صفحه اصلی">
+        <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
+        <span>یونیکالکت</span>
+        <small>چت مینی</small>
+      </a>
+      <nav class="nav" aria-label="ناوبری اصلی">
+        <a href="../" data-nav-key="home"><span>خانه</span></a>
+        <a href="../chat/" data-nav-key="chat"><span>چت</span></a>
+        <a href="../public-key/" data-nav-key="publickey"><span>کلید عمومی API</span></a>
+        <a href="../api/" aria-current="page" data-nav-key="api"><span class="nav-ink" style="opacity: 1;"></span><span>مستندات API</span></a>
+        <a href="../how-it-works/" data-nav-key="how"><span>فرآیند</span></a>
+        <a href="../about/" data-nav-key="about"><span>درباره</span></a>
+        <a href="../privacy/" data-nav-key="privacy"><span>حریم خصوصی</span></a>
+      </nav>
+      <div class="top-end">
+        <a class="pill" data-live-pill href="../public-key/">
+          <span class="dot warn" data-live-dot></span>
+          <span data-live-label>در حال بررسی…</span>
+        </a>
+        <a class="icon-btn top-chat" href="../chat/" aria-label="باز کردن چت" title="چت"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></a>
+        <button class="icon-btn menu-btn" type="button" data-drawer-open aria-label="باز کردن منو" aria-controls="drawer"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+      </div>
+    </div>
+    <span class="top-progress" id="top-progress" aria-hidden="true" style="transform: scaleX(0);"></span>
+  </header>
+
+  <div class="drawer" id="drawer" hidden style="display:none">
+    <div class="shade" data-drawer-close></div>
+    <aside class="sheet" aria-label="منوی موبایل">
+      <div class="sheet-head">
+        <a class="brand" href="../">
+          <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
+          <span>یونیکالکت</span>
+          <small>چت مینی</small>
+        </a>
+        <button class="icon-btn" type="button" data-drawer-close aria-label="بستن منو"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+      </div>
+      <nav aria-label="منوی صفحات">
+        <a href="../">خانه</a>
+        <a href="../chat/">چت</a>
+        <a href="../public-key/">کلید عمومی API</a>
+        <a href="../api/" aria-current="page">مستندات API</a>
+        <a href="../how-it-works/">فرآیند</a>
+        <a href="../about/">درباره</a>
+        <a href="../privacy/">حریم خصوصی</a>
+      </nav>
+      <div class="sheet-foot">
+        <a class="btn btn-ink" href="../chat/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>شروع گفتگو</span></a>
+        <a class="btn btn-line" href="../public-key/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg><span>کلید عمومی API</span></a>
+      </div>
+    </aside>
+  </div>
+  <main id="main">
+    <div class="wrap docs">
+      <aside class="toc" aria-label="فهرست مستندات">
+        <button type="button" class="toc-toggle" data-toc-toggle aria-expanded="false">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+          <span>فهرست مسیرها</span>
+          <span class="toc-cur mono ltr" id="toc-cur">links</span>
+          <span class="toc-chev"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span>
+        </button>
+        <div class="toc-box" id="toc-box">
+          <div class="toc-title">در این صفحه</div>
+          <nav>
+            <div class="toc-group"><div class="toc-h">شروع</div><a href="#links" class="active" data-toc-link="links"><span class="">لینک‌های زنده</span></a><a href="#quick" data-toc-link="quick"><span class="">شروع سریع</span></a><a href="#auth" data-toc-link="auth"><span class="">کلید و محدودیت</span></a><a href="#errors" data-toc-link="errors"><span class="">خطاها</span></a><a href="#console" data-toc-link="console"><span class="">کنسول</span></a><a href="#clients" data-toc-link="clients"><span class="">کتابخانه‌ها</span></a></div><div class="toc-group"><div class="toc-h">گفتگو و هوش مصنوعی</div><a href="#ep-chat" data-toc-link="ep-chat"><span class="m post">POST</span><span class="mono ltr">/chat</span></a><a href="#ep-stream" data-toc-link="ep-stream"><span class="m post">POST</span><span class="mono ltr">/chat/stream</span></a><a href="#ep-openai" data-toc-link="ep-openai"><span class="m post">POST</span><span class="mono ltr">/chat/completions</span></a><a href="#ep-generate" data-toc-link="ep-generate"><span class="m post">POST</span><span class="mono ltr">/generate</span></a></div><div class="toc-group"><div class="toc-h">مدل‌ها، وضعیت و اطلاعات</div><a href="#ep-index" data-toc-link="ep-index"><span class="m get">GET</span><span class="mono ltr">/</span></a><a href="#ep-health" data-toc-link="ep-health"><span class="m get">GET</span><span class="mono ltr">/health</span></a><a href="#ep-ready" data-toc-link="ep-ready"><span class="m get">GET</span><span class="mono ltr">/ready</span></a><a href="#ep-models" data-toc-link="ep-models"><span class="m get">GET</span><span class="mono ltr">/models</span></a><a href="#ep-config" data-toc-link="ep-config"><span class="m get">GET</span><span class="mono ltr">/config</span></a><a href="#ep-stats" data-toc-link="ep-stats"><span class="m get">GET</span><span class="mono ltr">/stats</span></a></div>
+          </nav>
+        </div>
+      </aside>
+
+      <div class="doc-main">
+        <header class="doc-hero">
+          <span class="eyebrow"><span class="bar"></span>مستندات رسمی · نسخه‌ی ۱</span>
+          <h1>مستندات API و روتر یونیکالکت</h1>
+          <p class="lead">همه‌ی مسیرهای <code class="inline-code ltr">/api/v1/*</code> و روتر استاندارد <code class="inline-code ltr">/v1/chat/completions</code> برای اتصال مستقیم در برنامه‌ها و کلاینت‌ها.</p>
+          <div class="hero-badges">
+            <span class="badge">مدل: <b>یونیکالکت چت مینی</b></span>
+            <span class="badge">سازنده: <b>موویکسو</b></span>
+            <span class="badge ltr">Model ID: <b>unicollect-chat-mini</b></span>
+          </div>
+        </header>
+
+        <section class="doc-sec" id="links">
+          <div class="links-card">
+            <div class="links-top">
+              <h2><span class="dot warn" data-live-dot></span>لینک‌های زنده و کلید عمومی API</h2>
+              <span class="when" data-live-label>در حال بررسی…</span>
+            </div>
+            <div class="base-box">
+              <span style="font-size: 13px; color: var(--ink-2);">کلید عمومی API:</span>
+              <code class="ltr" data-live-key>sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26</code>
+              <button class="btn btn-ink btn-sm" type="button" data-copy-target="live-key"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی کلید</span></button>
+            </div>
+            <div class="base-box" style="margin-top: 10px;">
+              <span style="font-size: 13px; color: var(--ink-2);">آدرس پایه روتر (Base URL):</span>
+              <code class="ltr" data-api-route-v1><span data-live-url>https://YOUR-LINK.trycloudflare.com</span>/v1</code>
+              <button class="btn btn-line btn-sm" type="button" data-copy-selector="[data-api-route-v1]"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی آدرس روتر</span></button>
+            </div>
+            <div class="base-box" style="margin-top: 10px;">
+              <span style="font-size: 13px; color: var(--ink-2);">آدرس پایه سرور:</span>
+              <code class="ltr" data-api-route-base><span data-live-url>https://YOUR-LINK.trycloudflare.com</span></code>
+              <button class="btn btn-line btn-sm" type="button" data-copy-selector="[data-api-route-base]"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی آدرس پایه</span></button>
+            </div>
+            <p class="links-note">در هر شیفت جدید، آدرس تونل و کلید عمومی به‌صورت خودکار در <a href="links.json" class="ltr">api/links.json</a> به‌روزرسانی می‌شود.</p>
+          </div>
+        </section>
+
+        <section class="doc-sec" id="quick">
+          <h2>شروع سریع</h2>
+          <p>ارسال پیام با کلید عمومی از طریق مسیر مستقیم <code class="inline-code ltr">/api/v1/chat</code> یا روتر استاندارد <code class="inline-code ltr">/v1/chat/completions</code>:</p>
+          <div class="code" data-code-tabs>
+  <div class="code-bar" role="tablist">
+    <button type="button" role="tab" class="tab" aria-selected="true" data-tab-btn="0">curl (گفتگوی مستقیم)</button><button type="button" role="tab" class="tab" aria-selected="false" data-tab-btn="1">curl (روتر استاندارد /v1)</button><button type="button" role="tab" class="tab" aria-selected="false" data-tab-btn="2">Python</button>
+    <button class="copy" type="button" data-copy-code><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+  </div>
+  <pre data-tab-panel="0" dir="ltr"><code>curl -X POST <span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/api/v1/chat \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;X-API-Key: sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26&quot; \
+  -d &#x27;{&quot;message&quot;: &quot;سلام! ۵۲ ضربدر ۹۵ چند می‌شود؟&quot;}&#x27;</code></pre><pre data-tab-panel="1" hidden dir="ltr" style="display:none"><code>curl -X POST <span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/v1/chat/completions \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26&quot; \
+  -d &#x27;{&quot;model&quot;: &quot;unicollect-chat-mini&quot;, &quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;سلام! خوبی؟&quot;}]}&#x27;</code></pre><pre data-tab-panel="2" hidden dir="ltr" style="display:none"><code>import requests
+
+BASE = &quot;<span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>&quot;
+r = requests.post(
+    f&quot;{BASE}/v1/chat/completions&quot;,
+    headers={&quot;Authorization&quot;: &quot;Bearer sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26&quot;},
+    json={&quot;model&quot;: &quot;unicollect-chat-mini&quot;, &quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;سلام!&quot;}]}
+)
+print(r.json()[&quot;choices&quot;][0][&quot;message&quot;][&quot;content&quot;])</code></pre>
+</div>
+        </section>
+
+        <section class="doc-sec" id="auth">
+          <h2>کلید عمومی API و محدودیت‌ها</h2>
+          <p>برای اتصال مستقیم برنامه‌ها و اسکریپت‌ها به سرور زنده، کلید عمومی تولیدشده توسط بک‌اند در <code class="inline-code ltr">api/links.json</code> و <a href="../public-key/">صفحه‌ی کلید عمومی</a> منتشر می‌شود: <code class="inline-code ltr" data-live-key>sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26</code></p>
+          <div class="code" data-code-tabs>
+  <div class="code-bar" role="tablist">
+    <button type="button" role="tab" class="tab" aria-selected="true" data-tab-btn="0">هدر احراز هویت</button>
+    <button class="copy" type="button" data-copy-code><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+  </div>
+  <pre data-tab-panel="0" dir="ltr"><code>X-API-Key: sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26
+# یا برای روتر استاندارد و 9router:
+Authorization: Bearer sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26</code></pre>
+</div>
+          <div class="table-wrap">
+            <table class="dtable">
+              <thead><tr><th>ویژگی / محدودیت</th><th>مقدار</th></tr></thead>
+              <tbody>
+                <tr><td><code class="inline-code">نام مدل فعال</code></td><td><span><code>یونیکالکت چت مینی</code> (ساخته‌ی موویکسو)</span></td></tr>
+                <tr><td><code class="inline-code">شناسه مدل در روتر</code></td><td><span><code class="ltr">unicollect-chat-mini</code></span></td></tr>
+                <tr><td><code class="inline-code">کلید عمومی فعلی</code></td><td><span><code class="ltr" data-live-key>sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26</code></span></td></tr>
+                <tr><td><code class="inline-code">درخواست در دقیقه برای هر IP</code></td><td><span><code>۱۲۰</code></span></td></tr>
+                <tr><td><code class="inline-code">حداکثر طول پیام</code></td><td><span><code>۸٬۰۰۰</code> نویسه</span></td></tr>
+                <tr><td><code class="inline-code">حافظه‌ی گفتگو</code></td><td><span><code>۱۶</code> نوبت آخر</span></td></tr>
+                <tr><td><code class="inline-code">حداکثر توکن پاسخ</code></td><td><span><code>۱٬۵۳۶</code> توکن</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="doc-sec" id="errors">
+          <h2>خطاها</h2>
+          <p>همه‌ی خطاها یک ساختار استاندارد JSON با کد وضعیت HTTP مشخص برمی‌گردانند.</p>
+          <div class="code" data-code-tabs>
+  <div class="code-bar" role="tablist">
+    <button type="button" role="tab" class="tab" aria-selected="true" data-tab-btn="0">JSON</button>
+    <button class="copy" type="button" data-copy-code><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+  </div>
+  <pre data-tab-panel="0" dir="ltr"><code>{
+  &quot;error&quot;: {
+    &quot;code&quot;: &quot;empty_message&quot;,
+    &quot;message&quot;: &quot;پیام خالی است&quot;,
+    &quot;status&quot;: 400
+  }
+}</code></pre>
+</div>
+          <div class="table-wrap">
+            <table class="dtable">
+              <thead><tr><th>HTTP</th><th>کد خطا</th><th>توضیح</th></tr></thead>
+              <tbody>
+                <tr><td><code class="inline-code">400</code></td><td><span><code>empty_message</code> · <code>message_too_long</code></span></td><td><span>پیام خالی یا بیش از حد مجاز است</span></td></tr>
+                <tr><td><code class="inline-code">401</code></td><td><span><code>unauthorized</code></span></td><td><span>کلید نامعتبر است یا ارسال نشده</span></td></tr>
+                <tr><td><code class="inline-code">429</code></td><td><span><code>rate_limited</code></span></td><td><span>تعداد درخواست بیش از سقف مجاز در دقیقه</span></td></tr>
+                <tr><td><code class="inline-code">502</code></td><td><span><code>upstream_unavailable</code></span></td><td><span>سرویس مدل در دسترس نیست</span></td></tr>
+                <tr><td><code class="inline-code">503</code></td><td><span><code>not_ready</code></span></td><td><span>مدل هنوز در حال بارگذاری است</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="doc-sec" id="clients">
+          <h2>کتابخانه‌ها و دریافت خودکار آدرس زنده</h2>
+          <p>می‌توانید آدرس تونل فعال و کلید عمومی را به‌صورت خودکار از <code class="inline-code ltr">api/links.json</code> دریافت کنید:</p>
+          <div class="code" data-code-tabs>
+  <div class="code-bar" role="tablist">
+    <button type="button" role="tab" class="tab" aria-selected="true" data-tab-btn="0">Python · requests</button><button type="button" role="tab" class="tab" aria-selected="false" data-tab-btn="1">JavaScript · fetch</button>
+    <button class="copy" type="button" data-copy-code><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+  </div>
+  <pre data-tab-panel="0" dir="ltr"><code>import requests
+
+PAGES = &quot;https://oryvexofficial.github.io/ChatWebUI/api/links.json&quot;
+info = requests.get(PAGES, timeout=10).json()
+BASE = info[&quot;base_url&quot;]
+KEY = info.get(&quot;public_api_key&quot;, &quot;sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26&quot;)
+
+r = requests.post(
+    f&quot;{BASE}/api/v1/chat&quot;,
+    headers={&quot;X-API-Key&quot;: KEY},
+    json={&quot;message&quot;: &quot;یک جمله‌ی کوتاه انگیزشی بگو&quot;}
+)
+print(r.json()[&quot;reply&quot;])</code></pre><pre data-tab-panel="1" hidden dir="ltr" style="display:none"><code>const info = await fetch(&quot;https://oryvexofficial.github.io/ChatWebUI/api/links.json&quot;).then(r =&gt; r.json());
+const r = await fetch(`${info.base_url}/v1/chat/completions`, {
+  method: &quot;POST&quot;,
+  headers: {
+    &quot;Content-Type&quot;: &quot;application/json&quot;,
+    &quot;Authorization&quot;: `Bearer ${info.public_api_key || &quot;sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26&quot;}`
+  },
+  body: JSON.stringify({
+    model: &quot;unicollect-chat-mini&quot;,
+    messages: [{ role: &quot;user&quot;, content: &quot;سلام!&quot; }]
+  })
+});
+console.log(await r.json());</code></pre>
+</div>
+        </section>
+
+        <section class="doc-sec" id="console">
+          <h2>کنسول آزمایش زنده</h2>
+          <p>مستقیم روی سرویس زنده اجرا می‌شود. <bdi dir="ltr"><kbd>Ctrl</kbd> + <kbd>Enter</kbd></bdi> درخواست را می‌فرستد؛ دکمه‌ی <code class="inline-code ltr">curl</code> دستور کامل را کپی می‌کند.</p>
+          <div class="console" id="api-console">
+            <div class="console-row">
+              <select aria-label="مسیر" class="field" id="console-ep">
+                <option value="POST|/api/v1/chat">POST  /api/v1/chat</option>
+                <option value="POST|/v1/chat/completions">POST  /v1/chat/completions</option>
+                <option value="POST|/api/v1/generate">POST  /api/v1/generate</option>
+                <option value="GET|/api/v1/key">GET   /api/v1/key</option>
+                <option value="GET|/v1/models">GET   /v1/models</option>
+                <option value="GET|/api/v1">GET   /api/v1</option>
+                <option value="GET|/api/v1/health">GET   /api/v1/health</option>
+                <option value="GET|/api/v1/ready">GET   /api/v1/ready</option>
+                <option value="GET|/api/v1/info">GET   /api/v1/info</option>
+                <option value="GET|/api/v1/models">GET   /api/v1/models</option>
+                <option value="GET|/api/v1/config">GET   /api/v1/config</option>
+                <option value="GET|/api/v1/stats">GET   /api/v1/stats</option>
+              </select>
+              <input aria-label="کلید API" autocomplete="off" class="field key" id="console-key" placeholder="X-API-Key / Bearer" spellcheck="false" type="text" value="sk-uc-7222f6a12db36a017b3e3d6ac8a6dc26">
+              <button class="btn btn-line" type="button" id="console-curl" title="کپی همین درخواست به‌صورت curl"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m4 17 6-6-6-6M12 19h8"></path></svg><span>curl</span></button>
+              <button class="btn btn-ink" type="button" id="console-send"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg><span>ارسال</span></button>
+            </div>
+            <textarea aria-label="بدنه‌ی درخواست" class="field" id="console-body" rows="5" spellcheck="false" dir="ltr">{
+  "message": "سلام! ۵۲ ضربدر ۹۵ چند می‌شود؟"
+}</textarea>
+            <div class="console-out" id="console-out" hidden style="display:none;margin-top: 12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; font-size:12.5px; color:var(--ink-2);">
+                <span id="console-status" class="mono ltr">HTTP 200</span>
+                <button class="btn btn-line btn-sm" type="button" id="console-copy-out"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی پاسخ</span></button>
+              </div>
+              <pre class="field" id="console-res" dir="ltr" style="margin:0; max-height:320px; overflow:auto; white-space:pre-wrap;"></pre>
+            </div>
+          </div>
+        </section>
+
+        <div aria-label="کنترل مسیرها" class="ep-tools" role="toolbar">
+          <span class="lbl">همه‌ی مسیرها <span class="mono" id="ep-open-count">۱ / 10 باز</span></span>
+          <button class="btn btn-line btn-sm" data-ep-all="open" type="button"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m7 15 5 5 5-5M7 9l5-5 5 5"></path></svg><span>باز کردن همه</span></button>
+          <button class="btn btn-line btn-sm" data-ep-all="close" type="button"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m7 20 5-5 5 5M7 4l5 5 5-5"></path></svg><span>بستن همه</span></button>
+        </div>
+
+        <section class="doc-sec ep-group" id="g-chat">
+          <h2>گفتگو و هوش مصنوعی <span class="count mono">4</span></h2>
+          <details class="ep acc is-open" id="ep-chat" open>
+            <summary>
+              <span class="method post">POST</span>
+              <span class="ep-path mono">/api/v1/chat</span>
+              <span class="ep-desc">ارسال پیام به مدل یونیکالکت چت مینی و دریافت پاسخ کامل</span>
+              <button type="button" class="ep-link" data-copy-anchor="ep-chat" aria-label="کپی لینک این مسیر" title="کپی لینک"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+              <span class="chev"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span>
+            </summary>
+            <div class="ep-body">
+              <div class="ep-inner">
+                <p>اصلی‌ترین مسیر گفتگو. پیام کاربر و تاریخچه‌ی اختیاری را می‌گیرد و پاسخ کامل مدل را برمی‌گرداند.</p>
+<div class="table-wrap"><table class="dtable params"><thead><tr><th>فیلد</th><th>نوع</th><th>توضیح</th></tr></thead><tbody><tr><td><code class="inline-code">message</code></td><td><span>string</span></td><td><span>متن پیام (حداکثر ۸٬۰۰۰ نویسه)، الزامی</span></td></tr><tr><td><code class="inline-code">history</code></td><td><span>array</span></td><td><span>آرایه‌ای از پیام‌های قبلی {role, content}</span></td></tr><tr><td><code class="inline-code">temperature</code></td><td><span>float = 0.7</span></td><td><span>میزان خلاقیت پاسخ</span></td></tr></tbody></table></div>
+<div class="code" data-code-tabs>
+  <div class="code-bar" role="tablist">
+    <button type="button" role="tab" class="tab" aria-selected="true" data-tab-btn="0">curl</button><button type="button" role="tab" class="tab" aria-selected="false" data-tab-btn="1">JavaScript</button><button type="button" role="tab" class="tab" aria-selected="false" data-tab-btn="2">Python</button><button type="button" role="tab" class="tab" aria-selected="false" data-tab-btn="3">پاسخ</button>
+    <button class="copy" type="button" data-copy-code><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+  </div>
+  <pre data-tab-panel="0" dir="ltr"><code>curl -X POST <span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/api/v1/chat \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#x27;{&quot;message&quot;: &quot;سلام! خودت را معرفی کن&quot;}&#x27;</code></pre><pre data-tab-panel="1" hidden dir="ltr" style="display:none"><code>const r = await fetch(&quot;<span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/api/v1/chat&quot;, {
+  method: &quot;POST&quot;,
+  headers: { &quot;Content-Type&quot;: &quot;application/json&quot; },
+  body: JSON.stringify({ message: &quot;سلام! خودت را معرفی کن&quot; }),
+});
+console.log(await r.json());</code></pre><pre data-tab-panel="2" hidden dir="ltr" style="display:none"><code>import requests
+
+r = requests.post(&quot;<span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/api/v1/chat&quot;, json={&quot;message&quot;: &quot;سلام! خودت را معرفی کن&quot;})
+print(r.json())</code></pre><pre data-tab-panel="3" hidden dir="ltr" style="display:none"><code>{
+  &quot;reply&quot;: &quot;سلام! من دستیار هوش مصنوعی شما هستم.&quot;,
+  &quot;response&quot;: &quot;سلام! من دستیار هوش مصنوعی شما هستم.&quot;,
+  &quot;model&quot;: &quot;یونیکالکت چت مینی&quot;,
+  &quot;latency_ms&quot;: 420
+}</code></pre>
+</div>
+<button type="button" class="btn btn-line btn-sm try-btn" data-try-method="POST" data-try-path="/api/v1/chat" data-try-body="{
+  &quot;message&quot;: &quot;سلام! یک جمله‌ی انگیزشی بگو.&quot;
+}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m4 17 6-6-6-6M12 19h8"></path></svg><span>امتحان در کنسول</span></button>
+              </div>
+            </div>
+          </details>
+          <details class="ep acc" id="ep-stream">
+            <summary>
+              <span class="method post">POST</span>
+              <span class="ep-path mono">/api/v1/chat/stream</span>
+              <span class="ep-desc">استریم زنده توکن‌به‌توکن (SSE)</span>
+              <button type="button" class="ep-link" data-copy-anchor="ep-stream" aria-label="کپی لینک این مسیر" title="کپی لینک"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+              <span class="chev"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span>
+            </summary>
+            <div class="ep-body">
+              <div class="ep-inner">
+                <p>پاسخ مدل را به‌صورت زنده در قالب Server-Sent Events با بسته‌های <code>data: {"t": "..."}</code> تا <code>data: [DONE]</code> می‌فرستد.</p>
+<div class="code" data-code-tabs>
+  <div class="code-bar" role="tablist">
+    <button type="button" role="tab" class="tab" aria-selected="true" data-tab-btn="0">curl</button>
+    <button class="copy" type="button" data-copy-code><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+  </div>
+  <pre data-tab-panel="0" dir="ltr"><code>curl -N -X POST <span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/api/v1/chat/stream \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#x27;{&quot;message&quot;: &quot;سلام!&quot;}&#x27;</code></pre>
+</div>
+              </div>
+            </div>
+          </details>
+          <details class="ep acc" id="ep-openai">
+            <summary>
+              <span class="method post">POST</span>
+              <span class="ep-path mono">/api/v1/chat/completions</span>
+              <span class="ep-desc">سازگار با روتر استاندارد Chat Completions</span>
+              <button type="button" class="ep-link" data-copy-anchor="ep-openai" aria-label="کپی لینک این مسیر" title="کپی لینک"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+              <span class="chev"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span>
+            </summary>
+            <div class="ep-body">
+              <div class="ep-inner">
+                <p>کاملاً سازگار با قالب استاندارد OpenAI SDK. آرایه‌ی <code>messages</code> و فیلد <code>stream</code> را می‌پذیرد.</p>
+<div class="code" data-code-tabs>
+  <div class="code-bar" role="tablist">
+    <button type="button" role="tab" class="tab" aria-selected="true" data-tab-btn="0">curl</button><button type="button" role="tab" class="tab" aria-selected="false" data-tab-btn="1">پاسخ</button>
+    <button class="copy" type="button" data-copy-code><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+  </div>
+  <pre data-tab-panel="0" dir="ltr"><code>curl -X POST <span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/api/v1/chat/completions \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#x27;{&quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;سلام!&quot;}]}&#x27;</code></pre><pre data-tab-panel="1" hidden dir="ltr" style="display:none"><code>{
+  &quot;id&quot;: &quot;chatcmpl-1700000000&quot;,
+  &quot;object&quot;: &quot;chat.completion&quot;,
+  &quot;model&quot;: &quot;یونیکالکت چت مینی&quot;,
+  &quot;choices&quot;: [
+    {
+      &quot;index&quot;: 0,
+      &quot;message&quot;: {
+        &quot;role&quot;: &quot;assistant&quot;,
+        &quot;content&quot;: &quot;سلام! چطور می‌توانم کمکتان کنم؟&quot;
+      },
+      &quot;finish_reason&quot;: &quot;stop&quot;
+    }
+  ]
+}</code></pre>
+</div>
+<button type="button" class="btn btn-line btn-sm try-btn" data-try-method="POST" data-try-path="/api/v1/chat/completions" data-try-body="{
+  &quot;messages&quot;: [
+    {
+      &quot;role&quot;: &quot;user&quot;,
+      &quot;content&quot;: &quot;سلام!&quot;
+    }
+  ]
+}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m4 17 6-6-6-6M12 19h8"></path></svg><span>امتحان در کنسول</span></button>
+              </div>
+            </div>
+          </details>
+          <details class="ep acc" id="ep-generate">
+            <summary>
+              <span class="method post">POST</span>
+              <span class="ep-path mono">/api/v1/generate</span>
+              <span class="ep-desc">مسیر تولید متن با فیلد prompt</span>
+              <button type="button" class="ep-link" data-copy-anchor="ep-generate" aria-label="کپی لینک این مسیر" title="کپی لینک"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+              <span class="chev"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span>
+            </summary>
+            <div class="ep-body">
+              <div class="ep-inner">
+                <p>مسیر ساده برای اسکریپت‌هایی که فیلد <code>prompt</code> ارسال می‌کنند.</p>
+<button type="button" class="btn btn-line btn-sm try-btn" data-try-method="POST" data-try-path="/api/v1/generate" data-try-body="{
+  &quot;prompt&quot;: &quot;یک ایده برای پروژه بده&quot;
+}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m4 17 6-6-6-6M12 19h8"></path></svg><span>امتحان در کنسول</span></button>
+              </div>
+            </div>
+          </details>
+        </section>
+        <section class="doc-sec ep-group" id="g-discovery">
+          <h2>مدل‌ها، وضعیت و اطلاعات <span class="count mono">6</span></h2>
+          <details class="ep acc" id="ep-index">
+            <summary>
+              <span class="method get">GET</span>
+              <span class="ep-path mono">/api/v1</span>
+              <span class="ep-desc">فهرست همه‌ی مسیرهای API</span>
+              <button type="button" class="ep-link" data-copy-anchor="ep-index" aria-label="کپی لینک این مسیر" title="کپی لینک"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+              <span class="chev"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span>
+            </summary>
+            <div class="ep-body">
+              <div class="ep-inner">
+                <div class="code" data-code-tabs>
+  <div class="code-bar" role="tablist">
+    <button type="button" role="tab" class="tab" aria-selected="true" data-tab-btn="0">curl</button>
+    <button class="copy" type="button" data-copy-code><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+  </div>
+  <pre data-tab-panel="0" dir="ltr"><code>curl <span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/api/v1</code></pre>
+</div>
+<button type="button" class="btn btn-line btn-sm try-btn" data-try-method="GET" data-try-path="/api/v1" data-try-body=""><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m4 17 6-6-6-6M12 19h8"></path></svg><span>امتحان در کنسول</span></button>
+              </div>
+            </div>
+          </details>
+          <details class="ep acc" id="ep-health">
+            <summary>
+              <span class="method get">GET</span>
+              <span class="ep-path mono">/api/v1/health</span>
+              <span class="ep-desc">وضعیت سلامت سرور و مدل یونیکالکت چت مینی</span>
+              <button type="button" class="ep-link" data-copy-anchor="ep-health" aria-label="کپی لینک این مسیر" title="کپی لینک"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+              <span class="chev"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span>
+            </summary>
+            <div class="ep-body">
+              <div class="ep-inner">
+                <div class="code" data-code-tabs>
+  <div class="code-bar" role="tablist">
+    <button type="button" role="tab" class="tab" aria-selected="true" data-tab-btn="0">curl</button>
+    <button class="copy" type="button" data-copy-code><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+  </div>
+  <pre data-tab-panel="0" dir="ltr"><code>curl <span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/api/v1/health</code></pre>
+</div>
+<button type="button" class="btn btn-line btn-sm try-btn" data-try-method="GET" data-try-path="/api/v1/health" data-try-body=""><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m4 17 6-6-6-6M12 19h8"></path></svg><span>امتحان در کنسول</span></button>
+              </div>
+            </div>
+          </details>
+          <details class="ep acc" id="ep-ready">
+            <summary>
+              <span class="method get">GET</span>
+              <span class="ep-path mono">/api/v1/ready</span>
+              <span class="ep-desc">آماده است؟ (۲۰۰ یا ۵۰۳)</span>
+              <button type="button" class="ep-link" data-copy-anchor="ep-ready" aria-label="کپی لینک این مسیر" title="کپی لینک"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+              <span class="chev"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span>
+            </summary>
+            <div class="ep-body">
+              <div class="ep-inner">
+                <div class="code" data-code-tabs>
+  <div class="code-bar" role="tablist">
+    <button type="button" role="tab" class="tab" aria-selected="true" data-tab-btn="0">curl</button>
+    <button class="copy" type="button" data-copy-code><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+  </div>
+  <pre data-tab-panel="0" dir="ltr"><code>curl <span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/api/v1/ready</code></pre>
+</div>
+<button type="button" class="btn btn-line btn-sm try-btn" data-try-method="GET" data-try-path="/api/v1/ready" data-try-body=""><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m4 17 6-6-6-6M12 19h8"></path></svg><span>امتحان در کنسول</span></button>
+              </div>
+            </div>
+          </details>
+          <details class="ep acc" id="ep-models">
+            <summary>
+              <span class="method get">GET</span>
+              <span class="ep-path mono">/api/v1/models</span>
+              <span class="ep-desc">فهرست مدل‌های فعال و نصب‌شده در یونیکالکت چت مینی</span>
+              <button type="button" class="ep-link" data-copy-anchor="ep-models" aria-label="کپی لینک این مسیر" title="کپی لینک"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+              <span class="chev"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span>
+            </summary>
+            <div class="ep-body">
+              <div class="ep-inner">
+                <div class="code" data-code-tabs>
+  <div class="code-bar" role="tablist">
+    <button type="button" role="tab" class="tab" aria-selected="true" data-tab-btn="0">curl</button>
+    <button class="copy" type="button" data-copy-code><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+  </div>
+  <pre data-tab-panel="0" dir="ltr"><code>curl <span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/api/v1/models</code></pre>
+</div>
+<button type="button" class="btn btn-line btn-sm try-btn" data-try-method="GET" data-try-path="/api/v1/models" data-try-body=""><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m4 17 6-6-6-6M12 19h8"></path></svg><span>امتحان در کنسول</span></button>
+              </div>
+            </div>
+          </details>
+          <details class="ep acc" id="ep-config">
+            <summary>
+              <span class="method get">GET</span>
+              <span class="ep-path mono">/api/v1/config</span>
+              <span class="ep-desc">تنظیمات و محدودیت‌های سرور</span>
+              <button type="button" class="ep-link" data-copy-anchor="ep-config" aria-label="کپی لینک این مسیر" title="کپی لینک"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+              <span class="chev"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span>
+            </summary>
+            <div class="ep-body">
+              <div class="ep-inner">
+                <div class="code" data-code-tabs>
+  <div class="code-bar" role="tablist">
+    <button type="button" role="tab" class="tab" aria-selected="true" data-tab-btn="0">curl</button>
+    <button class="copy" type="button" data-copy-code><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+  </div>
+  <pre data-tab-panel="0" dir="ltr"><code>curl <span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/api/v1/config</code></pre>
+</div>
+<button type="button" class="btn btn-line btn-sm try-btn" data-try-method="GET" data-try-path="/api/v1/config" data-try-body=""><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m4 17 6-6-6-6M12 19h8"></path></svg><span>امتحان در کنسول</span></button>
+              </div>
+            </div>
+          </details>
+          <details class="ep acc" id="ep-stats">
+            <summary>
+              <span class="method get">GET</span>
+              <span class="ep-path mono">/api/v1/stats</span>
+              <span class="ep-desc">آمار درخواست‌ها و میانگین زمان پاسخ</span>
+              <button type="button" class="ep-link" data-copy-anchor="ep-stats" aria-label="کپی لینک این مسیر" title="کپی لینک"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></button>
+              <span class="chev"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"></path></svg></span>
+            </summary>
+            <div class="ep-body">
+              <div class="ep-inner">
+                <div class="code" data-code-tabs>
+  <div class="code-bar" role="tablist">
+    <button type="button" role="tab" class="tab" aria-selected="true" data-tab-btn="0">curl</button>
+    <button class="copy" type="button" data-copy-code><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>کپی</span></button>
+  </div>
+  <pre data-tab-panel="0" dir="ltr"><code>curl <span class="base-url" data-live-url>https://YOUR-LINK.trycloudflare.com</span>/api/v1/stats</code></pre>
+</div>
+<button type="button" class="btn btn-line btn-sm try-btn" data-try-method="GET" data-try-path="/api/v1/stats" data-try-body=""><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m4 17 6-6-6-6M12 19h8"></path></svg><span>امتحان در کنسول</span></button>
+              </div>
+            </div>
+          </details>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer class="foot" data-foot="true">
+    <div class="foot-card">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <a class="brand" href="../" aria-label="یونیکالکت، صفحه اصلی">
+            <span class="logo"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
+            <span>یونیکالکت</span>
+            <small>چت مینی</small>
+          </a>
+          <p>دستیار هوش مصنوعی یونیکالکت چت مینی ساخته‌ی موویکسو با استریم زنده و کلید عمومی API.</p>
+          <a class="foot-status" data-live-pill href="../public-key/">
+            <span class="dot warn" data-live-dot></span>
+            <span data-live-label>در حال بررسی…</span>
+          </a>
+        </div>
+        <nav class="foot-cols" aria-label="پیوندهای پایانی">
+          <div>
+            <h4>سایت یونیکالکت</h4>
+            <a href="../">سایت یونیکالکت</a>
+            <a href="../chat/">چت یونیکالکت</a>
+            <a href="../how-it-works/">فرآیند</a>
+            <a href="../about/">درباره</a>
+          </div>
+          <div>
+            <h4>توسعه‌دهنده و API</h4>
+            <a href="../public-key/">کلید عمومی API</a>
+            <a href="../api/#links">مدل‌ها و وضعیت</a>
+            <a href="../api/">مستندات API</a>
+            <a href="../api-docs/" data-swagger-link>Swagger / OpenAPI</a>
+            <a href="../api/links.json" class="ltr">links.json</a>
+          </div>
+          <div>
+            <h4>حقوقی</h4>
+            <a href="../privacy/">حریم خصوصی</a>
+            <a href="../api/#auth">کلید و محدودیت</a>
+          </div>
+        </nav>
+      </div>
+      <div class="foot-bottom">
+        <span>© یونیکالکت · ساخته‌ی موویکسو</span>
+        <span class="foot-note">یونیکالکت می‌تواند اشتباه کند؛ نتیجه‌های مهم را خودت هم مرور کن.</span>
+        <button class="to-top" type="button" data-to-top aria-label="برگشت به بالا">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m18 15-6-6-6 6"></path></svg>
+          <span>بالا</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+  <div class="toast-host" id="toast-host" aria-live="polite"></div>
+</div>
+<script src="../assets/site.js?v=bw6" defer></script>
+</body>
+</html>

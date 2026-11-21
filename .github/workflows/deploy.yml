@@ -1,0 +1,309 @@
+name: Ollama Web Panel 24/7 + Cloudflare Tunnel
+
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: "Primary Ollama chat model (default gpt-oss:20b, served as Unicollect Chat Mini)"
+        required: false
+        default: "gpt-oss:20b"
+      math_model:
+        description: "Dedicated Ollama 1.2 model (default lfm2.5:24b-a2b-q4_0, 13.6GB QAD Q4_0, fits 16GB RAM)"
+        required: false
+        default: "lfm2.5:24b-a2b-q4_0"
+      router_model:
+        description: "Ultra-lightweight router model (default gemma3:1b, ~398MB, classifies MATH vs CHAT)"
+        required: false
+        default: "gemma3:1b"
+      runtime_minutes:
+        description: "Managed runtime in minutes before graceful handoff/stop (default 300, range 15-345)"
+        required: false
+        type: string
+        default: "300"
+      reason:
+        description: "Why this run was started (manual, handoff, heartbeat)"
+        required: false
+        default: manual
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**.md"
+
+permissions:
+  contents: write
+  actions: write
+
+env:
+  MODEL_NAME: ${{ github.event.inputs.model || 'gpt-oss:20b' }}
+  MATH_MODEL: ${{ github.event.inputs.math_model || 'lfm2.5:24b-a2b-q4_0' }}
+  ROUTER_MODEL: ${{ github.event.inputs.router_model || 'gemma3:1b' }}
+  MODEL_LABEL: "Unicollect Chat Mini"
+  MATH_MODEL_LABEL: "Unicollect Math Model"
+  APP_TOKEN: ${{ secrets.PANEL_TOKEN }}
+  RUNTIME_MINUTES: ${{ github.event.inputs.runtime_minutes || '300' }}
+  HANDOFF_MIN: "285"
+  HARD_STOP_MIN: "300"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+
+    steps:
+      - name: Mark job start & Generate Backend Public API Key
+        run: |
+          echo "JOB_T0=$(date +%s)" >> "$GITHUB_ENV"
+          RAW_RT="${RUNTIME_MINUTES:-300}"
+          case "$RAW_RT" in
+            ''|*[!0-9]*) RT=300 ;;
+            *) RT="$RAW_RT" ;;
+          esac
+          [ "$RT" -lt 15 ] && RT=15
+          [ "$RT" -gt 345 ] && RT=345
+          HO=$((RT - 15))
+          [ "$HO" -lt 10 ] && HO=10
+          echo "RUNTIME_MINUTES=$RT" >> "$GITHUB_ENV"
+          echo "HARD_STOP_MIN=$RT" >> "$GITHUB_ENV"
+          echo "HANDOFF_MIN=$HO" >> "$GITHUB_ENV"
+          KEY="${{ secrets.PUBLIC_API_KEY }}"
+          if [ -z "$KEY" ]; then
+            KEY="$(python3 -c 'import secrets; print("sk-uc-" + secrets.token_hex(16))')"
+          fi
+          echo -n "$KEY" > .public_api_key
+          echo "PUBLIC_API_KEY=$KEY" >> "$GITHUB_ENV"
+          echo "=================================================================="
+          echo "Backend Generated Public API Key (KEY): $KEY"
+          echo "Model Name                            : یونیکالکت چت مینی (by Muvixo)"
+          echo "Managed Runtime                       : ${RT} min (handoff at ${HO} min)"
+          echo "=================================================================="
+
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Persist generated Public API Key in workspace
+        run: echo -n "$PUBLIC_API_KEY" > .public_api_key
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Keep the heartbeat enabled
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow enable heartbeat.yml --repo "$GITHUB_REPOSITORY" || true
+
+      - name: Status page -> "starting"
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          owner="${GITHUB_REPOSITORY_OWNER,,}"; repo="${GITHUB_REPOSITORY#*/}"
+          if [ "${repo,,}" = "${owner}.github.io" ]; then PAGE="https://${owner}.github.io/"; else PAGE="https://${owner}.github.io/${repo}/"; fi
+          echo "PAGES_URL=$PAGE" >> "$GITHUB_ENV"
+          echo "Status page: $PAGE"
+          bash scripts/publish_status.sh starting || echo "::warning::status page not updated (enable Pages -> gh-pages branch)"
+
+      - name: Unit tests (demo mode)
+        continue-on-error: true
+        run: |
+          pip install --quiet -r requirements-dev.txt
+          PANEL_DEMO_MODE=1 python -m pytest -q || { echo "::error::unit tests failed (deploy continues)"; exit 1; }
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          bash scripts/panel_ctl.sh retry 3 pip install --quiet -r requirements.txt
+
+      - name: Install Ollama
+        run: bash scripts/panel_ctl.sh retry 3 bash -c "curl -fsSL https://ollama.com/install.sh | sh"
+
+      - name: Free runner disk space & enable 8GB swapfile (OOM protection)
+        run: |
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/lib/android /usr/share/swift || true
+          if ! swapon --show | grep -q "/swapfile"; then
+            sudo fallocate -l 8G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile || true
+            sudo sysctl -w vm.swappiness=20 || true
+          fi
+          free -h
+          df -h
+
+      - name: Start Ollama server & pull model
+        run: |
+          env -u RUNNER_TRACKING_ID setsid bash scripts/start_ollama.sh < /dev/null > ollama.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -fs http://127.0.0.1:11434/api/version >/dev/null 2>&1; then
+              echo "Ollama is up"
+              break
+            fi
+            sleep 2
+          done
+          bash scripts/panel_ctl.sh retry 3 ollama pull "$MODEL_NAME"
+          if [ -n "${MATH_MODEL:-}" ] && [ "$MATH_MODEL" != "$MODEL_NAME" ]; then
+            bash scripts/panel_ctl.sh retry 3 ollama pull "$MATH_MODEL" || true
+          fi
+          if [ -n "${MATH_MODEL:-}" ] && [ "$MATH_MODEL" != "$MODEL_NAME" ]; then
+            echo "Verifying 1.2 model ($MATH_MODEL) loads cleanly before going live..."
+            curl -fsS --max-time 180 -X POST http://127.0.0.1:11434/api/generate -d "{\"model\":\"$MATH_MODEL\",\"prompt\":\"hi\",\"options\":{\"num_predict\":4},\"keep_alive\":0,\"stream\":false}" >/dev/null
+            echo "1.2 model ($MATH_MODEL) verified OK!"
+          fi
+          echo "Pre-warming primary Mini model ($MODEL_NAME) in RAM (keep_alive=-1)..."
+          curl -fsS --max-time 180 -X POST http://127.0.0.1:11434/api/generate -d "{\"model\":\"$MODEL_NAME\",\"prompt\":\"hi\",\"options\":{\"num_predict\":4},\"keep_alive\":-1,\"stream\":false}" >/dev/null
+          echo "Primary Mini model ($MODEL_NAME) verified & warm in RAM!"
+
+      - name: Install cloudflared
+        run: |
+          bash scripts/panel_ctl.sh retry 3 wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared
+          chmod +x cloudflared
+          ./cloudflared --version
+
+      - name: Start FastAPI server (auto-retry)
+        run: bash scripts/panel_ctl.sh boot 3
+
+      - name: Smoke tests
+        continue-on-error: true
+        run: python scripts/smoke_test.py http://localhost:8000
+
+      - name: Warm up AI & verify instant chat readiness before printing URL
+        run: |
+          echo "Running end-to-end chat warm-up so $MODEL_NAME weights + KV cache are hot in RAM..."
+          curl -fsS --max-time 240 -X POST http://127.0.0.1:8000/api/chat/stream \
+            -H "Content-Type: application/json" \
+            -H "X-API-Key: $PUBLIC_API_KEY" \
+            -d '{"message":"سلام","history":[],"model":"unicollect-chat-mini","max_tokens":4}' >/dev/null
+          echo "Checking loaded models in Ollama RAM (ollama ps):"
+          curl -fsS http://127.0.0.1:11434/api/ps || true
+          echo ""
+          echo "AI is 100% warm and ready to chat immediately!"
+
+      - name: Start Cloudflare Tunnel, Print Routes & Keep Service Alive
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          URL="$(bash scripts/panel_ctl.sh retry 3 bash scripts/panel_ctl.sh tunnel | tail -n1)"
+          case "$URL" in https://*) ;; *) echo "Could not obtain the tunnel URL"; cat tunnel.log; exit 1 ;; esac
+          echo "PUBLIC_URL=$URL" >> "$GITHUB_ENV"
+          echo "=================================================================="
+          echo "یونیکالکت چت مینی is LIVE!"
+          echo "Public Tunnel URL              : $URL"
+          echo "Public API Key (KEY)           : $PUBLIC_API_KEY"
+          echo "OpenAI / 9router Base URL      : $URL/v1"
+          echo "Chat Completions Route         : $URL/v1/chat/completions"
+          echo "Models Route                   : $URL/v1/models"
+          echo "Native Chat Route              : $URL/api/v1/chat"
+          echo "Public API Key Page (Pages)    : ${PAGES_URL:-}public-key/"
+          echo "=================================================================="
+          {
+            echo "### یونیکالکت چت مینی is live at: $URL"
+            echo ""
+            echo "| Item | Value / Route |"
+            echo "|---|---|"
+            echo "| **Model** | `یونیکالکت چت مینی` (`unicollect-chat-mini`) |"
+            echo "| **Managed Runtime** | `${RUNTIME_MINUTES} min` (handoff at `${HANDOFF_MIN} min`) |"
+            echo "| **Public API Key (KEY)** | `$PUBLIC_API_KEY` |"
+            echo "| **OpenAI / 9router Base URL** | `$URL/v1` |"
+            echo "| **Chat Completions Route** | `POST $URL/v1/chat/completions` |"
+            echo "| **Models Route** | `GET $URL/v1/models` |"
+            echo "| **Native Chat Route** | `POST $URL/api/v1/chat` |"
+            echo "| **Web Panel** | $URL |"
+            echo "| **Swagger / OpenAPI** | $URL/docs |"
+            [ -n "${PAGES_URL:-}" ] && echo "| **Public API Key Page** | ${PAGES_URL}public-key/ |"
+            [ -n "${PAGES_URL:-}" ] && echo "| **GitHub Pages Site** | ${PAGES_URL} |"
+            [ -n "${PAGES_URL:-}" ] && echo "| **Links JSON** | ${PAGES_URL}api/links.json |"
+          } >> "$GITHUB_STEP_SUMMARY"
+          bash scripts/panel_ctl.sh retry 3 bash scripts/publish_status.sh online "$URL" || echo "::warning::status page not updated"
+
+          ME="${GITHUB_RUN_NUMBER}"
+          REF="${GITHUB_REF_NAME:-main}"
+          echo "Unicollect running at: $URL (run $ME) | KEY: $PUBLIC_API_KEY"
+          elapsed_min() { echo $(( ($(date +%s) - JOB_T0) / 60 )); }
+
+          TUNNEL_FAILS=0; HEALTH_FAILS=0; RESTARTS=0; TUNNEL_RESTART_FAILS=0
+          HANDED_OFF=0; SUPERSEDED_AT=0; i=0
+          while :; do
+            sleep 20; i=$((i + 1)); E="$(elapsed_min)"
+
+            if [ "$E" -ge "$HARD_STOP_MIN" ]; then echo "Hard stop at ${E} min."; break; fi
+
+            if [ "$HANDED_OFF" = "0" ] && [ "$E" -ge "$HANDOFF_MIN" ]; then
+              echo "Starting successor run at ${E} min..."
+              if gh workflow run deploy.yml --repo "$GITHUB_REPOSITORY" --ref "$REF" -f model="$MODEL_NAME" -f math_model="$MATH_MODEL" -f router_model="$ROUTER_MODEL" -f runtime_minutes="$RUNTIME_MINUTES" -f reason="handoff from run ${ME}"; then
+                HANDED_OFF=1; echo "Successor requested at ${E} min (run ${ME})." >> "$GITHUB_STEP_SUMMARY"
+              else
+                echo "::warning::could not start successor; heartbeat will cover it"
+              fi
+            fi
+
+            if [ $((i % 3)) -eq 0 ]; then
+              read -r PUB_RUN PUB_STATUS < <(bash scripts/panel_ctl.sh published-run)
+              if [ "${PUB_RUN:-0}" -gt "$ME" ] && [ "$PUB_STATUS" = "online" ]; then
+                [ "$SUPERSEDED_AT" = "0" ] && SUPERSEDED_AT="$E" && echo "Run ${PUB_RUN} is online; retiring in 3 min."
+              fi
+            fi
+            if [ "$SUPERSEDED_AT" != "0" ] && [ $((E - SUPERSEDED_AT)) -ge 3 ]; then
+              echo "Handed over to a newer run."; echo "Retired: newer run online." >> "$GITHUB_STEP_SUMMARY"; exit 0
+            fi
+
+            if ! curl -fs --max-time 5 http://127.0.0.1:11434/api/version >/dev/null 2>&1; then
+              echo "::warning::Ollama died; restarting"
+              env -u RUNNER_TRACKING_ID setsid bash scripts/start_ollama.sh < /dev/null >> ollama.log 2>&1 &
+              sleep 5
+            fi
+
+            if ! pgrep -f "gunicorn app.main:app" >/dev/null || ! bash scripts/panel_ctl.sh ok; then
+              HEALTH_FAILS=$((HEALTH_FAILS + 1))
+              echo "Panel server unhealthy (${HEALTH_FAILS}/3): $(bash scripts/panel_ctl.sh health)"
+            else
+              HEALTH_FAILS=0
+            fi
+            if ! pgrep -f "gunicorn app.main:app" >/dev/null || [ "$HEALTH_FAILS" -ge 3 ]; then
+              RESTARTS=$((RESTARTS + 1))
+              echo "::warning::restarting panel server (restart #${RESTARTS})"
+              bash scripts/panel_ctl.sh stop
+              if ! bash scripts/panel_ctl.sh boot 2; then
+                echo "::error::panel server would not come back; ending run for heartbeat"
+                exit 1
+              fi
+              HEALTH_FAILS=0
+              [ "$RESTARTS" -ge 6 ] && { echo "::error::too many restarts"; exit 1; }
+            fi
+
+            OK=0
+            if pgrep -f "cloudflared tunnel" >/dev/null; then
+              curl -fs --max-time 15 "$URL/health" 2>/dev/null | grep -q '"status":"ok"' && OK=1
+            fi
+            if [ "$OK" = "1" ]; then TUNNEL_FAILS=0; continue; fi
+            TUNNEL_FAILS=$((TUNNEL_FAILS + 1))
+            echo "Tunnel health check failed (${TUNNEL_FAILS}/2)..."
+            [ "$TUNNEL_FAILS" -lt 2 ] && continue
+            TUNNEL_FAILS=0
+            echo "Tunnel unreachable twice in a row, restarting..."
+            NEW="$(bash scripts/panel_ctl.sh tunnel | tail -n1)"
+            case "$NEW" in
+              https://*)
+                URL="$NEW"; TUNNEL_RESTART_FAILS=0
+                echo "Tunnel restarted, new URL: $URL" >> "$GITHUB_STEP_SUMMARY"
+                bash scripts/publish_status.sh online "$URL" || true ;;
+              *)
+                TUNNEL_RESTART_FAILS=$((TUNNEL_RESTART_FAILS + 1))
+                [ "$TUNNEL_RESTART_FAILS" -ge 5 ] && { echo "::error::tunnel will not come back"; exit 1; } ;;
+            esac
+          done
+
+      - name: Status page -> "offline"
+        if: success() || failure()
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash scripts/publish_status.sh offline
+
+      - name: Trigger Heartbeat Watchdog on exit
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN || github.token }}
+        run: |
+          REF="${GITHUB_REF_NAME:-main}"
+          echo "Calling heartbeat.yml before exit..."
+          gh workflow run heartbeat.yml --repo "$GITHUB_REPOSITORY" --ref "$REF" -f reason="deploy-exit" || true

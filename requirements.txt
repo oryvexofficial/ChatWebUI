@@ -1,0 +1,6 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+gunicorn>=22
+pydantic>=2
+anyio>=4
+requests>=2.31

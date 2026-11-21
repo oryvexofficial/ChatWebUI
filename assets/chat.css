@@ -5902,3 +5902,17 @@ body.chat-body,
 * {
   scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
 }
+
+/* v107 — 3-Column Model Picker Grid (3 Chat / 3 Math) */
+.modal-card.mp-modal {
+  width: min(94vw, 680px) !important;
+  max-width: 680px !important;
+}
+.mp-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+@media (max-width: 680px) {
+  .mp-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

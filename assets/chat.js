@@ -2077,7 +2077,7 @@
     }
 
     // 1. Run router to detect MATH vs CHAT, then auto-open filtered custom model picker modal
-    const detectedCat = await detectMessageCategory(text);
+    const detectedCat = localDetectMath(text) ? 'math' : 'chat';
     const pickedModelId = await promptModelForCategory(detectedCat);
     if (!pickedModelId) return;
     applySelectedModel(pickedModelId, true);
@@ -2354,7 +2354,7 @@
       } else {
         if (reasonQueue.length) {
           const rChars = Array.from(reasonQueue);
-          const rRate = Math.min(540, 64 + rChars.length * 2.8);
+          const rRate = Math.min(900, 140 + rChars.length * 5.0);
           rsnCarry += (rRate * dt) / 1000;
           const rStep = Math.floor(rsnCarry);
           if (rStep > 0) {
@@ -2367,7 +2367,7 @@
         }
         if (streamQueue.length) {
           const aChars = Array.from(streamQueue);
-          const aRate = Math.min(480, 52 + aChars.length * 2.5);
+          const aRate = Math.min(820, 110 + aChars.length * 4.5);
           ansCarry += (aRate * dt) / 1000;
           const aStep = Math.floor(ansCarry);
           if (aStep > 0) {
@@ -3123,8 +3123,10 @@
   const UC_MODEL_LABELS = {
     'unicollect-chat-mini': 'Unicollect Chat Mini',
     'unicollect-chat-1.2': 'Unicollect Chat 1.2',
+    'unicollect-chat-pro': 'Unicollect Chat Pro',
     'unicollect-math-mini': 'Unicollect Math Mini',
-    'unicollect-math-1.2': 'Unicollect Math 1.2'
+    'unicollect-math-1.2': 'Unicollect Math 1.2',
+    'unicollect-math-pro': 'Unicollect Math Pro'
   };
   let _pendingModelResolver = null;
 

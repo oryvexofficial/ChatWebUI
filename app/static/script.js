@@ -2393,6 +2393,7 @@
     const timings = { t0: t0, d0: 160, d1: 180, m2: t0 + 340, routedAt: 0, routeMs: 0, first: 0, end: 0 };
     let routedModel = '';
     let routedIsMath = false;
+    let routedIsScience = false;
     let phaseIdx = 0;
 
     const stepsBox = document.getElementById('pending-steps-box');
@@ -2546,7 +2547,7 @@
         timeLbl.textContent = fa(elapsedSec) + ' ثانیه';
       }
       if (phaseLbl) phaseLbl.textContent = STEPS[phaseIdx];
-      const routeDetail = routedModel ? (routedModel + (routedIsMath ? ' (ریاضی)' : ' (گفتگو)')) : 'در حال تشخیص با روتر هوشمند…';
+      const routeDetail = routedModel ? (localizeModelLabel(routedModel, routedIsMath, routedIsScience) + (routedIsMath ? ' (ریاضی)' : routedIsScience ? ' (علوم)' : ' (گفتگو)')) : 'در حال تشخیص با روتر هوشمند…';
       const liveSteps = [
         { label: STEPS[0], detail: charDetail, state: phaseIdx > 0 ? 'done' : 'active', ms: phaseIdx > 0 ? timings.d0 : now - t0 },
         { label: STEPS[1], detail: histDetail, state: phaseIdx > 1 ? 'done' : phaseIdx === 1 ? 'active' : 'wait', ms: phaseIdx > 1 ? timings.d1 : phaseIdx === 1 ? now - (t0 + timings.d0) : undefined },
@@ -2683,12 +2684,13 @@
               usedMath = !!obj.meta.is_math;
               routedModel = usedModel;
               routedIsMath = usedMath;
+              routedIsScience = !!(obj.meta.is_science || /science|علوم/i.test(usedModel));
               timings.routedAt = performance.now();
               timings.routeMs = typeof obj.meta.route_ms === 'number' ? Math.max(10, obj.meta.route_ms) : Math.max(80, Math.round(timings.routedAt - timings.m2));
               phaseIdx = 3;
               updatePendingThinkingUI();
               const badgeEl = document.getElementById('pending-model-badge');
-              if (badgeEl) badgeEl.innerHTML = renderModelBadgeHtml(usedModel, usedMath);
+              if (badgeEl) badgeEl.innerHTML = renderModelBadgeHtml(usedModel, usedMath, routedIsScience);
               continue;
             }
             if (obj && typeof obj.r === 'string' && obj.r) {

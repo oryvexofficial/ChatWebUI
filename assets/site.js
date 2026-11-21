@@ -319,13 +319,13 @@
       inner.style.overflow = 'hidden';
       inner.style.height = '0px';
       inner.style.opacity = '0';
-      inner.style.transform = 'translateY(-5px)';
+      inner.style.transform = 'scale(0.985)';
       inner.style.transition = 'none';
       void inner.offsetHeight;
       inner.style.transition = 'height 240ms ' + SPRING_EASE + ', opacity 200ms ease, transform 240ms ' + SPRING_EASE;
       inner.style.height = targetH + 'px';
       inner.style.opacity = '1';
-      inner.style.transform = 'translateY(0)';
+      inner.style.transform = 'scale(1)';
       d._accTimer = setTimeout(function () {
         inner.style.height = '';
         inner.style.overflow = '';
@@ -353,13 +353,13 @@
       inner.style.overflow = 'hidden';
       inner.style.height = startH + 'px';
       inner.style.opacity = '1';
-      inner.style.transform = 'translateY(0)';
+      inner.style.transform = 'scale(1)';
       inner.style.transition = 'none';
       void inner.offsetHeight;
       inner.style.transition = 'height 210ms ' + SPRING_EASE + ', opacity 180ms ease, transform 210ms ' + SPRING_EASE;
       inner.style.height = '0px';
       inner.style.opacity = '0';
-      inner.style.transform = 'translateY(-5px)';
+      inner.style.transform = 'scale(0.985)';
       d._accTimer = setTimeout(function () {
         d.classList.remove('closing');
         d.open = false;
@@ -727,7 +727,16 @@
   }
 
   /* ---------- راه‌اندازی اولیه ---------- */
+  function syncSavedTheme() {
+    try {
+      if (localStorage.getItem('uc_theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch (e) {}
+  }
+
   function init() {
+    syncSavedTheme();
     initNavigationAndScroll();
     initCodeTabs();
     initCopyButtons();

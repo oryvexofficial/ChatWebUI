@@ -39,7 +39,8 @@
     trash: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><path d="M10 11v6M14 11v6"></path></svg>',
     chevron: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>',
     msg: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>',
-    search: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>'
+    search: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>',
+    edit: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>'
   };
 
   const PETAL_MARK_HTML = '<svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg>';
@@ -84,7 +85,7 @@
       node.classList.remove("closing");
       setHidden(node, true);
       node._closeTimer = 0;
-    }, delay || 190);
+    }, delay || 150);
   }
 
   function expandSmooth(node) {
@@ -105,13 +106,13 @@
     node.style.overflow = "hidden";
     node.style.height = "0px";
     node.style.opacity = "0";
-    node.style.transform = "translateY(-5px)";
+    node.style.transform = "scale(0.985)";
     node.style.transition = "none";
     void node.offsetHeight;
-    node.style.transition = "height 240ms " + SPRING_EASE + ", opacity 200ms ease, transform 240ms " + SPRING_EASE;
+    node.style.transition = "height 220ms " + SPRING_EASE + ", opacity 200ms " + SPRING_EASE + ", transform 220ms " + SPRING_EASE;
     node.style.height = targetH + "px";
     node.style.opacity = "1";
-    node.style.transform = "translateY(0)";
+    node.style.transform = "scale(1)";
     node._slideTimer = setTimeout(function () {
       node.style.height = "";
       node.style.overflow = "";
@@ -119,7 +120,7 @@
       node.style.transform = "";
       node.style.transition = "";
       node._slideTimer = 0;
-    }, 250);
+    }, 230);
   }
 
   function collapseSmooth(node) {
@@ -133,13 +134,13 @@
     node.style.overflow = "hidden";
     node.style.height = startH + "px";
     node.style.opacity = "1";
-    node.style.transform = "translateY(0)";
+    node.style.transform = "scale(1)";
     node.style.transition = "none";
     void node.offsetHeight;
-    node.style.transition = "height 210ms " + SPRING_EASE + ", opacity 180ms ease, transform 210ms " + SPRING_EASE;
+    node.style.transition = "height 180ms " + SPRING_EASE + ", opacity 140ms " + SPRING_EASE + ", transform 180ms " + SPRING_EASE;
     node.style.height = "0px";
     node.style.opacity = "0";
-    node.style.transform = "translateY(-5px)";
+    node.style.transform = "scale(0.985)";
     node._slideTimer = setTimeout(function () {
       setHidden(node, true);
       node.style.height = "";
@@ -148,7 +149,7 @@
       node.style.transform = "";
       node.style.transition = "";
       node._slideTimer = 0;
-    }, 220);
+    }, 190);
   }
 
   function flashCopyFeedback(btn, doneLabel) {
@@ -1414,6 +1415,9 @@
     collapsed: false,
     mobileOpen: false,
     searchQuery: '',
+    sidebarFilter: '',
+    theme: 'dark',
+    lang: 'fa',
     searchSel: 0,
     searchItems: [],
     apiBase: '',
@@ -1437,6 +1441,12 @@
     scroller: document.getElementById('chat-scroller'),
     stream: document.getElementById('chat-stream'),
     sbThreads: document.getElementById('sb-threads'),
+    sbFilterInput: document.getElementById('sb-filter-input'),
+    btnLangToggle: document.getElementById('btn-lang-toggle'),
+    btnThemeToggle: document.getElementById('btn-theme-toggle'),
+    themeIcoSun: document.getElementById('theme-ico-sun'),
+    themeIcoMoon: document.getElementById('theme-ico-moon'),
+    heroModelBadge: document.getElementById('hero-model-badge'),
     sbBackdrop: document.getElementById('sb-backdrop'),
     composerArea: document.querySelector('.composer-area'),
     composer: document.getElementById('composer'),
@@ -1557,12 +1567,22 @@
   /* ---------- رندر نوار کناری (Sidebar Threads) ---------- */
   function renderSidebar() {
     if (!el.sbThreads) return;
+    const filterQ = (state.sidebarFilter || '').toLowerCase().trim();
     const sorted = state.threads.slice().sort(function (a, b) {
       return (b.updatedAt || 0) - (a.updatedAt || 0);
+    }).filter(function (t) {
+      if (!filterQ) return true;
+      if ((t.title || '').toLowerCase().includes(filterQ)) return true;
+      return (t.messages || []).some(function (m) {
+        return ((m.text || '') + ' ' + (m.reply || '')).toLowerCase().includes(filterQ);
+      });
     });
 
     if (!sorted.length) {
-      el.sbThreads.innerHTML = '<div class="sb-empty">هنوز گفتگویی ثبت نشده است</div>';
+      const emptyMsg = filterQ
+        ? (state.lang === 'en' ? 'No matching chats' : 'گفتگویی پیدا نشد')
+        : (state.lang === 'en' ? 'No conversations yet' : 'هنوز گفتگویی ثبت نشده است');
+      el.sbThreads.innerHTML = '<div class="sb-empty">' + emptyMsg + '</div>';
       return;
     }
 
@@ -1666,18 +1686,26 @@
   }
 
   /* ---------- رندر پیام‌های گفتگو ---------- */
+  let _scrollRaf = 0;
+  let _scrollForcePending = false;
   function scrollToBottom(force) {
     if (!el.scroller) return;
-    if (force || el.scroller.scrollHeight - el.scroller.scrollTop - el.scroller.clientHeight < 180) {
-      el.scroller.scrollTop = el.scroller.scrollHeight;
-    }
+    if (force) _scrollForcePending = true;
+    if (_scrollRaf) return;
+    _scrollRaf = requestAnimationFrame(function () {
+      _scrollRaf = 0;
+      const doForce = _scrollForcePending;
+      _scrollForcePending = false;
+      if (!el.scroller) return;
+      if (doForce || el.scroller.scrollHeight - el.scroller.scrollTop - el.scroller.clientHeight < 180) {
+        el.scroller.scrollTop = el.scroller.scrollHeight;
+      }
+    });
   }
 
   function updateWelcomeState() {
     const active = getActiveThread();
     const isWelcome = !state.busy && (!active || !active.messages.length);
-    const prevWasWelcome = el.body ? el.body.classList.contains('is-welcome') : isWelcome;
-    const beforeTop = (el.composerArea && prevWasWelcome !== isWelcome) ? el.composerArea.getBoundingClientRect().top : null;
     if (el.main) el.main.classList.toggle('welcome', isWelcome);
     if (el.body) el.body.classList.toggle('is-welcome', isWelcome);
     if (isWelcome) {
@@ -1688,23 +1716,6 @@
       setHidden(el.heroArea, true);
       setHidden(el.starterChips, true);
       openAnimated(el.scroller);
-    }
-    if (beforeTop !== null && el.composerArea && !prefersReducedMotion()) {
-      const afterTop = el.composerArea.getBoundingClientRect().top;
-      const dy = beforeTop - afterTop;
-      if (Math.abs(dy) > 4) {
-        el.composerArea.style.transition = 'none';
-        el.composerArea.style.transform = 'translateY(' + dy + 'px)';
-        void el.composerArea.offsetHeight;
-        el.composerArea.style.transition = 'transform 280ms ' + SPRING_EASE;
-        el.composerArea.style.transform = 'translateY(0)';
-        setTimeout(function () {
-          if (el.composerArea) {
-            el.composerArea.style.transition = '';
-            el.composerArea.style.transform = '';
-          }
-        }, 290);
-      }
     }
   }
 
@@ -1760,6 +1771,7 @@
               '<div class="actions">' +
                 '<button class="icon-btn sm" type="button" data-copy-bot="' + escapeHtml(m.id) + '" title="کپی پاسخ" aria-label="کپی پاسخ">' + ICONS.copy + '</button>' +
                 '<button class="icon-btn sm" type="button" data-redo-msg="' + escapeHtml(m.id) + '" title="پاسخ دوباره" aria-label="پاسخ دوباره">' + ICONS.refresh + '</button>' +
+                '<button class="icon-btn sm" type="button" data-edit-msg="' + escapeHtml(m.id) + '" title="ویرایش پیام" aria-label="ویرایش پیام">' + ICONS.edit + '</button>' +
               '</div>' +
             '</div>' +
           '</div>';
@@ -1825,6 +1837,17 @@
     el.stream.querySelectorAll('[data-redo-msg]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         redoMessage(btn.getAttribute('data-redo-msg'));
+      });
+    });
+
+    el.stream.querySelectorAll('[data-edit-msg]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (!active || !el.input) return;
+        const m = active.messages.find(function (x) { return x.id === btn.getAttribute('data-edit-msg'); });
+        if (!m) return;
+        el.input.value = m.text || '';
+        syncComposerSize(false);
+        el.input.focus();
       });
     });
 
@@ -1906,7 +1929,7 @@
     el.sendBtn.setAttribute('aria-label', state.busy ? 'توقف' : 'ارسال');
     if (el.sendIcoArrow) el.sendIcoArrow.setAttribute('aria-hidden', state.busy ? 'true' : 'false');
     if (el.sendIcoStop) el.sendIcoStop.setAttribute('aria-hidden', state.busy ? 'false' : 'true');
-    if (el.composer) { el.composer.classList.toggle('busy', state.busy); el.composer.classList.toggle('ink-border', state.busy); }
+    if (el.composer) { el.composer.classList.toggle('busy', state.busy); }
   }
 
   function clearComposer() {
@@ -2654,11 +2677,11 @@
       wrapRow.classList.add('closing');
       wrapRow.style.height = h + 'px';
       wrapRow.style.opacity = '1';
-      wrapRow.style.transform = 'translateX(0)';
+      wrapRow.style.transform = 'scale(1)';
       void wrapRow.offsetHeight;
       wrapRow.style.height = '0px';
       wrapRow.style.opacity = '0';
-      wrapRow.style.transform = 'translateX(14px)';
+      wrapRow.style.transform = 'scale(0.97)';
       setTimeout(finalizeDelete, 220);
       return;
     }
@@ -3123,10 +3146,10 @@
   const UC_MODEL_LABELS = {
     'unicollect-chat-mini': 'Unicollect Chat Mini',
     'unicollect-chat-1.2': 'Unicollect Chat 1.2',
-    'unicollect-chat-pro': 'Unicollect Chat Pro',
+    'unicollect-chat-classic': 'Unicollect Chat Classic',
     'unicollect-math-mini': 'Unicollect Math Mini',
     'unicollect-math-1.2': 'Unicollect Math 1.2',
-    'unicollect-math-pro': 'Unicollect Math Pro'
+    'unicollect-math-classic': 'Unicollect Math Classic'
   };
   let _pendingModelResolver = null;
 
@@ -3144,6 +3167,7 @@
     try { localStorage.setItem('uc_selected_model', id); } catch (e) {}
     const nameEl = document.getElementById('active-model-name');
     if (nameEl) nameEl.textContent = UC_MODEL_LABELS[id];
+    if (el.heroModelBadge) el.heroModelBadge.textContent = UC_MODEL_LABELS[id];
     document.querySelectorAll('[data-pick-model]').forEach(function (btn) {
       const active = btn.getAttribute('data-pick-model') === id;
       btn.classList.toggle('active', active);
@@ -3269,6 +3293,120 @@
     });
   }
 
+
+  /* ---------- تم روشن/تاریک و زبان دوزبانه (FA/EN) ---------- */
+  const I18N = {
+    fa: {
+      brand: 'یونیکالکت',
+      brandFull: 'یونیکالکت چت مینی',
+      newChat: 'گفتگوی جدید',
+      searchChats: 'جستجوی گفتگوها',
+      modelsStatus: 'مدل‌ها و وضعیت',
+      publicKey: 'کلید عمومی دسترسی',
+      devGuide: 'راهنمای توسعه‌دهندگان',
+      apiDocs: 'مستندات تعاملی API',
+      siteHome: 'سایت یونیکالکت',
+      history: 'گفتگوها',
+      watermark: 'ساخته شده توسط موویکسو',
+      chip1: 'نگارش ایمیل رسمی',
+      chip2: 'ساده‌سازی مفاهیم',
+      chip3: 'ترجمه‌ی طبیعی',
+      chip4: 'ایده‌پردازی خلاق',
+      disclaimer: 'یونیکالکت ممکن است اشتباه کند؛ اطلاعات مهم را بررسی کنید.',
+      placeholder: 'از یونیکالکت بپرس…',
+      filterPlaceholder: 'فیلتر گفتگوها…',
+      searchPlaceholder: 'جستجو در گفتگوها…',
+      greeting: 'وقت بخیر',
+      prompt: 'امروز چطور کمکت کنم؟'
+    },
+    en: {
+      brand: 'Unicollect',
+      brandFull: 'Unicollect Chat Mini',
+      newChat: 'New Chat',
+      searchChats: 'Search Chats',
+      modelsStatus: 'Models & Status',
+      publicKey: 'Public Access Key',
+      devGuide: 'Developer Guide',
+      apiDocs: 'Interactive API Docs',
+      siteHome: 'Unicollect Site',
+      history: 'History',
+      watermark: 'Built by Muvixo',
+      chip1: 'Draft formal email',
+      chip2: 'Simplify concepts',
+      chip3: 'Natural translation',
+      chip4: 'Creative ideas',
+      disclaimer: 'Unicollect can make mistakes. Verify important information.',
+      placeholder: 'Ask Unicollect anything…',
+      filterPlaceholder: 'Filter chats…',
+      searchPlaceholder: 'Search conversations…',
+      greeting: 'Welcome back',
+      prompt: 'How can I help you today?'
+    }
+  };
+
+  function applyTheme(theme) {
+    const next = theme === 'light' ? 'light' : 'dark';
+    state.theme = next;
+    if (next === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    else document.documentElement.removeAttribute('data-theme');
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', next === 'light' ? '#FFFFFF' : '#0D0D10');
+    if (el.themeIcoSun) setHidden(el.themeIcoSun, next === 'light');
+    if (el.themeIcoMoon) setHidden(el.themeIcoMoon, next !== 'light');
+    try { localStorage.setItem('uc_theme', next); } catch (e) {}
+  }
+
+  function applyLanguage(lang) {
+    const next = lang === 'en' ? 'en' : 'fa';
+    state.lang = next;
+    document.documentElement.lang = next;
+    document.documentElement.dir = next === 'en' ? 'ltr' : 'rtl';
+    const dict = I18N[next];
+    document.querySelectorAll('[data-i18n]').forEach(function (node) {
+      const k = node.getAttribute('data-i18n');
+      if (k && dict[k]) node.textContent = dict[k];
+    });
+    if (el.taPh) el.taPh.textContent = dict.placeholder;
+    if (el.sbFilterInput) el.sbFilterInput.placeholder = dict.filterPlaceholder;
+    if (el.searchInput) el.searchInput.placeholder = dict.searchPlaceholder;
+    if (el.btnLangToggle) el.btnLangToggle.textContent = next === 'fa' ? 'EN' : 'FA';
+    if (next === 'en') {
+      if (el.heroGreeting) el.heroGreeting.textContent = dict.greeting;
+      if (el.heroPrompt) el.heroPrompt.textContent = dict.prompt;
+    } else {
+      rotateHeroPrompt();
+    }
+    renderSidebar();
+    try { localStorage.setItem('uc_lang', next); } catch (e) {}
+  }
+
+  function initThemeAndLang() {
+    let savedTheme = 'dark';
+    let savedLang = 'fa';
+    try {
+      savedTheme = localStorage.getItem('uc_theme') || 'dark';
+      savedLang = localStorage.getItem('uc_lang') || 'fa';
+    } catch (e) {}
+    applyTheme(savedTheme);
+    applyLanguage(savedLang);
+    if (el.btnThemeToggle) {
+      el.btnThemeToggle.addEventListener('click', function () {
+        applyTheme(state.theme === 'dark' ? 'light' : 'dark');
+      });
+    }
+    if (el.btnLangToggle) {
+      el.btnLangToggle.addEventListener('click', function () {
+        applyLanguage(state.lang === 'fa' ? 'en' : 'fa');
+      });
+    }
+    if (el.sbFilterInput) {
+      el.sbFilterInput.addEventListener('input', function () {
+        state.sidebarFilter = el.sbFilterInput.value || '';
+        renderSidebar();
+      });
+    }
+  }
+
   function init() {
     setHidden(el.searchModal, true);
     setHidden(el.settingsModal, true);
@@ -3281,6 +3419,7 @@
     syncComposerSize(true);
     bindEvents();
     initModelPicker();
+    initThemeAndLang();
     checkHealth();
     setInterval(function () {
       if (!document.hidden) checkHealth();

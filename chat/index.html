@@ -5,14 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>یونیکالکت چت مینی · گفتگو</title>
   <meta name="description" content="پنل گفتگوی هوشمند یونیکالکت چت مینی ساخته‌ی موویکسو با استریم زنده و کلید عمومی API.">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#09090b">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0D0D10">
   <link rel="preload" href="../assets/fonts/Vazirmatn.woff2?v=1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/JetBrainsMono.woff2?v=1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-  <link rel="stylesheet" href="../assets/chat.css?v=v107">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
-  <script async src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/chat.css?v=v200">
   <style>[hidden]{display:none!important}</style>
 </head>
 <body class="chat-body">
@@ -21,31 +19,46 @@
     <aside class="sidebar" aria-label="نوار کناری">
       <div class="sidebar-inner">
         <div class="sb-top">
-          <button class="icon-btn logo-btn" type="button" id="btn-logo-new" title="یونیکالکت چت مینی" aria-label="گفتگوی جدید"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></button>
+          <button class="icon-btn logo-btn" type="button" id="btn-logo-new" title="یونیکالکت چت مینی" aria-label="گفتگوی جدید">
+            <svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg>
+            <span data-i18n="brand">یونیکالکت</span>
+          </button>
           <button class="icon-btn" type="button" id="btn-sb-toggle" title="بستن نوار کناری" aria-label="بستن نوار کناری"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M15 3v18"></path></svg></button>
         </div>
+
+        <button class="sb-new-btn" type="button" id="btn-new-chat">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+          <span data-i18n="newChat">گفتگوی جدید</span>
+        </button>
+
+        <div class="sb-search-box">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <input id="sb-filter-input" type="search" dir="auto" placeholder="فیلتر گفتگوها…" autocomplete="off" spellcheck="false" aria-label="فیلتر گفتگوها">
+        </div>
+
         <nav class="sb-nav" aria-label="منوی پنل">
-          <button class="sb-item" type="button" id="btn-new-chat"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path></svg><span>گفتگوی جدید</span></button>
-          <button class="sb-item" type="button" id="btn-open-search"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span>جستجوی گفتگوها</span><kbd class="kbd sb-kbd" dir="ltr">Ctrl K</kbd></button>
-          <button class="sb-item" type="button" id="btn-open-settings"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path></svg><span>مدل‌ها و وضعیت</span></button>
-          <a class="sb-item" href="../public-key/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg><span>کلید عمومی دسترسی</span></a>
-          <a class="sb-item" href="../api/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg><span>راهنمای توسعه‌دهندگان</span></a>
-          <a class="sb-item" href="/docs" data-swagger-link target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>مستندات تعاملی API</span></a>
-          <a class="sb-item" href="../"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1Z"></path></svg><span>سایت یونیکالکت</span></a>
+          <button class="sb-item" type="button" id="btn-open-search"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span data-i18n="searchChats">جستجوی گفتگوها</span><kbd class="kbd sb-kbd" dir="ltr">Ctrl K</kbd></button>
+          <button class="sb-item" type="button" id="btn-open-settings"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path></svg><span data-i18n="modelsStatus">مدل‌ها و وضعیت</span></button>
+          <a class="sb-item" href="../public-key/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg><span data-i18n="publicKey">کلید عمومی دسترسی</span></a>
+          <a class="sb-item" href="../api/"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg><span data-i18n="devGuide">راهنمای توسعه‌دهندگان</span></a>
+          <a class="sb-item" href="/docs" data-swagger-link target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span data-i18n="apiDocs">مستندات تعاملی API</span></a>
+          <a class="sb-item" href="../"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1Z"></path></svg><span data-i18n="siteHome">سایت یونیکالکت</span></a>
         </nav>
-        <div class="sb-label">گفتگوها</div>
+
+        <div class="sb-label" data-i18n="history">گفتگوها</div>
         <div class="sb-threads" id="sb-threads">
           <div class="sb-empty">هنوز گفتگویی ثبت نشده است</div>
         </div>
+
         <div class="sb-footer">
           <button class="profile" type="button" id="btn-profile-settings">
             <span class="avatar"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
             <span class="profile-text">
-              <span class="profile-name">یونیکالکت چت مینی</span>
+              <span class="profile-name" data-i18n="brandFull">یونیکالکت چت مینی</span>
               <span class="profile-status"><span class="sdot warn" data-health-dot></span><span data-health-label>در حال اتصال…</span></span>
             </span>
           </button>
-          <div class="creator-watermark">ساخته شده توسط موویکسو</div>
+          <div class="creator-watermark" data-i18n="watermark">ساخته شده توسط موویکسو</div>
         </div>
       </div>
     </aside>
@@ -56,13 +69,19 @@
       <header class="topbar">
         <div class="tb-start">
           <button class="icon-btn open-sb" type="button" id="btn-tb-sidebar" title="باز کردن نوار کناری" aria-label="باز کردن نوار کناری"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M15 3v18"></path></svg></button>
-          <button class="icon-btn new-top" type="button" id="btn-tb-new" title="گفتگوی جدید" aria-label="گفتگوی جدید"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path></svg></button>
-          <span class="model-btn static">
-            <span class="model-name">یونیکالکت چت مینی</span>
+          <button class="icon-btn new-top" type="button" id="btn-tb-new" title="گفتگوی جدید" aria-label="گفتگوی جدید"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></button>
+          <button class="model-btn interactive" type="button" id="btn-model-picker" title="انتخاب مدل یونیکالکت" aria-label="انتخاب مدل یونیکالکت">
             <span class="sdot warn" data-health-dot></span>
-          </span>
+            <span class="model-name" id="active-model-name">Unicollect Chat Mini</span>
+            <svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"></path></svg>
+          </button>
         </div>
         <div class="tb-end">
+          <button class="lang-btn" type="button" id="btn-lang-toggle" title="تغییر زبان (FA / EN)" aria-label="تغییر زبان">EN</button>
+          <button class="icon-btn" type="button" id="btn-theme-toggle" title="تغییر تم روشن / تاریک" aria-label="تغییر تم">
+            <svg class="ic" id="theme-ico-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+            <svg class="ic" id="theme-ico-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" hidden><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+          </button>
           <a class="icon-btn hide-sm" href="../public-key/" title="کلید عمومی API" aria-label="کلید عمومی API"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m10.7 12.3 8.8-8.8M16 7l3 3M18 5l2 2"></path></svg></a>
           <a class="icon-btn hide-sm" href="../api/" title="مستندات API" aria-label="مستندات API"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></a>
           <button class="icon-btn" type="button" id="btn-tb-search" title="جستجو (Ctrl+K)" aria-label="جستجو"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></button>
@@ -72,8 +91,12 @@
 
       <div class="body is-welcome" id="chat-body">
         <div class="hero-area" id="hero-area">
+          <div class="hero-badge">
+            <svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg>
+            <span id="hero-model-badge" dir="ltr">Unicollect Chat Mini</span>
+          </div>
           <h1 class="hero">
-            <span class="hero-mark"><svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg></span>
+            <span class="hero-mark" aria-hidden="true"></span>
             <span class="hero-greeting" id="hero-greeting">وقت بخیر</span>
             <span class="hero-prompt" id="hero-prompt">امروز چطور کمکت کنم؟</span>
           </h1>
@@ -125,38 +148,38 @@
               <button class="chip prompt-card" type="button" data-starter="یک ایمیل کوتاه و رسمی بنویس که جلسه‌ی فردا را یک ساعت عقب بیندازم.">
                 <div class="pc-head">
                   <span class="pc-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path></svg></span>
-                  <span class="pc-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg></span>
+                  <span class="pc-arrow" aria-hidden="true"></span>
                 </div>
-                <span class="pc-title">نگارش ایمیل رسمی</span>
+                <span class="pc-title" data-i18n="chip1">نگارش ایمیل رسمی</span>
                 <span class="pc-sub">تنظیم متن کوتاه و حرفه‌ای برای تغییر زمان جلسه</span>
               </button>
               <button class="chip prompt-card" type="button" data-starter="یادگیری ماشین را برای یک نوجوان با یک مثال ساده توضیح بده.">
                 <div class="pc-head">
                   <span class="pc-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg></span>
-                  <span class="pc-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg></span>
+                  <span class="pc-arrow" aria-hidden="true"></span>
                 </div>
-                <span class="pc-title">ساده‌سازی مفاهیم</span>
+                <span class="pc-title" data-i18n="chip2">ساده‌سازی مفاهیم</span>
                 <span class="pc-sub">توضیح یادگیری ماشین با یک مثال ملموس و روان</span>
               </button>
               <button class="chip prompt-card" type="button" data-starter="این جمله را به انگلیسی روان ترجمه کن: «هر روز یک قدم کوچک، از یک جهش بزرگ بهتر است.»">
                 <div class="pc-head">
                   <span class="pc-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg></span>
-                  <span class="pc-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg></span>
+                  <span class="pc-arrow" aria-hidden="true"></span>
                 </div>
-                <span class="pc-title">ترجمه‌ی طبیعی</span>
+                <span class="pc-title" data-i18n="chip3">ترجمه‌ی طبیعی</span>
                 <span class="pc-sub">برگردان روان و دقیق جملات فارسی به انگلیسی</span>
               </button>
               <button class="chip prompt-card" type="button" data-starter="پنج ایده‌ی خلاقانه برای اسم یک کافه‌ی کتاب در تهران بده.">
                 <div class="pc-head">
                   <span class="pc-ico"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.94 14.06 8.5 19l-1.44-4.94L2 12.5l5.06-1.44L8.5 6l1.44 5.06L15 12.5z"></path><path d="M18 3v4M16 5h4M19 15v4M17 17h4"></path></svg></span>
-                  <span class="pc-arrow" aria-hidden="true"><svg class="ic" viewBox="0 0 24 24"><path d="M7 17 17 7"></path><path d="M7 7h10v10"></path></svg></span>
+                  <span class="pc-arrow" aria-hidden="true"></span>
                 </div>
-                <span class="pc-title">ایده‌پردازی خلاق</span>
+                <span class="pc-title" data-i18n="chip4">ایده‌پردازی خلاق</span>
                 <span class="pc-sub">پیشنهاد پنج نام ماندگار برای یک کافه‌ی کتاب</span>
               </button>
             </div>
 
-            <p class="disclaimer">یونیکالکت ممکن است اشتباه کند؛ اطلاعات مهم را بررسی کنید.</p>
+            <p class="disclaimer" data-i18n="disclaimer">یونیکالکت ممکن است اشتباه کند؛ اطلاعات مهم را بررسی کنید.</p>
           </div>
         </div>
       </div>
@@ -186,7 +209,7 @@
     <div class="modal" id="settings-modal" hidden style="display:none">
       <div class="modal-card" role="dialog" aria-modal="true" aria-label="مدل‌ها و وضعیت">
         <div class="modal-head">
-          <h3>مدل‌ها و وضعیت</h3>
+          <h3 data-i18n="modelsStatus">مدل‌ها و وضعیت</h3>
           <button class="icon-btn" type="button" id="btn-settings-close" aria-label="بستن" title="بستن"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
         </div>
         <div class="modal-body">
@@ -257,10 +280,78 @@
       </div>
     </div>
 
+    <!-- مودال انتخاب مدل یونیکالکت -->
+    <div class="modal mp-overlay" id="model-picker-modal" hidden style="display:none">
+      <div class="modal-card mp-modal" role="dialog" aria-modal="true" aria-labelledby="mp-title">
+        <div class="modal-head">
+          <div>
+            <h3 id="mp-title">انتخاب مدل گفتگو</h3>
+            <p class="mp-sub">مدل مورد نظر خود را برای گفتگو یا حل مسائل ریاضی انتخاب کنید</p>
+          </div>
+          <button class="icon-btn sm" type="button" id="btn-mp-close" aria-label="بستن"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+        </div>
+        <div class="modal-body mp-body">
+          <div class="mp-section" id="mp-section-chat">
+            <div class="mp-section-label">گفتگو (Chat)</div>
+            <div class="mp-grid">
+              <button type="button" class="mp-card" data-pick-model="unicollect-chat-mini">
+                <div class="mp-card-top">
+                  <span class="mp-card-name" dir="ltr">Unicollect Chat Mini</span>
+                  <span class="mp-badge">سریع</span>
+                </div>
+                <div class="mp-card-desc">پاسخ‌دهی سریع، روان و صمیمی برای گفتگوی روزمره، نوشتار و ترجمه</div>
+              </button>
+              <button type="button" class="mp-card" data-pick-model="unicollect-chat-1.2">
+                <div class="mp-card-top">
+                  <span class="mp-card-name" dir="ltr">Unicollect Chat 1.2</span>
+                  <span class="mp-badge pro">پیشرفته</span>
+                </div>
+                <div class="mp-card-desc">تحلیل عمیق‌تر و استدلال دقیق‌تر برای موضوعات پیچیده و چندمرحله‌ای</div>
+              </button>
+              <button type="button" class="mp-card" data-pick-model="unicollect-chat-classic">
+                <div class="mp-card-top">
+                  <span class="mp-card-name" dir="ltr">Unicollect Chat Classic</span>
+                  <span class="mp-badge">کلاسیک</span>
+                </div>
+                <div class="mp-card-desc">فارسی بسیار روان، پرقدرت و متعادل برای گفتگوهای حرفه‌ای</div>
+              </button>
+            </div>
+          </div>
+
+          <div class="mp-section" id="mp-section-math">
+            <div class="mp-section-label">ریاضی (Math)</div>
+            <div class="mp-grid">
+              <button type="button" class="mp-card" data-pick-model="unicollect-math-mini">
+                <div class="mp-card-top">
+                  <span class="mp-card-name" dir="ltr">Unicollect Math Mini</span>
+                  <span class="mp-badge">سریع</span>
+                </div>
+                <div class="mp-card-desc">حل سریع و مرحله‌به‌مرحله تمرین‌ها، معادلات و محاسبات ریاضی</div>
+              </button>
+              <button type="button" class="mp-card" data-pick-model="unicollect-math-1.2">
+                <div class="mp-card-top">
+                  <span class="mp-card-name" dir="ltr">Unicollect Math 1.2</span>
+                  <span class="mp-badge pro">پیشرفته</span>
+                </div>
+                <div class="mp-card-desc">استدلال عمیق و دقیق برای اثبات‌ها، المپیاد و مسائل سنگین ریاضی</div>
+              </button>
+              <button type="button" class="mp-card" data-pick-model="unicollect-math-classic">
+                <div class="mp-card-top">
+                  <span class="mp-card-name" dir="ltr">Unicollect Math Classic</span>
+                  <span class="mp-badge">کلاسیک</span>
+                </div>
+                <div class="mp-card-desc">دقت بالا در محاسبات، جبر و توضیح شفاف فارسی مراحل حل</div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="toast-host" id="toast-host" aria-live="polite"></div>
   </div>
 </div>
 <noscript><p style="font-family:Vazirmatn,Tahoma,sans-serif;text-align:center;padding:40px">برای استفاده از پنل، جاوااسکریپت را روشن کنید. API همچنان در <a href="/api/v1">/api/v1</a> در دسترس است.</p></noscript>
-<script src="../assets/chat.js?v=v107"></script>
+<script src="../assets/chat.js?v=v200"></script>
 </body>
 </html>

@@ -736,9 +736,14 @@
   /* ---------- راه‌اندازی اولیه ---------- */
   function syncSavedTheme() {
     try {
-      if (localStorage.getItem('uc_theme') === 'light') {
+      const isLight = localStorage.getItem('uc_theme') === 'light';
+      if (isLight) {
         document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
       }
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute('content', isLight ? '#FFFFFF' : '#0E0E10');
     } catch (e) {}
   }
 

@@ -17,6 +17,7 @@
 
   const STEPS = ['خواندن پیام', 'مرور گفتگو', 'تشخیص نوع درخواست و انتخاب مدل', 'فکر کردن', 'نوشتن پاسخ'];
   const PROMPTS = [
+    'چطور میتونم کمکت کنم؟',
     'امروز چطور کمکت کنم؟',
     'چه کمکی از دستم برمیاد؟',
     'بگو چی لازم داری',
@@ -43,7 +44,7 @@
     edit: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>'
   };
 
-  const PETAL_MARK_HTML = '<svg class="pg-mark" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg>';
+  const PETAL_MARK_HTML = '<svg class="pg-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C12.7 7.1 16.9 11.3 22 12C16.9 12.7 12.7 16.9 12 22C11.3 16.9 7.1 12.7 2 12C7.1 11.3 11.3 7.1 12 2Z"></path></svg>';
 
   /* ---------- توابع کمکی پایه ---------- */
   function setHidden(node, flag) {
@@ -85,7 +86,7 @@
       node.classList.remove("closing");
       setHidden(node, true);
       node._closeTimer = 0;
-    }, delay || 150);
+    }, delay || 220);
   }
 
   function expandSmooth(node) {
@@ -341,7 +342,7 @@
     if (!thinkText) return '';
     const openCls = isLiveOpen ? ' open' : '';
     const hiddenAttr = isLiveOpen ? '' : ' hidden style="display:none"';
-    const label = isLiveOpen ? 'در حال استدلال و تحلیل…' : 'فرآیند استدلال مدل';
+    const label = isLiveOpen ? 'در حال تفکر…' : 'فرآیند تفکر';
     return (
       '<div class="think-card' + openCls + '" data-think-card>' +
         '<button type="button" class="think-card-head" data-think-card-toggle aria-expanded="' + (isLiveOpen ? 'true' : 'false') + '">' +
@@ -1095,7 +1096,7 @@
           '<div class="code-head">' +
             '<span class="code-lang-wrap"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">' + escapeHtml(lang || 'متن') + '</span>' + (lineCount > 1 ? '<span class="code-lines">' + fa(lineCount) + ' خط</span>' : '') + '</span>' +
             '<button type="button" class="code-copy" data-copy-encoded="' + encoded + '">' +
-              ICONS.copy + '<span>کپی</span>' +
+              ICONS.copy + '<span>کپی کد</span>' +
             '</button>' +
           '</div>' +
           '<pre dir="ltr"><code>' + highlightCode(cleanCode, lang) + '</code></pre>' +
@@ -1806,18 +1807,19 @@
     } else {
       const parsed = splitThinkReply(m.reply, m.reasoning);
       const onlyThink = !parsed.answer && !!parsed.think;
-      const finalAns = parsed.answer || (onlyThink ? '> [!NOTE] پاسخ کامل روی بخش «فرآیند استدلال مدل» بالا نمایش داده شده است؛ در صورت نیاز می‌توانید دکمه‌ی پاسخ دوباره را بزنید.' : m.reply);
+      const finalAns = parsed.answer || (onlyThink ? '> [!NOTE] پاسخ کامل در بخش «فرآیند تفکر» بالا نمایش داده شده است؛ در صورت نیاز می‌توانید دکمه‌ی پاسخ دوباره را بزنید.' : m.reply);
       const bDir = textDir(finalAns);
       html +=
         '<div class="msg bot">' +
           '<div class="bot-body">' +
+            '<div class="bot-head"><span class="bot-brand-ico">' + PETAL_MARK_HTML + '</span>' + renderModelBadgeHtml(m.model, m.isMath) + '</div>' +
             renderThoughtLineHtml(m.thinkingMs, m.steps, m.model, m.isMath) +
             renderThinkCardHtml(parsed.think, onlyThink) +
             '<div class="md" dir="' + bDir + '">' + renderMarkdown(finalAns) + '</div>' +
             '<div class="actions">' +
-              '<button class="icon-btn sm" type="button" data-copy-bot="' + escapeHtml(m.id) + '" title="کپی پاسخ" aria-label="کپی پاسخ">' + ICONS.copy + '</button>' +
-              '<button class="icon-btn sm" type="button" data-redo-msg="' + escapeHtml(m.id) + '" title="پاسخ دوباره" aria-label="پاسخ دوباره">' + ICONS.refresh + '</button>' +
-              '<button class="icon-btn sm" type="button" data-edit-msg="' + escapeHtml(m.id) + '" title="ویرایش پیام" aria-label="ویرایش پیام">' + ICONS.edit + '</button>' +
+              '<button class="icon-btn sm" type="button" data-copy-bot="' + escapeHtml(m.id) + '" title="کپی" aria-label="کپی">' + ICONS.copy + '</button>' +
+              '<button class="icon-btn sm" type="button" data-redo-msg="' + escapeHtml(m.id) + '" title="تولید مجدد" aria-label="تولید مجدد">' + ICONS.refresh + '</button>' +
+              '<button class="icon-btn sm" type="button" data-edit-msg="' + escapeHtml(m.id) + '" title="ویرایش" aria-label="ویرایش">' + ICONS.edit + '</button>' +
             '</div>' +
           '</div>' +
         '</div>';
@@ -2249,7 +2251,7 @@
             PETAL_MARK_HTML +
             '<span class="thinking-label shiny" id="pending-phase-lbl">' + STEPS[0] + '</span>' +
             '<span class="thinking-time mono" id="pending-time" hidden>۰ ثانیه</span>' +
-            '<span class="thinking-chev" style="transform:rotate(180deg)">' + ICONS.chevron + '</span>' +
+            '<span class="thinking-chev">' + ICONS.chevron + '</span>' +
           '</button>' +
           '<div id="pending-steps-box" class="thought-steps-wrap"></div>' +
         '</div>' +
@@ -2257,7 +2259,7 @@
         '<div class="think-card open" id="pending-think-card" hidden style="display:none">' +
           '<button type="button" class="think-card-head" id="pending-think-head" aria-expanded="true">' +
             '<span class="tc-dot live" id="pending-tc-dot"></span>' +
-            '<span class="tc-title shiny" id="pending-tc-title">در حال استدلال و تحلیل…</span>' +
+            '<span class="tc-title shiny" id="pending-tc-title">در حال تفکر…</span>' +
             '<span class="thinking-chev">' + ICONS.chevron + '</span>' +
           '</button>' +
           '<div class="think-card-body md" id="pending-think-body" dir="auto"></div>' +
@@ -2402,7 +2404,7 @@
         if (pTcDot) pTcDot.classList.toggle('live', stillThinking);
         if (pTcTitle) {
           pTcTitle.classList.toggle('shiny', stillThinking);
-          pTcTitle.textContent = stillThinking ? 'در حال استدلال و تحلیل…' : 'فرآیند استدلال مدل';
+          pTcTitle.textContent = stillThinking ? 'در حال تفکر…' : 'فرآیند تفکر';
         }
         if (!stillThinking && !pThinkUserToggled && !pThinkAutoCollapsed) {
           pThinkAutoCollapsed = true;
@@ -2866,7 +2868,14 @@
     return 'شبت بخیر';
   }
 
+  let _heroInitialized = false;
   function rotateHeroPrompt() {
+    if (!_heroInitialized) {
+      _heroInitialized = true;
+      if (el.heroGreeting) el.heroGreeting.textContent = 'سلام';
+      if (el.heroPrompt) el.heroPrompt.textContent = 'چطور میتونم کمکت کنم؟';
+      return;
+    }
     if (el.heroGreeting) el.heroGreeting.textContent = getGreetingByHour();
     if (el.heroPrompt) {
       const p = PROMPTS[Math.floor(Math.random() * PROMPTS.length)];
@@ -3221,7 +3230,10 @@
     document.querySelectorAll('[data-starter]').forEach(function (chip) {
       chip.addEventListener('click', function () {
         const prompt = chip.getAttribute('data-starter');
-        if (prompt) sendMessage(prompt, false);
+        if (!prompt || !el.input) return;
+        el.input.value = prompt;
+        syncComposerSize(false);
+        el.input.focus();
       });
     });
 
@@ -3334,7 +3346,7 @@
 
   function closeModelPickerModal(chosenId) {
     const modal = document.getElementById('model-picker-modal');
-    if (modal) closeAnimated(modal, 195);
+    if (modal) closeAnimated(modal, 220);
     if (_pendingModelResolver) {
       const res = _pendingModelResolver;
       _pendingModelResolver = null;
@@ -3426,7 +3438,7 @@
     if (next === 'light') document.documentElement.setAttribute('data-theme', 'light');
     else document.documentElement.removeAttribute('data-theme');
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', next === 'light' ? '#FFFFFF' : '#0D0D10');
+    if (meta) meta.setAttribute('content', next === 'light' ? '#FFFFFF' : '#0E0E10');
     if (el.themeIcoSun) setHidden(el.themeIcoSun, next === 'light');
     if (el.themeIcoMoon) setHidden(el.themeIcoMoon, next !== 'light');
     try { localStorage.setItem('uc_theme', next); } catch (e) {}

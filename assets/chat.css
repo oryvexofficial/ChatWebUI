@@ -1123,6 +1123,10 @@ svg.pg-mark {
   flex-direction: column;
   gap: 18px;
   contain: layout style;
+}
+
+.turn.fresh,
+.turn.pending {
   animation: scaleIn var(--dur-base) var(--ease) both;
 }
 
@@ -1426,7 +1430,20 @@ svg.pg-mark {
 }
 
 .stream-block-in {
-  animation: fadeIn var(--dur-base) var(--ease) both;
+  animation: claudeBounce 240ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  transform-origin: start center;
+}
+
+/* Claude-style Per-Token & User Typing Spring Bounce (Pure Opacity + Scale) */
+.tok-bounce {
+  display: inline-block;
+  transform-origin: center center;
+  animation: claudeBounce 230ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: calc(var(--ti, 0) * 16ms);
+}
+
+.ta-wrap.ta-bounce {
+  animation: claudeKeyPop 170ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* ==========================================================================
@@ -1754,14 +1771,15 @@ svg.pg-mark {
 .hl-num { color: var(--hl-num); }
 .hl-com { color: var(--hl-com); font-style: italic; }
 
-/* Math Cards & Offline LaTeX Engine */
+/* Math Cards & Offline LaTeX Engine (Publication-Grade Qwen Design) */
 .math-card {
   position: relative;
   margin-block: 14px;
-  padding: 16px 18px;
+  padding: 16px 22px;
   border-radius: var(--r-md);
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
+  border-inline-start: 2.5px solid var(--accent);
   overflow-x: auto;
 }
 
@@ -1770,6 +1788,7 @@ svg.pg-mark {
   top: 8px;
   inset-inline-end: 8px;
   opacity: 0;
+  background: var(--bg-sidebar);
   color: var(--text-secondary);
   border-color: var(--border-subtle);
 }
@@ -1780,49 +1799,90 @@ svg.pg-mark {
 }
 
 .math {
-  font-family: "Cambria Math", "STIX Two Math", Georgia, serif;
+  display: inline-block;
+  font-family: "STIX Two Math", "Cambria Math", "Times New Roman", Georgia, serif;
   font-style: italic;
+  font-size: 1.05em;
+  line-height: 1.5;
+  color: var(--text-primary);
   direction: ltr;
   unicode-bidi: isolate;
+  padding-inline: 3px;
+  margin-inline: 2px;
+  vertical-align: baseline;
 }
 
 .math-block {
+  display: block;
   text-align: center;
-  font-size: 1.12em;
-  line-height: 1.7;
+  font-size: 1.18em;
+  line-height: 1.85;
+  padding-inline: 4px;
+  margin-inline: 0;
 }
 
-.m-frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 4px; line-height: 1.15; font-style: normal; }
-.m-num { border-bottom: 1.4px solid currentColor; padding: 0 5px 2px; text-align: center; }
-.m-den { padding: 2px 5px 0; text-align: center; }
-.m-root { display: inline-flex; align-items: center; font-style: normal; }
-.m-rad { border-top: 1.3px solid currentColor; padding: 1px 3px 0; font-style: italic; line-height: 1.15; }
-.m-fn, .m-txt { font-style: normal; font-family: var(--font); padding: 0 2px; }
+.math sup,
+.math sub {
+  font-size: 0.72em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+.math sup {
+  top: -0.48em;
+  margin-inline-start: 1px;
+}
+
+.math sub {
+  bottom: -0.24em;
+  margin-inline: 1px 2px;
+}
+
+.m-lit,
+.m-punc {
+  font-style: normal;
+  font-variant-numeric: lining-nums;
+}
+
+.m-rel {
+  font-style: normal;
+  margin-inline: 0.24em;
+  color: var(--text-secondary);
+}
+
+.m-frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 5px; line-height: 1.18; font-style: normal; font-size: 0.94em; }
+.m-num { border-bottom: 1.3px solid currentColor; padding: 0 6px 3px; text-align: center; }
+.m-den { padding: 3px 6px 0; text-align: center; }
+.m-root { display: inline-flex; align-items: center; font-style: normal; margin-inline: 2px; }
+.m-rad { border-top: 1.3px solid currentColor; padding: 1px 4px 0; font-style: italic; line-height: 1.2; }
+.m-fn { font-style: normal; font-family: "STIX Two Math", "Cambria Math", Georgia, serif; padding-inline: 1px 2px; letter-spacing: 0.01em; }
+.m-txt { font-style: normal; font-family: var(--font); font-size: 0.9em; padding-inline: 4px; }
 .m-vec, .m-hat, .m-tilde, .m-acc { position: relative; display: inline-block; }
 .m-vec::before { content: "→"; position: absolute; top: -0.72em; inset-inline: 0; text-align: center; font-size: 0.7em; font-style: normal; }
 .m-hat::before { content: "^"; position: absolute; top: -0.65em; inset-inline: 0; text-align: center; font-size: 0.8em; font-style: normal; }
 .m-tilde::before { content: "~"; position: absolute; top: -0.65em; inset-inline: 0; text-align: center; font-size: 0.8em; font-style: normal; }
 .m-bar { border-top: 1.4px solid currentColor; padding-top: 1px; }
 .m-ubar { border-bottom: 1.4px solid currentColor; padding-bottom: 1px; }
-.m-box { display: inline-block; padding: 2px 8px; border: 1.4px solid currentColor; border-radius: 6px; margin: 0 2px; }
+.m-box { display: inline-block; padding: 6px 16px; border: 1.5px solid var(--accent); background: var(--accent-soft); border-radius: var(--r-sm); margin: 2px; font-weight: 500; }
 .m-delim { font-style: normal; font-size: 1.15em; margin: 0 1px; display: inline-block; }
 .m-op { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; line-height: 1; margin: 0 6px; font-style: normal; }
 .m-op .m-sym { font-size: 1.7em; line-height: 0.95; }
 .m-op .m-sym.m-lim { font-size: 1.05em; font-family: var(--font); font-weight: 600; }
-.m-op .m-top, .m-op .m-bot { font-size: 0.6em; line-height: 1.25; font-style: italic; white-space: nowrap; }
-.m-mat { display: inline-flex; align-items: center; padding: 2px 8px; margin: 0 4px; font-style: normal; }
-.m-mat-p { border-left: 2px solid currentColor; border-right: 2px solid currentColor; border-radius: 10px; }
-.m-mat-b { border-left: 2px solid currentColor; border-right: 2px solid currentColor; border-radius: 2px; }
+.m-op .m-top, .m-op .m-bot { font-size: 0.62em; line-height: 1.25; font-style: italic; white-space: nowrap; }
+.m-mat { display: inline-flex; align-items: center; padding: 3px 9px; margin: 0 4px; font-style: normal; }
+.m-mat-p { border-left: 1.8px solid currentColor; border-right: 1.8px solid currentColor; border-radius: 10px; }
+.m-mat-b { border-left: 1.8px solid currentColor; border-right: 1.8px solid currentColor; border-radius: 2px; }
 .m-mat-v { border-left: 1.5px solid currentColor; border-right: 1.5px solid currentColor; }
 .m-mat-V { border-left: 3px double currentColor; border-right: 3px double currentColor; }
-.m-mat-B { border-left: 2px solid currentColor; border-right: 2px solid currentColor; border-radius: 14px; }
+.m-mat-B { border-left: 1.8px solid currentColor; border-right: 1.8px solid currentColor; border-radius: 14px; }
 .m-mat table, .m-cases table, .m-rcases table, .m-align table, .m-array table { border-collapse: collapse; width: auto; }
 .m-mat td, .m-rcases td, .m-array td { border: 0; padding: 2px 8px; text-align: center; }
 .m-cases td, .m-align td { border: 0; padding: 2px 8px; text-align: left; }
-.m-cases { display: inline-flex; align-items: center; border-left: 2.5px solid currentColor; border-radius: 10px 0 0 10px; padding: 3px 0 3px 10px; margin: 0 4px; font-style: normal; }
-.m-rcases { display: inline-flex; align-items: center; border-right: 2.5px solid currentColor; border-radius: 0 10px 10px 0; padding: 3px 10px 3px 0; margin: 0 4px; font-style: normal; }
+.m-cases { display: inline-flex; align-items: center; border-left: 2.2px solid currentColor; border-radius: 10px 0 0 10px; padding: 3px 0 3px 10px; margin: 0 4px; font-style: normal; }
+.m-rcases { display: inline-flex; align-items: center; border-right: 2.2px solid currentColor; border-radius: 0 10px 10px 0; padding: 3px 10px 3px 0; margin: 0 4px; font-style: normal; }
 .m-align, .m-array { display: inline-block; vertical-align: middle; font-style: normal; }
-.m-binom { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; padding: 0 7px; margin: 0 3px; border-left: 1.8px solid currentColor; border-right: 1.8px solid currentColor; border-radius: 10px; line-height: 1.15; font-style: normal; }
+.m-binom { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; padding: 0 7px; margin: 0 3px; border-left: 1.6px solid currentColor; border-right: 1.6px solid currentColor; border-radius: 10px; line-height: 1.15; font-style: normal; }
 .m-binom .m-num { border-bottom: 0; padding: 0 2px; }
 .m-over, .m-under { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; line-height: 1.05; margin: 0 2px; font-style: normal; }
 .m-over-top, .m-under-bot { font-size: 0.66em; line-height: 1.1; }
@@ -2687,6 +2747,27 @@ svg.pg-mark {
 @keyframes pulseOpacity {
   0%, 100% { opacity: 0.55; }
   50% { opacity: 1; }
+}
+
+@keyframes claudeBounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.76);
+  }
+  62% {
+    opacity: 1;
+    transform: scale(1.07);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes claudeKeyPop {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.008); }
+  100% { transform: scale(1); }
 }
 
 @keyframes toastLife {

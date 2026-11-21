@@ -43,7 +43,7 @@
     edit: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>'
   };
 
-  const PETAL_MARK_HTML = '<svg class="pg-mark intro" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg>';
+  const PETAL_MARK_HTML = '<svg class="pg-mark" viewBox="0 0 24 24" aria-hidden="true"><g transform="rotate(0 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 0;"></path></g><g transform="rotate(60 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 1;"></path></g><g transform="rotate(120 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 2;"></path></g><g transform="rotate(180 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 3;"></path></g><g transform="rotate(240 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 4;"></path></g><g transform="rotate(300 12 12)"><path class="pt" d="M12 1.5c1.9 0 2.6 2.1 1.9 4.1l-.9 2.5c-.35.95-1.65.95-2 0l-.9-2.5C9.4 3.6 10.1 1.5 12 1.5z" style="--k: 5;"></path></g><circle class="core" cx="12" cy="12" r="2.1"></circle></svg>';
 
   /* ---------- توابع کمکی پایه ---------- */
   function setHidden(node, flag) {
@@ -637,8 +637,12 @@
     [/\\mathbb\s+([A-Z01])(?![A-Za-z0-9])/g, function (_, c) { return BB_MAP[c] || c; }],
     [/\\sqrt\s+([A-Za-z0-9])(?![A-Za-z0-9])/g, '<span class="m-root">√<span class="m-rad">$1</span></span>'],
     [/\\(?:hat|vec|bar|tilde|dot|ddot|check|acute|grave|breve)\s+([A-Za-z])(?![A-Za-z])/g, '<span class="m-hat">$1</span>'],
-    // Spacing
-    [/\\(?:qquad|quad|enspace|thinspace|medspace|thickspace|;|,|:|!|\s)(?![A-Za-z])/g, ' '],
+    // Spacing (non-alphabetic spacing NEVER uses (?![A-Za-z]) so \,x always renders cleanly!)
+    [/\\[,;:!]/g, '&#8201;'],
+    [/\\ /g, ' '],
+    [/\\(?:qquad|quad)(?![A-Za-z])/g, '&ensp;'],
+    [/\\(?:enspace|thinspace|medspace|thickspace|negthinspace|negmedspace|negthickspace)(?![A-Za-z])/g, '&#8201;'],
+    [/\\(?:hspace|vspace|kern|mkern|mskip)\*?\s*\{[^{}]*\}/g, '&#8201;'],
     // Negated relations (\not ...)
     [/\\not\s*\\in(?![A-Za-z])/g, '∉'], [/\\not\s*=/g, '≠'], [/\\not\s*\\equiv(?![A-Za-z])/g, '≢'],
     [/\\not\s*\\subset(?![A-Za-z])/g, '⊄'], [/\\not\s*\\subseteq(?![A-Za-z])/g, '⊈'],
@@ -849,6 +853,13 @@
     t = replaceTexCmd1(t, 'textsf', function (a) { return '<span class="m-sf" dir="auto">' + a + '</span>'; });
     t = replaceTexCmd1(t, 'text', function (a) { return '<span class="m-txt" dir="auto">' + a + '</span>'; });
     t = replaceTexCmd1(t, 'textrm', function (a) { return '<span class="m-txt" dir="auto">' + a + '</span>'; });
+    t = replaceTexCmd1(t, 'textnormal', function (a) { return '<span class="m-txt" dir="auto">' + a + '</span>'; });
+    t = replaceTexCmd1(t, 'textup', function (a) { return '<span class="m-txt" dir="auto">' + a + '</span>'; });
+    t = replaceTexCmd1(t, 'emph', function (a) { return '<em class="m-txt" dir="auto">' + a + '</em>'; });
+    t = replaceTexCmd1(t, 'mathrel', function (a) { return '<span class="m-rel">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'mathbin', function (a) { return '<span class="m-rel">' + formatTexInner(a) + '</span>'; });
+    t = replaceTexCmd1(t, 'mathord', function (a) { return formatTexInner(a); });
+    t = replaceTexCmd1(t, 'mathop', function (a) { return '<span class="m-fn">' + formatTexInner(a) + '</span>'; });
     t = replaceTexCmd1(t, 'mathrm', function (a) { return '<span class="m-fn">' + a + '</span>'; });
     t = replaceTexCmd1(t, 'operatorname*', function (a) { return '<span class="m-fn">' + a + '</span>'; });
     t = replaceTexCmd1(t, 'operatorname', function (a) { return '<span class="m-fn">' + a + '</span>'; });
@@ -896,7 +907,33 @@
         });
       } catch (e) {}
     }
-    return formatTexInner(escapeHtml(clean));
+    return polishMathTypography(formatTexInner(escapeHtml(clean)));
+  }
+
+  function polishMathTypography(html) {
+    // Only transform plain text segments outside HTML tags (<...>) and inside non-text math runs
+    const parts = String(html || '').split(/(<[^>]+>)/g);
+    let inPlainText = 0;
+    for (let i = 0; i < parts.length; i++) {
+      const seg = parts[i];
+      if (!seg) continue;
+      if (seg[0] === '<') {
+        if (/^<(?:span|strong|em|code)[^>]*class="[^"]*(?:m-txt|m-fn|m-tt)/i.test(seg)) inPlainText++;
+        else if (/^<\/(?:span|strong|em|code)>/i.test(seg) && inPlainText > 0) inPlainText--;
+        continue;
+      }
+      if (inPlainText > 0) continue;
+      // Protect HTML entities (&lt; &gt; &amp; &#8201; &ensp;) while styling digits, punctuation & operators
+      parts[i] = seg.replace(/(&(?:lt|gt|amp|ensp|#8201);|\d+(?:\.\d+)?|[()\[\],.]|[=+×÷±∓⇒⇐⇔→←↔≤≥≠≈≡·∈∉⊂⊆∪∩]|(?<![A-Za-z0-9])-(?![A-Za-z0-9]))/g, function (m) {
+        if (m === '&lt;' || m === '&gt;') return '<span class="m-rel">' + m + '</span>';
+        if (m[0] === '&') return m;
+        if (/^\d/.test(m)) return '<span class="m-lit">' + m + '</span>';
+        if (/^[()\[\],.]$/.test(m)) return '<span class="m-punc">' + m + '</span>';
+        if (m === '-') return '<span class="m-rel">−</span>';
+        return '<span class="m-rel">' + m + '</span>';
+      });
+    }
+    return parts.join('');
   }
 
   function highlightCode(rawCode, lang) {
@@ -1729,67 +1766,120 @@
 
     let html = '';
     active.messages.forEach(function (m) {
-      const uDir = textDir(m.text);
-      const isFresh = m.id === state.freshId;
-      const isJustFinished = m.id === state.justFinishedId;
-      html +=
-        '<div class="turn' + (isFresh ? ' fresh' : '') + (isJustFinished ? ' just-finished' : '') + '" data-msg-id="' + escapeHtml(m.id) + '">' +
-          '<div class="msg user">' +
-            '<div class="ubox">' +
-              '<div class="bubble md user-md" dir="' + uDir + '">' + renderMarkdown(m.text) + '</div>' +
-              '<div class="uacts">' +
-                '<button class="icon-btn sm" type="button" data-copy-user="' + escapeHtml(m.id) + '" title="کپی متن" aria-label="کپی متن">' + ICONS.copy + '</button>' +
-                '<button class="icon-btn sm" type="button" data-redo-msg="' + escapeHtml(m.id) + '" title="ارسال دوباره" aria-label="ارسال دوباره">' + ICONS.refresh + '</button>' +
-              '</div>' +
-            '</div>' +
-          '</div>';
-
-      if (!m.reply) {
-        html +=
-          '<div class="msg bot">' +
-            '<div class="bot-body">' +
-              renderThoughtLineHtml(m.thinkingMs, m.steps, m.model, m.isMath) +
-              '<div class="err-line"><span class="err-icon">' + ICONS.alert + '</span><span class="err-text">' + escapeHtml(m.error || 'خطا در دریافت پاسخ') + '</span></div>' +
-              '<div class="actions">' +
-                '<button class="icon-btn sm" type="button" data-redo-msg="' + escapeHtml(m.id) + '" title="تلاش مجدد" aria-label="تلاش مجدد">' + ICONS.refresh + '</button>' +
-              '</div>' +
-            '</div>' +
-          '</div>';
-      } else {
-        const parsed = splitThinkReply(m.reply, m.reasoning);
-        const onlyThink = !parsed.answer && !!parsed.think;
-        const finalAns = parsed.answer || (onlyThink ? '> [!NOTE] پاسخ کامل روی بخش «فرآیند استدلال مدل» بالا نمایش داده شده است؛ در صورت نیاز می‌توانید دکمه‌ی پاسخ دوباره را بزنید.' : m.reply);
-        const bDir = textDir(finalAns);
-        html +=
-          '<div class="msg bot">' +
-            '<div class="bot-body">' +
-              renderThoughtLineHtml(m.thinkingMs, m.steps, m.model, m.isMath) +
-              renderThinkCardHtml(parsed.think, onlyThink) +
-              '<div class="md" dir="' + bDir + '">' + renderMarkdown(finalAns) + '</div>' +
-              '<div class="actions">' +
-                '<button class="icon-btn sm" type="button" data-copy-bot="' + escapeHtml(m.id) + '" title="کپی پاسخ" aria-label="کپی پاسخ">' + ICONS.copy + '</button>' +
-                '<button class="icon-btn sm" type="button" data-redo-msg="' + escapeHtml(m.id) + '" title="پاسخ دوباره" aria-label="پاسخ دوباره">' + ICONS.refresh + '</button>' +
-                '<button class="icon-btn sm" type="button" data-edit-msg="' + escapeHtml(m.id) + '" title="ویرایش پیام" aria-label="ویرایش پیام">' + ICONS.edit + '</button>' +
-              '</div>' +
-            '</div>' +
-          '</div>';
-      }
-
-      html += '</div>';
+      html += renderSingleTurnHtml(m);
     });
 
     el.stream.innerHTML = html;
     state.justFinishedId = null;
     if (existingPending) el.stream.appendChild(existingPending);
-    bindStreamEvents();
+    bindStreamEvents(el.stream);
     if (!skipAutoScroll) requestAnimationFrame(function () { scrollToBottom(true); });
   }
 
-  function bindStreamEvents() {
-    if (!el.stream) return;
+  function renderSingleTurnHtml(m) {
+    const uDir = textDir(m.text);
+    const isFresh = m.id === state.freshId;
+    const isJustFinished = m.id === state.justFinishedId;
+    let html =
+      '<div class="turn' + (isFresh ? ' fresh' : '') + (isJustFinished ? ' just-finished' : '') + '" data-msg-id="' + escapeHtml(m.id) + '">' +
+        '<div class="msg user">' +
+          '<div class="ubox">' +
+            '<div class="bubble md user-md" dir="' + uDir + '">' + renderMarkdown(m.text) + '</div>' +
+            '<div class="uacts">' +
+              '<button class="icon-btn sm" type="button" data-copy-user="' + escapeHtml(m.id) + '" title="کپی متن" aria-label="کپی متن">' + ICONS.copy + '</button>' +
+              '<button class="icon-btn sm" type="button" data-redo-msg="' + escapeHtml(m.id) + '" title="ارسال دوباره" aria-label="ارسال دوباره">' + ICONS.refresh + '</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+
+    if (!m.reply) {
+      html +=
+        '<div class="msg bot">' +
+          '<div class="bot-body">' +
+            renderThoughtLineHtml(m.thinkingMs, m.steps, m.model, m.isMath) +
+            '<div class="err-line"><span class="err-icon">' + ICONS.alert + '</span><span class="err-text">' + escapeHtml(m.error || 'خطا در دریافت پاسخ') + '</span></div>' +
+            '<div class="actions">' +
+              '<button class="icon-btn sm" type="button" data-redo-msg="' + escapeHtml(m.id) + '" title="تلاش مجدد" aria-label="تلاش مجدد">' + ICONS.refresh + '</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+    } else {
+      const parsed = splitThinkReply(m.reply, m.reasoning);
+      const onlyThink = !parsed.answer && !!parsed.think;
+      const finalAns = parsed.answer || (onlyThink ? '> [!NOTE] پاسخ کامل روی بخش «فرآیند استدلال مدل» بالا نمایش داده شده است؛ در صورت نیاز می‌توانید دکمه‌ی پاسخ دوباره را بزنید.' : m.reply);
+      const bDir = textDir(finalAns);
+      html +=
+        '<div class="msg bot">' +
+          '<div class="bot-body">' +
+            renderThoughtLineHtml(m.thinkingMs, m.steps, m.model, m.isMath) +
+            renderThinkCardHtml(parsed.think, onlyThink) +
+            '<div class="md" dir="' + bDir + '">' + renderMarkdown(finalAns) + '</div>' +
+            '<div class="actions">' +
+              '<button class="icon-btn sm" type="button" data-copy-bot="' + escapeHtml(m.id) + '" title="کپی پاسخ" aria-label="کپی پاسخ">' + ICONS.copy + '</button>' +
+              '<button class="icon-btn sm" type="button" data-redo-msg="' + escapeHtml(m.id) + '" title="پاسخ دوباره" aria-label="پاسخ دوباره">' + ICONS.refresh + '</button>' +
+              '<button class="icon-btn sm" type="button" data-edit-msg="' + escapeHtml(m.id) + '" title="ویرایش پیام" aria-label="ویرایش پیام">' + ICONS.edit + '</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+    }
+
+    html += '</div>';
+    return html;
+  }
+
+  function bounceWrapTrailingText(node, prevTextLen) {
+    if (!node || prefersReducedMotion()) return;
+    // Walk text nodes and wrap only newly arrived words/characters beyond prevTextLen in .tok-bounce
+    const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT, null);
+    let offset = 0;
+    const edits = [];
+    let tn;
+    while ((tn = walker.nextNode())) {
+      const parentTag = tn.parentElement ? tn.parentElement.tagName : '';
+      if (parentTag === 'CODE' || parentTag === 'PRE' || parentTag === 'SCRIPT' || parentTag === 'STYLE') {
+        offset += tn.nodeValue.length;
+        continue;
+      }
+      const len = tn.nodeValue.length;
+      if (offset + len > prevTextLen) {
+        const cut = Math.max(0, prevTextLen - offset);
+        edits.push({ node: tn, cut: cut });
+      }
+      offset += len;
+    }
+    let idx = 0;
+    edits.forEach(function (ed) {
+      const val = ed.node.nodeValue || '';
+      const before = val.slice(0, ed.cut);
+      const fresh = val.slice(ed.cut);
+      if (!fresh) return;
+      const frag = document.createDocumentFragment();
+      if (before) frag.appendChild(document.createTextNode(before));
+      // Keep Persian/Arabic cursive words connected; animate per-word for RTL and per-short-token for LTR
+      const isRtlChunk = /[؀-ۿ]/.test(fresh);
+      const pieces = isRtlChunk ? fresh.split(/(\s+)/) : fresh.split(/(\s+|[A-Za-z0-9]+)/);
+      pieces.forEach(function (part) {
+        if (!part) return;
+        if (/^\s+$/.test(part)) {
+          frag.appendChild(document.createTextNode(part));
+        } else {
+          const sp = document.createElement('span');
+          sp.className = 'tok-bounce';
+          sp.style.setProperty('--ti', String(Math.min(idx++, 8)));
+          sp.textContent = part;
+          frag.appendChild(sp);
+        }
+      });
+      if (ed.node.parentNode) ed.node.parentNode.replaceChild(frag, ed.node);
+    });
+  }
+
+  function bindStreamEvents(scope) {
+    const root = scope || el.stream;
+    if (!root) return;
     const active = getActiveThread();
 
-    el.stream.querySelectorAll('[data-think-card-toggle]').forEach(function (btn) {
+    root.querySelectorAll('[data-think-card-toggle]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         const card = btn.closest('[data-think-card]');
         const body = card ? card.querySelector('.think-card-body') : null;
@@ -1801,7 +1891,7 @@
       });
     });
 
-    el.stream.querySelectorAll('[data-thought-toggle]').forEach(function (btn) {
+    root.querySelectorAll('[data-thought-toggle]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         const box = btn.closest('[data-thought-box]');
         const wrap = box ? box.querySelector('.thought-steps-wrap') : null;
@@ -1813,7 +1903,7 @@
       });
     });
 
-    el.stream.querySelectorAll('[data-copy-user]').forEach(function (btn) {
+    root.querySelectorAll('[data-copy-user]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         if (!active) return;
         const m = active.messages.find(function (x) { return x.id === btn.getAttribute('data-copy-user'); });
@@ -1821,7 +1911,7 @@
       });
     });
 
-    el.stream.querySelectorAll('[data-copy-bot]').forEach(function (btn) {
+    root.querySelectorAll('[data-copy-bot]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         if (!active) return;
         const m = active.messages.find(function (x) { return x.id === btn.getAttribute('data-copy-bot'); });
@@ -1832,13 +1922,13 @@
       });
     });
 
-    el.stream.querySelectorAll('[data-redo-msg]').forEach(function (btn) {
+    root.querySelectorAll('[data-redo-msg]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         redoMessage(btn.getAttribute('data-redo-msg'));
       });
     });
 
-    el.stream.querySelectorAll('[data-edit-msg]').forEach(function (btn) {
+    root.querySelectorAll('[data-edit-msg]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         if (!active || !el.input) return;
         const m = active.messages.find(function (x) { return x.id === btn.getAttribute('data-edit-msg'); });
@@ -1849,7 +1939,7 @@
       });
     });
 
-    el.stream.querySelectorAll('[data-copy-encoded]').forEach(function (btn) {
+    root.querySelectorAll('[data-copy-encoded]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         const code = decodeURIComponent(btn.getAttribute('data-copy-encoded') || '');
         copyText(code).then(function (ok) {
@@ -2139,8 +2229,10 @@
     }
 
     const history = buildHistory(thread);
-    renderMessages();
     updateWelcomeState();
+    if (el.stream && el.stream.children.length !== thread.messages.length) {
+      renderMessages(true);
+    }
 
     // ایجاد ردیف پیام در حال پردازش (Pending Turn)
     const pendingTurn = document.createElement('div');
@@ -2174,6 +2266,8 @@
       '</div></div>';
 
     el.stream.appendChild(pendingTurn);
+    const pendingUserBubble = pendingTurn.querySelector('.bubble.user-md');
+    if (pendingUserBubble) bounceWrapTrailingText(pendingUserBubble, 0);
     pendingTurn.querySelectorAll('[data-copy-encoded]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         const code = decodeURIComponent(btn.getAttribute('data-copy-encoded') || '');
@@ -2267,7 +2361,11 @@
             /^(P|H[1-6]|UL|OL|BLOCKQUOTE|DL)$/.test(curEl.tagName) &&
             curEl.className.replace(/\bstream-block-in\b/g, '').trim() === nextEl.className.trim()
           ) {
+            const prevLen = curEl._sTextLen || 0;
             curEl.innerHTML = nextEl.innerHTML;
+            const newLen = (curEl.textContent || '').length;
+            if (newLen > prevLen) bounceWrapTrailingText(curEl, prevLen);
+            curEl._sTextLen = newLen;
             curEl._sHtml = nextHtml;
           } else {
             nextEl._sHtml = nextHtml;
@@ -2275,7 +2373,11 @@
           }
         } else {
           nextEl._sHtml = nextHtml;
-          if (!prefersReducedMotion()) nextEl.classList.add('stream-block-in');
+          nextEl._sTextLen = (nextEl.textContent || '').length;
+          if (!prefersReducedMotion()) {
+            nextEl.classList.add('stream-block-in');
+            bounceWrapTrailingText(nextEl, 0);
+          }
           container.appendChild(nextEl);
         }
       }
@@ -2591,10 +2693,23 @@
     state.ctrl = null;
     updateSendButtonState();
     renderSidebar();
-    // Preserve scroll position seamlessly when swapping pendingTurn -> final turn
+    // Swap ONLY pendingTurn -> final turn in-place so existing messages & animations NEVER reload/flicker!
     const prevScrollTop = el.scroller ? el.scroller.scrollTop : 0;
     const wasNearBottom = el.scroller ? (el.scroller.scrollHeight - el.scroller.scrollTop - el.scroller.clientHeight < 120) : true;
-    renderMessages(true);
+    if (pendingTurn && pendingTurn.parentNode) {
+      const wrap = document.createElement('div');
+      wrap.innerHTML = renderSingleTurnHtml(msgObj);
+      const finalNode = wrap.firstElementChild;
+      if (finalNode) {
+        pendingTurn.replaceWith(finalNode);
+        bindStreamEvents(finalNode);
+      } else {
+        renderMessages(true);
+      }
+      state.justFinishedId = null;
+    } else {
+      renderMessages(true);
+    }
     if (el.scroller) {
       if (wasNearBottom) el.scroller.scrollTop = el.scroller.scrollHeight;
       else el.scroller.scrollTop = prevScrollTop;
@@ -3002,6 +3117,11 @@
     if (el.input) {
       el.input.addEventListener('input', function () {
         scheduleComposerSize();
+        if (el.taWrap && !prefersReducedMotion()) {
+          el.taWrap.classList.remove('ta-bounce');
+          void el.taWrap.offsetWidth;
+          el.taWrap.classList.add('ta-bounce');
+        }
       });
       el.input.addEventListener('focus', function () {
         if (el.composer) el.composer.classList.add('focused');

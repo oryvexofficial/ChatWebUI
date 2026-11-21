@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-83431b44ce83d5936e29327acc82548f",
-  "api_key": "sk-uc-83431b44ce83d5936e29327acc82548f",
+  "public_api_key": "sk-uc-4ad296fdb201625bcede68289e948988",
+  "api_key": "sk-uc-4ad296fdb201625bcede68289e948988",
   "status": "online",
   "online": true,
-  "base_url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com",
+  "base_url": "https://talked-passenger-belts-quotes.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/v1",
-    "chat_completions": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/v1/models",
-    "native_chat": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/key",
-    "health": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://talked-passenger-belts-quotes.trycloudflare.com/v1",
+    "chat_completions": "https://talked-passenger-belts-quotes.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://talked-passenger-belts-quotes.trycloudflare.com/v1/models",
+    "native_chat": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/key",
+    "health": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com",
-    "openai_base": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/v1",
-    "chat_completions": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/v1/chat/completions",
-    "api": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1",
-    "key": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/key",
-    "health": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/health",
-    "swagger": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/docs",
-    "redoc": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/redoc",
-    "openapi": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/openapi.json",
-    "guide": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api-docs",
-    "public_key_page": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/site/public-key/"
+    "panel": "https://talked-passenger-belts-quotes.trycloudflare.com",
+    "openai_base": "https://talked-passenger-belts-quotes.trycloudflare.com/v1",
+    "chat_completions": "https://talked-passenger-belts-quotes.trycloudflare.com/v1/chat/completions",
+    "api": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1",
+    "key": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/key",
+    "health": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/health",
+    "swagger": "https://talked-passenger-belts-quotes.trycloudflare.com/docs",
+    "redoc": "https://talked-passenger-belts-quotes.trycloudflare.com/redoc",
+    "openapi": "https://talked-passenger-belts-quotes.trycloudflare.com/openapi.json",
+    "guide": "https://talked-passenger-belts-quotes.trycloudflare.com/api-docs",
+    "public_key_page": "https://talked-passenger-belts-quotes.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/key"
+      "url": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/v1/chat/completions"
+      "url": "https://talked-passenger-belts-quotes.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/v1/models"
+      "url": "https://talked-passenger-belts-quotes.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/chat"
+      "url": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/generate"
+      "url": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1"
+      "url": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/health"
+      "url": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/ready"
+      "url": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/info"
+      "url": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/models"
+      "url": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/config"
+      "url": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/stats"
+      "url": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/health"
+      "url": "https://talked-passenger-belts-quotes.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-21T13:16:50+00:00",
+  "updated_at": "2026-11-21T13:24:57+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44908049143",
-  "run_number": 107,
+  "run_number": 108,
   "commit": "572bcfd"
 }

@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly90b2xlcmFuY2UtZGlmZmljdWx0aWVzLXRlZGR5LWJ1c2luZXNzZXMudHJ5Y2xvdWRmbGFyZS5jb20=",
-  "public_api_key": "sk-uc-83431b44ce83d5936e29327acc82548f",
-  "api_key": "sk-uc-83431b44ce83d5936e29327acc82548f",
+  "url_payload": "aHR0cHM6Ly90YWxrZWQtcGFzc2VuZ2VyLWJlbHRzLXF1b3Rlcy50cnljbG91ZGZsYXJlLmNvbQ==",
+  "public_api_key": "sk-uc-4ad296fdb201625bcede68289e948988",
+  "api_key": "sk-uc-4ad296fdb201625bcede68289e948988",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/v1",
-    "chat_completions": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/v1/models",
-    "native_chat": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/key",
-    "health": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://talked-passenger-belts-quotes.trycloudflare.com/v1",
+    "chat_completions": "https://talked-passenger-belts-quotes.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://talked-passenger-belts-quotes.trycloudflare.com/v1/models",
+    "native_chat": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/key",
+    "health": "https://talked-passenger-belts-quotes.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-21T13:16:50+00:00",
+  "updated_at": "2026-11-21T13:24:57+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44908049143",
-  "run_number": 107,
+  "run_number": 108,
   "commit": "572bcfd"
 }

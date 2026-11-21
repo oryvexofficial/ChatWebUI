@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9hZGEtbG9jYXRlLXZhbGlkaXR5LXBlcmZvcm1hbmNlcy50cnljbG91ZGZsYXJlLmNvbQ==",
-  "public_api_key": "sk-uc-16292df52bff107419f2f22582d49165",
-  "api_key": "sk-uc-16292df52bff107419f2f22582d49165",
+  "url_payload": "aHR0cHM6Ly9zaWdodC1wcmVtaWVyZS1jaGFsbGVuZ2VkLWNvdmVyaW5nLnRyeWNsb3VkZmxhcmUuY29t",
+  "public_api_key": "sk-uc-1d3110cdc88b10d5a5b6461464f50dfa",
+  "api_key": "sk-uc-1d3110cdc88b10d5a5b6461464f50dfa",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://ada-locate-validity-performances.trycloudflare.com/v1",
-    "chat_completions": "https://ada-locate-validity-performances.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://ada-locate-validity-performances.trycloudflare.com/v1/models",
-    "native_chat": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/key",
-    "health": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://sight-premiere-challenged-covering.trycloudflare.com/v1",
+    "chat_completions": "https://sight-premiere-challenged-covering.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://sight-premiere-challenged-covering.trycloudflare.com/v1/models",
+    "native_chat": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/key",
+    "health": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-21T15:00:39+00:00",
+  "updated_at": "2026-11-21T15:07:49+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44916851880",
-  "run_number": 113,
+  "run_number": 114,
   "commit": "46a8db9"
 }

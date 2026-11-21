@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-16292df52bff107419f2f22582d49165",
-  "api_key": "sk-uc-16292df52bff107419f2f22582d49165",
+  "public_api_key": "sk-uc-1d3110cdc88b10d5a5b6461464f50dfa",
+  "api_key": "sk-uc-1d3110cdc88b10d5a5b6461464f50dfa",
   "status": "online",
   "online": true,
-  "base_url": "https://ada-locate-validity-performances.trycloudflare.com",
+  "base_url": "https://sight-premiere-challenged-covering.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://ada-locate-validity-performances.trycloudflare.com/v1",
-    "chat_completions": "https://ada-locate-validity-performances.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://ada-locate-validity-performances.trycloudflare.com/v1/models",
-    "native_chat": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/key",
-    "health": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://sight-premiere-challenged-covering.trycloudflare.com/v1",
+    "chat_completions": "https://sight-premiere-challenged-covering.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://sight-premiere-challenged-covering.trycloudflare.com/v1/models",
+    "native_chat": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/key",
+    "health": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://ada-locate-validity-performances.trycloudflare.com",
-    "openai_base": "https://ada-locate-validity-performances.trycloudflare.com/v1",
-    "chat_completions": "https://ada-locate-validity-performances.trycloudflare.com/v1/chat/completions",
-    "api": "https://ada-locate-validity-performances.trycloudflare.com/api/v1",
-    "key": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/key",
-    "health": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/health",
-    "swagger": "https://ada-locate-validity-performances.trycloudflare.com/docs",
-    "redoc": "https://ada-locate-validity-performances.trycloudflare.com/redoc",
-    "openapi": "https://ada-locate-validity-performances.trycloudflare.com/openapi.json",
-    "guide": "https://ada-locate-validity-performances.trycloudflare.com/api-docs",
-    "public_key_page": "https://ada-locate-validity-performances.trycloudflare.com/site/public-key/"
+    "panel": "https://sight-premiere-challenged-covering.trycloudflare.com",
+    "openai_base": "https://sight-premiere-challenged-covering.trycloudflare.com/v1",
+    "chat_completions": "https://sight-premiere-challenged-covering.trycloudflare.com/v1/chat/completions",
+    "api": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1",
+    "key": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/key",
+    "health": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/health",
+    "swagger": "https://sight-premiere-challenged-covering.trycloudflare.com/docs",
+    "redoc": "https://sight-premiere-challenged-covering.trycloudflare.com/redoc",
+    "openapi": "https://sight-premiere-challenged-covering.trycloudflare.com/openapi.json",
+    "guide": "https://sight-premiere-challenged-covering.trycloudflare.com/api-docs",
+    "public_key_page": "https://sight-premiere-challenged-covering.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/key"
+      "url": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://ada-locate-validity-performances.trycloudflare.com/v1/chat/completions"
+      "url": "https://sight-premiere-challenged-covering.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://ada-locate-validity-performances.trycloudflare.com/v1/models"
+      "url": "https://sight-premiere-challenged-covering.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/chat"
+      "url": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/generate"
+      "url": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://ada-locate-validity-performances.trycloudflare.com/api/v1"
+      "url": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/health"
+      "url": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/ready"
+      "url": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/info"
+      "url": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/models"
+      "url": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/config"
+      "url": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://ada-locate-validity-performances.trycloudflare.com/api/v1/stats"
+      "url": "https://sight-premiere-challenged-covering.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://ada-locate-validity-performances.trycloudflare.com/health"
+      "url": "https://sight-premiere-challenged-covering.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-21T15:00:39+00:00",
+  "updated_at": "2026-11-21T15:07:49+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44916851880",
-  "run_number": 113,
+  "run_number": 114,
   "commit": "46a8db9"
 }

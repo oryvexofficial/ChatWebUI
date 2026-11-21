@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-418ae5576325a0391d564ba7392d0131",
-  "api_key": "sk-uc-418ae5576325a0391d564ba7392d0131",
+  "public_api_key": "sk-uc-eb2b74fccdd7c00a436ff1d3495a57c7",
+  "api_key": "sk-uc-eb2b74fccdd7c00a436ff1d3495a57c7",
   "status": "online",
   "online": true,
-  "base_url": "https://martin-whatever-indicate-leather.trycloudflare.com",
+  "base_url": "https://old-repeat-scan-masters.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://martin-whatever-indicate-leather.trycloudflare.com/v1",
-    "chat_completions": "https://martin-whatever-indicate-leather.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://martin-whatever-indicate-leather.trycloudflare.com/v1/models",
-    "native_chat": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/key",
-    "health": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://old-repeat-scan-masters.trycloudflare.com/v1",
+    "chat_completions": "https://old-repeat-scan-masters.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://old-repeat-scan-masters.trycloudflare.com/v1/models",
+    "native_chat": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/key",
+    "health": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://martin-whatever-indicate-leather.trycloudflare.com",
-    "openai_base": "https://martin-whatever-indicate-leather.trycloudflare.com/v1",
-    "chat_completions": "https://martin-whatever-indicate-leather.trycloudflare.com/v1/chat/completions",
-    "api": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1",
-    "key": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/key",
-    "health": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/health",
-    "swagger": "https://martin-whatever-indicate-leather.trycloudflare.com/docs",
-    "redoc": "https://martin-whatever-indicate-leather.trycloudflare.com/redoc",
-    "openapi": "https://martin-whatever-indicate-leather.trycloudflare.com/openapi.json",
-    "guide": "https://martin-whatever-indicate-leather.trycloudflare.com/api-docs",
-    "public_key_page": "https://martin-whatever-indicate-leather.trycloudflare.com/site/public-key/"
+    "panel": "https://old-repeat-scan-masters.trycloudflare.com",
+    "openai_base": "https://old-repeat-scan-masters.trycloudflare.com/v1",
+    "chat_completions": "https://old-repeat-scan-masters.trycloudflare.com/v1/chat/completions",
+    "api": "https://old-repeat-scan-masters.trycloudflare.com/api/v1",
+    "key": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/key",
+    "health": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/health",
+    "swagger": "https://old-repeat-scan-masters.trycloudflare.com/docs",
+    "redoc": "https://old-repeat-scan-masters.trycloudflare.com/redoc",
+    "openapi": "https://old-repeat-scan-masters.trycloudflare.com/openapi.json",
+    "guide": "https://old-repeat-scan-masters.trycloudflare.com/api-docs",
+    "public_key_page": "https://old-repeat-scan-masters.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/key"
+      "url": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://martin-whatever-indicate-leather.trycloudflare.com/v1/chat/completions"
+      "url": "https://old-repeat-scan-masters.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://martin-whatever-indicate-leather.trycloudflare.com/v1/models"
+      "url": "https://old-repeat-scan-masters.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/chat"
+      "url": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/generate"
+      "url": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1"
+      "url": "https://old-repeat-scan-masters.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/health"
+      "url": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/ready"
+      "url": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/info"
+      "url": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/models"
+      "url": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/config"
+      "url": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://martin-whatever-indicate-leather.trycloudflare.com/api/v1/stats"
+      "url": "https://old-repeat-scan-masters.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://martin-whatever-indicate-leather.trycloudflare.com/health"
+      "url": "https://old-repeat-scan-masters.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-21T13:54:41+00:00",
+  "updated_at": "2026-11-21T14:01:35+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44911184822",
-  "run_number": 109,
+  "run_number": 110,
   "commit": "00c18d5"
 }

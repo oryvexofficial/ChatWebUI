@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9ib3JuLWxpb24tbGVhZGVycy1hY2NvbW1vZGF0aW9ucy50cnljbG91ZGZsYXJlLmNvbQ==",
-  "public_api_key": "sk-uc-9e1d2aa15e8706f1f0cb8eed70d173e2",
-  "api_key": "sk-uc-9e1d2aa15e8706f1f0cb8eed70d173e2",
+  "url_payload": "aHR0cHM6Ly90b2xlcmFuY2UtZGlmZmljdWx0aWVzLXRlZGR5LWJ1c2luZXNzZXMudHJ5Y2xvdWRmbGFyZS5jb20=",
+  "public_api_key": "sk-uc-83431b44ce83d5936e29327acc82548f",
+  "api_key": "sk-uc-83431b44ce83d5936e29327acc82548f",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://born-lion-leaders-accommodations.trycloudflare.com/v1",
-    "chat_completions": "https://born-lion-leaders-accommodations.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://born-lion-leaders-accommodations.trycloudflare.com/v1/models",
-    "native_chat": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/key",
-    "health": "https://born-lion-leaders-accommodations.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/v1",
+    "chat_completions": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/v1/models",
+    "native_chat": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/key",
+    "health": "https://tolerance-difficulties-teddy-businesses.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-21T09:51:04+00:00",
+  "updated_at": "2026-11-21T09:58:35+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44891506583",
-  "run_number": 106,
+  "run_number": 107,
   "commit": "0d3902d"
 }

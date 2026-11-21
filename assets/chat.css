@@ -1613,6 +1613,16 @@ svg.pg-mark.live {
   unicode-bidi: isolate;
 }
 
+.apple-emoji {
+  display: inline-block;
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: -0.22em;
+  margin-inline: 0.08em;
+  object-fit: contain;
+  user-select: text;
+}
+
 .md img.md-img {
   max-width: 100%;
   border-radius: var(--r-md);

@@ -967,6 +967,35 @@
     return s.replace(/\uE010HL(\d+)\uE011/g, function (_, idx) { return tokens[+idx] || ''; });
   }
 
+  function emojiToAppleCodepoint(emojiStr) {
+    const cps = [];
+    for (const ch of Array.from(emojiStr)) {
+      const cp = ch.codePointAt(0);
+      if (cp === undefined) continue;
+      cps.push(cp.toString(16).toLowerCase().padStart(4, '0'));
+    }
+    return cps.join('-');
+  }
+
+  const APPLE_EMOJI_RE = /(?:[\u{1F1E6}-\u{1F1FF}]{2}|(?:\p{Extended_Pictographic}|[#*0-9]\uFE0F?\u20E3)(?:\uFE0F|\u20E3|[\u{1F3FB}-\u{1F3FF}])?(?:\u200D(?:\p{Extended_Pictographic})(?:\uFE0F|[\u{1F3FB}-\u{1F3FF}])?)*)/gu;
+
+  function renderAppleEmojis(htmlStr) {
+    const base = IS_PAGES ? (PAGES_ROOT + 'assets/emojis/apple/') : '/static/emojis/apple/';
+    return htmlStr.split(/(<[^>]+>)/g).map(function (seg) {
+      if (!seg || seg[0] === '<') return seg;
+      return seg.replace(APPLE_EMOJI_RE, function (match) {
+        const fullCp = emojiToAppleCodepoint(match);
+        const noFe0f = fullCp.replace(/-fe0f/g, '');
+        const primary = base + fullCp + '.png';
+        const fallback = noFe0f !== fullCp ? (base + noFe0f + '.png') : '';
+        const onerr = fallback
+          ? 'if(!this.dataset.fb){this.dataset.fb=1;this.src=\'' + fallback + '\';}else{this.replaceWith(document.createTextNode(this.alt));}'
+          : 'this.replaceWith(document.createTextNode(this.alt));';
+        return '<img class="apple-emoji" src="' + primary + '" alt="' + escapeHtml(match) + '" draggable="false" loading="lazy" onerror="' + onerr + '">';
+      });
+    }).join('');
+  }
+
   function renderInlineMarkdown(escapedText, mathTokens, codeTokens, refDefs, fnMap) {
     let s = escapedText;
     const escTokens = [];
@@ -1039,6 +1068,9 @@
     s = s.replace(/(^|[^*\w])\*(?!\s)([^*\n]+?)(?<!\s)\*(?!\*)/g, '$1<em>$2</em>');
     s = s.replace(/(^|[\s(>«"'])_(?!\s|\{)([^_\n{}]+?)(?<!\s)_(?=[\s.,;:!?)<»"']|$)/g, '$1<em>$2</em>');
     s = s.replace(/~~([^~]+)~~/g, '<del>$1</del>');
+
+    // 10.5. Render Apple Emoji PNGs (outside code/math tokens, with seamless fallback)
+    s = renderAppleEmojis(s);
 
     // 11. Restore protected tokens
     s = s.replace(/\uE004ESC(\d+)\uE005/g, function (_, i) { return escTokens[+i] || ''; });
@@ -1457,6 +1489,7 @@
     fmtOpen: false,
     previewOpen: false,
     busy: false,
+    routing: false,
     aborted: false,
     ctrl: null,
     collapsed: false,
@@ -2030,12 +2063,13 @@
   function updateSendButtonState() {
     if (!el.sendBtn || !el.input) return;
     const canSend = /\S/.test(el.input.value);
-    const active = state.busy || canSend;
+    const active = !state.routing && (state.busy || canSend);
     el.sendBtn.disabled = !active;
     el.sendBtn.classList.toggle('busy', state.busy);
     el.sendBtn.classList.toggle('on', active);
-    el.sendBtn.title = state.busy ? 'توقف' : 'ارسال';
-    el.sendBtn.setAttribute('aria-label', state.busy ? 'توقف' : 'ارسال');
+    const label = state.routing ? 'در حال تشخیص مدل…' : (state.busy ? 'توقف' : 'ارسال');
+    el.sendBtn.title = label;
+    el.sendBtn.setAttribute('aria-label', label);
     if (el.sendIcoArrow) el.sendIcoArrow.setAttribute('aria-hidden', state.busy ? 'true' : 'false');
     if (el.sendIcoStop) el.sendIcoStop.setAttribute('aria-hidden', state.busy ? 'false' : 'true');
     if (el.composer) { el.composer.classList.toggle('busy', state.busy); }
@@ -2212,15 +2246,23 @@
 
   async function sendMessage(rawText, fromInput) {
     const text = String(rawText || '').trim();
-    if (!text || state.busy) return;
+    if (!text || state.busy || state.routing) return;
     if (text.length > MAX_TEXT) {
       showToast('پیام طولانی است (حداکثر ' + fa(MAX_TEXT) + ' نویسه)');
       return;
     }
 
-    // 1. Run router to detect MATH vs CHAT, then auto-open filtered custom model picker modal
-    const detectedCat = localDetectMath(text) ? 'math' : localDetectScience(text) ? 'science' : 'chat';
-    const pickedModelId = await promptModelForCategory(detectedCat);
+    // 1. Lock Enter & Send while router classifies and model picker awaits selection
+    state.routing = true;
+    updateSendButtonState();
+    let pickedModelId = null;
+    try {
+      const detectedCat = localDetectScience(text) ? 'science' : await detectMessageCategory(text);
+      pickedModelId = await promptModelForCategory(detectedCat);
+    } finally {
+      state.routing = false;
+      updateSendButtonState();
+    }
     if (!pickedModelId) return;
     applySelectedModel(pickedModelId, true);
 
@@ -3161,13 +3203,14 @@
       el.input.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' && !e.shiftKey && !e.isComposing && e.keyCode !== 229) {
           e.preventDefault();
-          if (!state.busy) sendMessage(el.input.value, true);
+          if (!state.busy && !state.routing) sendMessage(el.input.value, true);
         }
       });
     }
 
     if (el.sendBtn) {
       el.sendBtn.addEventListener('click', function () {
+        if (state.routing) return;
         if (state.busy) stopStreaming();
         else if (el.input) sendMessage(el.input.value, true);
       });
@@ -3406,7 +3449,7 @@
       .replace(/https?:\/\/\S+|www\.\S+|\b[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}\b/gi, ' ')
       .trim();
     if (!stripped) return false;
-    return /(?:فیزیک|شیمی|زیست[‌\s]?شناسی|زیست|سلول|مولکول|اتم|الکترون|پروتون|نوترون|کوانتوم|نسبیت|ترمودینامیک|الکتریسیته|مغناطیس|الکترومغناطیس|نیرو|شتاب|گرانش|جاذبه|واکنش[‌\s]?شیمیایی|اسید|باز|پیوند[‌\s]?شیمیایی|جدول[‌\s]?تناوبی|ایزوتوپ|کاتالیزور|ژنتیک|پروتئین|آنزیم|فتوسنتز|میتوز|میوز|کروموزوم|باکتری|ویروس|آناتومی|فیزیولوژی|نجوم|اخترفیزیک|کهکشان|سیاه[‌\s]?چاله|سیاره|زمین[‌\s]?شناسی|آتشفشان|زلزله|اکولوژی|\b(?:physics|chemistry|biology|science|scientific|quantum|relativity|thermodynamics|electromagnetism|molecule|molecular|atom|atomic|electron|proton|neutron|chemical|reaction|acid|base|catalyst|isotope|periodic\s+table|dna|rna|genetics|protein|enzyme|photosynthesis|mitosis|meiosis|cell|bacteria|virus|anatomy|physiology|astronomy|astrophysics|galaxy|black\s+hole|gravity|geology|ecology)\b)/i.test(stripped);
+    return /(?:فیزیک|شیمی|زیست[‌\s]?شناسی|زیست|سلول|مولکول|اتم|ذره|ذرات|الکترون|پروتون|نوترون|فوتون|کوارک|کوانتوم|کوانتومی|نسبیت|ترمودینامیک|چاه[‌\s]+پتانسیل|تابع[‌\s]+موج|حالت[‌\s]+پایه|حالت[‌\s]+برانگیخته|تراز[‌\s]+انرژی|شرودینگر|هایزنبرگ|هامیلتونی|پتانسیل|انرژی[‌\s]+جنبشی|تکانه|گشتاور|مکانیک|الکتریسیته|مغناطیس|الکترومغناطیس|میدان[‌\s]+مغناطیسی|میدان[‌\s]+الکتریکی|ولتاژ|خازن|مقاومت[‌\s]+الکتریکی|طول[‌\s]+موج|فرکانس|بسامد|اپتیک|عدسی|نیرو|شتاب|گرانش|جاذبه|سرعت[‌\s]+نور|آنتروپی|آنتالپی|واکنش[‌\s]?شیمیایی|اسید|باز|پیوند[‌\s]?شیمیایی|پیوند[‌\s]+کووالانسی|پیوند[‌\s]+یونی|مولاریته|اکسایش|الکترولیز|جدول[‌\s]?تناوبی|ایزوتوپ|کاتالیزور|ژنتیک|پروتئین|آنزیم|فتوسنتز|میتوز|میوز|کروموزوم|باکتری|ویروس|نورون|سیناپس|هورمون|آناتومی|فیزیولوژی|نجوم|اخترفیزیک|کهکشان|سیاه[‌\s]?چاله|سیاره|زمین[‌\s]?شناسی|آتشفشان|زلزله|اکولوژی|\b(?:physics|chemistry|biology|science|scientific|quantum|relativity|thermodynamics|electromagnetism|particle|potential\s+well|wave\s*function|ground\s+state|excited\s+state|schr[oö]dinger|heisenberg|hamiltonian|photon|quark|energy\s+level|wavelength|frequency|optics|voltage|capacitor|magnetic\s+field|electric\s+field|kinetic\s+energy|momentum|torque|entropy|enthalpy|molarity|stoichiometry|oxidation|molecule|molecular|atom|atomic|electron|proton|neutron|chemical|reaction|acid|base|catalyst|isotope|periodic\s+table|dna|rna|genetics|protein|enzyme|photosynthesis|mitosis|meiosis|cell|bacteria|virus|neuron|hormone|anatomy|physiology|astronomy|astrophysics|galaxy|black\s+hole|gravity|geology|ecology)\b)/i.test(stripped);
   }
 
   async function detectMessageCategory(text) {
@@ -3431,7 +3474,7 @@
         if (d && typeof d.is_math === 'boolean') return d.is_math ? 'math' : 'chat';
       }
     } catch (e) {}
-    return localDetectMath(text) ? 'math' : localDetectScience(text) ? 'science' : 'chat';
+    return localDetectScience(text) ? 'science' : localDetectMath(text) ? 'math' : 'chat';
   }
 
   function promptModelForCategory(category) {

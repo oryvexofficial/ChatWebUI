@@ -122,7 +122,14 @@
       el.textContent = displayUrl;
     });
     document.querySelectorAll('[data-swagger-link]').forEach(function (el) {
-      el.href = (state.baseUrl || '') + '/docs';
+      if (state.baseUrl) {
+        el.href = state.baseUrl + '/docs';
+        el.setAttribute('target', '_blank');
+        el.setAttribute('rel', 'noopener');
+      } else {
+        el.href = ROOT_PREFIX + 'api-docs/';
+        el.removeAttribute('target');
+      }
     });
     document.querySelectorAll('[data-live-panel-link]').forEach(function (el) {
       if (state.baseUrl) {

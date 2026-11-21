@@ -177,9 +177,6 @@ body {
   font-feature-settings: "ss01";
 }
 
-html[lang="en"] body {
-  font-feature-settings: normal;
-}
 
 body.chat-body {
   overflow: hidden;
@@ -993,39 +990,6 @@ svg.pg-mark {
   white-space: nowrap;
 }
 
-/* Compact Language Pill */
-.lang-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  min-width: 38px;
-  padding-inline: 8px;
-  border-radius: var(--r-sm);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-secondary);
-  font-family: var(--mono);
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  transition:
-    background-color var(--dur-fast) var(--ease),
-    color var(--dur-fast) var(--ease),
-    border-color var(--dur-fast) var(--ease),
-    transform var(--dur-fast) var(--ease);
-}
-
-.lang-btn:hover {
-  background: var(--bg-hover);
-  border-color: var(--border-active);
-  color: var(--text-primary);
-  transform: scale(1.03);
-}
-
-.lang-btn:active {
-  transform: scale(0.95);
-}
 
 /* ==========================================================================
    6. MESSAGES & EMPTY STATE

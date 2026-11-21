@@ -1579,9 +1579,7 @@
     });
 
     if (!sorted.length) {
-      const emptyMsg = filterQ
-        ? (state.lang === 'en' ? 'No matching chats' : 'گفتگویی پیدا نشد')
-        : (state.lang === 'en' ? 'No conversations yet' : 'هنوز گفتگویی ثبت نشده است');
+      const emptyMsg = filterQ ? 'گفتگویی با این عبارت پیدا نشد' : 'هنوز گفتگویی ثبت نشده است';
       el.sbThreads.innerHTML = '<div class="sb-empty">' + emptyMsg + '</div>';
       return;
     }
@@ -2002,7 +2000,16 @@
       el.modalRouterUrl.textContent = base + '/v1';
     }
     document.querySelectorAll('[data-swagger-link]').forEach(function (a) {
-      a.href = (state.apiBase || '') + '/docs';
+      if (state.apiBase) {
+        a.href = state.apiBase + '/docs';
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener');
+      } else if (IS_PAGES) {
+        a.href = PAGES_ROOT + 'api-docs/';
+        a.removeAttribute('target');
+      } else {
+        a.href = '/docs';
+      }
     });
   }
 
@@ -2433,7 +2440,7 @@
       });
 
       if (!r.ok || !r.body) {
-        let msg = 'پاسخ نامعتبر از سرور (HTTP ' + r.status + ')';
+        let msg = 'پاسخ نامعتبر از سرور (کد ' + fa(r.status) + ')';
         try {
           const j = await r.json();
           if (j && j.error) msg = typeof j.error === 'string' ? j.error : (j.error.message || msg);
@@ -2912,7 +2919,7 @@
       copyText(state.publicKey || DEFAULT_KEY).then(function (ok) {
         if (ok) {
           flashCopyFeedback(btn);
-          showToast('کلید عمومی API کپی شد');
+          showToast('کلید عمومی دسترسی کپی شد');
         }
       });
     });
@@ -3073,8 +3080,8 @@
           bold: ['**', '**', 'متن ضخیم'],
           italic: ['*', '*', 'متن مورب'],
           mark: ['==', '==', 'متن مهم'],
-          code: ['`', '`', 'code'],
-          codeblock: ['```text\n', '\n```', 'متن یا کد'],
+          code: ['`', '`', 'کد'],
+          codeblock: ['```\n', '\n```', 'متن یا کد'],
           math: ['$$\n', '\n$$', '\\frac{a}{b} = c'],
           callout: ['> [!NOTE] ', '', 'نکته‌ی مهم'],
           task: ['- [ ] ', '', 'عنوان کار']
@@ -3144,12 +3151,10 @@
 
   /* ---------- انتخابگر اختصاصی مدل یونیکالکت (متصل به روتر هوشمند) ---------- */
   const UC_MODEL_LABELS = {
-    'unicollect-chat-mini': 'Unicollect Chat Mini',
-    'unicollect-chat-1.2': 'Unicollect Chat 1.2',
-    'unicollect-chat-classic': 'Unicollect Chat Classic',
-    'unicollect-math-mini': 'Unicollect Math Mini',
-    'unicollect-math-1.2': 'Unicollect Math 1.2',
-    'unicollect-math-classic': 'Unicollect Math Classic'
+    'unicollect-chat-mini': 'یونیکالکت چت مینی',
+    'unicollect-chat-1.2': 'یونیکالکت چت ۱.۲',
+    'unicollect-math-mini': 'یونیکالکت ریاضی مینی',
+    'unicollect-math-1.2': 'یونیکالکت ریاضی ۱.۲'
   };
   let _pendingModelResolver = null;
 
@@ -3294,56 +3299,7 @@
   }
 
 
-  /* ---------- تم روشن/تاریک و زبان دوزبانه (FA/EN) ---------- */
-  const I18N = {
-    fa: {
-      brand: 'یونیکالکت',
-      brandFull: 'یونیکالکت چت مینی',
-      newChat: 'گفتگوی جدید',
-      searchChats: 'جستجوی گفتگوها',
-      modelsStatus: 'مدل‌ها و وضعیت',
-      publicKey: 'کلید عمومی دسترسی',
-      devGuide: 'راهنمای توسعه‌دهندگان',
-      apiDocs: 'مستندات تعاملی API',
-      siteHome: 'سایت یونیکالکت',
-      history: 'گفتگوها',
-      watermark: 'ساخته شده توسط موویکسو',
-      chip1: 'نگارش ایمیل رسمی',
-      chip2: 'ساده‌سازی مفاهیم',
-      chip3: 'ترجمه‌ی طبیعی',
-      chip4: 'ایده‌پردازی خلاق',
-      disclaimer: 'یونیکالکت ممکن است اشتباه کند؛ اطلاعات مهم را بررسی کنید.',
-      placeholder: 'از یونیکالکت بپرس…',
-      filterPlaceholder: 'فیلتر گفتگوها…',
-      searchPlaceholder: 'جستجو در گفتگوها…',
-      greeting: 'وقت بخیر',
-      prompt: 'امروز چطور کمکت کنم؟'
-    },
-    en: {
-      brand: 'Unicollect',
-      brandFull: 'Unicollect Chat Mini',
-      newChat: 'New Chat',
-      searchChats: 'Search Chats',
-      modelsStatus: 'Models & Status',
-      publicKey: 'Public Access Key',
-      devGuide: 'Developer Guide',
-      apiDocs: 'Interactive API Docs',
-      siteHome: 'Unicollect Site',
-      history: 'History',
-      watermark: 'Built by Muvixo',
-      chip1: 'Draft formal email',
-      chip2: 'Simplify concepts',
-      chip3: 'Natural translation',
-      chip4: 'Creative ideas',
-      disclaimer: 'Unicollect can make mistakes. Verify important information.',
-      placeholder: 'Ask Unicollect anything…',
-      filterPlaceholder: 'Filter chats…',
-      searchPlaceholder: 'Search conversations…',
-      greeting: 'Welcome back',
-      prompt: 'How can I help you today?'
-    }
-  };
-
+  /* ---------- تم روشن/تاریک و فیلتر نوار کناری ---------- */
   function applyTheme(theme) {
     const next = theme === 'light' ? 'light' : 'dark';
     state.theme = next;
@@ -3356,47 +3312,13 @@
     try { localStorage.setItem('uc_theme', next); } catch (e) {}
   }
 
-  function applyLanguage(lang) {
-    const next = lang === 'en' ? 'en' : 'fa';
-    state.lang = next;
-    document.documentElement.lang = next;
-    document.documentElement.dir = next === 'en' ? 'ltr' : 'rtl';
-    const dict = I18N[next];
-    document.querySelectorAll('[data-i18n]').forEach(function (node) {
-      const k = node.getAttribute('data-i18n');
-      if (k && dict[k]) node.textContent = dict[k];
-    });
-    if (el.taPh) el.taPh.textContent = dict.placeholder;
-    if (el.sbFilterInput) el.sbFilterInput.placeholder = dict.filterPlaceholder;
-    if (el.searchInput) el.searchInput.placeholder = dict.searchPlaceholder;
-    if (el.btnLangToggle) el.btnLangToggle.textContent = next === 'fa' ? 'EN' : 'FA';
-    if (next === 'en') {
-      if (el.heroGreeting) el.heroGreeting.textContent = dict.greeting;
-      if (el.heroPrompt) el.heroPrompt.textContent = dict.prompt;
-    } else {
-      rotateHeroPrompt();
-    }
-    renderSidebar();
-    try { localStorage.setItem('uc_lang', next); } catch (e) {}
-  }
-
   function initThemeAndLang() {
     let savedTheme = 'dark';
-    let savedLang = 'fa';
-    try {
-      savedTheme = localStorage.getItem('uc_theme') || 'dark';
-      savedLang = localStorage.getItem('uc_lang') || 'fa';
-    } catch (e) {}
+    try { savedTheme = localStorage.getItem('uc_theme') || 'dark'; } catch (e) {}
     applyTheme(savedTheme);
-    applyLanguage(savedLang);
     if (el.btnThemeToggle) {
       el.btnThemeToggle.addEventListener('click', function () {
         applyTheme(state.theme === 'dark' ? 'light' : 'dark');
-      });
-    }
-    if (el.btnLangToggle) {
-      el.btnLangToggle.addEventListener('click', function () {
-        applyLanguage(state.lang === 'fa' ? 'en' : 'fa');
       });
     }
     if (el.sbFilterInput) {

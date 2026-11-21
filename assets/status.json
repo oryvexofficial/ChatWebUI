@@ -1,23 +1,23 @@
 {
   "status": "online",
-  "url_payload": "aHR0cHM6Ly9kb21haW5zLXJlY29yZHMtZGV0YWlsLWJ1Z3MudHJ5Y2xvdWRmbGFyZS5jb20=",
-  "public_api_key": "sk-uc-a111a390ab4a5c070f99f71f5d17d98e",
-  "api_key": "sk-uc-a111a390ab4a5c070f99f71f5d17d98e",
+  "url_payload": "aHR0cHM6Ly9pbXBsZW1lbnRlZC1mb2N1c2luZy1wbGF5c3RhdGlvbi1jb3ZlcnMudHJ5Y2xvdWRmbGFyZS5jb20=",
+  "public_api_key": "sk-uc-87be00a12b2ece29a99d9195ebeb4856",
+  "api_key": "sk-uc-87be00a12b2ece29a99d9195ebeb4856",
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
   "routes": {
-    "openai_base_url": "https://domains-records-detail-bugs.trycloudflare.com/v1",
-    "chat_completions": "https://domains-records-detail-bugs.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://domains-records-detail-bugs.trycloudflare.com/v1/models",
-    "native_chat": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/key",
-    "health": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://implemented-focusing-playstation-covers.trycloudflare.com/v1",
+    "chat_completions": "https://implemented-focusing-playstation-covers.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://implemented-focusing-playstation-covers.trycloudflare.com/v1/models",
+    "native_chat": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/key",
+    "health": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/health"
   },
-  "updated_at": "2026-11-21T14:29:50+00:00",
+  "updated_at": "2026-11-21T14:36:41+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44914205155",
-  "run_number": 111,
+  "run_number": 112,
   "commit": "72b9022"
 }

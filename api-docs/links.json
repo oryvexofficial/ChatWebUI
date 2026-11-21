@@ -3,113 +3,113 @@
   "model": "یونیکالکت چت مینی",
   "model_id": "unicollect-chat-mini",
   "creator": "Muvixo",
-  "public_api_key": "sk-uc-a111a390ab4a5c070f99f71f5d17d98e",
-  "api_key": "sk-uc-a111a390ab4a5c070f99f71f5d17d98e",
+  "public_api_key": "sk-uc-87be00a12b2ece29a99d9195ebeb4856",
+  "api_key": "sk-uc-87be00a12b2ece29a99d9195ebeb4856",
   "status": "online",
   "online": true,
-  "base_url": "https://domains-records-detail-bugs.trycloudflare.com",
+  "base_url": "https://implemented-focusing-playstation-covers.trycloudflare.com",
   "routes": {
-    "openai_base_url": "https://domains-records-detail-bugs.trycloudflare.com/v1",
-    "chat_completions": "https://domains-records-detail-bugs.trycloudflare.com/v1/chat/completions",
-    "v1_chat_completions": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/chat/completions",
-    "models": "https://domains-records-detail-bugs.trycloudflare.com/v1/models",
-    "native_chat": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/chat",
-    "native_stream": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/chat/stream",
-    "key": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/key",
-    "health": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/health"
+    "openai_base_url": "https://implemented-focusing-playstation-covers.trycloudflare.com/v1",
+    "chat_completions": "https://implemented-focusing-playstation-covers.trycloudflare.com/v1/chat/completions",
+    "v1_chat_completions": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/chat/completions",
+    "models": "https://implemented-focusing-playstation-covers.trycloudflare.com/v1/models",
+    "native_chat": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/chat",
+    "native_stream": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/chat/stream",
+    "key": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/key",
+    "health": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/health"
   },
   "links": {
-    "panel": "https://domains-records-detail-bugs.trycloudflare.com",
-    "openai_base": "https://domains-records-detail-bugs.trycloudflare.com/v1",
-    "chat_completions": "https://domains-records-detail-bugs.trycloudflare.com/v1/chat/completions",
-    "api": "https://domains-records-detail-bugs.trycloudflare.com/api/v1",
-    "key": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/key",
-    "health": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/health",
-    "swagger": "https://domains-records-detail-bugs.trycloudflare.com/docs",
-    "redoc": "https://domains-records-detail-bugs.trycloudflare.com/redoc",
-    "openapi": "https://domains-records-detail-bugs.trycloudflare.com/openapi.json",
-    "guide": "https://domains-records-detail-bugs.trycloudflare.com/api-docs",
-    "public_key_page": "https://domains-records-detail-bugs.trycloudflare.com/site/public-key/"
+    "panel": "https://implemented-focusing-playstation-covers.trycloudflare.com",
+    "openai_base": "https://implemented-focusing-playstation-covers.trycloudflare.com/v1",
+    "chat_completions": "https://implemented-focusing-playstation-covers.trycloudflare.com/v1/chat/completions",
+    "api": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1",
+    "key": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/key",
+    "health": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/health",
+    "swagger": "https://implemented-focusing-playstation-covers.trycloudflare.com/docs",
+    "redoc": "https://implemented-focusing-playstation-covers.trycloudflare.com/redoc",
+    "openapi": "https://implemented-focusing-playstation-covers.trycloudflare.com/openapi.json",
+    "guide": "https://implemented-focusing-playstation-covers.trycloudflare.com/api-docs",
+    "public_key_page": "https://implemented-focusing-playstation-covers.trycloudflare.com/site/public-key/"
   },
   "endpoints": [
     {
       "method": "GET",
       "path": "/api/v1/key",
-      "url": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/key"
+      "url": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/key"
     },
     {
       "method": "POST",
       "path": "/v1/chat/completions",
-      "url": "https://domains-records-detail-bugs.trycloudflare.com/v1/chat/completions"
+      "url": "https://implemented-focusing-playstation-covers.trycloudflare.com/v1/chat/completions"
     },
     {
       "method": "GET",
       "path": "/v1/models",
-      "url": "https://domains-records-detail-bugs.trycloudflare.com/v1/models"
+      "url": "https://implemented-focusing-playstation-covers.trycloudflare.com/v1/models"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat",
-      "url": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/chat"
+      "url": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/chat"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/stream",
-      "url": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/chat/stream"
+      "url": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/chat/stream"
     },
     {
       "method": "POST",
       "path": "/api/v1/chat/completions",
-      "url": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/chat/completions"
+      "url": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/chat/completions"
     },
     {
       "method": "POST",
       "path": "/api/v1/generate",
-      "url": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/generate"
+      "url": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/generate"
     },
     {
       "method": "GET",
       "path": "/api/v1",
-      "url": "https://domains-records-detail-bugs.trycloudflare.com/api/v1"
+      "url": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1"
     },
     {
       "method": "GET",
       "path": "/api/v1/health",
-      "url": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/health"
+      "url": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/health"
     },
     {
       "method": "GET",
       "path": "/api/v1/ready",
-      "url": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/ready"
+      "url": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/ready"
     },
     {
       "method": "GET",
       "path": "/api/v1/info",
-      "url": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/info"
+      "url": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/info"
     },
     {
       "method": "GET",
       "path": "/api/v1/models",
-      "url": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/models"
+      "url": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/models"
     },
     {
       "method": "GET",
       "path": "/api/v1/config",
-      "url": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/config"
+      "url": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/config"
     },
     {
       "method": "GET",
       "path": "/api/v1/stats",
-      "url": "https://domains-records-detail-bugs.trycloudflare.com/api/v1/stats"
+      "url": "https://implemented-focusing-playstation-covers.trycloudflare.com/api/v1/stats"
     },
     {
       "method": "GET",
       "path": "/health",
-      "url": "https://domains-records-detail-bugs.trycloudflare.com/health"
+      "url": "https://implemented-focusing-playstation-covers.trycloudflare.com/health"
     }
   ],
-  "updated_at": "2026-11-21T14:29:50+00:00",
+  "updated_at": "2026-11-21T14:36:41+00:00",
   "run_url": "https://github.com/oryvexofficial/ChatWebUI/actions/runs/44914205155",
-  "run_number": 111,
+  "run_number": 112,
   "commit": "72b9022"
 }

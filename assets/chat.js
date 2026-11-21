@@ -333,6 +333,15 @@
     s = s.replace(/(^|[^$\\])(\\boxed\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\})(?!\$)/g, function (_, pre, expr) {
       return pre + '$' + expr + '$';
     });
+    // Auto-wrap bare algebraic powers/subscripts & common LaTeX symbols outside math blocks
+    s = s.replace(/(^|[^$\\\w])(\\(?:binom\{[^{}]+\}\{[^{}]+\}|cdot|times|le|leq|ge|geq|neq|approx|infty|pi|alpha|beta|gamma|delta|theta|lambda|sigma|omega|to|Rightarrow|implies))(?![A-Za-z])/g, function (_, pre, expr) {
+      return pre + '$' + expr + '$';
+    });
+    s = s.replace(/(?<![A-Za-z0-9_$\\])([A-Za-z0-9]+(?:\^(?:\{[^{}]+\}|[0-9A-Za-z]+)|_(?:\{[^{}]+\}|[0-9A-Za-z]+)){1,2})(?![A-Za-z0-9_$])/g, function (expr) {
+      return '$' + expr + '$';
+    });
+    // Protect arithmetic multiplication (e.g. 1*2*3, 100*101, 2*(k+1)) from triggering Markdown italics
+    s = s.replace(/(?<=[0-9A-Za-z)!])\s*\*\s*(?=[0-9A-Za-z(])/g, ' × ');
     // Restore protected math blocks
     s = s.replace(/@@THMATH_(\d+)@@/g, function (_, i) { return kept[Number(i)] || ''; });
     return renderMarkdown(s, isLive);
@@ -1690,16 +1699,22 @@
     return '<ol class="think-steps live">' + itemsHtml + '</ol>';
   }
 
-  function localizeModelLabel(modelName, isMath) {
+  function localizeModelLabel(modelName, isMath, isScience) {
     const raw = String(modelName || '').trim();
-    if (isMath || /math/i.test(raw)) return 'مدل ریاضی یونیکالکت';
+    if (/science\s*1\.2/i.test(raw)) return 'یونیکالکت علوم ۱.۲';
+    if (isScience || /science/i.test(raw)) return 'یونیکالکت علوم مینی';
+    if (/math\s*1\.2/i.test(raw)) return 'یونیکالکت ریاضی ۱.۲';
+    if (isMath || /math/i.test(raw)) return 'یونیکالکت ریاضی مینی';
+    if (/chat\s*1\.2/i.test(raw)) return 'یونیکالکت چت ۱.۲';
     if (!raw || /unicollect\s+chat\s+mini/i.test(raw)) return 'یونیکالکت چت مینی';
     return raw;
   }
 
-  function renderModelBadgeHtml(modelName, isMath) {
-    const label = localizeModelLabel(modelName, isMath);
-    return '<span class="model-tag' + (isMath ? ' is-math' : '') + '">' + escapeHtml(label) + '</span>';
+  function renderModelBadgeHtml(modelName, isMath, isScience) {
+    const sci = !!(isScience || /science|علوم/i.test(String(modelName || '')));
+    const label = localizeModelLabel(modelName, isMath, sci);
+    const cls = isMath ? ' is-math' : sci ? ' is-science' : '';
+    return '<span class="model-tag' + cls + '">' + escapeHtml(label) + '</span>';
   }
 
   function renderThoughtLineHtml(ms, steps, modelName, isMath) {
@@ -1963,8 +1978,7 @@
   function syncComposerSize(instant) {
     if (!el.input || !el.taWrap) return;
     const val = el.input.value;
-    const dir = textDir(val);
-    el.input.dir = dir;
+    el.input.dir = 'auto';
 
     el.input.style.height = 'auto';
     const contentH = el.input.scrollHeight;
@@ -1994,16 +2008,23 @@
     updateSendButtonState();
   }
 
+  function hasLatexContent(raw) {
+    if (!raw) return false;
+    return /\\\[|\\\(|\$\$|\$[^$\n]+\$|\\(?:frac|dfrac|tfrac|sqrt|prod|sum|int|lim|binom|begin\{)/i.test(raw);
+  }
+
   function updateComposerPreview() {
-    if (!el.composerPreview || !state.previewOpen || !el.input) return;
+    if (!el.composerPreview || !el.input) return;
     const raw = el.input.value;
-    if (!raw.trim()) {
-      el.composerPreview.dir = 'rtl';
-      el.composerPreview.innerHTML = '<span class="composer-preview-empty">پیش‌نمایش زنده مارک‌داون، کد و فرمول ریاضی اینجا نمایش داده می‌شود…</span>';
+    const show = hasLatexContent(raw);
+    if (!show) {
+      if (!el.composerPreview.hidden) setHidden(el.composerPreview, true);
+      el.composerPreview.innerHTML = '';
       return;
     }
+    if (el.composerPreview.hidden) setHidden(el.composerPreview, false);
     el.composerPreview.dir = textDir(raw);
-    el.composerPreview.innerHTML = renderMarkdown(raw);
+    el.composerPreview.innerHTML = renderMarkdown(raw, true);
   }
 
   function updateSendButtonState() {
@@ -2163,7 +2184,8 @@
   function buildChatSteps(text, histTurns, timings, reply, error, modelName, isMath) {
     const s = function (ms) { return ms > 0 ? Math.round(ms) : undefined; };
     const words = (reply || '').trim().split(/\s+/).filter(Boolean).length;
-    const routeDetail = localizeModelLabel(modelName, isMath) + (isMath ? ' (ریاضی)' : ' (گفتگو)');
+    const isSci = /science|علوم/i.test(String(modelName || ''));
+    const routeDetail = localizeModelLabel(modelName, isMath, isSci) + (isMath ? ' (ریاضی)' : isSci ? ' (علوم)' : ' (گفتگو)');
     const steps = [
       { label: STEPS[0], detail: fa(Array.from(text).length) + ' نویسه', ms: s(timings.d0) },
       { label: STEPS[1], detail: histTurns ? fa(histTurns) + ' پیام قبلی در حافظه' : 'گفتگوی تازه', ms: s(timings.d1) },
@@ -2197,7 +2219,7 @@
     }
 
     // 1. Run router to detect MATH vs CHAT, then auto-open filtered custom model picker modal
-    const detectedCat = localDetectMath(text) ? 'math' : 'chat';
+    const detectedCat = localDetectMath(text) ? 'math' : localDetectScience(text) ? 'science' : 'chat';
     const pickedModelId = await promptModelForCategory(detectedCat);
     if (!pickedModelId) return;
     applySelectedModel(pickedModelId, true);
@@ -3284,7 +3306,9 @@
     'unicollect-chat-mini': 'یونیکالکت چت مینی',
     'unicollect-chat-1.2': 'یونیکالکت چت ۱.۲',
     'unicollect-math-mini': 'یونیکالکت ریاضی مینی',
-    'unicollect-math-1.2': 'یونیکالکت ریاضی ۱.۲'
+    'unicollect-math-1.2': 'یونیکالکت ریاضی ۱.۲',
+    'unicollect-science-mini': 'یونیکالکت علوم مینی',
+    'unicollect-science-1.2': 'یونیکالکت علوم ۱.۲'
   };
   let _pendingModelResolver = null;
 
@@ -3318,24 +3342,34 @@
     if (!modal) return;
     const chatSec = document.getElementById('mp-section-chat');
     const mathSec = document.getElementById('mp-section-math');
+    const sciSec = document.getElementById('mp-section-science');
     const titleEl = document.getElementById('mp-title');
     const subEl = modal.querySelector('.mp-sub');
 
     if (filterCategory === 'math') {
       if (chatSec) chatSec.hidden = true;
       if (mathSec) mathSec.hidden = false;
+      if (sciSec) sciSec.hidden = true;
       if (titleEl) titleEl.textContent = 'درخواست ریاضی تشخیص داده شد';
       if (subEl) subEl.textContent = 'مدل ریاضی مورد نظر خود را برای حل این مسئله انتخاب کنید';
+    } else if (filterCategory === 'science') {
+      if (chatSec) chatSec.hidden = true;
+      if (mathSec) mathSec.hidden = true;
+      if (sciSec) sciSec.hidden = false;
+      if (titleEl) titleEl.textContent = 'درخواست علمی تشخیص داده شد';
+      if (subEl) subEl.textContent = 'مدل علوم مورد نظر خود را برای پاسخ به این پرسش انتخاب کنید';
     } else if (filterCategory === 'chat') {
       if (chatSec) chatSec.hidden = false;
       if (mathSec) mathSec.hidden = true;
+      if (sciSec) sciSec.hidden = true;
       if (titleEl) titleEl.textContent = 'درخواست گفتگو تشخیص داده شد';
       if (subEl) subEl.textContent = 'مدل گفتگوی مورد نظر خود را برای پاسخ به این پیام انتخاب کنید';
     } else {
       if (chatSec) chatSec.hidden = false;
       if (mathSec) mathSec.hidden = false;
+      if (sciSec) sciSec.hidden = false;
       if (titleEl) titleEl.textContent = 'انتخاب مدل گفتگو';
-      if (subEl) subEl.textContent = 'مدل مورد نظر خود را برای گفتگو یا حل مسائل ریاضی انتخاب کنید';
+      if (subEl) subEl.textContent = 'مدل مورد نظر خود را برای گفتگو، حل مسائل ریاضی یا علوم انتخاب کنید';
     }
 
     applySelectedModel(state.selectedModel || getSelectedModelId(), true);
@@ -3367,6 +3401,14 @@
     return false;
   }
 
+  function localDetectScience(text) {
+    const stripped = String(text || '')
+      .replace(/https?:\/\/\S+|www\.\S+|\b[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}\b/gi, ' ')
+      .trim();
+    if (!stripped) return false;
+    return /(?:فیزیک|شیمی|زیست[‌\s]?شناسی|زیست|سلول|مولکول|اتم|الکترون|پروتون|نوترون|کوانتوم|نسبیت|ترمودینامیک|الکتریسیته|مغناطیس|الکترومغناطیس|نیرو|شتاب|گرانش|جاذبه|واکنش[‌\s]?شیمیایی|اسید|باز|پیوند[‌\s]?شیمیایی|جدول[‌\s]?تناوبی|ایزوتوپ|کاتالیزور|ژنتیک|پروتئین|آنزیم|فتوسنتز|میتوز|میوز|کروموزوم|باکتری|ویروس|آناتومی|فیزیولوژی|نجوم|اخترفیزیک|کهکشان|سیاه[‌\s]?چاله|سیاره|زمین[‌\s]?شناسی|آتشفشان|زلزله|اکولوژی|\b(?:physics|chemistry|biology|science|scientific|quantum|relativity|thermodynamics|electromagnetism|molecule|molecular|atom|atomic|electron|proton|neutron|chemical|reaction|acid|base|catalyst|isotope|periodic\s+table|dna|rna|genetics|protein|enzyme|photosynthesis|mitosis|meiosis|cell|bacteria|virus|anatomy|physiology|astronomy|astrophysics|galaxy|black\s+hole|gravity|geology|ecology)\b)/i.test(stripped);
+  }
+
   async function detectMessageCategory(text) {
     try {
       const base = await resolveApiBase();
@@ -3385,10 +3427,11 @@
       clearTimeout(timer);
       if (r.ok) {
         const d = await r.json();
+        if (d && d.category) return d.category;
         if (d && typeof d.is_math === 'boolean') return d.is_math ? 'math' : 'chat';
       }
     } catch (e) {}
-    return localDetectMath(text) ? 'math' : 'chat';
+    return localDetectMath(text) ? 'math' : localDetectScience(text) ? 'science' : 'chat';
   }
 
   function promptModelForCategory(category) {

@@ -123,16 +123,6 @@
           <div class="col">
             <div class="composer" id="composer">
               <div class="composer-preview md" id="composer-preview" hidden style="display:none"></div>
-              <div class="composer-fmt" id="composer-fmt" hidden style="display:none" role="toolbar" aria-label="ابزار قالب‌بندی متن">
-                <button class="fmt-btn" type="button" data-fmt="bold" title="ضخیم"><b>ضخیم</b></button>
-                <button class="fmt-btn" type="button" data-fmt="italic" title="مورب"><i>مورب</i></button>
-                <button class="fmt-btn" type="button" data-fmt="mark" title="برجسته"><span>برجسته</span></button>
-                <button class="fmt-btn" type="button" data-fmt="code" title="کد خطی">کد</button>
-                <button class="fmt-btn" type="button" data-fmt="codeblock" title="بلوک کد">بلوک کد</button>
-                <button class="fmt-btn" type="button" data-fmt="math" title="فرمول ریاضی">فرمول</button>
-                <button class="fmt-btn" type="button" data-fmt="callout" title="کادر نکته">نکته</button>
-                <button class="fmt-btn" type="button" data-fmt="task" title="فهرست کارها">فهرست کار</button>
-              </div>
               <div class="ta-wrap" id="ta-wrap" style="height: 28px;">
                 <div class="ta-ph" id="ta-ph" aria-hidden="true">از یونیکالکت بپرسید…</div>
                 <textarea id="chat-input" rows="1" dir="auto" maxlength="8000" aria-label="پیام" spellcheck="false" autocomplete="off" enterkeyhint="send" style="height: 28px; overflow-y: hidden;"></textarea>
@@ -140,8 +130,6 @@
               <div class="composer-row">
                 <div class="cr-start">
                   <button class="round-btn" type="button" id="btn-paste" title="جای‌گذاری از کلیپ‌بورد" aria-label="جای‌گذاری از کلیپ‌بورد"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button>
-                  <button class="round-btn" type="button" id="btn-fmt-toggle" title="ابزار قالب‌بندی متن" aria-label="ابزار قالب‌بندی" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></button>
-                  <button class="round-btn" type="button" id="btn-preview-toggle" title="پیش‌نمایش زنده متن و فرمول" aria-label="پیش‌نمایش زنده" aria-pressed="false"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg></button>
                   <button class="pill-btn" type="button" id="btn-status-pill">
                     <span class="sdot warn" data-health-dot></span>
                     <span data-health-label>در حال اتصال…</span>
@@ -222,6 +210,10 @@
             <span>مدل تخصصی ریاضی</span>
             <b>مدل ریاضی یونیکالکت</b>
           </div>
+          <div class="kv">
+            <span>مدل تخصصی علوم</span>
+            <b>مدل علوم یونیکالکت</b>
+          </div>
           <div class="kv kv-copy">
             <span>کلید عمومی دسترسی</span>
             <b class="mono kv-code-row">
@@ -282,7 +274,7 @@
         <div class="modal-head">
           <div>
             <h3 id="mp-title">انتخاب مدل گفتگو</h3>
-            <p class="mp-sub">مدل مورد نظر خود را برای گفتگو یا حل مسائل ریاضی انتخاب کنید</p>
+            <p class="mp-sub">مدل مورد نظر خود را برای گفتگو، حل مسائل ریاضی یا علوم انتخاب کنید</p>
           </div>
           <button class="icon-btn sm" type="button" id="btn-mp-close" aria-label="بستن"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
         </div>
@@ -323,6 +315,25 @@
                   <span class="mp-badge pro">پیشرفته</span>
                 </div>
                 <div class="mp-card-desc">استدلال عمیق و دقیق برای اثبات‌ها، المپیاد و مسائل سنگین ریاضی</div>
+              </button>
+            </div>
+          </div>
+          <div class="mp-section" id="mp-section-science">
+            <div class="mp-section-label">علوم</div>
+            <div class="mp-grid">
+              <button type="button" class="mp-card" data-pick-model="unicollect-science-mini">
+                <div class="mp-card-top">
+                  <span class="mp-card-name">یونیکالکت علوم مینی</span>
+                  <span class="mp-badge">سریع</span>
+                </div>
+                <div class="mp-card-desc">پاسخ‌دهی سریع و دقیق برای پرسش‌های فیزیک، شیمی، زیست‌شناسی و علوم</div>
+              </button>
+              <button type="button" class="mp-card" data-pick-model="unicollect-science-1.2">
+                <div class="mp-card-top">
+                  <span class="mp-card-name">یونیکالکت علوم ۱.۲</span>
+                  <span class="mp-badge pro">پیشرفته</span>
+                </div>
+                <div class="mp-card-desc">تحلیل عمیق علمی، استدلال تخصصی و مسائل پیشرفته فیزیک، شیمی و زیست</div>
               </button>
             </div>
           </div>
